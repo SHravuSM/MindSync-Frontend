@@ -1,86 +1,3 @@
-// import React, { useEffect, useState } from "react";
-// import CreatePost from "../components/CreatePost";
-// import PostCard from "../components/PostCard";
-// import api from "../utils/api2";
-// import { useAuthContext } from "../context/AuthContext";
-
-// const Feed = ({ appear }) => {
-//   const { user } = useAuthContext();
-//   const [posts, setPosts] = useState([]);
-//   const [loading, setLoading] = useState(true);
-
-//   const currentUser = {
-//     email: user.email,
-//     name: user.name,
-//     photo: user.photo,
-//   };
-
-//   // Fetch posts on mount
-//   const fetchPosts = async () => {
-//     try {
-//       const res = await api.get("/posts");
-//       setPosts(res.data);
-//     } catch (err) {
-//       console.error("Failed to load posts", err);
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-//   useEffect(() => {
-//     fetchPosts();
-//   }, []);
-
-//   // Add new post
-//   const handlePostCreated = (newPost) => {
-//     setPosts((prev) => [newPost, ...prev]);
-//   };
-
-//   // Handle like toggle
-//   const handleLike = async (postId) => {
-//     try {
-//       const res = await api.patch(`/posts/like/${postId}`, {
-//         uid: user.uid,
-//       });
-//       setPosts((prev) => prev.map((p) => (p._id === postId ? res.data : p)));
-//     } catch (err) {
-//       console.error("Failed to like post", err);
-//     }
-//   };
-
-//   return (
-//     <div className="max-w-3xl mx-auto w-full px-4 sm:px-6 lg:px-8 mt-6">
-//       {/* Post Creation */}
-//       {appear && (
-//         <CreatePost
-//           onPostCreated={handlePostCreated}
-//           currentUser={currentUser}
-//         />
-//       )}
-
-//       {/* Loading State */}
-//       {loading ? (
-//         <div className="text-center text-gray-500 mt-10 animate-pulse">
-//           Loading posts...
-//         </div>
-//       ) : posts.length === 0 ? (
-//         <div className="text-center text-gray-400 mt-10">
-//           No posts to show. Be the first to share something!
-//         </div>
-//       ) : (
-//         // Posts Feed
-//         <div className="mt-6 space-y-6">
-//           {posts.map((post) => (
-//             <PostCard key={post._id} post={post} onLike={handleLike} />
-//           ))}
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default Feed;
-
 import React, { useEffect, useState } from "react";
 import CreatePost from "../components/CreatePost";
 import PostCard from "../components/PostCard";
@@ -97,16 +14,30 @@ const Feed = () => {
   const [appear, setAppear] = useState(false);
   const [tags, setTags] = useState([])
 
+  console.log(user)
   const currentUser = {
     email: user.email,
     name: user.name,
     photo: user.photo,
   };
 
+  const handleTAG = async (tag) => {
+    try {
+      const tagg = tag.replace("#", "");
+      console.log(tag);
+      const res = await api.get(`/tags/${tagg}`);
+      console.log(res.data);
+      setPosts(res.data);
+    } catch (err) {
+      console.error("Failed to load posts", err);
+    }
+  }
+
   const fetchPosts = async () => {
     try {
       const res = await api.get("/posts");
       setPosts(res.data);
+      // console.log(res.data);
     } catch (err) {
       console.error("Failed to load posts", err);
     } finally {
@@ -115,9 +46,17 @@ const Feed = () => {
   };
 
   useEffect(() => {
-    const uniqueTags = Array.from(new Set(posts.flatMap(post => post.tags)));
-    setTags(uniqueTags);
-  }, [posts])
+    const fetchTags = async () => {
+      try {
+        const res = await api.get("/tags/all");
+        setTags(res.data);
+      } catch (err) {
+        console.error("Failed to fetch tags:", err);
+      }
+    };
+
+    fetchTags();
+  }, []);
 
   useEffect(() => {
     fetchPosts();
@@ -145,6 +84,7 @@ const Feed = () => {
         {tags.map((tag, index) => (
           <span
             key={index}
+            onClick={() => handleTAG(tag)}
             className="shrink-0 bg-white text-gray-800 text-sm font-medium px-4 py-1.5 rounded-full shadow hover:bg-gray-100 transition-colors duration-200 cursor-pointer"
           >
             {tag}

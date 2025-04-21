@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import api from "../utils/api2";
+import api from "../utils/api1";
 import { useAuthContext } from "../context/AuthContext";
 
-const CreatePost = ({ onPostCreated, currentUser }) => {
+const CreatePost = ({ onPostCreated }) => {
   const [content, setContent] = useState("");
   const { user } = useAuthContext();
   const [tags, setTags] = useState();
+
   const handlePost = async () => {
     if (!content.trim()) return;
 
@@ -15,6 +16,7 @@ const CreatePost = ({ onPostCreated, currentUser }) => {
       .filter((tag) => tag.length > 0);
 
     try {
+      console.log("Creating post with content:", content, "and tags:", processedTags);
       const res = await api.post("/posts", {
         content,
         tags: processedTags,

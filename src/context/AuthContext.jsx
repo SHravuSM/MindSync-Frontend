@@ -12,7 +12,40 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true); // useful while checking session
 
-  // 🔄 Listen to Firebase Auth changes
+  // // 🔄 Listen to Firebase Auth changes
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+  //     if (firebaseUser) {
+  //       try {
+  //         const token = await firebaseUser.getIdToken(true);
+  //         const res = await axios.get(`${import.meta.env.VITE_API_URL}/user`, {
+  //           headers: {
+  //             Authorization: `Bearer ${token}`,
+  //           },
+  //         });
+  //         const backendUser = res.data.user;
+  //         console.log("User from backend:", backendUser);
+  //         setUser(backendUser);
+  //         localStorage.setItem("user", JSON.stringify(backendUser));
+  //         localStorage.setItem("token", token);
+  //       } catch (err) {
+  //         setUser(null);
+  //         localStorage.removeItem("user");
+  //         localStorage.removeItem("token");
+  //         console.error("Error syncing with backend:", err);
+  //       }
+  //     } else {
+  //       setUser(null);
+  //       localStorage.removeItem("user");
+  //       localStorage.removeItem("token");
+  //     }
+
+  //     setLoading(false);
+  //   });
+
+  //   return () => unsubscribe();
+  // }, []);
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
@@ -24,17 +57,20 @@ export const AuthProvider = ({ children }) => {
             },
           });
           const backendUser = res.data.user;
+          console.log("User from backend:", backendUser);
           setUser(backendUser);
           localStorage.setItem("user", JSON.stringify(backendUser));
           localStorage.setItem("token", token);
         } catch (err) {
           setUser(null);
           localStorage.removeItem("user");
+          localStorage.removeItem("token");
           console.error("Error syncing with backend:", err);
         }
       } else {
         setUser(null);
         localStorage.removeItem("user");
+        localStorage.removeItem("token");
       }
 
       setLoading(false);
@@ -43,11 +79,11 @@ export const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
+
   const loginWithGoogle = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
       const token = await result.user.getIdToken(true);
-      localStorage.setItem("token", token);
       const res = await axios.post(`${import.meta.env.VITE_API_URL}/register`, {
         token,
       });
@@ -55,6 +91,7 @@ export const AuthProvider = ({ children }) => {
       const user = res.data.user;
       setUser(user);
       localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("token", token);
       navigate("/dashboard");
     } catch (err) {
       console.error("Google sign-in error:", err);
