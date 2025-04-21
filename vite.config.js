@@ -7,8 +7,6 @@ import { visualizer } from "rollup-plugin-visualizer";
 export default defineConfig({
   plugins: [react(), tailwindcss(), visualizer()],
   build: {
-    rollupOptions: {
-      plugins: [visualizer()],
-    },
+    chunkSizeWarningLimit: 1000, // increase limit to 1000KB (1MB)
   },
 });
