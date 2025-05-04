@@ -1,13 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useAuthContext } from "../../context/AuthContext";
+import api from "../../utils/api1";
 
 export default function Profile() {
   const { user } = useAuthContext();
+  const [posts, setPosts] = useState([]);
 
-  const posts = [
-    { id: 1, content: "Excited to start building cool things 🚀" },
-    { id: 2, content: "Loving this new project I’m working on!" },
-  ];
+  // Fetch posts from the server or API
+  const fetchPosts = async () => {
+    try {
+      const response = await api.get("/posts/me");
+      console.log(response.data) // Replace with your API endpoint
+      const data = response.data; // Assuming the response contains the posts data
+      setPosts(data); // Assuming the API returns an array of posts
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchPosts();
+  }, []); // Empty dependency array to run once on component mount
 
   return (
     <div className=" mx-auto mt-2 mb-2 p-6 bg-white shadow-lg rounded-2xl">
@@ -50,7 +63,7 @@ export default function Profile() {
       <div className="mt-10">
         <h2 className="text-xl font-semibold mb-4">Recent Posts</h2>
         <div className="space-y-4">
-          {posts.map((post) => (
+          {posts?.map((post) => (
             <div
               key={post.id}
               className="bg-gray-50 p-4 rounded-lg shadow-sm hover:shadow-md transition"
