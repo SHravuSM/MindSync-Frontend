@@ -4,23 +4,6 @@ import api from "../../utils/api1";
 
 export default function Profile() {
   const { user } = useAuthContext();
-  const [posts, setPosts] = useState([]);
-
-  // Fetch posts from the server or API
-  const fetchPosts = async () => {
-    try {
-      const response = await api.get("/posts/me");
-      console.log(response.data) // Replace with your API endpoint
-      const data = response.data; // Assuming the response contains the posts data
-      setPosts(data); // Assuming the API returns an array of posts
-    } catch (error) {
-      console.error("Error fetching posts:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchPosts();
-  }, []); // Empty dependency array to run once on component mount
 
   return (
     <div className=" mx-auto mt-2 mb-2 p-6 bg-white shadow-lg rounded-2xl">
@@ -43,36 +26,6 @@ export default function Profile() {
         </div>
       </div>
 
-      {/* Stats */}
-      <div className="flex justify-around mt-8 text-center">
-        <div>
-          <p className="text-xl font-bold">42</p>
-          <p className="text-gray-500 text-sm">Posts</p>
-        </div>
-        <div>
-          <p className="text-xl font-bold">124</p>
-          <p className="text-gray-500 text-sm">Followers</p>
-        </div>
-        <div>
-          <p className="text-xl font-bold">87</p>
-          <p className="text-gray-500 text-sm">Following</p>
-        </div>
-      </div>
-
-      {/* Posts */}
-      <div className="mt-10">
-        <h2 className="text-xl font-semibold mb-4">Recent Posts</h2>
-        <div className="space-y-4">
-          {posts?.map((post) => (
-            <div
-              key={post.id}
-              className="bg-gray-50 p-4 rounded-lg shadow-sm hover:shadow-md transition"
-            >
-              <p className="text-gray-800">{post.content}</p>
-            </div>
-          ))}
-        </div>
-      </div>
     </div>
   );
 }
