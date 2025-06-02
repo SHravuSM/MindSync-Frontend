@@ -113,10 +113,10 @@ const Feed = () => {
 
       <button
         onClick={() => setAppear((pre) => !pre)}
-        className="fixed bottom-6 right-4 lg:bottom-7 lg:right-12 z-30 group"
+        className="fixed bottom-4 right-4 lg:bottom-7 lg:right-12 z-30 group"
       >
         {/* Glow & Pulse */}
-        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500blur-md opacity-60 group-hover:scale-105 group-hover:opacity-80 transition-all duration-500 animate-pulse"></div>
+        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 blur-md opacity-60 group-hover:scale-105 group-hover:opacity-80 transition-all duration-500 animate-pulse"></div>
 
         {/* Button Container */}
         <div className="relative p-2 sm:p-3 lg:p-4 bg-blue-600 hover:bg-blue-700 rounded-full shadow-xl transition-all duration-300 scale-100 hover:scale-105 active:scale-95">
