@@ -174,7 +174,7 @@ const Navbar = ({ setOpen }) => {
         </div>
         {/* Brand */}
         <div className="text-2xl lg:text-4xl font-semibold">
-          MindSync<span className="text-blue-500 text-3xl">.</span>
+          ManoSangam<span className="text-blue-500 text-3xl">.</span>
         </div>
         <div className="h-10 flex items-center p-1 bg-black hover:bg-white hover:text-black rounded-lg">
           {/* <FiLogIn

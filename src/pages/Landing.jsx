@@ -217,7 +217,7 @@ export default function Landing() {
       {/* Footer */}
       <footer className="bg-gray-900 text-white text-center py-4 px-4">
         <p>
-          &copy; {new Date().getFullYear()} MindSync. Built for idea warriors.
+          &copy; {new Date().getFullYear()} ManoSangam. Built for idea warriors.
         </p>
       </footer>
     </div>
