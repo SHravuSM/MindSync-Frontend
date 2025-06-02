@@ -161,9 +161,9 @@ export default function Landing() {
     <div className="font-sans text-gray-800">
       {/* Hero Section */}
       <section className="bg-black flex flex-col items-center gap-2 text-white py-16 pb-10 px-6 text-center">
-        <h1 className="text-5xl font-bold mb-4">MindSync</h1>
+        <h1 className="text-5xl font-bold mb-4">Mano<span className="text-blue-500">Sangam</span><span className="text-orange-400">.</span></h1>
         <p className="text-xl mb-8 italic">
-          “Ideas connect us. Let’s build the future together.”
+          “The Gathering of Minds.”
         </p>
         {/* <button
           onClick={loginWithGoogle}
@@ -182,12 +182,10 @@ export default function Landing() {
 
       {/* About */}
       <section className="py-16 pb-0 px-6 max-w-4xl mx-auto text-center">
-        <h2 className="text-3xl mb-4 font-sans">What is MindSync ?</h2>
+        <h2 className="text-3xl mb-4 font-sans">What is ManoSangam ?</h2>
         <p className="text-lg text-gray-600">
-          A buzzing hive where wild ideas fly in raw and get polished by the
-          crowd
-          <br />
-          real-time minds, real fun, real potential.
+          Welcome to a confluence of thinkers, dreamers, and doers. Share your ideas, explore perspectives, and ignite innovation — all in one place.
+          Where minds converge, creativity flows, and innovation begins.
         </p>
       </section>
 
