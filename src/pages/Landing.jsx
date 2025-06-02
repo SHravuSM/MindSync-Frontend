@@ -184,8 +184,7 @@ export default function Landing() {
       <section className="py-16 pb-0 px-6 max-w-4xl mx-auto text-center">
         <h2 className="text-2xl mb-4 font-sans">What is ManoSangam?</h2>
         <p className="text-lg text-gray-600">
-          Welcome to a confluence of thinkers, dreamers, and doers. Share your ideas, explore perspectives, and ignite innovation — all in one place.
-          Where minds converge, creativity flows, and innovation begins.
+          Welcome to a confluence of thinkers, dreamers, and doers. Share your ideas, explore perspectives, and ignite innovation — Where minds converge, creativity flows, and innovation begins.
         </p>
       </section>
 
