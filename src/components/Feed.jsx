@@ -102,18 +102,18 @@ const Feed = () => {
       {/* Floating Create Button */}
       <button
         onClick={() => setAppear((pre) => !pre)}
-        className="fixed bottom-7 right-5 lg:right-12 z-30"
+        className="fixed p-4 bg-blue-500 rounded-full bottom-7 right-5 lg:right-12 z-30"
       >
         <img
           src={pen}
           alt="Write"
-          className="h-12 w-12 lg:h-14 lg:w-14 transition-transform duration-500 hover:scale-125 drop-shadow-xl"
+          className="h-10 w-10 lg:h-14 lg:w-14 transition-transform duration-500 hover:scale-125 drop-shadow-xl"
         />
       </button>
 
       {/* Floating Input */}
       <div className="fixed bottom-7 left-1/2 transform -translate-x-1/2 w-[50%] sm:w-2/3 md:w-1/2 lg:w-1/3 z-20">
-        <Input setAppear={setAppear} />
+        {/* <Input setAppear={setAppear} /> */}
       </div>
 
       {/* Create Post Animation */}
