@@ -23,7 +23,7 @@ export const AuthProvider = ({ children }) => {
             },
           });
           const backendUser = res.data.user;
-          // console.log("User from backend:", backendUser);
+          console.log("User from backend:", backendUser);
           setUser(backendUser);
           localStorage.setItem("user", JSON.stringify(backendUser));
           localStorage.setItem("token", token);

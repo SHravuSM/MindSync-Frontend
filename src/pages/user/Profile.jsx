@@ -1,31 +1,437 @@
-import React, { useEffect, useState } from "react";
-import { useAuthContext } from "../../context/AuthContext";
-import api from "../../utils/api1";
+// import React, { useState } from "react";
+// import { useAuthContext } from "../../context/AuthContext";
+// import { FaMapMarkerAlt, FaEnvelope, FaCalendarAlt } from "react-icons/fa";
+// import { FiEdit3 } from "react-icons/fi";
 
-export default function Profile() {
-  const { user } = useAuthContext();
+// export default function Profile() {
+//   const { user } = useAuthContext();
+//   const [editing, setEditing] = useState(false);
+
+//   return (
+//     <div className="mx-auto mt-4 mb-4 p-6 bg-white shadow-2xl rounded-2xl max-w-3xl">
+//       {/* Profile Header */}
+//       <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+//         <div className="relative">
+//           <img
+//             src={user?.photo || "/default-avatar.png"}
+//             alt="Profile"
+//             className="w-32 h-32 rounded-full object-cover border-4 border-blue-500 shadow-md"
+//           />
+//           {/* Status Badge */}
+//           <span className="absolute bottom-2 right-2 w-4 h-4 rounded-full bg-green-500 border-2 border-white animate-ping" />
+//         </div>
+
+//         <div className="text-center sm:text-left">
+//           <h1 className="text-2xl font-bold text-gray-800">
+//             {user?.name || "Unnamed User"}
+//           </h1>
+//           <p className="text-gray-500">@{user?.username || "username"}</p>
+//           <p className="mt-2 text-sm text-gray-700 max-w-md">
+//             {user?.bio || "This user hasn't written a bio yet."}
+//           </p>
+
+//           {/* Contact / Info */}
+//           <div className="mt-3 space-y-1 text-sm text-gray-600">
+//             <div className="flex items-center gap-2">
+//               <FaEnvelope className="text-blue-500" />
+//               <span>{user?.email || "email@example.com"}</span>
+//             </div>
+//             <div className="flex items-center gap-2">
+//               <FaMapMarkerAlt className="text-blue-500" />
+//               <span>{user?.location || "Earth 🌍"}</span>
+//             </div>
+//             <div className="flex items-center gap-2">
+//               <FaCalendarAlt className="text-blue-500" />
+//               <span>Joined {user?.joinedAt || "Recently"}</span>
+//             </div>
+//           </div>
+
+//           {/* Edit Button */}
+//           <button
+//             onClick={() => setEditing(true)}
+//             className="mt-4 inline-flex items-center gap-2 px-4 py-2 text-sm bg-blue-600 text-white rounded-full hover:bg-blue-700 transition"
+//           >
+//             <FiEdit3 />
+//             Edit Profile
+//           </button>
+//         </div>
+//       </div>
+
+//       {/* Profile Stats */}
+//       <div className="mt-6 grid grid-cols-3 gap-4 text-center">
+//         <div>
+//           <p className="text-xl font-bold text-blue-600">12</p>
+//           <p className="text-sm text-gray-500">Rides</p>
+//         </div>
+//         <div>
+//           <p className="text-xl font-bold text-blue-600">340</p>
+//           <p className="text-sm text-gray-500">Followers</p>
+//         </div>
+//         <div>
+//           <p className="text-xl font-bold text-blue-600">9.2</p>
+//           <p className="text-sm text-gray-500">Rating</p>
+//         </div>
+//       </div>
+
+//       {/* Future: Edit Modal */}
+//       {editing && (
+//         <div className="mt-6 text-sm text-gray-500 italic text-center">
+//           Edit Profile Modal Goes Here 🚧
+//         </div>
+//       )}
+//     </div>
+//   );
+// }
+
+
+// import React, { useState } from "react";
+// import { useAuthContext } from "../../context/AuthContext";
+// import { FaMapMarkerAlt, FaEnvelope, FaCalendarAlt } from "react-icons/fa";
+// import { FiEdit3 } from "react-icons/fi";
+// import { api1 } from "../../utils/api1";
+
+// // Modal component
+// function EditProfileModal({ user, onClose }) {
+//   const [formData, setFormData] = useState({
+//     name: user?.name || "",
+//     bio: user?.bio || "",
+//     location: user?.location || "",
+//   });
+
+//   const handleChange = (e) => {
+//     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+//   };
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     const user = api1.put('/user/update', formData)
+//     console.log("Updated Profile:", formData);
+//     onClose(); // Close modal after save
+//   };
+
+//   return (
+//     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 px-4">
+//       <div className="bg-white rounded-xl p-6 w-full max-w-md shadow-lg">
+//         <h2 className="text-xl font-semibold text-gray-800 mb-4">Edit Profile</h2>
+
+//         <form onSubmit={handleSubmit} className="space-y-4">
+//           <div>
+//             <label className="block text-sm font-medium text-gray-700">Name</label>
+//             <input
+//               name="name"
+//               value={formData.name}
+//               onChange={handleChange}
+//               className="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+//             />
+//           </div>
+//           <div>
+//             <label className="block text-sm font-medium text-gray-700">Bio</label>
+//             <textarea
+//               name="bio"
+//               value={formData.bio}
+//               onChange={handleChange}
+//               rows="3"
+//               className="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+//             />
+//           </div>
+//           <div>
+//             <label className="block text-sm font-medium text-gray-700">Location</label>
+//             <input
+//               name="location"
+//               value={formData.location}
+//               onChange={handleChange}
+//               className="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+//             />
+//           </div>
+
+//           <div className="flex justify-end gap-3 pt-2">
+//             <button
+//               type="button"
+//               onClick={onClose}
+//               className="px-4 py-2 text-sm bg-gray-300 hover:bg-gray-400 rounded-lg"
+//             >
+//               Cancel
+//             </button>
+//             <button
+//               type="submit"
+//               className="px-4 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+//             >
+//               Save Changes
+//             </button>
+//           </div>
+//         </form>
+//       </div>
+//     </div>
+//   );
+// }
+
+// // Main Profile Component
+// export default function Profile() {
+//   const { user } = useAuthContext();
+//   const [editing, setEditing] = useState(false);
+
+//   return (
+//     <div className="mx-auto mt-4 mb-4 p-6 bg-white shadow-2xl rounded-2xl max-w-3xl">
+//       {/* Profile Header */}
+//       <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+//         <div className="relative">
+//           <img
+//             src={user?.photo || "/default-avatar.png"}
+//             alt="Profile"
+//             className="w-32 h-32 rounded-full object-cover border-4 border-blue-500 shadow-md"
+//           />
+//           <span className="absolute bottom-2 right-2 w-4 h-4 rounded-full bg-green-500 border-2 border-white animate-ping" />
+//         </div>
+
+//         <div className="text-center sm:text-left">
+//           <h1 className="text-2xl font-bold text-gray-800">
+//             {user?.name || "Unnamed User"}
+//           </h1>
+//           <p className="text-gray-500">@{user?.username || "username"}</p>
+//           <p className="mt-2 text-sm text-gray-700 max-w-md">
+//             {user?.bio || "This user hasn't written a bio yet."}
+//           </p>
+
+//           {/* Contact / Info */}
+//           <div className="mt-3 space-y-1 text-sm text-gray-600">
+//             <div className="flex items-center gap-2">
+//               <FaEnvelope className="text-blue-500" />
+//               <span>{user?.email || "email@example.com"}</span>
+//             </div>
+//             <div className="flex items-center gap-2">
+//               <FaMapMarkerAlt className="text-blue-500" />
+//               <span>{user?.location || "Earth 🌍"}</span>
+//             </div>
+//             <div className="flex items-center gap-2">
+//               <FaCalendarAlt className="text-blue-500" />
+//               <span>Joined {user?.joinedAt || "Recently"}</span>
+//             </div>
+//           </div>
+
+//           {/* Edit Button */}
+//           <button
+//             onClick={() => setEditing(true)}
+//             className="mt-4 inline-flex items-center gap-2 px-4 py-2 text-sm bg-blue-600 text-white rounded-full hover:bg-blue-700 transition"
+//           >
+//             <FiEdit3 />
+//             Edit Profile
+//           </button>
+//         </div>
+//       </div>
+
+//       {/* Profile Stats */}
+//       <div className="mt-6 grid grid-cols-3 gap-4 text-center">
+//         <div>
+//           <p className="text-xl font-bold text-blue-600">12</p>
+//           <p className="text-sm text-gray-500">Rides</p>
+//         </div>
+//         <div>
+//           <p className="text-xl font-bold text-blue-600">340</p>
+//           <p className="text-sm text-gray-500">Followers</p>
+//         </div>
+//         <div>
+//           <p className="text-xl font-bold text-blue-600">9.2</p>
+//           <p className="text-sm text-gray-500">Rating</p>
+//         </div>
+//       </div>
+
+//       {/* Modal */}
+//       {editing && <EditProfileModal user={user} onClose={() => setEditing(false)} />}
+//     </div>
+//   );
+// }
+
+
+import React, { useState } from "react";
+import { useAuthContext } from "../../context/AuthContext";
+import { FaMapMarkerAlt, FaEnvelope, FaCalendarAlt } from "react-icons/fa";
+import { FiEdit3 } from "react-icons/fi";
+import api1 from "../../utils/api1";
+
+// Modal component
+function EditProfileModal({ user, onClose, onUpdate }) {
+  const [formData, setFormData] = useState({
+    name: user?.name || "",
+    bio: user?.bio || "",
+    location: user?.location || "",
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleChange = (e) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
+
+    try {
+      const updatedData = {
+        uid: user.uid,
+        name: formData.name,
+        bio: formData.bio,
+        location: formData.location,
+      };
+
+      const res = await api1.put("/user/update", updatedData);
+      console.log("Updated Profile:", res.data);
+
+      onUpdate(res.data.user); // Update context or local state
+      onClose();
+    } catch (err) {
+      console.error("Failed to update profile:", err);
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <div className=" mx-auto mt-2 mb-2 p-6 bg-white shadow-lg rounded-2xl">
-      {/* Header section */}
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 px-4">
+      <div className="bg-white rounded-xl p-6 w-full max-w-md shadow-lg">
+        <h2 className="text-xl font-semibold text-gray-800 mb-4">Edit Profile</h2>
+
+        {error && <p className="text-red-600 text-sm mb-2">{error}</p>}
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Name</label>
+            <input
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              className="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Bio</label>
+            <textarea
+              name="bio"
+              value={formData.bio}
+              onChange={handleChange}
+              rows="3"
+              className="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Location</label>
+            <input
+              name="location"
+              value={formData.location}
+              onChange={handleChange}
+              className="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          <div className="flex justify-end gap-3 pt-2">
+            <button
+              type="button"
+              onClick={onClose}
+              className="px-4 py-2 text-sm bg-gray-300 hover:bg-gray-400 rounded-lg"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              disabled={loading}
+              className="px-4 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            >
+              {loading ? "Saving..." : "Save Changes"}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
+
+// Main Profile Component
+export default function Profile() {
+  const { user, setUser } = useAuthContext(); // Make sure your context supports setUser
+  const [editing, setEditing] = useState(false);
+
+  const handleUpdateUser = (updatedUser) => {
+    setUser(updatedUser); // Update context
+  };
+
+  return (
+    <div className="mx-auto mt-4 mb-4 p-6 bg-white shadow-2xl rounded-2xl max-w-3xl">
+      {/* Profile Header */}
       <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
-        <img
-          src={user?.photo || "/default-avatar.png"}
-          alt="Profile"
-          className="w-32 h-32 rounded-full object-cover border-4 border-blue-500"
-        />
+        <div className="relative">
+          <img
+            src={user?.photo || "/default-avatar.png"}
+            alt="Profile"
+            className="w-32 h-32 rounded-full object-cover border-4 border-blue-500 shadow-md"
+          />
+          <span className="absolute bottom-2 right-2 w-4 h-4 rounded-full bg-green-500 border-2 border-white animate-ping" />
+        </div>
+
         <div className="text-center sm:text-left">
-          <h1 className="text-2xl font-bold">{user?.name || "Unnamed User"}</h1>
+          <h1 className="text-2xl font-bold text-gray-800">
+            {user?.name || "Unnamed User"}
+          </h1>
           <p className="text-gray-500">@{user?.username || "username"}</p>
-          <p className="mt-2 text-sm text-gray-700">
+          <p className="mt-2 text-sm text-gray-700 max-w-md">
             {user?.bio || "This user hasn't written a bio yet."}
           </p>
-          <button className="mt-4 px-4 py-2 text-sm bg-blue-600 text-white rounded-full hover:bg-blue-700">
+
+          <div className="mt-3 space-y-1 text-sm text-gray-600">
+            <div className="flex items-center gap-2">
+              <FaEnvelope className="text-blue-500" />
+              <span>{user?.email || "email@example.com"}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <FaMapMarkerAlt className="text-blue-500" />
+              <span>{user?.location || "Earth 🌍"}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <FaCalendarAlt className="text-blue-500" />
+              <span>Joined {user?.joinedAt || "Recently"}</span>
+            </div>
+          </div>
+
+          {/* Edit Button */}
+          <button
+            onClick={() => setEditing(true)}
+            className="mt-4 inline-flex items-center gap-2 px-4 py-2 text-sm bg-blue-600 text-white rounded-full hover:bg-blue-700 transition"
+          >
+            <FiEdit3 />
             Edit Profile
           </button>
         </div>
       </div>
 
+      {/* Profile Stats */}
+      <div className="mt-6 grid grid-cols-3 gap-4 text-center">
+        <div>
+          <p className="text-xl font-bold text-blue-600">12</p>
+          <p className="text-sm text-gray-500">Rides</p>
+        </div>
+        <div>
+          <p className="text-xl font-bold text-blue-600">340</p>
+          <p className="text-sm text-gray-500">Followers</p>
+        </div>
+        <div>
+          <p className="text-xl font-bold text-blue-600">9.2</p>
+          <p className="text-sm text-gray-500">Rating</p>
+        </div>
+      </div>
+
+      {/* Modal */}
+      {editing && (
+        <EditProfileModal
+          user={user}
+          onClose={() => setEditing(false)}
+          onUpdate={handleUpdateUser}
+        />
+      )}
     </div>
   );
 }

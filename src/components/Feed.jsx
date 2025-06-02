@@ -100,7 +100,7 @@ const Feed = () => {
       </div>
 
       {/* Floating Create Button */}
-      <button
+      {/* <button
         onClick={() => setAppear((pre) => !pre)}
         className="fixed p-4 bg-blue-500 rounded-full bottom-7 right-5 lg:right-12 z-30"
       >
@@ -109,7 +109,30 @@ const Feed = () => {
           alt="Write"
           className="h-10 w-10 lg:h-14 lg:w-14 transition-transform duration-500 hover:scale-125 drop-shadow-xl"
         />
+      </button> */}
+
+      <button
+        onClick={() => setAppear((pre) => !pre)}
+        className="fixed bottom-6 right-4 lg:bottom-7 lg:right-12 z-30 group"
+      >
+        {/* Glow & Pulse */}
+        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500blur-md opacity-60 group-hover:scale-105 group-hover:opacity-80 transition-all duration-500 animate-pulse"></div>
+
+        {/* Button Container */}
+        <div className="relative p-2 sm:p-3 lg:p-4 bg-blue-600 hover:bg-blue-700 rounded-full shadow-xl transition-all duration-300 scale-100 hover:scale-105 active:scale-95">
+          <img
+            src={pen}
+            alt="Write"
+            className="h-7 w-7 sm:h-9 sm:w-9 lg:h-9 lg:w-9 transition-transform duration-500 hover:rotate-[15deg] drop-shadow-xl"
+          />
+        </div>
+
+        {/* Tooltip */}
+        <span className="absolute right-full mr-2 sm:mr-3 bottom-1/2 translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gray-800 text-white text-[10px] sm:text-xs px-1.5 sm:px-2 py-1 rounded shadow-md">
+        New idea
+        </span>
       </button>
+
 
       {/* Floating Input */}
       <div className="fixed bottom-7 left-1/2 transform -translate-x-1/2 w-[50%] sm:w-2/3 md:w-1/2 lg:w-1/3 z-20">
