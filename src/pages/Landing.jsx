@@ -182,7 +182,7 @@ export default function Landing() {
 
       {/* About */}
       <section className="py-16 pb-0 px-6 max-w-4xl mx-auto text-center">
-        <h2 className="text-3xl mb-4 font-sans">What is ManoSangam ?</h2>
+        <h2 className="text-2xl mb-4 font-sans">What is ManoSangam?</h2>
         <p className="text-lg text-gray-600">
           Welcome to a confluence of thinkers, dreamers, and doers. Share your ideas, explore perspectives, and ignite innovation — all in one place.
           Where minds converge, creativity flows, and innovation begins.
@@ -191,7 +191,7 @@ export default function Landing() {
 
       {/* How It Works */}
       <section className="py-16 px-6 max-w-4xl mx-auto text-center">
-        <h2 className="text-3xl mb-6 font-sans">How It Works ?</h2>
+        <h2 className="text-2xl mb-6 font-sans">How It Works ?</h2>
         <div className="grid sm:grid-cols-3 gap-6">
           <div>
             <h3 className="text-xl font-semibold">1. Drop Ideas</h3>
