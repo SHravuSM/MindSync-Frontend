@@ -377,24 +377,24 @@ export default function Profile() {
           <h1 className="text-2xl font-bold text-gray-800">
             {user?.name || "Unnamed User"}
           </h1>
-          <p className="text-gray-500">@{user?.username || "username"}</p>
+          {/* <p className="text-gray-500">@{user?.username || "username"}</p> */}
           <p className="mt-2 text-sm text-gray-700 max-w-md">
-            {user?.bio || "This user hasn't written a bio yet."}
+            {user?.bio || "Edit profile to add bio."}
           </p>
 
           <div className="mt-3 space-y-1 text-sm text-gray-600">
             <div className="flex items-center gap-2">
               <FaEnvelope className="text-blue-500" />
-              <span>{user?.email || "email@example.com"}</span>
+              <span>{user?.email}</span>
             </div>
             <div className="flex items-center gap-2">
               <FaMapMarkerAlt className="text-blue-500" />
-              <span>{user?.location || "Earth 🌍"}</span>
+              <span>{user?.location}</span>
             </div>
-            <div className="flex items-center gap-2">
+            {/* <div className="flex items-center gap-2">
               <FaCalendarAlt className="text-blue-500" />
               <span>Joined {user?.joinedAt || "Recently"}</span>
-            </div>
+            </div> */}
           </div>
 
           {/* Edit Button */}
