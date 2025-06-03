@@ -68,6 +68,7 @@ export const AuthProvider = ({ children }) => {
     try {
       const result = await signInWithPopup(auth, provider);
       const token = await result.user.getIdToken(true);
+      console.log(role)
       const res = await axios.post(`${import.meta.env.VITE_API_URL}/register`, {
         token,
         role
