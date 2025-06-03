@@ -173,7 +173,7 @@ const Form = () => {
   const { signUpWithGoogle } = useAuthContext();
   const [role, setRole] = useState('');
 
-  const roles = ['Creator', 'Investor'];
+  const roles = ['creator', 'investor'];
 
   return (
     <StyledWrapper>
