@@ -1,10 +1,10 @@
 // src/context/AuthContext.js
-import { createContext, useContext, useEffect, useState } from "react";
-import { auth, provider } from "../firebase";
-import { onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
 import axios from "axios";
+import { auth, provider } from "../firebase";
 import { useNavigate } from "react-router-dom";
-import api from "../utils/api1";
+import { createContext, useContext, useEffect, useState } from "react";
+import { deleteUser, onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
+
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -45,10 +45,89 @@ export const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
+  // const loginWithGoogle = async () => {
+  //   try {
+  //     const result = await signInWithPopup(auth, provider);
+  //     const token = await result.user.getIdToken(true);
+  //     const res = await axios.post(`${import.meta.env.VITE_API_URL}/login`, {
+  //       token,
+  //     });
+
+  //     const user = res.data.user;
+  //     setUser(user);
+  //     console.log(user)
+  //     localStorage.setItem("user", JSON.stringify(user));
+  //     localStorage.setItem("token", token);
+  //     navigate("/dashboard");
+  //   } catch (err) {
+  //     console.error("Google sign-in error:", err);
+  //   }
+  // };
+
+  // const loginWithGoogle = async () => {
+  //   try {
+  //     const result = await signInWithPopup(auth, provider);
+  //     console.log(user)
+  //     const email = result.user.email;  // get user's email from Google account
+  //     // Ask backend if user exists
+  //     const checkRes = await axios.post(`${import.meta.env.VITE_API_URL}/check-user`, {
+  //       email,
+  //     });
+  //     console.log(checkRes)
+  //     if (!checkRes.data.exists) {
+  //       // User does not exist in your system yet
+  //       alert("User not registered. Please sign up first.");
+  //       await signOut(auth); // sign out from Firebase Auth popup session
+  //       const user = auth.currentUser
+  //       deleteUser(user)
+  //       return; // exit early, do not proceed
+  //     }
+
+  //     // User exists, proceed with login flow
+  //     const token = await result.user.getIdToken(true);
+  //     console.log(token)
+  //     const res = await axios.post(`${import.meta.env.VITE_API_URL}/login`, {
+  //       token,
+  //     });
+
+  //     const user = res.data.user;
+  //     setUser(user);
+  //     localStorage.setItem("user", JSON.stringify(user));
+  //     localStorage.setItem("token", token);
+  //     navigate("/dashboard");
+  //   } catch (err) {
+  //     console.error("Google sign-in error:", err);
+  //   }
+  // };
 
   const loginWithGoogle = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
+      const email = result.user.email;
+
+      // Check with backend if user exists
+      const checkRes = await axios.post(`${import.meta.env.VITE_API_URL}/check-user`, {
+        email,
+      });
+
+      if (!checkRes.data.exists) {
+        // ❌ User is not in your DB
+        alert("User not registered. Please sign up first.");
+
+        // ✅ Delete from Firebase Auth first
+        const user = auth.currentUser;
+        console.log(user)
+        if (user) {
+          await deleteUser(user);
+          console.log("Deleted from Firebase Auth");
+        }
+
+        // ✅ Now sign out
+        await signOut(auth);
+        return;
+      }
+
+      // ✅ User exists, proceed
       const token = await result.user.getIdToken(true);
       const res = await axios.post(`${import.meta.env.VITE_API_URL}/login`, {
         token,
@@ -63,6 +142,7 @@ export const AuthProvider = ({ children }) => {
       console.error("Google sign-in error:", err);
     }
   };
+
 
   const signUpWithGoogle = async (role) => {
     try {
