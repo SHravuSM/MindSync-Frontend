@@ -181,7 +181,8 @@ export default function Landing() {
       </section>
 
       {/* About */}
-      <section className="py-16 pb-0 px-6 max-w-4xl mx-auto text-center">
+      <section className="py-16 pt-2 pb-0 px-6 max-w-4xl mx-auto text-center">
+        <button className="px-4 py-1 my-5 border-2 rounded-sm"><Link to='/signup'>REGISTER</Link></button>
         <h2 className="text-2xl mb-4 font-sans">What is ManoSangam ?</h2>
         <p className="text-lg text-gray-600">
           Welcome to a confluence of thinkers, dreamers, and doers. Share your ideas, explore perspectives, and ignite innovation — Where minds converge, creativity flows, and innovation begins.

@@ -8,6 +8,7 @@ import ADashboard from "./components/Adashboard";
 import Profile from "./pages/user/Profile";
 import Feed from "./components/Feed";
 import Notification from "./components/Notification";
+import SignUp from "./components/SignUp";
 import Settings from "./components/Settings";
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Landing />} />
+      <Route path="/signup" element={<SignUp />} />
       <Route path="/adminreg" element={<AdminRegister />} />
       <Route path="/Adashboard" element={<ADashboard />} />
 

@@ -50,8 +50,27 @@ export const AuthProvider = ({ children }) => {
     try {
       const result = await signInWithPopup(auth, provider);
       const token = await result.user.getIdToken(true);
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/login`, {
+        token,
+      });
+
+      const user = res.data.user;
+      setUser(user);
+      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("token", token);
+      navigate("/dashboard");
+    } catch (err) {
+      console.error("Google sign-in error:", err);
+    }
+  };
+
+  const signUpWithGoogle = async (role) => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const token = await result.user.getIdToken(true);
       const res = await axios.post(`${import.meta.env.VITE_API_URL}/register`, {
         token,
+        role
       });
 
       const user = res.data.user;
@@ -99,6 +118,7 @@ export const AuthProvider = ({ children }) => {
         user,
         setUser,
         loginWithGoogle,
+        signUpWithGoogle,
         adminWithGoogle,
         logout,
         loading,
