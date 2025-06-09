@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useAuthStore } from "../context/AuthContext";
+import { useAuthStore } from "../context/AuthContext.jsx";
 
 const GoogleButton = () => {
   const { loginWithGoogle } = useAuthStore()

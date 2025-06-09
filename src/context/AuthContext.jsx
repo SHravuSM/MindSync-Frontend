@@ -55,7 +55,8 @@ export const AuthProvider = ({ children }) => {
   const loginWithGoogle = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
-      const email = result.user.email;
+      // const email = result.user.email;
+      // console.log(user)
 
       // Check with backend if user exists
       // const checkRes = await axios.post(`${import.meta.env.VITE_API_URL}/check-user`, {

@@ -217,7 +217,7 @@ import LogoutWhite from "./LogoutWhite.jsx";
 const Navbar = () => {
   return (
     <header className="bg-black text-white shadow-md">
-      <div className="max-w-screen-xl mx-auto px-6 py-4 relative flex items-end justify-end">
+      <div className="max-w-screen-xl mx-auto px-6 py-4 relative flex items-center justify-end">
         {/* Left Placeholder (invisible but occupies equal space to Logout) */}
         {/* <div className="w-[120px] flex items-center justify-start">
           {/* Optional: Could put a logo, avatar, or menu here */}
@@ -226,7 +226,7 @@ const Navbar = () => {
         <h1 className="absolute left-1/2 transform -translate-x-1/2 text-2xl lg:text-4xl font-bold text-center select-none">
           Mano
           <span className="text-blue-500">Sangam</span>
-          <span className="text-orange-500 text-3xl align-top">.</span>
+          <span className="text-orange-500">.</span>
         </h1>
 
         {/* Logout - right aligned */}
