@@ -1,7 +1,8 @@
-import React from "react";
 import styled from "styled-components";
+import { useAuthStore } from "../context/AuthContext";
 
-const GoogleButton = ({ loginWithGoogle }) => {
+const GoogleButton = () => {
+  const { loginWithGoogle } = useAuthStore()
   return (
     <StyledWrapper>
       <button

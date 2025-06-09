@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import api from "../utils/api1";
-import { useAuthContext } from "../context/AuthContext";
+import { useAuthStore } from "../context/AuthContext";
 
 const CreatePost = ({ onPostCreated }) => {
   const [content, setContent] = useState("");
-  const { user } = useAuthContext();
+  const { user } = useAuthStore();
   const [tags, setTags] = useState();
 
   const handlePost = async () => {
@@ -63,10 +63,10 @@ export default CreatePost;
 
 // import React, { useState } from "react";
 // import api from "../utils/api2";
-// import { useAuthContext } from "../context/AuthContext";
+// import { useAuthStore } from "../context/AuthContext";
 
 // const CreatePost = ({ onPostCreated }) => {
-//   const { user } = useAuthContext();
+//   const { user } = useAuthStore();
 //   const [content, setContent] = useState("");
 //   const [tags, setTags] = useState("");
 

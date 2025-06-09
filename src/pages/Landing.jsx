@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
-import { useAuthContext } from "../context/AuthContext";
 
 export default function Landing() {
-  const { loginWithGoogle } = useAuthContext();
   return (
     <div className="font-sans text-gray-800">
       {/* Hero Section */}
@@ -16,12 +14,12 @@ export default function Landing() {
           {/* Register Button */}
 
           {/* Login with Google Button */}
-          <button
-            onClick={loginWithGoogle}
+          <Link
+            to="/login"
             className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white px-8 py-3 hover:bg-gradient-to-l rounded-full font-semibold hover:bg-gray-200 transition transform hover:rotate-3 motion-safe:animate-bounce"
           >
             Login
-          </button>
+          </Link>
           <Link
             to="/signup"
             className="px-6 py-2 border-2 border-blue-500 text-blue-500 rounded-full font-semibold hover:bg-blue-500 hover:text-white transition duration-300"

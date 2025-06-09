@@ -1,13 +1,15 @@
 import React, { useState, useRef } from "react";
 import { Forward, Heart, MessageCircle } from "lucide-react";
-import { useAuthContext } from "../context/AuthContext";
+import { useAuthStore } from "../context/AuthContext";
 import api from "../utils/api1";
 
-const PostCard = ({ post, onLike }) => {
-  const { user } = useAuthContext();
+const PostCard = ({ post, onLike, onImpressed }) => {
+  const { user } = useAuthStore();
+  console.log(user)
   const liked = post.likes.includes(user.uid);
 
   const [commentText, setCommentText] = useState("");
+  console.log(post)
   const [showComments, setShowComments] = useState(false);
   const [comments, setComments] = useState(post.comments || []);
   const inputRef = useRef(null);
@@ -21,8 +23,8 @@ const PostCard = ({ post, onLike }) => {
     const newComment = {
       uid: user.uid,
       name: user.name,
-      photo: user.photo,
       comment: trimmed,
+      photo: user.photo,
       createdAt: new Date().toISOString(), // optional if needed
     };
 
@@ -67,12 +69,11 @@ const PostCard = ({ post, onLike }) => {
       </p>
 
       {/* Actions */}
-      <div className="mt-2 mb-2 flex gap-4 items-center text-sm">
+      {user.role == 'creator' && <div className="mt-2 mb-2 flex gap-4 items-center text-sm">
         <button
           onClick={() => onLike(post._id)}
-          className={`flex items-center gap-2 px-3 py-1 rounded-full transition ${
-            liked ? "text-red-500 bg-red-50 hover:bg-red-100" : "text-gray-600 hover:bg-gray-100"
-          }`}
+          className={`flex items-center gap-2 px-3 py-1 rounded-full transition ${liked ? "text-red-500 bg-red-50 hover:bg-red-100" : "text-gray-600 hover:bg-gray-100"
+            }`}
         >
           <Heart className={`w-4 h-4 transition ${liked ? "fill-red-500 stroke-red-500" : ""}`} />
           {post.likes.length}
@@ -85,7 +86,19 @@ const PostCard = ({ post, onLike }) => {
           <MessageCircle className="w-4 h-4" />
           Comment
         </button>
-      </div>
+      </div>}
+
+      {user.role == 'investor' && <div className="mt-2 mb-2 flex gap-4 items-center text-sm">
+        <button
+          onClick={() => onImpressed(post._id)}
+          className={`flex items-center gap-2 px-3 py-1 rounded-full transition ${liked ? "text-red-500 bg-red-50 hover:bg-red-100" : "text-gray-600 hover:bg-gray-100"
+            }`}
+        >
+          {/* <Heart className={`w-4 h-4 transition ${liked ? "fill-red-500 stroke-red-500" : ""}`} /> */}
+          Show impression
+          {post.impressions}
+        </button>
+      </div>}
 
       {/* Comments Section */}
       {showComments && (

@@ -1,25 +1,19 @@
 import React, { useEffect, useState } from "react";
 import CreatePost from "../components/CreatePost";
 import PostCard from "../components/PostCard";
-import Input from "./Input";
 import pen from "./feather-pen.png";
 import api from "../utils/api1";
-import { useAuthContext } from "../context/AuthContext";
+import { useAuthStore } from "../context/AuthContext";
 import { AnimatePresence, motion } from "framer-motion";
+import BottomNav from "./BottomNav";
 
 const Feed = () => {
-  const { user } = useAuthContext();
+  const { user } = useAuthStore();
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [appear, setAppear] = useState(false);
   const [tags, setTags] = useState([]);
   const [selectedTag, setSelectedTag] = useState(null); // 👈 New state to track selected tag
-
-  const currentUser = {
-    email: user.email,
-    name: user.name,
-    photo: user.photo,
-  };
 
   const handleTAG = async (tag) => {
     const isSameTag = selectedTag === tag;
@@ -66,9 +60,17 @@ const Feed = () => {
     fetchPosts();
   }, []);
 
+
   const handlePostCreated = (newPost) => {
     setPosts((prev) => [newPost, ...prev]);
   };
+
+  const onImpressed = async (postId) => {
+    const res = await api.patch(`/posts/impression/${postId}`, {
+      uid: user.uid
+    })
+    setPosts((prev) => prev.map((p) => (p._id === postId ? res.data : p)));
+  }
 
   const handleLike = async (postId) => {
     try {
@@ -99,24 +101,14 @@ const Feed = () => {
         ))}
       </div>
 
-      {/* Floating Create Button */}
-      {/* <button
-        onClick={() => setAppear((pre) => !pre)}
-        className="fixed p-4 bg-blue-500 rounded-full bottom-7 right-5 lg:right-12 z-30"
-      >
-        <img
-          src={pen}
-          alt="Write"
-          className="h-10 w-10 lg:h-14 lg:w-14 transition-transform duration-500 hover:scale-125 drop-shadow-xl"
-        />
-      </button> */}
-
+      <BottomNav />
       <button
         onClick={() => setAppear((pre) => !pre)}
         className="fixed bottom-4 right-4 lg:bottom-7 lg:right-12 z-30 group"
       >
         {/* Glow & Pulse */}
-        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 blur-md opacity-60 group-hover:scale-105 group-hover:opacity-80 transition-all duration-500 animate-pulse"></div>
+        {/* <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 blur-md opacity-60 group-hover:scale-105 group-hover:opacity-80 transition-all duration-500 animate-pulse"> */}
+        {/* </div> */}
 
         {/* Button Container */}
         <div className="relative p-2 sm:p-3 lg:p-4 bg-blue-600 hover:bg-blue-700 rounded-full shadow-xl transition-all duration-300 scale-100 hover:scale-105 active:scale-95">
@@ -129,7 +121,7 @@ const Feed = () => {
 
         {/* Tooltip */}
         <span className="absolute right-full mr-2 sm:mr-3 bottom-1/2 translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gray-800 text-white text-[10px] sm:text-xs px-1.5 sm:px-2 py-1 rounded shadow-md">
-        New idea
+          New idea
         </span>
       </button>
 
@@ -156,7 +148,7 @@ const Feed = () => {
           >
             <CreatePost
               onPostCreated={handlePostCreated}
-              currentUser={currentUser}
+            // currentUser={currentUser}
             />
           </motion.div>
         )}
@@ -174,7 +166,7 @@ const Feed = () => {
       ) : (
         <div className="mt-2 space-y-2">
           {posts.map((post) => (
-            <PostCard key={post._id} post={post} onLike={handleLike} />
+            <PostCard key={post._id} post={post} onImpressed={onImpressed} onLike={handleLike} />
           ))}
         </div>
       )}

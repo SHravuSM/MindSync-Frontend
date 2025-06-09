@@ -1,8 +1,9 @@
-import { useState } from "react";
-import { useAuthContext } from "../../context/AuthContext";
+import { useEffect, useState } from "react";
+import { useAuthStore } from "../../context/AuthContext";
 import { FaMapMarkerAlt, FaEnvelope } from "react-icons/fa";
 import { FiEdit3 } from "react-icons/fi";
 import api1 from "../../utils/api1";
+import { div } from "framer-motion/client";
 
 // Modal component
 function EditProfileModal({ user, onClose, onUpdate }) {
@@ -109,7 +110,7 @@ function EditProfileModal({ user, onClose, onUpdate }) {
 
 // Main Profile Component
 export default function Profile() {
-  const { user, setUser } = useAuthContext(); // Make sure your context supports setUser
+  const { user, setUser } = useAuthStore(); // Make sure your context supports setUser
   const [editing, setEditing] = useState(false);
 
   const handleUpdateUser = (updatedUser) => {
@@ -164,21 +165,12 @@ export default function Profile() {
         </div>
       </div>
 
-      {/* Profile Stats */}
-      <div className="mt-6 grid grid-cols-3 gap-4 text-center">
-        <div>
-          <p className="text-xl font-bold text-blue-600">12</p>
-          <p className="text-sm text-gray-500">Rides</p>
+      {user && <div className="flex items-center justify-between">
+        <div className="text-center text-indigo-500 m-2 border-2 w-full font-semibold rounded-full">Ideas</div>
+        <div className="text-center text-blue-600 m-2 border-2 w-full font-semibold rounded-full">
+          Pitch deck
         </div>
-        <div>
-          <p className="text-xl font-bold text-blue-600">340</p>
-          <p className="text-sm text-gray-500">Followers</p>
-        </div>
-        <div>
-          <p className="text-xl font-bold text-blue-600">9.2</p>
-          <p className="text-sm text-gray-500">Rating</p>
-        </div>
-      </div>
+      </div>}
 
       {/* Modal */}
       {editing && (
@@ -190,4 +182,4 @@ export default function Profile() {
       )}
     </div>
   );
-}[]
+} []

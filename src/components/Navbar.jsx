@@ -1,10 +1,10 @@
 // import React from "react";
 // import { Link } from "react-router-dom";
-// import { useAuthContext } from "../context/AuthContext";
+// import { useAuthStore } from "../context/AuthContext";
 // import notification from "./notification.png";
 
 // const Navbar = () => {
-//   const { user } = useAuthContext();
+//   const { user } = useAuthStore();
 
 //   return (
 //     <header className="bg-black text-white py-4 px-6 shadow-md">
@@ -44,12 +44,12 @@
 
 // import React, { useState } from "react";
 // import { Link } from "react-router-dom";
-// import { useAuthContext } from "../context/AuthContext";
+// import { useAuthStore } from "../context/AuthContext";
 // import notification from "./notification.png";
 // import Sidebar from "./Sidebar";
 
 // const Navbar = () => {
-//   const { user } = useAuthContext();
+//   const { user } = useAuthStore();
 //   const [sidebarOpen, setSidebarOpen] = useState(false);
 
 //   const toggleSidebar = () => {
@@ -101,12 +101,12 @@
 // export default Navbar;
 
 // import React, { useState } from "react";
-// import { useAuthContext } from "../context/AuthContext";
+// import { useAuthStore } from "../context/AuthContext";
 // import notification from "./notification.png";
 // // import Sidebar from "./Sidebar";
 
 // const Navbar = () => {
-//   const { user } = useAuthContext();
+//   const { user } = useAuthStore();
 //   const [sidebarOpen, setSidebarOpen] = useState(false);
 
 //   return (
@@ -152,36 +152,87 @@
 
 // export default Navbar;
 
-import React from "react";
-import { useAuthContext } from "../context/AuthContext";
-import USER from "./user.png";
+// import React from "react";
+// import { useAuthStore } from "../context/AuthContext";
+// import USER from "./user.png";
 
-const Navbar = ({ setOpen }) => {
-  const { logout } = useAuthContext();
-  // console.log(user);
+// const Navbar = () => {
+//   const { logout } = useAuthStore();
+//   // console.log(user);
 
+//   return (
+//     <header className="bg-black text-white py-4 px-6 shadow-md">
+//       <div className="max-w-screen-xl mx-auto flex justify-between items-center">
+//         {/* Avatar (only on small screens) */}
+//         <div className="cursor-pointer flex items-center gap-2">
+//         </div>
+//         {/* Brand */}
+//         <div className="text-2xl lg:text-4xl font-semibold">
+//           Mano<span className="text-blue-500">Sangam</span><span className="text-orange-500 text-3xl">.</span>
+//         </div>
+//         <div className="h-10 flex items-center p-1 bg-black hover:bg-white hover:text-black rounded-lg">
+//           {/* <FiLogIn
+//           onClick={logout}
+//           className=" hover:scale-110 duration-500 h-7 w-7"
+//         /> */}
+//         </div>
+//       </div>
+//     </header>
+//   );
+// };
+
+// export default Navbar;
+
+
+// import LogoutWhite from "./LogoutWhite.jsx";
+
+// const Navbar = () => {
+//   return (
+//     <header className="bg-black text-white shadow-md">
+//       <div className="max-w-screen-xl mx-auto px-6 py-4 flex justify-between items-center">
+//         {/* Left Spacer or Avatar for small screens (expand if needed) */}
+//         <div className="flex items-center gap-2 cursor-pointer">
+//           {/* Reserved space — could add an avatar, back button, or drawer trigger here */}
+//         </div>
+
+//         {/* Brand */}
+//         <h1 className="text-2xl lg:text-4xl font-bold text-center select-none">
+//           Mano
+//           <span className="text-blue-500">Sangam</span>
+//           <span className="text-orange-500 text-3xl align-top">.</span>
+//         </h1>
+
+//         {/* Logout or Action Button */}
+//         <LogoutWhite />
+//       </div>
+//     </header>
+//   );
+// };
+
+// export default Navbar;
+
+
+import LogoutWhite from "./LogoutWhite.jsx";
+
+const Navbar = () => {
   return (
-    <header className="bg-black text-white py-4 px-6 shadow-md">
-      <div className="max-w-screen-xl mx-auto flex justify-between items-center">
-        {/* Avatar (only on small screens) */}
-        <div className="cursor-pointer flex items-center gap-2">
-          <img
-            className="h-8 lg:h-10 rounded-full"
-            src={USER}
-            alt=""
-            onClick={() => setOpen((pre) => !pre)}
-          />
-        </div>
-        {/* Brand */}
-        <div className="text-2xl lg:text-4xl font-semibold">
-          ManoSangam<span className="text-blue-500 text-3xl">.</span>
-        </div>
-        <div className="h-10 flex items-center p-1 bg-black hover:bg-white hover:text-black rounded-lg">
-          {/* <FiLogIn
-          onClick={logout}
-          className=" hover:scale-110 duration-500 h-7 w-7"
-        /> */}
-        </div>
+    <header className="bg-black text-white shadow-md">
+      <div className="max-w-screen-xl mx-auto px-6 py-4 relative flex items-end justify-end">
+        {/* Left Placeholder (invisible but occupies equal space to Logout) */}
+        {/* <div className="w-[120px] flex items-center justify-start">
+          {/* Optional: Could put a logo, avatar, or menu here */}
+        {/* </div> */}
+        {/* Brand - Absolute center */}
+        <h1 className="absolute left-1/2 transform -translate-x-1/2 text-2xl lg:text-4xl font-bold text-center select-none">
+          Mano
+          <span className="text-blue-500">Sangam</span>
+          <span className="text-orange-500 text-3xl align-top">.</span>
+        </h1>
+
+        {/* Logout - right aligned */}
+        {/* <div className="flex items-center"> */}
+        <LogoutWhite />
+        {/* </div> */}
       </div>
     </header>
   );

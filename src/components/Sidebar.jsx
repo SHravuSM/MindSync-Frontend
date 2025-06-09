@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Home, Compass, Bell, User, Settings } from "lucide-react"; // lucide-react icons
 import clsx from "clsx";
 import { LogOut } from "lucide-react";
-import { useAuthContext } from "../context/AuthContext";
+import { useAuthStore } from "../context/AuthContext";
 
 const navItems = [
   { label: "Home", to: ".", icon: <Home size={22} /> },
@@ -14,7 +14,7 @@ const navItems = [
 ];
 
 const Sidebar = ({ open, setOpen }) => {
-  const { logout } = useAuthContext();
+  const { logout } = useAuthStore();
   const location = useLocation();
 
   return (

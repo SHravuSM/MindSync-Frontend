@@ -1,7 +1,7 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
+import { useAuthStore } from "./context/AuthContext";
 import { useEffect } from "react";
-import { useAuthContext } from "./context/AuthContext";
 import Landing from "./pages/Landing";
 import AdminRegister from "./components/AdminRegister";
 import ADashboard from "./components/Adashboard";
@@ -10,9 +10,10 @@ import Feed from "./components/Feed";
 import Notification from "./components/Notification";
 import SignUp from "./components/SignUp";
 import Settings from "./components/Settings";
+import Login from "./components/Login";
 
 function App() {
-  const { user } = useAuthContext();
+  const { user } = useAuthStore();
   // console.log(user)
   const navigate = useNavigate();
   useEffect(() => {
@@ -26,9 +27,11 @@ function App() {
       navigate("/");
     }
   }, []);
+
   return (
     <Routes>
       <Route path="/" element={<Landing />} />
+      <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/adminreg" element={<AdminRegister />} />
       <Route path="/Adashboard" element={<ADashboard />} />
