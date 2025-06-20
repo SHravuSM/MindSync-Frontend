@@ -5,13 +5,14 @@ import ProfileCard from "./ProfileCard";
 import { useAuthStore } from "../context/AuthContext";
 
 const Dashboard = () => {
-  const { state, yes } = useAuthStore();
+  const { state, yes, dark } = useAuthStore();
+
   return (
-    <div className="flex relative flex-col h-screen w-full">
+    <div className={`flex relative ${dark? 'bg-white' : 'bg-black'} flex-col h-screen w-full`}>
       {!yes && <Navbar />}
       {state && <ProfileCard />}
       <BottomNav />
-      <div className="flex-1 relative overflow-y-auto px-2 ">
+      <div className="flex-1 relative overflow-y-auto">
         <Outlet />
       </div>
     </div>

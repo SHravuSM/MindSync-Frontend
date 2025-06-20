@@ -10,6 +10,7 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [state, setState] = useState(false)
+  const [dark, setDark] = useState(false)
   const [submit, setSubmit] = useState(false);
   const [yes, setYes] = useState(false);
   const navigate = useNavigate();
@@ -158,6 +159,8 @@ export const AuthProvider = ({ children }) => {
         setState,
         state,
         yes,
+        setDark,
+        dark,
         setYes,
         setSubmit,
         submit,

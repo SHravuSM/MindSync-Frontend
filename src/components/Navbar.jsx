@@ -3,6 +3,8 @@
 // import { useAuthStore } from "../context/AuthContext";
 // import notification from "./notification.png";
 
+import { useAuthStore } from "../context/AuthContext";
+
 // const Navbar = () => {
 //   const { user } = useAuthStore();
 
@@ -213,6 +215,7 @@
 
 
 const Navbar = () => {
+  const { setDark } = useAuthStore();
   return (
     <header className="bg-black font-normal text-white text-3xl lg:text-4xl w-full shadow-md">
       <h1 className="text-center p-4">

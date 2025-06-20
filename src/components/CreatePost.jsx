@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Post from "./Post";
 import Pitch from "./Pitch";
 import { useAuthStore } from "../context/AuthContext";
@@ -24,7 +23,7 @@ export default function CreatePost() {
                     </button>
                 </div>
             </div>
-            {yes ? <Post /> : <Pitch />}
+            {yes ? <Pitch /> : <Post />}
         </>
     )
 }

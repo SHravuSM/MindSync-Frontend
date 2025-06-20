@@ -5,12 +5,16 @@ import { useAuthStore } from "../context/AuthContext";
 import Card from "./Card";
 
 const Feed = () => {
-  const { user } = useAuthStore();
+  const { user, setYes } = useAuthStore();
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [appear, setAppear] = useState(false);
   const [tags, setTags] = useState([]);
   const [selectedTag, setSelectedTag] = useState(null); // 👈 New state to track selected tag
+
+  useEffect(() => {
+    setYes(false)
+  })
 
   const handleTAG = async (tag) => {
     const isSameTag = selectedTag === tag;
@@ -82,7 +86,7 @@ const Feed = () => {
   };
 
   return (
-    <div className="h-full overflow-y-auto w-full  ">
+    <div className="h-full overflow-y-auto w-full p-2">
 
       {/* Tag Selector */}
       <div className="w-full px-2 py-1 mt-2 rounded-sm overflow-x-auto scrollbar-hide flex gap-2">
@@ -101,7 +105,7 @@ const Feed = () => {
       </div>
 
       {/* Post Feed */}
-      {loading ? (
+      {/* {loading ? (
         <div className="text-center text-gray-500 mt-10 animate-pulse">
           Loading posts...
         </div>
@@ -112,11 +116,28 @@ const Feed = () => {
       ) : (
         <div className="mt-2 relative space-y-2">
           {posts.map((post) => (
-            <Card key={post._id} post={post} onImpressed={onImpressed} onLike={handleLike} />
+            <Card key={post._id} post={post} onImpressed={onImpressed} handleLike={handleLike} />
           ))}
+        </div>
+      )} */}
 
+      {loading ? (
+        <div className="flex items-center justify-center min-h-screen text-center text-gray-500 mt-10 animate-pulse">
+          Loading posts...
+        </div>
+      ) : posts.length === 0 ? (
+        <div className="lg:flex lg:items-center lg:justify-center lg:min-h-screen text-center text-gray-400 mt-10">
+          No posts to show. Be the first to share something!
+        </div>
+      ) : (
+        <div className="mt-2 flex flex-col items-center justify-center relative space-y-2">
+          {posts.map((post) => (
+            <Card key={post._id} post={post} onImpressed={onImpressed} handleLike={handleLike} />
+          ))}
         </div>
       )}
+
+
     </div>
   );
 };
