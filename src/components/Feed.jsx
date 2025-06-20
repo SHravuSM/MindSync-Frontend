@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import CreatePost from "./Post";
 import api from "../utils/api1";
 import { useAuthStore } from "../context/AuthContext";
-import { AnimatePresence, motion } from "framer-motion";
 import Card from "./Card";
 
 const Feed = () => {
@@ -100,14 +99,6 @@ const Feed = () => {
           </span>
         ))}
       </div>
-
-      {/* Floating Input */}
-      <div className="fixed bottom-7 left-1/2 transform -translate-x-1/2 w-[50%] sm:w-2/3 md:w-1/2 lg:w-1/3 z-20">
-        {/* <Input setAppear={setAppear} /> */}
-      </div>
-
-      {/* Create Post Animation */}
-      {/* <CreatePost onPostCreated={handlePostCreated} /> */}
 
       {/* Post Feed */}
       {loading ? (
