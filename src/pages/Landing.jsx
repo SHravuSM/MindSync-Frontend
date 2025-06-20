@@ -5,7 +5,7 @@ export default function Landing() {
     <div className="font-sans text-gray-800">
       {/* Hero Section */}
       <section className="bg-black flex flex-col items-center gap-2 text-white py-16 pb-5 px-6 text-center">
-        <h1 className="text-5xl font-bold mb-4">Mano<span className="text-blue-500">Sangam</span><span className="text-orange-400">.</span></h1>
+        <h1 className="text-5xl font-normal mb-4">Mano<span className="text-blue-500">Sangam</span><span className="text-orange-400">.</span></h1>
         <p className="text-xl mb-8 italic">
           “The Gathering of Minds.”
         </p>

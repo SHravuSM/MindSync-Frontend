@@ -9,11 +9,15 @@ import { deleteUser, onAuthStateChanged, signInWithPopup, signOut } from "fireba
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  const [state, setState] = useState(false)
+  const [submit, setSubmit] = useState(false);
+  const [yes, setYes] = useState(false);
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true); // useful while checking session
 
   useEffect(() => {
+    setState(false);
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
         try {
@@ -55,40 +59,17 @@ export const AuthProvider = ({ children }) => {
   const loginWithGoogle = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
-      // const email = result.user.email;
-      // console.log(user)
-
-      // Check with backend if user exists
-      // const checkRes = await axios.post(`${import.meta.env.VITE_API_URL}/check-user`, {
-      //   email,
-      // });
-
-      // if (!checkRes.data.exists) {
-      // ❌ User is not in your DB
-      // alert("User not registered. Please sign up first.");
-
-      // ✅ Delete from Firebase Auth first
-      //   const user = auth.currentUser;
-      //   console.log(user)
-      //   if (user) {
-      //     await deleteUser(user);
-      //     console.log("Deleted from Firebase Auth");
-      //   }
-
-      //   // ✅ Now sign out
-      //   await signOut(auth);
-      //   return;
-      // }
-
-      // ✅ User exists, proceed
       const token = await result.user.getIdToken(true);
       const res = await axios.post(`${import.meta.env.VITE_API_URL}/login`, {
         token,
       });
 
       const user = res.data.user;
+      console.log(user)
       setUser(user);
-      navigate("/dashboard");
+      const Name = user.name;
+      console.log(Name)
+      user.role === 'creator' ? navigate("/dashboard") : navigate(`/${Name}`);
       localStorage.setItem("user", JSON.stringify(user));
       localStorage.setItem("token", token);
     } catch (err) {
@@ -174,6 +155,12 @@ export const AuthProvider = ({ children }) => {
         signUpWithGoogle,
         companyRegister,
         companyLogin,
+        setState,
+        state,
+        yes,
+        setYes,
+        setSubmit,
+        submit,
         adminWithGoogle,
         logout,
         loading,
@@ -185,169 +172,3 @@ export const AuthProvider = ({ children }) => {
 };
 
 export const useAuthStore = () => useContext(AuthContext);
-
-
-// src/store/useAuthStore.js
-
-// import axios from "axios";
-// import { create } from "zustand";
-// import { useEffect } from "react";
-// import { persist } from "zustand/middleware";
-// import { auth, provider } from "../firebase";
-// import {
-//   deleteUser,
-//   onAuthStateChanged,
-//   signInWithPopup,
-//   signOut,
-// } from "firebase/auth";
-
-// const VITE_API_URL = import.meta.env.VITE_API_URL;
-
-// export const useAuthStore = create(
-//   persist(
-//     (set, get) => ({
-//       user: null,
-//       token: null,
-//       loading: true,
-//       navigate: null, // Will hold react-router's navigate function
-
-//       setNavigate: (navFn) => set({ navigate: navFn }),
-
-//       initAuthListener: () => {
-//         const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
-//           if (firebaseUser) {
-//             try {
-//               const token = await firebaseUser.getIdToken(true);
-//               const res = await axios.get(`${VITE_API_URL}/user`, {
-//                 headers: { Authorization: `Bearer ${token}` },
-//               });
-//               const backendUser = res.data.user;
-//               console.log("User from backend:", backendUser);
-//               set({ user: backendUser, token });
-//             } catch (err) {
-//               set({ user: null, token: null });
-//               console.error("Error syncing with backend:", err);
-//             }
-//           } else {
-//             set({ user: null, token: null });
-//           }
-//           set({ loading: false });
-//         });
-
-//         return unsubscribe;
-//       },
-
-//       loginWithGoogle: async () => {
-//         try {
-//           const navigate = get().navigate;
-//           const result = await signInWithPopup(auth, provider);
-//           const email = result.user.email;
-
-//           const checkRes = await axios.post(`${VITE_API_URL}/check-user`, {
-//             email,
-//           });
-
-//           if (!checkRes.data.exists) {
-//             alert("User not registered. Please sign up first.");
-
-//             const user = auth.currentUser;
-//             if (user) {
-//               await deleteUser(user);
-//               console.log("Deleted from Firebase Auth");
-//             }
-
-//             await signOut(auth);
-//             return;
-//           }
-
-//           const token = await result.user.getIdToken(true);
-//           const res = await axios.post(`${VITE_API_URL}/login`, { token });
-
-//           const user = res.data.user;
-//           set({ user, token });
-//           navigate("/dashboard");
-//         } catch (err) {
-//           console.error("Google sign-in error:", err);
-//         }
-//       },
-
-//       signUpWithGoogle: async (role) => {
-//         try {
-//           const navigate = get().navigate;
-//           const result = await signInWithPopup(auth, provider);
-//           const token = await result.user.getIdToken(true);
-//           console.log(role);
-//           const res = await axios.post(`${VITE_API_URL}/register`, {
-//             token,
-//             role,
-//           });
-
-//           const user = res.data.user;
-//           set({ user, token });
-//           navigate("/dashboard");
-//         } catch (err) {
-//           console.error("Google sign-in error:", err);
-//         }
-//       },
-
-//       adminWithGoogle: async () => {
-//         try {
-//           const navigate = get().navigate;
-//           const result = await signInWithPopup(auth, provider);
-//           const token = await result.user.getIdToken(true);
-//           const res = await axios.post(`${VITE_API_URL}/registeradmin`, { token });
-
-//           const user = res.data.user;
-//           set({ user, token });
-//           navigate("/Adashboard");
-//         } catch (err) {
-//           console.error("Google sign-in error:", err);
-//         }
-//       },
-
-//       companyRegister: async (details) => {
-//         try {
-//           console.log(details);
-//           const res = await axios.post(`${VITE_API_URL}/registerCompany`, details);
-//           console.log(res);
-//         } catch (err) {
-//           console.error("Company registration error:", err);
-//         }
-//       },
-
-//       companyLogin: async (details) => {
-//         try {
-//           const navigate = get().navigate;
-//           const res = await axios.post(`${VITE_API_URL}/loginCompany`, details);
-//           const token = res.data.token;
-//           const user = res.data.user;
-//           console.log(user)
-//           set({ user, token });
-//           console.log(user);
-//           navigate("/dashboard");
-//         } catch (err) {
-//           console.error("Company login error:", err);
-//         }
-//       },
-
-//       logout: async () => {
-//         try {
-//           const navigate = get().navigate;
-//           await signOut(auth);
-//           set({ user: null, token: null });
-//           navigate("/");
-//         } catch (error) {
-//           console.log("Logout failed : ", error);
-//         }
-//       },
-//     }),
-//     {
-//       name: "auth-storage",
-//       partialize: (state) => ({ user: state.user, token: state.token }),
-//       onRehydrateStorage: () => (state) => {
-//         // After rehydration, you can mark loading false or call initAuthListener
-//         state.set({ loading: false });
-//       },
-//     }
-//   )
-// );

@@ -1,15 +1,15 @@
-import Navbar from "./Navbar";
 import { Outlet } from "react-router-dom";
-import BottomNav from "./BottomNav";
-import ProfileCard from "./ProfileCard";
-import { useAuthStore } from "../context/AuthContext";
+import Navbar from "../../components/Navbar";
+import { useAuthStore } from "../../context/AuthContext";
+import BottomNav from "../../components/BottomNav";
+import InProfileCard from "../../components/InProfileCard";
 
-const Dashboard = () => {
+const InDashboard = () => {
   const { state, yes } = useAuthStore();
   return (
     <div className="flex relative flex-col h-screen w-full">
       {yes && <Navbar />}
-      {state && <ProfileCard />}
+      {state && <InProfileCard />}
       <BottomNav />
       <div className="flex-1 relative overflow-y-auto px-2 ">
         <Outlet />
@@ -18,4 +18,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default InDashboard;

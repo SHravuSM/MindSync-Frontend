@@ -108,7 +108,7 @@ function EditProfileModal({ user, onClose, onUpdate }) {
 }
 
 // Main Profile Component
-export default function Profile() {
+export default function InProfile() {
   const { user, setUser } = useAuthStore(); // Make sure your context supports setUser
   const [editing, setEditing] = useState(false);
   const { setState } = useAuthStore();

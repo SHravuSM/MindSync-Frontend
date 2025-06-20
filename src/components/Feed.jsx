@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
-import CreatePost from "../components/CreatePost";
-import PostCard from "../components/PostCard";
-import pen from "./feather-pen.png";
+import { useEffect, useState } from "react";
+import CreatePost from "./Post";
 import api from "../utils/api1";
 import { useAuthStore } from "../context/AuthContext";
 import { AnimatePresence, motion } from "framer-motion";
-import BottomNav from "./BottomNav";
+import Card from "./Card";
 
 const Feed = () => {
   const { user } = useAuthStore();
@@ -34,7 +32,8 @@ const Feed = () => {
 
   const fetchPosts = async () => {
     try {
-      const res = await api.get("/posts");
+      const res = await api.get("/posts/posts");
+      console.log(res.data)
       setPosts(res.data);
     } catch (err) {
       console.error("Failed to load posts", err);
@@ -84,9 +83,10 @@ const Feed = () => {
   };
 
   return (
-    <div className="h-full py-2">
+    <div className="h-full overflow-y-auto w-full  ">
+
       {/* Tag Selector */}
-      <div className="w-full px-2 py-2 rounded-sm overflow-x-auto scrollbar-hide flex gap-2">
+      <div className="w-full px-2 py-1 mt-2 rounded-sm overflow-x-auto scrollbar-hide flex gap-2">
         {tags.map((tag, index) => (
           <span
             key={index}
@@ -101,58 +101,13 @@ const Feed = () => {
         ))}
       </div>
 
-      <BottomNav />
-      <button
-        onClick={() => setAppear((pre) => !pre)}
-        className="fixed bottom-4 right-4 lg:bottom-7 lg:right-12 z-30 group"
-      >
-        {/* Glow & Pulse */}
-        {/* <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 blur-md opacity-60 group-hover:scale-105 group-hover:opacity-80 transition-all duration-500 animate-pulse"> */}
-        {/* </div> */}
-
-        {/* Button Container */}
-        <div className="relative p-2 sm:p-3 lg:p-4 bg-blue-600 hover:bg-blue-700 rounded-full shadow-xl transition-all duration-300 scale-100 hover:scale-105 active:scale-95">
-          <img
-            src={pen}
-            alt="Write"
-            className="h-7 w-7 sm:h-9 sm:w-9 lg:h-9 lg:w-9 transition-transform duration-500 hover:rotate-[15deg] drop-shadow-xl"
-          />
-        </div>
-
-        {/* Tooltip */}
-        <span className="absolute right-full mr-2 sm:mr-3 bottom-1/2 translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gray-800 text-white text-[10px] sm:text-xs px-1.5 sm:px-2 py-1 rounded shadow-md">
-          New idea
-        </span>
-      </button>
-
-
       {/* Floating Input */}
       <div className="fixed bottom-7 left-1/2 transform -translate-x-1/2 w-[50%] sm:w-2/3 md:w-1/2 lg:w-1/3 z-20">
         {/* <Input setAppear={setAppear} /> */}
       </div>
 
       {/* Create Post Animation */}
-      <AnimatePresence>
-        {appear && (
-          <motion.div
-            key="create-post"
-            initial={{ opacity: 0, scale: 0.9, y: -20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.8, y: -20 }}
-            transition={{
-              type: "spring",
-              stiffness: 300,
-              damping: 20,
-              duration: 0.5,
-            }}
-          >
-            <CreatePost
-              onPostCreated={handlePostCreated}
-            // currentUser={currentUser}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* <CreatePost onPostCreated={handlePostCreated} /> */}
 
       {/* Post Feed */}
       {loading ? (
@@ -164,10 +119,11 @@ const Feed = () => {
           No posts to show. Be the first to share something!
         </div>
       ) : (
-        <div className="mt-2 space-y-2">
+        <div className="mt-2 relative space-y-2">
           {posts.map((post) => (
-            <PostCard key={post._id} post={post} onImpressed={onImpressed} onLike={handleLike} />
+            <Card key={post._id} post={post} onImpressed={onImpressed} onLike={handleLike} />
           ))}
+
         </div>
       )}
     </div>

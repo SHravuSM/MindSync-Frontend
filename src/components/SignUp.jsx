@@ -48,7 +48,7 @@ const Form = () => {
   };
 
 
-  const roles = ['Creator', 'Investor', 'Startup/Company'];
+  const roles = ['Creator', 'Investor'];
 
   return (
     <StyledWrapper>
@@ -116,7 +116,7 @@ const StyledWrapper = styled.div`
     padding: 2rem;
     border: 2px solid #323232;
     box-shadow: 4px 4px #323232;
-    border-radius: 8px;
+    border-radius: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
