@@ -218,7 +218,7 @@ const Navbar = () => {
   const { setDark } = useAuthStore();
   return (
     <header className="bg-black font-normal text-white text-3xl lg:text-4xl w-full shadow-md">
-      <h1 className="text-center p-4">
+      <h1 className="text-center p-3">
         Mano
         <span className="text-blue-500">Sangam</span>
         <span className="text-orange-500">.</span>
