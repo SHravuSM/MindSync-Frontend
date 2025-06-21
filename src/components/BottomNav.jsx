@@ -4,7 +4,7 @@ import { useAuthStore } from '../context/AuthContext';
 const BottomNav = () => {
     const { setState, dark, user, setYes } = useAuthStore();
     return (
-        <div className={`bottom-1 flex z-10 w-full absolute items-center justify-center transition-transform duration-500 drop-shadow-xl ${dark ? "text-black" : 'text-white'}`}>
+        <div className={`bottom-0.5 fixed flex z-10 w-full items-center justify-center transition-transform duration-500 drop-shadow-xl ${dark ? "text-black" : 'text-white'}`}>
             <form action="#">
                 <ul className={`flex items-center w-full space-x-4`}>
                     {/* Item 1 */}
