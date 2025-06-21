@@ -8,7 +8,7 @@ const Card = ({ post, handleLike }) => {
   return (
     <div className={`lg:max-w-lg hover:scale-105 duration-400 max-w-sm w-full ${!dark && 'lg:hover:my-5'} mb-2`}>
       <div
-        className={`relative ${dark ? 'bg-white text-black' : 'bg-black text-white'} backdrop-blur-md p-3 px-3 pt-2 rounded-lg shadow-md transform hover:scale-100 ${!dark && "hover:border-yellow-500 lg:hover:scale-110"} perspective-midrange hover:shadow-xl ${!dark && 'hover:shadow-white/50'} border-2 hover:my-2 border-blue-200/50 transition-all duration-500 ease-in-out cursor-pointer`}
+        className={`relative ${dark ? 'bg-white text-black' : 'bg-black text-white'} backdrop-blur-md p-3 px-3 pt-2 rounded-lg shadow-md transform hover:scale-100 ${!dark && "hover:border-yellow-500 lg:hover:scale-110"} perspective-midrange hover:shadow-xl ${!dark && 'hover:shadow-white/50'} border-2 hover:my-2 border-blue-500/10 transition-all duration-500 ease-in-out cursor-pointer`}
         draggable="true"
       >
         {/* Shine Overlay */}
