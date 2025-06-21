@@ -57,7 +57,7 @@ const Card = ({ post }) => {
   }
   return (
     <>
-      {Post && <div className={`lg:max-w-xl relative hover:z-10 hover:scale-105 duration-400 max-w-sm w-full ${!dark && 'lg:hover:my-5'} `}>
+      {Post && <div className={`lg:max-w-xl relative hover:z-1 hover:scale-105 duration-400 max-w-sm w-full ${!dark && 'lg:hover:mt-3 lg:hover:mb-7'} `}>
         <div
           className={`relative ${dark ? 'bg-white text-black' : 'bg-black text-white'} backdrop-blur-md p-3 px-3 pt-2 rounded-lg shadow-md transform hover:scale-100 ${!dark && "hover:border-yellow-500 lg:hover:scale-110"} perspective-midrange hover:shadow-xl ${!dark && 'hover:shadow-white/50'} border hover:my-2 border-blue-500/10 transition-all duration-500 ease-in-out cursor-pointer`}
           draggable="true"

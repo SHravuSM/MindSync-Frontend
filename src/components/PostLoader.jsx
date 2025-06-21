@@ -1,0 +1,48 @@
+import React from 'react';
+import styled from 'styled-components';
+
+const Loader = () => {
+  return (
+    <StyledWrapper>
+      <div className="loader"><i /></div>
+    </StyledWrapper>
+  );
+}
+
+const StyledWrapper = styled.div`
+  .loader i {
+    display: block;
+    width: 2px;
+    height: 85px;
+    margin-top: 18px;
+    background-color: rgba(61, 61, 61, 0.5);
+    overflow: hidden;
+    position: relative;
+  }
+  .loader i:before {
+    display: block;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: #fafafa;
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: loader-animation 2s infinite normal;
+  }
+  @keyframes loader-animation {
+    0% {
+      transform: translate3d(0, -100%, 0);
+    }
+    15% {
+      transform: translate3d(0, -98%, 0);
+    }
+    85% {
+      transform: translate3d(0, 98%, 0);
+    }
+    100% {
+      transform: translate3d(0, 100%, 0);
+    }
+  }`;
+
+export default Loader;

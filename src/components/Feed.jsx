@@ -3,6 +3,7 @@ import CreatePost from "./Post";
 import api from "../utils/api1";
 import { useAuthStore } from "../context/AuthContext";
 import Card from "./Card";
+import Loader from "./PostLoader";
 
 const Feed = () => {
   const { user, setYes } = useAuthStore();
@@ -82,8 +83,9 @@ const Feed = () => {
       </div>
 
       {loading ? (
-        <div className="flex items-center justify-center min-h-screen text-center text-gray-500 mt-10 animate-pulse">
-          Loading posts...
+        <div className="flex items-center justify-center h-screen text-center text-gray-500">
+          {/* Loading posts... */}
+          <Loader />
         </div>
       ) : posts.length === 0 ? (
         <div className="lg:flex lg:items-center lg:justify-center lg:min-h-screen text-center text-gray-400 mt-10">
