@@ -100,8 +100,8 @@ const Card = ({ post }) => {
                 })}
               </div>
 
-              <div className={`flex items-center font-normal text-lg cursor-pointer ${dark ? 'text-black' : 'text-white'}`} onClick={e => setOpen(pre => pre === 'comment' ? '' : 'comment')}>
-                <img width='20px' style={{ "marginRight": '3px' }} src={bulb} alt="" />
+              <div className={`flex items-center font-normal text-md cursor-pointer ${dark ? 'text-black' : 'text-white'}`} onClick={e => setOpen(pre => pre === 'comment' ? '' : 'comment')}>
+                <img width='15px' style={{ "marginRight": '3px' }} src={bulb} alt="" />
                 {Post.comments.length}
               </div>
 
@@ -109,13 +109,14 @@ const Card = ({ post }) => {
                 onClick={() => {
                   handleLike(Post._id)
                 }}
-                className={`flex focus:outline-none font-normal text-lg items-center cursor-pointer ${dark ? 'text-black' : 'text-white'}`}
+                className={`flex focus:outline-none font-normal text-md items-center cursor-pointer ${dark ? 'text-black' : 'text-white'}`}
                 aria-label="Toggle Like"
               >
                 <svg
-                  className={`w-${5} h-${5}  transition-colors duration-200`}
+                  className={`w-${4} h-${4}  transition-colors duration-200`}
+                  style={{ "marginRight": '3px' }}
                   viewBox="0 0 24 24"
-                  strokeWidth="1.2"
+                  strokeWidth="1"
                   fill={Post.likes.includes(user.uid) ? 'red' : 'none'}
                   stroke={Post.likes.includes(user.uid) ? 'red' : dark ? 'black' : 'white'}
                 >
