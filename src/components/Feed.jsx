@@ -83,7 +83,7 @@ const Feed = () => {
       </div>
 
       {loading ? (
-        <div className="flex items-center justify-center h-screen text-center text-gray-500">
+        <div className=" absolute left-1/2 top-52 h-screen text-center text-gray-500">
           {/* Loading posts... */}
           <Loader />
         </div>
