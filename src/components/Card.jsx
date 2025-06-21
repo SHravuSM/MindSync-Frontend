@@ -59,7 +59,7 @@ const Card = ({ post }) => {
     <>
       {Post && <div className={`lg:max-w-xl relative hover:z-1 hover:scale-105 duration-400 max-w-sm w-full ${!dark && 'lg:hover:mt-3 lg:hover:mb-7'} `}>
         <div
-          className={`relative ${dark ? 'bg-white text-black' : 'bg-black text-white'} backdrop-blur-md p-3 px-3 pt-2 rounded-lg shadow-md transform hover:scale-100 ${!dark && "hover:border-yellow-500 lg:hover:scale-110"} perspective-midrange hover:shadow-xl ${!dark && 'hover:shadow-white/50'} border hover:my-2 border-blue-500/10 transition-all duration-500 ease-in-out cursor-pointer`}
+          className={`relative ${dark ? 'bg-white text-black' : 'bg-black text-white'} backdrop-blur-md p-2 px-3 pt-1 rounded-lg shadow-md transform hover:scale-100 ${!dark && "hover:border-yellow-500 lg:hover:scale-110"} perspective-midrange hover:shadow-xl ${!dark && 'hover:shadow-white/50'} border hover:my-2 border-blue-500/10 transition-all duration-500 ease-in-out cursor-pointer`}
           draggable="true"
         >
           {/* Shine Overlay */}
@@ -86,11 +86,11 @@ const Card = ({ post }) => {
 
           {/* Stats */}
           <div className="flex items-center justify-between text-xs text-white/70 z-10 relative">
-            <div className="flex gap-4 font-semibold text-md">
-              <div className={`flex items-center cursor-pointer ${dark ? 'text-black' : 'text-white'}`}>
-                <svg className="w-5 h-5 stroke-current" viewBox="0 0 24 24" fill="none">
-                  <path d="M12 8V12L15 15" strokeWidth="2" strokeLinecap="round" />
-                  <circle cx="12" cy="12" r="9" strokeWidth="2" />
+            <div className="flex gap-4 text-md">
+              <div className={`flex items-center font-semibold cursor-pointer ${dark ? 'text-black' : 'text-white'}`}>
+                <svg className="w-4 h-4 stroke-current" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 8V12L15 15" strokeWidth="1" strokeLinecap="round" />
+                  <circle cx="12" cy="12" r="10" strokeWidth="2" />
                 </svg>
 
                 {new Date(Post.createdAt).toLocaleDateString('en-US', {
@@ -100,8 +100,8 @@ const Card = ({ post }) => {
                 })}
               </div>
 
-              <div className={`flex items-center font-normal text-md cursor-pointer ${dark ? 'text-black' : 'text-white'}`} onClick={e => setOpen(pre => pre === 'comment' ? '' : 'comment')}>
-                <img width='15px' style={{ "marginRight": '3px' }} src={bulb} alt="" />
+              <div className={`flex items-center font-semibold text-lg cursor-pointer ${dark ? 'text-black' : 'text-white'}`} onClick={e => setOpen(pre => pre === 'comment' ? '' : 'comment')}>
+                <img width='18px' style={{ "marginRight": '3px' }} src={bulb} alt="" />
                 {Post.comments.length}
               </div>
 
@@ -109,12 +109,12 @@ const Card = ({ post }) => {
                 onClick={() => {
                   handleLike(Post._id)
                 }}
-                className={`flex focus:outline-none font-normal text-md items-center cursor-pointer ${dark ? 'text-black' : 'text-white'}`}
+                className={`flex focus:outline-none font-semibold text-lg items-center cursor-pointer ${dark ? 'text-black' : 'text-white'}`}
                 aria-label="Toggle Like"
               >
                 <svg
-                  className={`w-${4} h-${4}  transition-colors duration-200`}
-                  style={{ "marginRight": '3px' }}
+                  className={`w-${5} h-${5}  transition-colors duration-200`}
+                  style={{ "marginRight": '2px' }}
                   viewBox="0 0 24 24"
                   strokeWidth="1"
                   fill={Post.likes.includes(user.uid) ? 'red' : 'none'}
