@@ -94,7 +94,6 @@ const Card = ({ post }) => {
                 </svg>
 
                 {new Date(Post.createdAt).toLocaleDateString('en-US', {
-                  weekday: 'long', // Monday, Tuesday, etc.
                   year: 'numeric',
                   month: 'short',
                   day: 'numeric',
