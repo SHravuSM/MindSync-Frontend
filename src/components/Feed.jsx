@@ -14,7 +14,7 @@ const Feed = () => {
 
   useEffect(() => {
     setYes(false)
-  })
+  }, [])
 
   const handleTAG = async (tag) => {
     const isSameTag = selectedTag === tag;
@@ -89,7 +89,7 @@ const Feed = () => {
     <div className="h-full overflow-y-auto w-full p-2">
 
       {/* Tag Selector */}
-      <div className="w-full px-2 py-1 mt-2 rounded-sm overflow-x-auto scrollbar-hide flex gap-2">
+      <div className="w-full px-2 py-1 mt-0 rounded-sm overflow-x-auto scrollbar-hide flex gap-2">
         {tags.map((tag, index) => (
           <span
             key={index}

@@ -18,6 +18,37 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true); // useful while checking session
 
   useEffect(() => {
+    const checkTimeForDarkMode = () => {
+      const now = new Date();
+
+      // Get hours and minutes
+      const hours = now.getHours();
+      const minutes = now.getMinutes();
+
+      // Convert current time into total minutes since midnight
+      const totalMinutesNow = hours * 60 + minutes;
+
+      // Dark mode time range in minutes
+      const darkStart = 18 * 60 + 30; // 6:30 PM => 1110 minutes
+      const darkEnd = 6 * 60 + 30;    // 6:30 AM => 390 minutes
+
+      // If current time is between 6:30 PM and midnight or between midnight and 6:30 AM
+      if (totalMinutesNow >= darkStart || totalMinutesNow < darkEnd) {
+        setDark(false);
+      } else {
+        setDark(true);
+      }
+    };
+
+    checkTimeForDarkMode(); // Initial check on mount
+
+    // Optional: Update periodically (e.g., every 5 minutes)
+    const intervalId = setInterval(checkTimeForDarkMode, 5 * 60 * 1000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  useEffect(() => {
     setState(false);
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {

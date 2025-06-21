@@ -6,9 +6,9 @@ const Card = ({ post, handleLike }) => {
   const [liked, setLiked] = useState(false);
 
   return (
-    <div className={`lg:max-w-xl max-w-sm w-full ${!dark && 'lg:hover:my-5'} mb-2`}>
+    <div className={`lg:max-w-lg hover:scale-105 duration-400 max-w-sm w-full ${!dark && 'lg:hover:my-5'} mb-2`}>
       <div
-        className={`relative ${dark ? 'bg-white text-black' : 'bg-black text-white'} backdrop-blur-md p-4 rounded-lg shadow-md transform hover:scale-100 ${!dark && "hover:border-yellow-500 lg:hover:scale-110"} perspective-midrange hover:shadow-2xl ${!dark && 'hover:shadow-white/50'} border border-blue-300/30 transition-all duration-500 ease-in-out cursor-pointer`}
+        className={`relative ${dark ? 'bg-white text-black' : 'bg-black text-white'} backdrop-blur-md p-3 px-3 pt-2 rounded-lg shadow-md transform hover:scale-100 ${!dark && "hover:border-yellow-500 lg:hover:scale-110"} perspective-midrange hover:shadow-xl ${!dark && 'hover:shadow-white/50'} border-2 hover:my-2 border-blue-200/50 transition-all duration-500 ease-in-out cursor-pointer`}
         draggable="true"
       >
         {/* Shine Overlay */}
@@ -18,7 +18,7 @@ const Card = ({ post, handleLike }) => {
 
         {/* Tags & Options */}
         <div className="flex items-center justify-between w-full z-10 relative">
-          <span className="rounded-full px-3 py-1 text-xs bg-blue-500 shadow-md">{post.title || post.user.name}</span>
+          <span className=" text-lg font-semibold">{post.title || post.user.name}</span>
           <button className="bg-transparent border-0 text-lg hover:text-white transition">
             <svg viewBox="0 0 41.915 41.916" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 fill-current">
               <path d="M11.214,20.956c0,3.091-2.509,5.589-5.607,5.589C2.51,26.544,0,24.046,0,20.956c0-3.082,2.511-5.585,5.607-5.585 C8.705,15.371,11.214,17.874,11.214,20.956z" />
@@ -29,7 +29,7 @@ const Card = ({ post, handleLike }) => {
         </div>
 
         {/* Text */}
-        <p className="text-sm mt-4 mb-4 z-10 relative">
+        <p className="text-sm mt-1 mb-2 z-10 relative whitespace-pre-wrap">
           {post.content}
         </p>
 
@@ -92,10 +92,10 @@ const Card = ({ post, handleLike }) => {
               .map((_, idx) => (
                 <span
                   key={idx}
-                  className="h-[30px] w-[30px] rounded-full bg-blue-600 flex items-center justify-center text-sm font-bold border border-white -mr-2 shadow-sm"
+                  className="h-[30px] w-[30px] rounded-full bg-blue-200 flex items-center justify-center text-sm font-bold border border-white -mr-2 shadow-sm"
                 >
                   <svg
-                    className="w-4 h-4 stroke-white"
+                    className="w-4 h-4 stroke-black"
                     viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -112,7 +112,7 @@ const Card = ({ post, handleLike }) => {
                   </svg>
                 </span>
               ))}
-            <span className="h-[30px] w-[30px] rounded-full bg-blue-600 flex items-center justify-center text-xs font-bold border border-white shadow-sm">
+            <span className="h-[30px] w-[30px] rounded-full bg-orange-200 text-black transform flex items-center justify-center text-xs font-bold border border-white shadow-sm">
               +20
             </span>
           </div>
