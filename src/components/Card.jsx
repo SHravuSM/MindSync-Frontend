@@ -86,9 +86,9 @@ const Card = ({ post }) => {
 
           {/* Stats */}
           <div className="flex items-center justify-between text-xs text-white/70 z-10 relative">
-            <div className="flex gap-4">
+            <div className="flex gap-4 font-semibold text-md">
               <div className={`flex items-center cursor-pointer ${dark ? 'text-black' : 'text-white'}`}>
-                <svg className="w-4 h-4 mr-1 stroke-current" viewBox="0 0 24 24" fill="none">
+                <svg className="w-5 h-5 stroke-current" viewBox="0 0 24 24" fill="none">
                   <path d="M12 8V12L15 15" strokeWidth="2" strokeLinecap="round" />
                   <circle cx="12" cy="12" r="9" strokeWidth="2" />
                 </svg>
@@ -100,8 +100,8 @@ const Card = ({ post }) => {
                 })}
               </div>
 
-              <div className={`flex items-center cursor-pointer ${dark ? 'text-black' : 'text-white'}`} onClick={e => setOpen(pre => pre === 'comment' ? '' : 'comment')}>
-                <img width='14px' style={{ "marginRight": '3px' }} src={bulb} alt="" />
+              <div className={`flex items-center font-normal text-lg cursor-pointer ${dark ? 'text-black' : 'text-white'}`} onClick={e => setOpen(pre => pre === 'comment' ? '' : 'comment')}>
+                <img width='20px' style={{ "marginRight": '3px' }} src={bulb} alt="" />
                 {Post.comments.length}
               </div>
 
@@ -109,11 +109,11 @@ const Card = ({ post }) => {
                 onClick={() => {
                   handleLike(Post._id)
                 }}
-                className={`flex focus:outline-none items-center cursor-pointer ${dark ? 'text-black' : 'text-white'}`}
+                className={`flex focus:outline-none font-normal text-lg items-center cursor-pointer ${dark ? 'text-black' : 'text-white'}`}
                 aria-label="Toggle Like"
               >
                 <svg
-                  className={`w-${4} h-${4} mr-0.5 transition-colors duration-200`}
+                  className={`w-${5} h-${5}  transition-colors duration-200`}
                   viewBox="0 0 24 24"
                   strokeWidth="1.2"
                   fill={Post.likes.includes(user.uid) ? 'red' : 'none'}
