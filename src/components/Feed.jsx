@@ -64,7 +64,7 @@ const Feed = () => {
   }, []);
 
   return (
-    <div className="h-full overflow-y-auto w-full p-2">
+    <div className="h-full overflow-y-auto w-full p-0">
 
       {/* Tag Selector */}
       <div className="w-full px-2 py-1 mt-0 rounded-sm overflow-x-auto scrollbar-hide flex gap-2">

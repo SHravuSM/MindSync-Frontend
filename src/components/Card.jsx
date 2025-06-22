@@ -85,12 +85,12 @@ const Card = ({ post }) => {
           </p>
 
           {/* Stats */}
-          <div className="flex items-center justify-between text-xs text-white/70 z-10 relative">
+          <div className="flex items-center justify-between text-sm text-white/70 z-10 relative">
             <div className="flex gap-4 text-md">
               <div className={`flex items-center font-semibold cursor-pointer ${dark ? 'text-black' : 'text-white'}`}>
-                <svg className="w-4 h-4 stroke-current" viewBox="0 0 24 24" fill="none">
+                <svg className="w-5 h-5 stroke-current" viewBox="0 0 24 24" fill="none">
                   <path d="M12 8V12L15 15" strokeWidth="1" strokeLinecap="round" />
-                  <circle cx="12" cy="12" r="10" strokeWidth="2" />
+                  <circle cx="12" cy="12" r="8" strokeWidth="2" />
                 </svg>
 
                 {new Date(Post.createdAt).toLocaleDateString('en-US', {
@@ -100,8 +100,8 @@ const Card = ({ post }) => {
                 })}
               </div>
 
-              <div className={`flex items-center font-semibold text-lg cursor-pointer ${dark ? 'text-black' : 'text-white'}`} onClick={e => setOpen(pre => pre === 'comment' ? '' : 'comment')}>
-                <img width='18px' style={{ "marginRight": '3px' }} src={bulb} alt="" />
+              <div className={`flex items-center text-lg cursor-pointer ${dark ? 'text-black' : 'text-white'}`} onClick={e => setOpen(pre => pre === 'comment' ? '' : 'comment')}>
+                <img width='19px' style={{ "marginRight": '3px' }} src={bulb} alt="" />
                 {Post.comments.length}
               </div>
 
@@ -109,7 +109,7 @@ const Card = ({ post }) => {
                 onClick={() => {
                   handleLike(Post._id)
                 }}
-                className={`flex focus:outline-none font-semibold text-lg items-center cursor-pointer ${dark ? 'text-black' : 'text-white'}`}
+                className={`flex focus:outline-none text-lg items-center cursor-pointer ${dark ? 'text-black' : 'text-white'}`}
                 aria-label="Toggle Like"
               >
                 <svg
