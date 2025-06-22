@@ -92,7 +92,7 @@ const Feed = () => {
           No posts to show. Be the first to share something!
         </div>
       ) : (
-        <div className="mt-2 px-1 flex flex-col items-center justify-center relative space-y-2">
+        <div className="mt-1 px-1 flex flex-col items-center justify-center relative space-y-2">
           {posts.map((post) => (
             <Card key={post._id} post={post} />
           ))}
