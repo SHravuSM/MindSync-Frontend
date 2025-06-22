@@ -69,14 +69,14 @@ const Card = ({ post }) => {
 
           {/* Tags & Options */}
           <div className="flex items-center justify-between w-full z-10 relative">
-            <span className=" text-lg w-8/12 overflow-x-hidden font-semibold">{Post.title || Post.user.name}</span>
+            <span className=" text-lg w-8/12 overflow-x-clip font-semibold">{Post.title || Post.user.name}</span>
             <div className={`flex items-center text-xs cursor-pointer ${dark ? 'text-black' : 'text-white'}`}>
               on {new Date(Post.createdAt).toLocaleDateString('en-US', {
                 year: 'numeric',
                 month: 'short',
                 day: 'numeric',
               })}
-              <button className="bg-transparent ml-3 text-lg hover:text-white transition">
+              <button className="bg-transparent ml-2 text-lg hover:text-white transition">
                 {/* <svg className="w-5 h-5 stroke-current" viewBox="0 0 24 24" fill="none">
                   <path d="M12 8V12L15 15" strokeWidth="1" strokeLinecap="round" />
                   <circle cx="12" cy="12" r="8" strokeWidth="2" />
