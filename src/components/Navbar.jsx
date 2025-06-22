@@ -221,7 +221,7 @@ const Navbar = () => {
       <h1 className="text-center p-3">
         Mano
         <span className="text-blue-500">Sangam</span>
-        <span className="text-orange-500">.</span>
+        <span className="text-5xl text-orange-500">.</span>
       </h1>
     </header>
   );
