@@ -87,7 +87,7 @@ const Card = ({ post }) => {
           {/* Stats */}
           <div className="flex items-center justify-between text-sm text-white/70 z-10 relative">
             <div className="flex gap-4 text-md">
-              <div className={`flex items-center font-semibold cursor-pointer ${dark ? 'text-black' : 'text-white'}`}>
+              <div className={`flex items-center cursor-pointer ${dark ? 'text-black' : 'text-white'}`}>
                 <svg className="w-5 h-5 stroke-current" viewBox="0 0 24 24" fill="none">
                   <path d="M12 8V12L15 15" strokeWidth="1" strokeLinecap="round" />
                   <circle cx="12" cy="12" r="8" strokeWidth="2" />
