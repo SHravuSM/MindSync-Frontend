@@ -59,7 +59,7 @@ const Card = ({ post }) => {
     <>
       {Post && <div className={`lg:max-w-xl relative hover:z-1 hover:scale-105 duration-400 max-w-lg w-full ${!dark && 'lg:hover:mt-3 lg:hover:mb-7'} `}>
         <div
-          className={`relative ${dark ? 'bg-white text-black' : 'bg-black text-white'} backdrop-blur-md p-2 px-3 pl-1.5 pt-1 rounded-lg shadow-md transform hover:scale-100 ${!dark && "hover:border-yellow-500 lg:hover:scale-110"} perspective-midrange hover:shadow-xl ${!dark && 'hover:shadow-white/50'} border hover:my-2 border-blue-500/10 transition-all duration-500 ease-in-out cursor-pointer`}
+          className={`relative ${dark ? 'bg-white text-black' : 'bg-black text-white'} backdrop-blur-md p-2 px-3 pl-1.5 pt-0.5 rounded-lg shadow-md transform hover:scale-100 ${!dark && "hover:border-yellow-500 lg:hover:scale-110"} perspective-midrange hover:shadow-xl ${!dark && 'hover:shadow-white/50'} border hover:my-2 border-blue-500/10 transition-all duration-500 ease-in-out cursor-pointer`}
           draggable="true"
         >
           {/* Shine Overlay */}
