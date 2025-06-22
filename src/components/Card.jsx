@@ -59,7 +59,7 @@ const Card = ({ post }) => {
     <>
       {Post && <div className={`lg:max-w-xl relative hover:z-1 hover:scale-105 duration-400 max-w-lg w-full ${!dark && 'lg:hover:mt-3 lg:hover:mb-7'} `}>
         <div
-          className={`relative ${dark ? 'bg-white text-black' : 'bg-black text-white'} backdrop-blur-md p-2 px-2 pl-1.5 pt-0.5 rounded-lg shadow-md transform hover:scale-100 ${!dark && "hover:border-yellow-500 lg:hover:scale-110"} perspective-midrange hover:shadow-xl ${!dark && 'hover:shadow-white/50'} border hover:my-2 border-blue-500/10 transition-all duration-500 ease-in-out cursor-pointer`}
+          className={`relative ${dark ? 'bg-white text-black' : 'bg-black text-white'} backdrop-blur-md p-3 pt-1 pb-2 rounded-lg shadow-md transform hover:scale-100 ${!dark && "hover:border-yellow-500 lg:hover:scale-110"} perspective-midrange hover:shadow-xl ${!dark && 'hover:shadow-white/50'} border hover:my-2 border-blue-500/10 transition-all duration-500 ease-in-out cursor-pointer`}
           draggable="true"
         >
           {/* Shine Overlay */}
@@ -69,14 +69,26 @@ const Card = ({ post }) => {
 
           {/* Tags & Options */}
           <div className="flex items-center justify-between w-full z-10 relative">
-            <span className=" text-lg font-semibold">{Post.title || Post.user.name}</span>
-            <button className="bg-transparent border-0 text-lg hover:text-white transition">
-              <svg viewBox="0 0 41.915 41.916" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 fill-current">
-                <path d="M11.214,20.956c0,3.091-2.509,5.589-5.607,5.589C2.51,26.544,0,24.046,0,20.956c0-3.082,2.511-5.585,5.607-5.585 C8.705,15.371,11.214,17.874,11.214,20.956z" />
-                <path d="M26.564,20.956c0,3.091-2.509,5.589-5.606,5.589c-3.097,0-5.607-2.498-5.607-5.589c0-3.082,2.511-5.585,5.607-5.585 C24.056,15.371,26.564,17.874,26.564,20.956z" />
-                <path d="M41.915,20.956c0,3.091-2.509,5.589-5.607,5.589c-3.097,0-5.606-2.498-5.606-5.589c0-3.082,2.511-5.585,5.606-5.585 C39.406,15.371,41.915,17.874,41.915,20.956z" />
-              </svg>
-            </button>
+            <span className=" text-lg w-8/12 overflow-x-hidden font-semibold">{Post.title || Post.user.name}</span>
+            <div className={`flex items-center text-xs cursor-pointer ${dark ? 'text-black' : 'text-white'}`}>
+              on {new Date(Post.createdAt).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+              })}
+              <button className="bg-transparent ml-3 text-lg hover:text-white transition">
+                {/* <svg className="w-5 h-5 stroke-current" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 8V12L15 15" strokeWidth="1" strokeLinecap="round" />
+                  <circle cx="12" cy="12" r="8" strokeWidth="2" />
+                </svg> */}
+
+                <svg viewBox="0 0 41.915 41.916" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 fill-current">
+                  <path d="M11.214,20.956c0,3.091-2.509,5.589-5.607,5.589C2.51,26.544,0,24.046,0,20.956c0-3.082,2.511-5.585,5.607-5.585 C8.705,15.371,11.214,17.874,11.214,20.956z" />
+                  <path d="M26.564,20.956c0,3.091-2.509,5.589-5.606,5.589c-3.097,0-5.607-2.498-5.607-5.589c0-3.082,2.511-5.585,5.607-5.585 C24.056,15.371,26.564,17.874,26.564,20.956z" />
+                  <path d="M41.915,20.956c0,3.091-2.509,5.589-5.607,5.589c-3.097,0-5.606-2.498-5.606-5.589c0-3.082,2.511-5.585,5.606-5.585 C39.406,15.371,41.915,17.874,41.915,20.956z" />
+                </svg>
+              </button>
+            </div>
           </div>
 
           {/* Text */}
@@ -87,18 +99,7 @@ const Card = ({ post }) => {
           {/* Stats */}
           <div className="flex items-center justify-between text-sm text-white/70 z-10 relative">
             <div className="flex gap-4 text-md">
-              <div className={`flex items-center cursor-pointer ${dark ? 'text-black' : 'text-white'}`}>
-                <svg className="w-5 h-5 stroke-current" viewBox="0 0 24 24" fill="none">
-                  <path d="M12 8V12L15 15" strokeWidth="1" strokeLinecap="round" />
-                  <circle cx="12" cy="12" r="8" strokeWidth="2" />
-                </svg>
 
-                {new Date(Post.createdAt).toLocaleDateString('en-US', {
-                  year: 'numeric',
-                  month: 'short',
-                  day: 'numeric',
-                })}
-              </div>
 
               <div className={`flex items-center text-lg cursor-pointer ${dark ? 'text-black' : 'text-white'}`} onClick={e => setOpen(pre => pre === 'comment' ? '' : 'comment')}>
                 <img width='19px' style={{ "marginRight": '3px' }} src={bulb} alt="" />
