@@ -7,6 +7,7 @@ const Card = ({ post }) => {
   const { dark, user } = useAuthStore();
   const [Post, setPost] = useState(null);
   const [open, setOpen] = useState();
+  const [showOptions, setShowOptions] = useState(false);
 
   const [newComment, setNewComment] = useState("");
   const handleCommentSubmit = async (e) => {
@@ -68,19 +69,19 @@ const Card = ({ post }) => {
           </div>
 
           {/* Tags & Options */}
-          <div className="flex items-center justify-between w-full z-10 relative">
-            <span className=" text-lg w-8/12 overflow-x-clip font-semibold">{Post.title || Post.user.name}</span>
-            <div className={`flex items-center text-xs cursor-pointer ${dark ? 'text-black' : 'text-white'}`}>
-              on {new Date(Post.createdAt).toLocaleDateString('en-US', {
+          {/* <div className="flex items-center justify-between border z-10 relative">
+            <span className=" text-lg overflow-x-clip font-semibold">{Post.title || Post.user.name}</span>
+            <div className={`flex items-center justify-around border text-xs cursor-pointer ${dark ? 'text-black' : 'text-white'}`}>
+              <span>on {new Date(Post.createdAt).toLocaleDateString('en-US', {
                 year: 'numeric',
                 month: 'short',
                 day: 'numeric',
-              })}
-              <button className="bg-transparent ml-2 text-lg hover:text-white transition">
-                {/* <svg className="w-5 h-5 stroke-current" viewBox="0 0 24 24" fill="none">
+              })}</span>
+              <button className="bg-transparent text-lg hover:text-white transition">
+                <svg className="w-5 h-5 stroke-current" viewBox="0 0 24 24" fill="none">
                   <path d="M12 8V12L15 15" strokeWidth="1" strokeLinecap="round" />
                   <circle cx="12" cy="12" r="8" strokeWidth="2" />
-                </svg> */}
+                </svg>
 
                 <svg viewBox="0 0 41.915 41.916" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 fill-current">
                   <path d="M11.214,20.956c0,3.091-2.509,5.589-5.607,5.589C2.51,26.544,0,24.046,0,20.956c0-3.082,2.511-5.585,5.607-5.585 C8.705,15.371,11.214,17.874,11.214,20.956z" />
@@ -88,7 +89,41 @@ const Card = ({ post }) => {
                   <path d="M41.915,20.956c0,3.091-2.509,5.589-5.607,5.589c-3.097,0-5.606-2.498-5.606-5.589c0-3.082,2.511-5.585,5.606-5.585 C39.406,15.371,41.915,17.874,41.915,20.956z" />
                 </svg>
               </button>
+            </div> */}
+          <div className="flex items-center w-full justify-between z-10 relative py-1">
+            <span className="text-lg font-semibold overflow-hidden text-ellipsis whitespace-nowrap">
+              {Post.title || Post.user.name}
+            </span>
+
+            <div className={`flex items-center justify-around lg:gap-x-0 gap-x-1 lg:w-3/12 w-5/12 py-1 text-xs cursor-pointer ${dark ? 'text-black' : 'text-white'}`}>
+              <span>
+                on {new Date(Post.createdAt).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric',
+                })}
+              </span>
+
+              <button
+                className={`bg-transparent text-lg transition ${!dark ? "text-white" : "text-black"}`}
+                aria-label="Post Options"
+                onClick={() => setShowOptions(prev => !prev)}
+              >
+                <svg viewBox="0 0 41.915 41.916" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 fill-current">
+                  <path d="M11.214,20.956c0,3.091-2.509,5.589-5.607,5.589C2.51,26.544,0,24.046,0,20.956c0-3.082,2.511-5.585,5.607-5.585C8.705,15.371,11.214,17.874,11.214,20.956z" />
+                  <path d="M26.564,20.956c0,3.091-2.509,5.589-5.606,5.589c-3.097,0-5.607-2.498-5.607-5.589c0-3.082,2.511-5.585,5.607-5.585C24.056,15.371,26.564,17.874,26.564,20.956z" />
+                  <path d="M41.915,20.956c0,3.091-2.509,5.589-5.607,5.589c-3.097,0-5.606-2.498-5.606-5.589c0-3.082,2.511-5.585,5.606-5.585C39.406,15.371,41.915,17.874,41.915,20.956z" />
+                </svg>
+              </button>
             </div>
+
+            {showOptions && (
+              <div className="absolute right-0 top-full mt-2 w-32 bg-black shadow-lg rounded z-10 text-white text-sm">
+                <div className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Edit</div>
+                <div className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Delete</div>
+              </div>
+            )}
+
           </div>
 
           {/* Text */}
