@@ -90,12 +90,12 @@ const Card = ({ post }) => {
                 </svg>
               </button>
             </div> */}
-          <div className="flex items-center w-full justify-between z-10 relative py-1">
-            <span className="text-lg font-semibold overflow-hidden text-ellipsis whitespace-nowrap">
+          <div className="flex items-center w-full border justify-between z-10 relative py-1">
+            <span className="text-lg font-semibold border overflow-hidden text-ellipsis whitespace-nowrap">
               {Post.title || Post.user.name}
             </span>
 
-            <div className={`flex items-center justify-around lg:gap-x-0 gap-x-1 lg:w-3/12 w-5/12 py-1 text-xs cursor-pointer ${dark ? 'text-black' : 'text-white'}`}>
+            <div className={`flex items-center border justify-end lg:gap-x-0 gap-x-2 lg:w-3/12 w-5/12 py-1 text-xs cursor-pointer ${dark ? 'text-black' : 'text-white'}`}>
               <span>
                 on {new Date(Post.createdAt).toLocaleDateString('en-US', {
                   year: 'numeric',
