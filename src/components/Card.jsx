@@ -95,7 +95,7 @@ const Card = ({ post }) => {
               {Post.title || Post.user.name}
             </span>
 
-            <div className={`flex items-center justify-end lg:gap-x-0 gap-x-2 lg:w-3/12 w-5/12 py-1 text-xs cursor-pointer ${dark ? 'text-black' : 'text-white'}`}>
+            <div className={`flex items-center justify-end lg:gap-x-4 gap-x-2 lg:w-3/12 w-5/12 py-1 text-xs cursor-pointer ${dark ? 'text-black' : 'text-white'}`}>
               <span>
                 on {new Date(Post.createdAt).toLocaleDateString('en-US', {
                   year: 'numeric',
