@@ -217,8 +217,8 @@ import { useAuthStore } from "../context/AuthContext";
 const Navbar = () => {
   const { setDark } = useAuthStore();
   return (
-    <header className="bg-black font-normal text-white text-3xl lg:text-4xl w-full shadow-md">
-      <h1 className="text-center p-3">
+    <header className="bg-black font-normal border text-white text-3xl lg:text-4xl w-full shadow-md">
+      <h1 className="text-center p-3 pt-0">
         Mano
         <span className="text-blue-500">Sangam</span>
         <span className="text-5xl text-orange-500">.</span>
