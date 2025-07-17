@@ -25,8 +25,9 @@ const Feed = () => {
       if (isSameTag) {
         fetchPosts(); // If same tag clicked again, reset to all posts
       } else {
-        const tagg = tag.replace("#", "");
-        const res = await api.get(`/tags/${tagg}`);
+        // const tagg = tag.replace("#", "");
+        const res = await api.get(`/tags/${tag}`);
+        console.log(res)
         setPosts(res.data);
       }
     } catch (err) {
@@ -77,7 +78,7 @@ const Feed = () => {
               : "bg-white text-gray-800 hover:bg-gray-100"
               }`}
           >
-            {tag}
+            #{tag}
           </span>
         ))}
       </div>

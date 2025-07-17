@@ -1,8 +1,6 @@
-// src/context/AuthContext.js
 import axios from "axios";
 import { auth, provider } from "../firebase";
 import { useNavigate } from "react-router-dom";
-// import { jwtDecode } from "jwt-decode";
 import { createContext, useContext, useEffect, useState } from "react";
 import { deleteUser, onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
 
@@ -10,43 +8,15 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [state, setState] = useState(false)
-  const [dark, setDark] = useState(false)
+  const [dark, setDark] = useState(() => {
+    const stored = localStorage.getItem('dark');
+    return stored === 'true'; // convert string to boolean
+  });
   const [submit, setSubmit] = useState(false);
   const [yes, setYes] = useState(false);
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true); // useful while checking session
-
-  useEffect(() => {
-    const checkTimeForDarkMode = () => {
-      const now = new Date();
-
-      // Get hours and minutes
-      const hours = now.getHours();
-      const minutes = now.getMinutes();
-
-      // Convert current time into total minutes since midnight
-      const totalMinutesNow = hours * 60 + minutes;
-
-      // Dark mode time range in minutes
-      const darkStart = 18 * 60 + 30; // 6:30 PM => 1110 minutes
-      const darkEnd = 6 * 60 + 30;    // 6:30 AM => 390 minutes
-
-      // If current time is between 6:30 PM and midnight or between midnight and 6:30 AM
-      if (totalMinutesNow >= darkStart || totalMinutesNow < darkEnd) {
-        setDark(false);
-      } else {
-        setDark(true);
-      }
-    };
-
-    checkTimeForDarkMode(); // Initial check on mount
-
-    // Optional: Update periodically (e.g., every 5 minutes)
-    const intervalId = setInterval(checkTimeForDarkMode, 5 * 60 * 1000);
-
-    return () => clearInterval(intervalId);
-  }, []);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setState(false);
@@ -82,11 +52,9 @@ export const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  // useEffect(() => {
-  //   // console.log(localStorage)
-  //   const user = JSON.parse(localStorage.getItem("user"));
-  //   setUser(user)
-  // }, [])
+  useEffect(() => {
+    localStorage.setItem('dark', dark);
+  }, [dark]);
 
   const loginWithGoogle = async () => {
     try {
@@ -207,3 +175,159 @@ export const AuthProvider = ({ children }) => {
 };
 
 export const useAuthStore = () => useContext(AuthContext);
+
+
+
+
+// import { create } from "zustand";
+// import { persist } from "zustand/middleware";
+// import axios from "axios";
+// import { auth, provider } from "../firebase";
+// import { onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
+
+// export const useAuthStore = create(
+//   persist(
+//     (set, get) => ({
+//       user: null,
+//       loading: true,
+//       dark: localStorage.getItem("dark") === "true",
+//       submit: false,
+//       state: false,
+//       yes: false,
+
+//       // Simple setters
+//       setUser: (user) => set({ user }),
+//       setDark: (val) => {
+//         localStorage.setItem("dark", val);
+//         set({ dark: val });
+//       },
+//       setSubmit: (val) => set({ submit: val }),
+//       setState: (val) => set({ state: val }),
+//       setYes: (val) => set({ yes: val }),
+
+//       // Auth listener
+//       initAuthListener: () => {
+//         const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+//           if (firebaseUser) {
+//             try {
+//               const token = await firebaseUser.getIdToken(true);
+//               const res = await axios.get(`${import.meta.env.VITE_API_URL}/user`, {
+//                 headers: { Authorization: `Bearer ${token}` },
+//               });
+//               const backendUser = res.data.user;
+//               set({ user: backendUser });
+//               localStorage.setItem("user", JSON.stringify(backendUser));
+//               localStorage.setItem("token", token);
+//             } catch (err) {
+//               console.error("Backend sync error:", err);
+//               set({ user: null });
+//               localStorage.removeItem("user");
+//               localStorage.removeItem("token");
+//             }
+//           } else {
+//             set({ user: null });
+//             localStorage.removeItem("user");
+//             localStorage.removeItem("token");
+//           }
+//           set({ loading: false });
+//         });
+
+//         return unsubscribe;
+//       },
+
+//       // Google login for user
+//       loginWithGoogle: async (navigate) => {
+//         try {
+//           const result = await signInWithPopup(auth, provider);
+//           const token = await result.user.getIdToken(true);
+//           const res = await axios.post(`${import.meta.env.VITE_API_URL}/login`, { token });
+
+//           const user = res.data.user;
+//           set({ user });
+//           localStorage.setItem("user", JSON.stringify(user));
+//           localStorage.setItem("token", token);
+
+//           const Name = user.name;
+//           user.role === "creator" ? navigate("/dashboard") : navigate(`/${Name}`);
+//         } catch (err) {
+//           console.error("Google sign-in error:", err);
+//         }
+//       },
+
+//       // Signup with Google
+//       signUpWithGoogle: async (role, navigate) => {
+//         try {
+//           const result = await signInWithPopup(auth, provider);
+//           const token = await result.user.getIdToken(true);
+//           const res = await axios.post(`${import.meta.env.VITE_API_URL}/register`, { token, role });
+
+//           const user = res.data.user;
+//           set({ user });
+//           localStorage.setItem("user", JSON.stringify(user));
+//           localStorage.setItem("token", token);
+//           navigate("/dashboard");
+//         } catch (err) {
+//           console.error("Signup error:", err);
+//         }
+//       },
+
+//       // Admin login
+//       adminWithGoogle: async (navigate) => {
+//         try {
+//           const result = await signInWithPopup(auth, provider);
+//           const token = await result.user.getIdToken(true);
+//           const res = await axios.post(`${import.meta.env.VITE_API_URL}/registeradmin`, { token });
+
+//           const user = res.data.user;
+//           set({ user });
+//           localStorage.setItem("user", JSON.stringify(user));
+//           localStorage.setItem("token", token);
+//           navigate("/Adashboard");
+//         } catch (err) {
+//           console.error("Admin login error:", err);
+//         }
+//       },
+
+//       // Company register
+//       companyRegister: async (details) => {
+//         try {
+//           const res = await axios.post(`${import.meta.env.VITE_API_URL}/registerCompany`, details);
+//           console.log("Company registered:", res.data);
+//         } catch (err) {
+//           console.error("Company registration failed:", err);
+//         }
+//       },
+
+//       // Company login
+//       companyLogin: async (details, navigate) => {
+//         try {
+//           const res = await axios.post(`${import.meta.env.VITE_API_URL}/loginCompany`, details);
+//           const { token, user } = res.data;
+//           set({ user });
+//           localStorage.setItem("user", JSON.stringify(user));
+//           localStorage.setItem("token", token);
+//           navigate("/dashboard");
+//         } catch (err) {
+//           console.error("Company login failed:", err);
+//         }
+//       },
+
+//       // Logout
+//       logout: async (navigate) => {
+//         try {
+//           await signOut(auth);
+//           set({ user: null });
+//           localStorage.removeItem("user");
+//           localStorage.removeItem("token");
+//           navigate("/");
+//         } catch (error) {
+//           console.log("Logout failed:", error);
+//         }
+//       },
+//     }),
+//     {
+//       name: "auth-storage", // name for persist
+//       partialize: (state) => ({ user: state.user, dark: state.dark }), // only persist necessary values
+//     }
+//   )
+// );

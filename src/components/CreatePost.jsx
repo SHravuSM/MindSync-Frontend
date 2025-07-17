@@ -1,29 +1,91 @@
+// import Post from "./Post";
+// import Pitch from "./Pitch";
+// import { useAuthStore } from "../context/AuthContext";
+
+// export default function CreatePost() {
+//     const { yes, setYes, dark } = useAuthStore();
+//     return (
+//         <>
+//             <div className="flex justify-center mt-8">
+//                 <div className="relative flex bg-white/40 backdrop-blur-lg rounded-xl shadow-lg px-1 py-1 w-[260px] sm:w-[320px]">
+//                     {/* Animated active indicator */}
+//                     <div
+//                         className={`absolute top-1 left-1 h-[88%] w-1/2 bg-white rounded-lg shadow transition-all duration-300 ${yes ? "translate-x-full" : "translate-x-0"
+//                             }`}
+//                     />
+
+//                     {/* Buttons */}
+//                     <button
+//                         onClick={() => setYes(false)}
+//                         className={`z-10 w-1/2 py-2 text-sm sm:text-base font-semibold transition-colors duration-300 ${!yes ? "text-blue-600" : "text-gray-700"
+//                             }`}
+//                     >
+//                         💡 Idea
+//                     </button>
+
+//                     <button
+//                         onClick={() => setYes(true)}
+//                         className={`z-10 w-1/2 py-2 text-sm sm:text-base font-semibold transition-colors duration-300 ${yes ? "text-blue-600" : "text-gray-700"
+//                             }`}
+//                     >
+//                         🚀 Pitch
+//                     </button>
+//                 </div>
+//             </div>
+
+//             {yes ? <Pitch /> : <Post />}
+//         </>
+//     )
+// }
+
 import Post from "./Post";
 import Pitch from "./Pitch";
 import { useAuthStore } from "../context/AuthContext";
 
 export default function CreatePost() {
-    const { yes, setYes } = useAuthStore();
+    const { yes, setYes, dark } = useAuthStore();
+
     return (
         <>
-            <div className="flex justify-center mt-5 px-1 md:px-1">
-                <div className="flex max-w-xs sm:max-w-md md:max-w-lg bg-white/60 backdrop-blur-md shadow-md rounded-full border-t border-white overflow-hidden">
+            <div className="flex justify-center mt-8">
+                <div
+                    className={`relative flex items-center justify-around rounded-xl w-[220px] sm:w-[220px] 
+                    ${dark
+                            ? "bg-white backdrop-blur-lg"
+                            : "bg-black backdrop-blur-lg"
+                        }`}
+                >
+                    {/* Animated active indicator */}
+                    <div
+                        className={`absolute top-1 left-1 h-[88%] w-1/2 rounded-lg shadow transition-all duration-300 
+                        ${yes ? "translate-x-full" : "translate-x-0"}
+                        ${dark ? "bg-black shadow-black" : "bg-white shadow-white"}`}
+                    />
+
+                    {/* Buttons */}
                     <button
                         onClick={() => setYes(false)}
-                        className={`flex-1 text-center px-4 py-2 text-xl md:text-xl text-black font-semibold ${!yes && "text-black border-white border-l-orange-500 border-4"} transition-all duration-200 rounded-l-full`}
+                        className={`z-10 w-1/2 py-2 text-sm sm:text-base  flex justify-around font-semibold transition-colors duration-300 
+                        ${!yes
+                                ? dark ? "text-white" : "text-black"
+                                : dark ? "text-black" : "text-white"}`}
                     >
-                        idea
+                        💡 Idea
                     </button>
+
                     <button
                         onClick={() => setYes(true)}
-                        to='pitch'
-                        className={`flex-1 text-center px-4 py-2 text-xl md:text-xl text-black font-semibold ${yes && "text-black border-white border-r-blue-500 border-4"} transition-all duration-200 rounded-r-full`}
+                        className={`z-10 w-1/2 py-2 flex text-sm text-center justify-around sm:text-base font-semibold transition-colors duration-300 
+                        ${yes
+                                ? dark ? "text-white" : "text-black"
+                                : dark ? "text-black" : "text-white"}`}
                     >
                         Pitch
                     </button>
                 </div>
             </div>
+
             {yes ? <Pitch /> : <Post />}
         </>
-    )
+    );
 }

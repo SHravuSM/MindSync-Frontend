@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useAuthStore } from "../context/AuthContext";
 import api from "../utils/api1";
 import bulb from "../assets/bulb2.png";
+import USER from "../assets/user.png";
 
 const Card = ({ post }) => {
   const { dark, user } = useAuthStore();
@@ -69,27 +70,6 @@ const Card = ({ post }) => {
           </div>
 
           {/* Tags & Options */}
-          {/* <div className="flex items-center justify-between border z-10 relative">
-            <span className=" text-lg overflow-x-clip font-semibold">{Post.title || Post.user.name}</span>
-            <div className={`flex items-center justify-around border text-xs cursor-pointer ${dark ? 'text-black' : 'text-white'}`}>
-              <span>on {new Date(Post.createdAt).toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'short',
-                day: 'numeric',
-              })}</span>
-              <button className="bg-transparent text-lg hover:text-white transition">
-                <svg className="w-5 h-5 stroke-current" viewBox="0 0 24 24" fill="none">
-                  <path d="M12 8V12L15 15" strokeWidth="1" strokeLinecap="round" />
-                  <circle cx="12" cy="12" r="8" strokeWidth="2" />
-                </svg>
-
-                <svg viewBox="0 0 41.915 41.916" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 fill-current">
-                  <path d="M11.214,20.956c0,3.091-2.509,5.589-5.607,5.589C2.51,26.544,0,24.046,0,20.956c0-3.082,2.511-5.585,5.607-5.585 C8.705,15.371,11.214,17.874,11.214,20.956z" />
-                  <path d="M26.564,20.956c0,3.091-2.509,5.589-5.606,5.589c-3.097,0-5.607-2.498-5.607-5.589c0-3.082,2.511-5.585,5.607-5.585 C24.056,15.371,26.564,17.874,26.564,20.956z" />
-                  <path d="M41.915,20.956c0,3.091-2.509,5.589-5.607,5.589c-3.097,0-5.606-2.498-5.606-5.589c0-3.082,2.511-5.585,5.606-5.585 C39.406,15.371,41.915,17.874,41.915,20.956z" />
-                </svg>
-              </button>
-            </div> */}
           <div className="flex items-center w-full justify-between z-10 relative py-1">
             <span className="text-lg font-semibold overflow-hidden text-ellipsis whitespace-nowrap">
               {Post.title || Post.user.name}
@@ -180,27 +160,12 @@ const Card = ({ post }) => {
                     key={idx}
                     className="h-[30px] w-[30px] rounded-full bg-blue-200 flex items-center justify-center text-sm font-bold border border-white -mr-2 shadow-sm"
                   >
-                    <svg
-                      className="w-4 h-4 stroke-black"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M17 8C17 10.7614 14.7614 13 12 13C9.23858 13 7 10.7614 7 8C7 5.23858 9.23858 3 12 3C14.7614 3 17 5.23858 17 8Z"
-                        strokeWidth="2"
-                      />
-                      <path
-                        d="M3 21C3.95728 17.9237 6.41998 17 12 17C17.58 17 20.0427 17.9237 21 21"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                      />
-                    </svg>
+                    <img src={USER} alt="" />
                   </span>
                 ))}
               <span
                 onClick={e => { Post.impressions.length > 0 && setOpen(pre => pre === 'collab' ? '' : 'collab') }}
-                className="h-[30px] w-[30px] rounded-full bg-orange-200 text-black transform flex items-center justify-center text-xs font-bold shadow-sm">
+                className="h-[30px] w-[30px] rounded-full bg-white text-black transform flex items-center justify-center text-xs font-bold shadow-sm">
                 {Post.impressions.length}
               </span>
             </div>
