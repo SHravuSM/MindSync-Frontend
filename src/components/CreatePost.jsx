@@ -49,7 +49,7 @@ export default function CreatePost() {
         <>
             <div className="flex justify-center mt-8">
                 <div
-                    className={`relative flex items-center justify-around rounded-xl w-[220px] sm:w-[220px] 
+                    className={`relative flex items-center justify-around rounded-xl py-1 w-sm sm:w-lg 
                     ${dark
                             ? "bg-white backdrop-blur-lg"
                             : "bg-black backdrop-blur-lg"

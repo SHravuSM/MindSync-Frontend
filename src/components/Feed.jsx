@@ -25,9 +25,8 @@ const Feed = () => {
       if (isSameTag) {
         fetchPosts(); // If same tag clicked again, reset to all posts
       } else {
-        // const tagg = tag.replace("#", "");
         const res = await api.get(`/tags/${tag}`);
-        console.log(res)
+        console.log(res.data)
         setPosts(res.data);
       }
     } catch (err) {
