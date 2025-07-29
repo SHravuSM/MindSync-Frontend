@@ -6,10 +6,9 @@ import Card from "./Card";
 import Loader from "./PostLoader";
 
 const Feed = () => {
-  const { user, setYes } = useAuthStore();
+  const { user, setYes, dark } = useAuthStore();
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [appear, setAppear] = useState(false);
   const [tags, setTags] = useState([]);
   const [selectedTag, setSelectedTag] = useState(null); // 👈 New state to track selected tag
 
@@ -90,7 +89,7 @@ const Feed = () => {
           No posts to show. Be the first to share something!
         </div>
       ) : (
-        <div className="h-full mt-0.5 pb-12 lg:pb-14 w-full scrollbar-hidden flex flex-col overflow-y-auto items-center justify-start p-2 space-y-1 ">
+        <div className="h-full mt-0 p-0 pb-12 lg:pb-14 w-full scrollbar-hidden flex flex-col overflow-y-auto items-center justify-start space-y-1 ">
           {posts.map((post) => (
             <Card key={post._id} post={post} />
           ))}

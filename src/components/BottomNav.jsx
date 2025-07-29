@@ -4,7 +4,7 @@ import { useAuthStore } from '../context/AuthContext';
 const BottomNav = () => {
     const { setState, dark, user, setYes } = useAuthStore();
     return (
-        <div className={`bottom-0 bg-transparent bg-none fixed flex z-10 w-full items-center justify-center transition-transform duration-500 drop-shadow-xl ${dark ? "text-black" : 'text-white'}`}>
+        <div className={`bottom-0 bg-transparent bg-none mb-1 fixed flex z-10 w-full items-center justify-center transition-transform duration-500 drop-shadow-xl ${dark ? "text-black" : 'text-white'}`}>
             <form className='w-full h-full' action="#">
                 <ul className={`flex items-center w-full justify-center bg-transparent shadow-lg overflow-hidden lg:space-x-10 space-x-5`}>
                     <input defaultChecked name="rad" id="choose1" type="radio" className="hidden peer/one" />

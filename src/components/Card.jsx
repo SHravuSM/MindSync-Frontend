@@ -68,9 +68,9 @@ const Card = ({ post }) => {
   }
   return (
     <>
-      {Post && <div className={`lg:max-w-xl rounded-lg relative hover:z-1 max-w-lg w-full`}>
+      {Post && <div className={`lg:max-w-xl rounded-lg relative hover:z-1 max-w-lg lg:pt-1 w-full`}>
         <div
-          className={`relative ${dark ? 'bg-white text-black' : 'bg-black text-white'} backdrop-blur-md p-3 pt-1 pb-2 rounded-lg shadow-md transform hover:scale-100 ${!dark && "hover:border-none lg:hover:scale-110"} perspective-midrange hover:shadow-xl ${!dark && 'hover:shadow-white/50'} border hover:my-2 border-blue-500/10 transition-all duration-500 ease-in-out cursor-pointer`}
+          className={`relative ${dark ? 'bg-white text-black' : 'bg-black text-white'} backdrop-blur-md p-3 pt-0 pb-2 rounded-lg shadow-md transform hover:scale-100 ${!dark && "hover:border-none lg:hover:scale-110"} perspective-midrange hover:shadow-xl ${!dark && 'hover:shadow-white/50'} border hover:my-2 border-blue-500/10 transition-all duration-500 ease-in-out cursor-pointer`}
           draggable="true"
         >
           {/* Shine Overlay */}
@@ -115,12 +115,10 @@ const Card = ({ post }) => {
 
           </div>
 
-          {/* Text */}
-          <p className="text-sm mt-1 mb-2 z-10 relative whitespace-pre-wrap">
+          <p className="text-sm mt-1 line-clamp-5 mb-2 z-10 relative whitespace-pre-wrap">
             {Post.content}
           </p>
 
-          {/* Stats */}
           <div className="flex items-center justify-between text-sm text-white/70 z-10 relative">
             <div className="flex gap-4 text-md">
 
