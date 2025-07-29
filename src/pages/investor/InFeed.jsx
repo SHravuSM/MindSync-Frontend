@@ -64,15 +64,15 @@ const InFeed = () => {
     }
 
     return (
-        <div className="h-full overflow-y-auto w-full  ">
+        <div className="h-screen overflow-y-auto w-full">
 
             {/* Tag Selector */}
-            <div className="w-full px-2 py-1 mt-2 rounded-sm overflow-x-auto scrollbar-hide flex gap-2">
+            <div className="w-full px-2 py-1 mt-2 rounded-sm hidden overflow-x-auto scrollbar-hide flex gap-2">
                 {tags.map((tag, index) => (
                     <span
                         key={index}
                         onClick={() => handleTAG(tag)}
-                        className={`shrink-0 text-sm font-medium px-4 py-1.5 rounded-full shadow cursor-pointer transition-colors duration-200 ${selectedTag === tag
+                        className={`shrink-0 text-sm border-2 border-blue-500 font-medium px-4 py-1.5 rounded-full shadow cursor-pointer transition-colors duration-200 ${selectedTag === tag
                             ? "bg-blue-600 text-white"
                             : "bg-white text-gray-800 hover:bg-gray-100"
                             }`}
@@ -82,31 +82,21 @@ const InFeed = () => {
                 ))}
             </div>
 
-            {/* Floating Input */}
-            <div className="fixed bottom-7 left-1/2 transform -translate-x-1/2 w-[50%] sm:w-2/3 md:w-1/2 lg:w-1/3 z-20">
-                {/* <Input setAppear={setAppear} /> */}
-            </div>
-
-            {/* Create Post Animation */}
-            {/* <CreatePost onPostCreated={handlePostCreated} /> */}
-
             {/* Post Feed */}
             {loading ? (
                 <div className="text-center text-gray-500 mt-10 animate-pulse">
                     Loading posts...
-                </div>
-            ) : posts.length === 0 ? (
-                <div className="text-center text-gray-400 mt-10">
-                    No posts to show. Be the first to share something!
-                </div>
-            ) : (
-                <div className="mt-2 relative space-y-2">
-                    {posts.map((post) => (
+                </div>) : posts.length === 0 ? (
+                    <div className="text-center text-gray-400 mt-10">
+                        No posts to show. Be the first to share something!
+                    </div>) : (posts.map((post) => (
                         <Card key={post._id} post={post} onImpressed={onImpressed} onLike={handleLike} />
-                    ))}
+                    ))
 
-                </div>
             )}
+            {/* // <div className="border-2 border-red-500 relative space-y-2"> */}
+
+            {/* // </div> */}
         </div>
     );
 };

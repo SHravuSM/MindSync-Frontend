@@ -9,6 +9,7 @@ const Card = ({ post }) => {
   const [Post, setPost] = useState(null);
   const [open, setOpen] = useState();
   const [showOptions, setShowOptions] = useState(false);
+  const [collaborators, setCollaborators] = useState([])
 
   const [newComment, setNewComment] = useState("");
   const handleCommentSubmit = async (e) => {
@@ -33,6 +34,14 @@ const Card = ({ post }) => {
   useEffect(() => {
     setPost(post)
   }, []);
+
+  const collabUsers = async (id) => {
+    console.log(id._id)
+    const ID = id._id;
+    setOpen(pre => pre === 'collab' ? '' : 'collab');
+    const res = await api.get(`/posts/collab-users/${ID}`);
+    console.log(res.data);
+  }
 
   const handleLike = async (postId) => {
     try {
@@ -59,9 +68,9 @@ const Card = ({ post }) => {
   }
   return (
     <>
-      {Post && <div className={`lg:max-w-xl relative hover:z-1 hover:scale-105 duration-400 max-w-lg w-full ${!dark && 'lg:hover:mt-3 lg:hover:mb-7'} `}>
+      {Post && <div className={`lg:max-w-xl rounded-lg relative hover:z-1 max-w-lg w-full`}>
         <div
-          className={`relative ${dark ? 'bg-white text-black' : 'bg-black text-white'} backdrop-blur-md p-3 pt-1 pb-2 rounded-lg shadow-md transform hover:scale-100 ${!dark && "hover:border-yellow-500 lg:hover:scale-110"} perspective-midrange hover:shadow-xl ${!dark && 'hover:shadow-white/50'} border hover:my-2 border-blue-500/10 transition-all duration-500 ease-in-out cursor-pointer`}
+          className={`relative ${dark ? 'bg-white text-black' : 'bg-black text-white'} backdrop-blur-md p-3 pt-1 pb-2 rounded-lg shadow-md transform hover:scale-100 ${!dark && "hover:border-none lg:hover:scale-110"} perspective-midrange hover:shadow-xl ${!dark && 'hover:shadow-white/50'} border hover:my-2 border-blue-500/10 transition-all duration-500 ease-in-out cursor-pointer`}
           draggable="true"
         >
           {/* Shine Overlay */}
@@ -164,7 +173,7 @@ const Card = ({ post }) => {
                   </span>
                 ))}
               <span
-                onClick={e => { Post.impressions.length > 0 && setOpen(pre => pre === 'collab' ? '' : 'collab') }}
+                onClick={e => { Post.impressions.length > 0 && collabUsers(Post) }}
                 className="h-[30px] w-[30px] rounded-full bg-white text-black transform flex items-center justify-center text-xs font-bold shadow-sm">
                 {Post.impressions.length}
               </span>

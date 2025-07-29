@@ -26,7 +26,6 @@ const Feed = () => {
         fetchPosts(); // If same tag clicked again, reset to all posts
       } else {
         const res = await api.get(`/tags/${tag}`);
-        console.log(res.data)
         setPosts(res.data);
       }
     } catch (err) {
@@ -64,10 +63,10 @@ const Feed = () => {
   }, []);
 
   return (
-    <div className="h-full overflow-y-auto w-full p-0">
+    <div className="flex flex-col h-full items-center justify-start w-full p-0">
 
       {/* Tag Selector */}
-      <div className="w-full px-2 py-1 mt-0 rounded-sm overflow-x-auto scrollbar-hide flex gap-2">
+      <div className="px-2 py-1 mt-0 w-full rounded-sm overflow-x-auto scrollbar-hide flex gap-2">
         {tags.map((tag, index) => (
           <span
             key={index}
@@ -83,8 +82,7 @@ const Feed = () => {
       </div>
 
       {loading ? (
-        <div className=" absolute left-1/2 top-52 h-screen text-center text-gray-500">
-          {/* Loading posts... */}
+        <div className=" absolute left-1/2 top-52 text-center text-gray-500">
           <Loader />
         </div>
       ) : posts.length === 0 ? (
@@ -92,7 +90,7 @@ const Feed = () => {
           No posts to show. Be the first to share something!
         </div>
       ) : (
-        <div className="mt-1 px-1.5 flex flex-col items-center justify-center relative space-y-2">
+        <div className="h-full mt-0.5 pb-12 lg:pb-14 w-full scrollbar-hidden flex flex-col overflow-y-auto items-center justify-start p-2 space-y-1 ">
           {posts.map((post) => (
             <Card key={post._id} post={post} />
           ))}
