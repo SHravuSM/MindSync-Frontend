@@ -1,16 +1,14 @@
-import { useAuthStore } from '../context/AuthContext';
+import useThemeStore from "../store/themeStore";
 
 export default function ModeSwitch() {
-    const { dark, setDark } = useAuthStore();
-    const toggleTheme = () =>
-        setDark(prev => !prev);
+  
+  const dark = useThemeStore((s) => s.dark);
+  const setDark = useThemeStore((s) => s.setDark);
+  const toggleTheme = () => setDark();
 
-    return (
-        <button
-            onClick={toggleTheme}
-            className='text-lg'
-        >
-            {dark ? '🌞' : '🌙'}
-        </button>
-    );
+  return (
+    <button onClick={toggleTheme} className="text-lg">
+      {dark ? "🌞" : "🌙"}
+    </button>
+  );
 }

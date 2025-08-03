@@ -1,8 +1,8 @@
-import { useAuthStore } from "../context/AuthContext";
+// import { useAuthStore } from "../context/AuthContext";
 import api from "../utils/api1";
 
 const ADashboard = () => {
-  const { user, logout } = useAuthStore();
+  // const { user, logout } = useAuthStore();
   const handleHi = async () => {
     const res = await api.get("/home");
     console.log(res.data.message);

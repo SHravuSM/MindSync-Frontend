@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { useAuthStore } from "../../context/AuthContext";
 import { FaMapMarkerAlt, FaEnvelope } from "react-icons/fa";
 import { FiEdit3 } from "react-icons/fi";
 import api1 from "../../utils/api1";
+import useThemeStore from "../../store/themeStore";
+import useAuthStore from "../../store/authStore";
 
 // Modal component
 function EditProfileModal({ user, onClose, onUpdate }) {
@@ -48,13 +49,17 @@ function EditProfileModal({ user, onClose, onUpdate }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 px-4">
       <div className="bg-white rounded-xl p-6 w-full max-w-md shadow-lg">
-        <h2 className="text-xl font-semibold text-gray-800 mb-4">Edit Profile</h2>
+        <h2 className="text-xl font-semibold text-gray-800 mb-4">
+          Edit Profile
+        </h2>
 
         {error && <p className="text-red-600 text-sm mb-2">{error}</p>}
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700">Name</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Name
+            </label>
             <input
               name="name"
               value={formData.name}
@@ -65,7 +70,9 @@ function EditProfileModal({ user, onClose, onUpdate }) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">Bio</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Bio
+            </label>
             <textarea
               name="bio"
               value={formData.bio}
@@ -76,7 +83,9 @@ function EditProfileModal({ user, onClose, onUpdate }) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">Location</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Location
+            </label>
             <input
               name="location"
               value={formData.location}
@@ -107,15 +116,14 @@ function EditProfileModal({ user, onClose, onUpdate }) {
   );
 }
 
-// Main Profile Component
 export default function InProfile() {
-  const { user, setUser } = useAuthStore(); // Make sure your context supports setUser
+  const { user, setUser } = useAuthStore();
   const [editing, setEditing] = useState(false);
-  const { setState } = useAuthStore();
+  const { setState } = useThemeStore();
 
   useEffect(() => {
-    setState(false)
-  }, [])
+    setState(false);
+  }, []);
 
   const handleUpdateUser = (updatedUser) => {
     setUser(updatedUser); // Update context
@@ -166,12 +174,16 @@ export default function InProfile() {
         </div>
       </div>
 
-      {user && <div className="flex items-center justify-between">
-        <div className="text-center text-indigo-500 m-2 border-2 w-full font-semibold rounded-full">Ideas</div>
-        <div className="text-center text-blue-600 m-2 border-2 w-full font-semibold rounded-full">
-          Pitch deck
+      {user && (
+        <div className="flex items-center justify-between">
+          <div className="text-center text-indigo-500 m-2 border-2 w-full font-semibold rounded-full">
+            Ideas
+          </div>
+          <div className="text-center text-blue-600 m-2 border-2 w-full font-semibold rounded-full">
+            Pitch deck
+          </div>
         </div>
-      </div>}
+      )}
 
       {/* Modal */}
       {editing && (
@@ -183,4 +195,5 @@ export default function InProfile() {
       )}
     </div>
   );
-} []
+}
+[];

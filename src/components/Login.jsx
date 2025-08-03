@@ -1,31 +1,23 @@
-import { useState } from 'react';
-import styled from 'styled-components';
-import { useAuthStore } from '../context/AuthContext';
-import GoogleButton from './GoogleButton';
+import { useState } from "react";
+import styled from "styled-components";
+import useAuthStore from "../store/authStore";
 
 const LoginForm = () => {
-  const { companyLogin } = useAuthStore(); // Make sure you have this function
+  const logIn = useAuthStore((s) => s.logIn); // Make sure you have this function
   const [loading, setLoading] = useState(false);
-  const { signUpWithGoogle } = useAuthStore();
   const [credentials, setCredentials] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     const { email, password } = credentials;
-
-    if (!email || !password) {
-      alert('Please fill in both email and password.');
-      return;
-    }
-
     try {
       setLoading(true);
-      await companyLogin({ email, password });
-      alert('Successfully logged in!');
-      setCredentials({ email: '', password: '' });
+      const res = await logIn(email, password);
+      alert("Successfully logged in!");
+      setCredentials({ email: "", password: "" });
     } catch (error) {
       alert(`Login failed: ${error.message}`);
     } finally {
@@ -37,28 +29,41 @@ const LoginForm = () => {
     <StyledWrapper>
       <div className="form">
         <p className="text-shadow-md">
-          Welcome back to<span className="text-black"> Mano<span className="text-blue-500">Sangam<span className="text-orange-500">.</span></span></span>
+          Welcome back to
+          <span className="text-black">
+            {" "}
+            Mano
+            <span className="text-blue-500">
+              Sangam<span className="text-orange-500">.</span>
+            </span>
+          </span>
         </p>
-
-        <GoogleButton />
 
         <form className="startup-form">
           <input
             type="email"
             value={credentials.email}
-            onChange={(e) => setCredentials({ ...credentials, email: e.target.value })}
+            onChange={(e) =>
+              setCredentials({ ...credentials, email: e.target.value })
+            }
             placeholder="Official Email"
             className="input-field"
           />
           <input
             type="password"
             value={credentials.password}
-            onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
+            onChange={(e) =>
+              setCredentials({ ...credentials, password: e.target.value })
+            }
             placeholder="Password"
             className="input-field"
           />
-          <button onClick={handleLoginSubmit} disabled={loading} className="submit-button">
-            {loading ? 'Logging in...' : 'Login'}
+          <button
+            onClick={handleLoginSubmit}
+            disabled={loading}
+            className="submit-button"
+          >
+            {loading ? "Logging in..." : "Login"}
           </button>
         </form>
       </div>
@@ -89,14 +94,14 @@ const StyledWrapper = styled.div`
   }
 
   .form > p {
-    font-family: 'Dela Gothic One', sans-serif;
+    font-family: "Dela Gothic One", sans-serif;
     text-align: center;
   }
 
   .form > p > span {
     display: block;
     margin-top: 0.25rem;
-    font-family: 'Space Mono', monospace;
+    font-family: "Space Mono", monospace;
     font-size: 1.7rem;
   }
 

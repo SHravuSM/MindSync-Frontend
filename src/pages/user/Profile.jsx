@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import { useAuthStore } from "../../context/AuthContext";
 import { FaMapMarkerAlt, FaEnvelope } from "react-icons/fa";
 import { FiEdit3 } from "react-icons/fi";
 import api1 from "../../utils/api1";
+import useAuthStore from "../../store/authStore";
 
-// Modal component
 function EditProfileModal({ user, onClose, onUpdate }) {
   const [formData, setFormData] = useState({
     name: user?.name || "",
