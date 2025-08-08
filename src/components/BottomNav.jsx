@@ -127,7 +127,14 @@ const BottomNav = () => {
             className="hidden peer/four"
           />
           <label htmlFor="choose4">
-            <Link className="inline-block peer-checked/four:text-blue-500">
+            <Link
+              to={
+                user && user.role == "user"
+                  ? `/user/${user.id}/profile`
+                  : `/investor/${user.id}/profile`
+              }
+              className="inline-block peer-checked/four:text-blue-500"
+            >
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -153,12 +160,14 @@ const BottomNav = () => {
             type="radio"
             className="hidden peer/five"
           />
+
           <label htmlFor="choose5">
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                setState();
-              }}
+            <Link
+              to={
+                user && user.role == "user"
+                  ? `/user/${user.id}/profile`
+                  : `/investor/${user.id}/profile`
+              }
               className="inline-block"
             >
               <svg
@@ -177,8 +186,9 @@ const BottomNav = () => {
                   stroke="currentColor"
                 />
               </svg>
-            </button>
+            </Link>
           </label>
+
           <button
             onClick={(e) => {
               e.preventDefault();

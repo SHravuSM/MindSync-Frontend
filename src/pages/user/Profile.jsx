@@ -1,185 +1,3323 @@
-import { useEffect, useState } from "react";
-import { FaMapMarkerAlt, FaEnvelope } from "react-icons/fa";
-import { FiEdit3 } from "react-icons/fi";
-import api1 from "../../utils/api1";
-import useAuthStore from "../../store/authStore";
+// import { useState } from "react";
 
-function EditProfileModal({ user, onClose, onUpdate }) {
-  const [formData, setFormData] = useState({
-    name: user?.name || "",
-    bio: user?.bio || "",
-    location: user?.location || "",
-  });
+// export default function Profile() {
+//   const [activeTab, setActiveTab] = useState("overview");
+//   const [isEditing, setIsEditing] = useState(false);
 
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+//   const userData = {
+//     name: "Priya Sharma",
+//     title: "Innovation Catalyst & Technology Visionary",
+//     bio: "Passionate about transforming visionary ideas into groundbreaking solutions that shape tomorrow. Leading the intersection of sustainable technology and human-centered design.",
+//     location: "Mumbai, India",
+//     joinedDate: "March 2024",
+//     stats: {
+//       ideasShared: 127,
+//       collaborations: 23,
+//       followers: 892,
+//       following: 156
+//     },
+//     skills: ["Artificial Intelligence", "Sustainable Innovation", "Strategic Design", "Technology Leadership", "Systems Thinking", "Future Visioning"]
+//   };
 
-  const handleChange = (e) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+//   const recentIdeas = [
+//     {
+//       id: 1,
+//       title: "Neural-Powered Climate Intelligence Platform",
+//       description: "Revolutionary AI system that predicts and mitigates environmental challenges through quantum-enhanced data processing and global sensor networks.",
+//       likes: 245,
+//       comments: 67,
+//       date: "2 days ago",
+//       tags: ["Climate Tech", "Neural Networks", "Quantum AI"],
+//       status: "In Development"
+//     },
+//     {
+//       id: 2,
+//       title: "Immersive Learning Ecosystem for Global Education",
+//       description: "Next-generation educational platform leveraging AR/VR technologies to democratize world-class learning experiences across emerging markets.",
+//       likes: 178,
+//       comments: 43,
+//       date: "5 days ago",
+//       tags: ["EdTech", "AR/VR", "Social Impact"],
+//       status: "Prototype"
+//     },
+//     {
+//       id: 3,
+//       title: "Blockchain-Native Supply Chain Revolution",
+//       description: "Transparent, sustainable supply chain infrastructure built on advanced blockchain architecture with real-time impact verification.",
+//       likes: 198,
+//       comments: 52,
+//       date: "1 week ago",
+//       tags: ["Blockchain", "Sustainability", "Supply Chain"],
+//       status: "Funded"
+//     }
+//   ];
+
+//   const collaborations = [
+//     {
+//       id: 1,
+//       title: "EcoTech Solutions Consortium",
+//       role: "Founding Visionary",
+//       status: "Active",
+//       members: 24,
+//       description: "Building the next generation of sustainable technology solutions through collaborative innovation and strategic partnerships."
+//     },
+//     {
+//       id: 2,
+//       title: "AI for Humanity Initiative",
+//       role: "Technical Strategist",
+//       status: "Active",
+//       members: 45,
+//       description: "Global initiative developing ethical AI frameworks and tools for social impact organizations worldwide."
+//     }
+//   ];
+
+//   return (
+//     <div className="min-h-screen bg-gray-50 pb-20"> {/* Bottom padding for bottom navbar */}
+
+//       {/* Main Container */}
+//       <div className="max-w-7xl mx-auto">
+
+//         {/* Desktop Layout */}
+//         <div className="hidden lg:flex lg:space-x-8 p-8">
+
+//           {/* Left Sidebar - Desktop Only */}
+//           <aside className="w-80 flex-shrink-0">
+//             <div className="bg-white rounded-xl border p-6 sticky top-8">
+//               {/* Profile Header */}
+//               <div className="text-center mb-6">
+//                 <div className="relative inline-block mb-4">
+//                   <div className="w-24 h-24 bg-gray-900 rounded-full flex items-center justify-center text-white text-2xl font-semibold">
+//                     {userData.name.split(' ').map(n => n[0]).join('')}
+//                   </div>
+//                   <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-3 border-white"></div>
+//                 </div>
+
+//                 <h1 className="text-xl font-bold text-gray-900 mb-1">{userData.name}</h1>
+//                 <p className="text-sm text-gray-600 mb-4">{userData.title}</p>
+
+//                 {/* Location and Date */}
+//                 <div className="space-y-2 text-xs text-gray-500 mb-6">
+//                   <div className="flex items-center justify-center space-x-1">
+//                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+//                     </svg>
+//                     <span>{userData.location}</span>
+//                   </div>
+//                   <div className="flex items-center justify-center space-x-1">
+//                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3a1 1 0 011-1h6a1 1 0 011 1v4h3a2 2 0 012 2v1a2 2 0 01-2 2H6a2 2 0 01-2-2V9a2 2 0 012-2h2z" />
+//                     </svg>
+//                     <span>Joined {userData.joinedDate}</span>
+//                   </div>
+//                 </div>
+
+//                 {/* Action Buttons */}
+//                 <div className="space-y-3 mb-6">
+//                   <button
+//                     onClick={() => setIsEditing(!isEditing)}
+//                     className="w-full px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
+//                   >
+//                     {isEditing ? "Save Changes" : "Edit Profile"}
+//                   </button>
+//                   <div className="grid grid-cols-2 gap-2">
+//                     <button className="px-3 py-2 border border-gray-300 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors">
+//                       Message
+//                     </button>
+//                     <button className="px-3 py-2 border border-gray-300 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors">
+//                       Share
+//                     </button>
+//                   </div>
+//                 </div>
+//               </div>
+
+//               {/* Stats Grid */}
+//               <div className="grid grid-cols-2 gap-3 mb-6">
+//                 <div className="text-center p-3 bg-gray-50 rounded-lg">
+//                   <div className="text-lg font-bold text-gray-900">{userData.stats.ideasShared}</div>
+//                   <div className="text-xs text-gray-600">Ideas</div>
+//                 </div>
+//                 <div className="text-center p-3 bg-gray-50 rounded-lg">
+//                   <div className="text-lg font-bold text-gray-900">{userData.stats.collaborations}</div>
+//                   <div className="text-xs text-gray-600">Projects</div>
+//                 </div>
+//                 <div className="text-center p-3 bg-gray-50 rounded-lg">
+//                   <div className="text-lg font-bold text-gray-900">{userData.stats.followers}</div>
+//                   <div className="text-xs text-gray-600">Followers</div>
+//                 </div>
+//                 <div className="text-center p-3 bg-gray-50 rounded-lg">
+//                   <div className="text-lg font-bold text-gray-900">{userData.stats.following}</div>
+//                   <div className="text-xs text-gray-600">Following</div>
+//                 </div>
+//               </div>
+
+//               {/* Bio */}
+//               <div className="mb-6">
+//                 <h3 className="text-sm font-semibold text-gray-900 mb-2">About</h3>
+//                 <p className="text-sm text-gray-600 leading-relaxed">{userData.bio}</p>
+//               </div>
+
+//               {/* Skills */}
+//               <div className="mb-6">
+//                 <h3 className="text-sm font-semibold text-gray-900 mb-3">Skills</h3>
+//                 <div className="flex flex-wrap gap-2">
+//                   {userData.skills.map((skill, index) => (
+//                     <span
+//                       key={index}
+//                       className="px-2 py-1 bg-gray-100 text-gray-800 rounded text-xs border"
+//                     >
+//                       {skill}
+//                     </span>
+//                   ))}
+//                 </div>
+//               </div>
+
+//               {/* Monthly Stats */}
+//               <div>
+//                 <h3 className="text-sm font-semibold text-gray-900 mb-3">This Month</h3>
+//                 <div className="space-y-3">
+//                   <div className="flex justify-between text-sm">
+//                     <span className="text-gray-600">Ideas Posted</span>
+//                     <span className="font-semibold">12</span>
+//                   </div>
+//                   <div className="flex justify-between text-sm">
+//                     <span className="text-gray-600">Collaborations</span>
+//                     <span className="font-semibold">3</span>
+//                   </div>
+//                   <div className="flex justify-between text-sm">
+//                     <span className="text-gray-600">Profile Views</span>
+//                     <span className="font-semibold">145</span>
+//                   </div>
+//                   <div className="flex justify-between text-sm">
+//                     <span className="text-gray-600">New Connections</span>
+//                     <span className="font-semibold">28</span>
+//                   </div>
+//                 </div>
+//               </div>
+//             </div>
+//           </aside>
+
+//           {/* Main Content - Desktop */}
+//           <main className="flex-1">
+//             {/* Navigation Tabs */}
+//             <div className="bg-white rounded-xl mb-8">
+//               <div className="flex">
+//                 {[
+//                   { id: "overview", label: "Overview" },
+//                   { id: "ideas", label: "Ideas" },
+//                   { id: "collaborations", label: "Collaborations" },
+//                   { id: "achievements", label: "Achievements" }
+//                 ].map((tab) => (
+//                   <button
+//                     key={tab.id}
+//                     onClick={() => setActiveTab(tab.id)}
+//                     className={`flex-1 px-6 py-4 font-medium transition-all duration-200 ${
+//                       activeTab === tab.id
+//                         ? "bg-gray-50 text-gray-900 border-b-2 border-gray-900"
+//                         : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+//                     }`}
+//                   >
+//                     {tab.label}
+//                   </button>
+//                 ))}
+//               </div>
+//             </div>
+
+//             {/* Tab Content */}
+//             <div>
+//               {/* Content will be rendered here based on activeTab */}
+//               {activeTab === "overview" && (
+//                 <div className="space-y-8">
+//                   {/* Recent Activity */}
+//                   <div className="bg-white rounded-xl border p-6">
+//                     <h2 className="text-xl font-semibold text-gray-900 mb-6">Recent Activity</h2>
+//                     <div className="space-y-6">
+//                       {recentIdeas.slice(0, 3).map((idea) => (
+//                         <article key={idea.id} className="pb-6 border-b border-gray-100 last:border-b-0">
+//                           <div className="flex justify-between items-start mb-3">
+//                             <h3 className="font-semibold text-gray-900 flex-1 pr-4">{idea.title}</h3>
+//                             <span className="text-sm text-gray-500 whitespace-nowrap">{idea.date}</span>
+//                           </div>
+//                           <p className="text-gray-600 leading-relaxed mb-4">{idea.description}</p>
+//                           <div className="flex justify-between items-center">
+//                             <div className="flex space-x-2">
+//                               {idea.tags.slice(0, 2).map((tag, index) => (
+//                                 <span key={index} className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded border">
+//                                   {tag}
+//                                 </span>
+//                               ))}
+//                             </div>
+//                             <div className="flex items-center space-x-4 text-sm text-gray-500">
+//                               <span>{idea.likes} likes</span>
+//                               <span>{idea.comments} comments</span>
+//                             </div>
+//                           </div>
+//                         </article>
+//                       ))}
+//                     </div>
+//                   </div>
+
+//                   {/* Suggested Connections */}
+//                   <div className="bg-white rounded-xl border p-6">
+//                     <h2 className="text-xl font-semibold text-gray-900 mb-6">Suggested Connections</h2>
+//                     <div className="space-y-4">
+//                       {[
+//                         { name: "Dr. Arjun Krishnamurthy", role: "Quantum Computing Researcher" },
+//                         { name: "Sarah Chen", role: "Sustainable Design Director" },
+//                         { name: "Rajesh Kumar", role: "Venture Partner" }
+//                       ].map((person, index) => (
+//                         <div key={index} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+//                           <div className="flex items-center space-x-3">
+//                             <div className="w-10 h-10 bg-gray-900 rounded-full flex items-center justify-center text-white font-semibold text-sm">
+//                               {person.name.split(' ').map(n => n[0]).join('')}
+//                             </div>
+//                             <div>
+//                               <div className="font-medium text-gray-900 text-sm">{person.name}</div>
+//                               <div className="text-xs text-gray-500">{person.role}</div>
+//                             </div>
+//                           </div>
+//                           <button className="px-4 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors">
+//                             Connect
+//                           </button>
+//                         </div>
+//                       ))}
+//                     </div>
+//                   </div>
+//                 </div>
+//               )}
+//             </div>
+//           </main>
+//         </div>
+
+//         {/* Mobile Layout */}
+//         <div className="lg:hidden">
+//           {/* Mobile Profile Header */}
+//           <div className="bg-white p-6 border-b">
+//             <div className="text-center">
+//               <div className="relative inline-block mb-4">
+//                 <div className="w-20 h-20 bg-gray-900 rounded-full flex items-center justify-center text-white text-xl font-semibold">
+//                   {userData.name.split(' ').map(n => n[0]).join('')}
+//                 </div>
+//                 <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white"></div>
+//               </div>
+
+//               <h1 className="text-xl font-bold text-gray-900 mb-1">{userData.name}</h1>
+//               <p className="text-sm text-gray-600 mb-4">{userData.title}</p>
+
+//               {/* Mobile Stats */}
+//               <div className="grid grid-cols-4 gap-3 mb-6">
+//                 <div className="text-center">
+//                   <div className="text-lg font-bold text-gray-900">{userData.stats.ideasShared}</div>
+//                   <div className="text-xs text-gray-600">Ideas</div>
+//                 </div>
+//                 <div className="text-center">
+//                   <div className="text-lg font-bold text-gray-900">{userData.stats.collaborations}</div>
+//                   <div className="text-xs text-gray-600">Projects</div>
+//                 </div>
+//                 <div className="text-center">
+//                   <div className="text-lg font-bold text-gray-900">{userData.stats.followers}</div>
+//                   <div className="text-xs text-gray-600">Followers</div>
+//                 </div>
+//                 <div className="text-center">
+//                   <div className="text-lg font-bold text-gray-900">{userData.stats.following}</div>
+//                   <div className="text-xs text-gray-600">Following</div>
+//                 </div>
+//               </div>
+
+//               {/* Mobile Action Buttons */}
+//               <div className="space-y-3">
+//                 <button
+//                   onClick={() => setIsEditing(!isEditing)}
+//                   className="w-full px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
+//                 >
+//                   {isEditing ? "Save Changes" : "Edit Profile"}
+//                 </button>
+//                 <div className="grid grid-cols-2 gap-3">
+//                   <button className="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors">
+//                     Message
+//                   </button>
+//                   <button className="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors">
+//                     Share
+//                   </button>
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+
+//           {/* Mobile Bio & Skills */}
+//           <div className="bg-white p-6 border-b space-y-6">
+//             <div>
+//               <h3 className="text-sm font-semibold text-gray-900 mb-2">About</h3>
+//               <p className="text-sm text-gray-600 leading-relaxed">{userData.bio}</p>
+//             </div>
+
+//             <div>
+//               <h3 className="text-sm font-semibold text-gray-900 mb-3">Skills</h3>
+//               <div className="flex flex-wrap gap-2">
+//                 {userData.skills.map((skill, index) => (
+//                   <span
+//                     key={index}
+//                     className="px-2 py-1 bg-gray-100 text-gray-800 rounded text-xs border"
+//                   >
+//                     {skill}
+//                   </span>
+//                 ))}
+//               </div>
+//             </div>
+//           </div>
+
+//           {/* Mobile Navigation Tabs */}
+//           <div className="bg-white border-b px-4">
+//             <div className="flex overflow-x-auto">
+//               {[
+//                 { id: "overview", label: "Overview" },
+//                 { id: "ideas", label: "Ideas" },
+//                 { id: "collaborations", label: "Collaborations" },
+//                 { id: "achievements", label: "Achievements" }
+//               ].map((tab) => (
+//                 <button
+//                   key={tab.id}
+//                   onClick={() => setActiveTab(tab.id)}
+//                   className={`flex-shrink-0 px-4 py-3 font-medium transition-all duration-200 whitespace-nowrap ${
+//                     activeTab === tab.id
+//                       ? "text-gray-900 border-b-2 border-gray-900"
+//                       : "text-gray-600"
+//                   }`}
+//                 >
+//                   {tab.label}
+//                 </button>
+//               ))}
+//             </div>
+//           </div>
+
+//           {/* Mobile Content */}
+//           <div className="p-4">
+//             {activeTab === "overview" && (
+//               <div className="space-y-6">
+//                 {/* Recent Activity - Mobile */}
+//                 <div className="bg-white rounded-xl border p-4">
+//                   <h2 className="text-lg font-semibold text-gray-900 mb-4">Recent Activity</h2>
+//                   <div className="space-y-4">
+//                     {recentIdeas.slice(0, 3).map((idea) => (
+//                       <article key={idea.id} className="pb-4 border-b border-gray-100 last:border-b-0">
+//                         <div className="mb-2">
+//                           <h3 className="font-semibold text-gray-900 text-sm mb-1">{idea.title}</h3>
+//                           <span className="text-xs text-gray-500">{idea.date}</span>
+//                         </div>
+//                         <p className="text-gray-600 text-sm leading-relaxed mb-3">{idea.description}</p>
+//                         <div className="flex justify-between items-center">
+//                           <div className="flex space-x-2">
+//                             {idea.tags.slice(0, 1).map((tag, index) => (
+//                               <span key={index} className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded border">
+//                                 {tag}
+//                               </span>
+//                             ))}
+//                           </div>
+//                           <div className="flex items-center space-x-3 text-xs text-gray-500">
+//                             <span>{idea.likes} likes</span>
+//                             <span>{idea.comments} comments</span>
+//                           </div>
+//                         </div>
+//                       </article>
+//                     ))}
+//                   </div>
+//                 </div>
+
+//                 {/* Monthly Stats - Mobile */}
+//                 <div className="bg-white rounded-xl border p-4">
+//                   <h2 className="text-lg font-semibold text-gray-900 mb-4">This Month</h2>
+//                   <div className="grid grid-cols-2 gap-4">
+//                     <div className="flex justify-between text-sm">
+//                       <span className="text-gray-600">Ideas Posted</span>
+//                       <span className="font-semibold">12</span>
+//                     </div>
+//                     <div className="flex justify-between text-sm">
+//                       <span className="text-gray-600">Collaborations</span>
+//                       <span className="font-semibold">3</span>
+//                     </div>
+//                     <div className="flex justify-between text-sm">
+//                       <span className="text-gray-600">Profile Views</span>
+//                       <span className="font-semibold">145</span>
+//                     </div>
+//                     <div className="flex justify-between text-sm">
+//                       <span className="text-gray-600">New Connections</span>
+//                       <span className="font-semibold">28</span>
+//                     </div>
+//                   </div>
+//                 </div>
+//               </div>
+//             )}
+
+//             {activeTab === "ideas" && (
+//               <div className="space-y-6">
+//                 <div className="flex justify-between items-center">
+//                   <h2 className="text-lg font-semibold text-gray-900">My Ideas ({recentIdeas.length})</h2>
+//                   <button className="px-3 py-2 bg-gray-900 text-white rounded-lg text-sm">+ New</button>
+//                 </div>
+
+//                 <div className="space-y-4">
+//                   {recentIdeas.map((idea) => (
+//                     <div key={idea.id} className="bg-white rounded-xl border p-4">
+//                       <div className="flex justify-between items-start mb-2">
+//                         <h3 className="font-semibold text-gray-900 text-sm flex-1 pr-2">{idea.title}</h3>
+//                         <span className="px-2 py-1 bg-gray-100 border rounded text-xs whitespace-nowrap">{idea.status}</span>
+//                       </div>
+//                       <p className="text-gray-600 text-sm leading-relaxed mb-3">{idea.description}</p>
+//                       <div className="flex justify-between items-center">
+//                         <div className="flex space-x-2">
+//                           {idea.tags.slice(0, 2).map((tag, index) => (
+//                             <span key={index} className="px-2 py-1 bg-gray-100 border text-xs rounded">
+//                               {tag}
+//                             </span>
+//                           ))}
+//                         </div>
+//                         <div className="flex items-center space-x-3 text-xs text-gray-500">
+//                           <span>{idea.likes} likes</span>
+//                           <span>{idea.comments} comments</span>
+//                         </div>
+//                       </div>
+//                     </div>
+//                   ))}
+//                 </div>
+//               </div>
+//             )}
+
+//             {activeTab === "collaborations" && (
+//               <div className="space-y-6">
+//                 <div className="flex justify-between items-center">
+//                   <h2 className="text-lg font-semibold text-gray-900">Collaborations ({collaborations.length})</h2>
+//                   <button className="px-3 py-2 bg-gray-900 text-white rounded-lg text-sm">+ New</button>
+//                 </div>
+
+//                 <div className="space-y-4">
+//                   {collaborations.map((collab) => (
+//                     <div key={collab.id} className="bg-white rounded-xl border p-4">
+//                       <div className="flex justify-between items-start mb-2">
+//                         <h3 className="font-semibold text-gray-900 text-sm flex-1 pr-2">{collab.title}</h3>
+//                         <span className="px-2 py-1 bg-gray-100 border rounded text-xs">{collab.status}</span>
+//                       </div>
+//                       <div className="text-xs text-gray-600 mb-2">
+//                         {collab.role} • {collab.members} members
+//                       </div>
+//                       <p className="text-gray-600 text-sm leading-relaxed mb-3">{collab.description}</p>
+//                       <div className="flex justify-between items-center">
+//                         <button className="text-gray-900 font-medium text-sm">View Project →</button>
+//                         <button className="px-3 py-1 bg-gray-100 border rounded text-xs">Manage</button>
+//                       </div>
+//                     </div>
+//                   ))}
+//                 </div>
+//               </div>
+//             )}
+
+//             {activeTab === "achievements" && (
+//               <div className="space-y-6">
+//                 <h2 className="text-lg font-semibold text-gray-900">Achievements</h2>
+//                 <div className="space-y-4">
+//                   {[
+//                     { title: "First Idea", description: "Posted your first idea on ManoSangam", date: "March 2024" },
+//                     { title: "Collaborator", description: "Started 10+ successful collaborations", date: "April 2024" },
+//                     { title: "Innovator", description: "100+ ideas shared with the community", date: "May 2024" },
+//                     { title: "Community Member", description: "Received 500+ likes on your ideas", date: "June 2024" },
+//                     { title: "Mentor", description: "Guided 5+ community members", date: "July 2024" },
+//                     { title: "Top Contributor", description: "Top 10% contributor this month", date: "August 2024" }
+//                   ].map((achievement, index) => (
+//                     <div key={index} className="bg-white rounded-xl border p-4">
+//                       <h3 className="font-semibold text-gray-900 text-sm mb-1">{achievement.title}</h3>
+//                       <p className="text-gray-600 text-xs leading-relaxed mb-2">{achievement.description}</p>
+//                       <span className="text-xs text-gray-500">{achievement.date}</span>
+//                     </div>
+//                   ))}
+//                 </div>
+//               </div>
+//             )}
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+// import { useState } from "react";
+// import useThemeStore from "../../store/themeStore";
+
+// export default function Profile() {
+//   const [activeTab, setActiveTab] = useState("overview");
+//   const [isEditing, setIsEditing] = useState(false);
+//   const dark = useThemeStore((e) => e.dark);
+
+//   const userData = {
+//     name: "Priya Sharma",
+//     title: "Innovation Catalyst & Technology Visionary",
+//     bio: "Passionate about transforming visionary ideas into groundbreaking solutions that shape tomorrow. Leading the intersection of sustainable technology and human-centered design.",
+//     location: "Mumbai, India",
+//     joinedDate: "March 2024",
+//     stats: {
+//       ideasShared: 127,
+//       collaborations: 23,
+//       followers: 892,
+//       following: 156,
+//     },
+//     skills: [
+//       "Artificial Intelligence",
+//       "Sustainable Innovation",
+//       "Strategic Design",
+//       "Technology Leadership",
+//       "Systems Thinking",
+//       "Future Visioning",
+//     ],
+//   };
+
+//   const recentIdeas = [
+//     {
+//       id: 1,
+//       title: "Neural-Powered Climate Intelligence Platform",
+//       description:
+//         "Revolutionary AI system that predicts and mitigates environmental challenges through quantum-enhanced data processing and global sensor networks.",
+//       likes: 245,
+//       comments: 67,
+//       date: "2 days ago",
+//       tags: ["Climate Tech", "Neural Networks", "Quantum AI"],
+//       status: "In Development",
+//     },
+//     {
+//       id: 2,
+//       title: "Immersive Learning Ecosystem for Global Education",
+//       description:
+//         "Next-generation educational platform leveraging AR/VR technologies to democratize world-class learning experiences across emerging markets.",
+//       likes: 178,
+//       comments: 43,
+//       date: "5 days ago",
+//       tags: ["EdTech", "AR/VR", "Social Impact"],
+//       status: "Prototype",
+//     },
+//     {
+//       id: 3,
+//       title: "Blockchain-Native Supply Chain Revolution",
+//       description:
+//         "Transparent, sustainable supply chain infrastructure built on advanced blockchain architecture with real-time impact verification.",
+//       likes: 198,
+//       comments: 52,
+//       date: "1 week ago",
+//       tags: ["Blockchain", "Sustainability", "Supply Chain"],
+//       status: "Funded",
+//     },
+//   ];
+
+//   const collaborations = [
+//     {
+//       id: 1,
+//       title: "EcoTech Solutions Consortium",
+//       role: "Founding Visionary",
+//       status: "Active",
+//       members: 24,
+//       description:
+//         "Building the next generation of sustainable technology solutions through collaborative innovation and strategic partnerships.",
+//     },
+//     {
+//       id: 2,
+//       title: "AI for Humanity Initiative",
+//       role: "Technical Strategist",
+//       status: "Active",
+//       members: 45,
+//       description:
+//         "Global initiative developing ethical AI frameworks and tools for social impact organizations worldwide.",
+//     },
+//   ];
+
+//   return (
+//     <div
+//       className={`min-h-screen ${
+//         dark ? "bg-white text-black" : "bg-black text-white"
+//       } pb-20`}
+//     >
+//       {/* Main Container */}
+//       <div className="max-w-7xl mx-auto">
+//         {/* Desktop Layout */}
+//         <div className="hidden lg:flex lg:space-x-8 p-8">
+//           {/* Left Sidebar - Desktop Only */}
+//           <aside className="w-80 flex-shrink-0">
+//             <div className="rounded-xl border p-6 sticky top-8">
+//               {/* Edit Icon - Top Right */}
+//               <div className="flex justify-end mb-4">
+//                 <button
+//                   onClick={() => setIsEditing(!isEditing)}
+//                   className="w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-lg flex items-center justify-center transition-colors group"
+//                   title={isEditing ? "Save Changes" : "Edit Profile"}
+//                 >
+//                   {isEditing ? (
+//                     <svg
+//                       className="w-5 h-5 text-gray-600 group-hover:text-gray-800"
+//                       fill="none"
+//                       stroke="currentColor"
+//                       viewBox="0 0 24 24"
+//                     >
+//                       <path
+//                         strokeLinecap="round"
+//                         strokeLinejoin="round"
+//                         strokeWidth={2}
+//                         d="M5 13l4 4L19 7"
+//                       />
+//                     </svg>
+//                   ) : (
+//                     <svg
+//                       className="w-5 h-5 text-gray-600 group-hover:text-gray-800"
+//                       fill="none"
+//                       stroke="currentColor"
+//                       viewBox="0 0 24 24"
+//                     >
+//                       <path
+//                         strokeLinecap="round"
+//                         strokeLinejoin="round"
+//                         strokeWidth={2}
+//                         d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+//                       />
+//                     </svg>
+//                   )}
+//                 </button>
+//               </div>
+
+//               {/* Profile Header */}
+//               <div className="text-center mb-8">
+//                 <div className="relative inline-block mb-4">
+//                   <div className="w-24 h-24 rounded-full flex items-center justify-center text-2xl font-semibold">
+//                     {userData.name
+//                       .split(" ")
+//                       .map((n) => n[0])
+//                       .join("")}
+//                   </div>
+//                   <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-3 border-white"></div>
+//                 </div>
+
+//                 <h1 className="text-xl font-bold mb-1">
+//                   {userData.name}
+//                 </h1>
+//                 <p className="text-sm mb-6">{userData.title}</p>
+
+//                 {/* Location and Date */}
+//                 <div className="space-y-2 text-xs mb-6">
+//                   <div className="flex items-center justify-center space-x-1">
+//                     <svg
+//                       className="w-4 h-4"
+//                       fill="none"
+//                       stroke="currentColor"
+//                       viewBox="0 0 24 24"
+//                     >
+//                       <path
+//                         strokeLinecap="round"
+//                         strokeLinejoin="round"
+//                         strokeWidth={2}
+//                         d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+//                       />
+//                     </svg>
+//                     <span>{userData.location}</span>
+//                   </div>
+//                   <div className="flex items-center justify-center space-x-1">
+//                     <svg
+//                       className="w-4 h-4"
+//                       fill="none"
+//                       stroke="currentColor"
+//                       viewBox="0 0 24 24"
+//                     >
+//                       <path
+//                         strokeLinecap="round"
+//                         strokeLinejoin="round"
+//                         strokeWidth={2}
+//                         d="M8 7V3a1 1 0 011-1h6a1 1 0 011 1v4h3a2 2 0 012 2v1a2 2 0 01-2 2H6a2 2 0 01-2-2V9a2 2 0 012-2h2z"
+//                       />
+//                     </svg>
+//                     <span>Joined {userData.joinedDate}</span>
+//                   </div>
+//                 </div>
+//               </div>
+
+//               {/* Stats Grid */}
+//               <div className="grid grid-cols-2 gap-3 mb-8">
+//                 <div className="text-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+//                   <div className="text-xl font-bold text-gray-900">
+//                     {userData.stats.ideasShared}
+//                   </div>
+//                   <div className="text-xs text-gray-600">Ideas</div>
+//                 </div>
+//                 <div className="text-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+//                   <div className="text-xl font-bold text-gray-900">
+//                     {userData.stats.collaborations}
+//                   </div>
+//                   <div className="text-xs text-gray-600">Projects</div>
+//                 </div>
+//                 <div className="text-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+//                   <div className="text-xl font-bold text-gray-900">
+//                     {userData.stats.followers}
+//                   </div>
+//                   <div className="text-xs text-gray-600">Followers</div>
+//                 </div>
+//                 <div className="text-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+//                   <div className="text-xl font-bold text-gray-900">
+//                     {userData.stats.following}
+//                   </div>
+//                   <div className="text-xs text-gray-600">Following</div>
+//                 </div>
+//               </div>
+
+//               {/* Bio */}
+//               <div className="mb-8">
+//                 <h3 className="text-sm font-semibold text-gray-900 mb-3">
+//                   About
+//                 </h3>
+//                 <p className="text-sm text-gray-600 leading-relaxed">
+//                   {userData.bio}
+//                 </p>
+//               </div>
+
+//               {/* Skills */}
+//               <div className="mb-8">
+//                 <h3 className="text-sm font-semibold text-gray-900 mb-3">
+//                   Skills
+//                 </h3>
+//                 <div className="flex flex-wrap gap-2">
+//                   {userData.skills.map((skill, index) => (
+//                     <span
+//                       key={index}
+//                       className="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-xs border hover:bg-gray-200 transition-colors"
+//                     >
+//                       {skill}
+//                     </span>
+//                   ))}
+//                 </div>
+//               </div>
+
+//               {/* Monthly Stats */}
+//               <div>
+//                 <h3 className="text-sm font-semibold text-gray-900 mb-4">
+//                   This Month
+//                 </h3>
+//                 <div className="space-y-4">
+//                   <div className="flex justify-between items-center text-sm">
+//                     <span className="text-gray-600">Ideas Posted</span>
+//                     <div className="flex items-center space-x-2">
+//                       <div className="w-16 h-1 bg-gray-200 rounded-full overflow-hidden">
+//                         <div className="w-3/4 h-full bg-gray-900 rounded-full"></div>
+//                       </div>
+//                       <span className="font-semibold text-gray-900 w-6 text-right">
+//                         12
+//                       </span>
+//                     </div>
+//                   </div>
+//                   <div className="flex justify-between items-center text-sm">
+//                     <span className="text-gray-600">Collaborations</span>
+//                     <div className="flex items-center space-x-2">
+//                       <div className="w-16 h-1 bg-gray-200 rounded-full overflow-hidden">
+//                         <div className="w-1/4 h-full bg-gray-900 rounded-full"></div>
+//                       </div>
+//                       <span className="font-semibold text-gray-900 w-6 text-right">
+//                         3
+//                       </span>
+//                     </div>
+//                   </div>
+//                   <div className="flex justify-between items-center text-sm">
+//                     <span className="text-gray-600">Profile Views</span>
+//                     <div className="flex items-center space-x-2">
+//                       <div className="w-16 h-1 bg-gray-200 rounded-full overflow-hidden">
+//                         <div className="w-full h-full bg-gray-900 rounded-full"></div>
+//                       </div>
+//                       <span className="font-semibold text-gray-900 w-6 text-right">
+//                         145
+//                       </span>
+//                     </div>
+//                   </div>
+//                   <div className="flex justify-between items-center text-sm">
+//                     <span className="text-gray-600">New Connections</span>
+//                     <div className="flex items-center space-x-2">
+//                       <div className="w-16 h-1 bg-gray-200 rounded-full overflow-hidden">
+//                         <div className="w-2/3 h-full bg-gray-900 rounded-full"></div>
+//                       </div>
+//                       <span className="font-semibold text-gray-900 w-6 text-right">
+//                         28
+//                       </span>
+//                     </div>
+//                   </div>
+//                 </div>
+//               </div>
+//             </div>
+//           </aside>
+
+//           {/* Main Content - Desktop */}
+//           <main className="flex-1">
+//             {/* Navigation Tabs */}
+//             <div className="bg-white rounded-xl mb-8 overflow-hidden">
+//               <div className="flex">
+//                 {[
+//                   { id: "overview", label: "Overview", icon: "" },
+//                   { id: "ideas", label: "Ideas", icon: "" },
+//                   { id: "collaborations", label: "Collaborations", icon: "" },
+//                   { id: "achievements", label: "Achievements", icon: "" },
+//                 ].map((tab) => (
+//                   <button
+//                     key={tab.id}
+//                     onClick={() => setActiveTab(tab.id)}
+//                     className={`flex-1 px-6 py-4 font-medium transition-all duration-200 flex items-center justify-center space-x-2 ${
+//                       activeTab === tab.id
+//                         ? "bg-gray-50 text-gray-900 border-b-2 border-gray-900"
+//                         : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+//                     }`}
+//                   >
+//                     <span className="text-lg">{tab.icon}</span>
+//                     <span>{tab.label}</span>
+//                   </button>
+//                 ))}
+//               </div>
+//             </div>
+
+//             {/* Tab Content */}
+//             <div>
+//               {activeTab === "overview" && (
+//                 <div className="space-y-8">
+//                   {/* Recent Activity */}
+//                   <div className="bg-white rounded-xl border p-6">
+//                     <div className="flex justify-between items-center mb-6">
+//                       <h2 className="text-xl font-semibold text-gray-900">
+//                         Recent Activity
+//                       </h2>
+//                       <button className="text-gray-600 hover:text-gray-900 font-medium text-sm transition-colors">
+//                         View All →
+//                       </button>
+//                     </div>
+//                     <div className="space-y-6">
+//                       {recentIdeas.slice(0, 3).map((idea) => (
+//                         <article
+//                           key={idea.id}
+//                           className="pb-6 border-b border-gray-100 last:border-b-0 hover:bg-gray-50 p-4 rounded-lg -m-4 transition-colors"
+//                         >
+//                           <div className="flex justify-between items-start mb-3">
+//                             <h3 className="font-semibold text-gray-900 flex-1 pr-4 hover:text-blue-600 transition-colors cursor-pointer">
+//                               {idea.title}
+//                             </h3>
+//                             <span className="text-sm text-gray-500 whitespace-nowrap">
+//                               {idea.date}
+//                             </span>
+//                           </div>
+//                           <p className="text-gray-600 leading-relaxed mb-4">
+//                             {idea.description}
+//                           </p>
+//                           <div className="flex justify-between items-center">
+//                             <div className="flex space-x-2">
+//                               {idea.tags.slice(0, 2).map((tag, index) => (
+//                                 <span
+//                                   key={index}
+//                                   className="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full border hover:bg-gray-200 transition-colors"
+//                                 >
+//                                   {tag}
+//                                 </span>
+//                               ))}
+//                             </div>
+//                             <div className="flex items-center space-x-4 text-sm text-gray-500">
+//                               <span className="flex items-center space-x-1 hover:text-red-500 transition-colors cursor-pointer">
+//                                 <svg
+//                                   className="w-4 h-4"
+//                                   fill="none"
+//                                   stroke="currentColor"
+//                                   viewBox="0 0 24 24"
+//                                 >
+//                                   <path
+//                                     strokeLinecap="round"
+//                                     strokeLinejoin="round"
+//                                     strokeWidth={2}
+//                                     d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+//                                   />
+//                                 </svg>
+//                                 <span>{idea.likes}</span>
+//                               </span>
+//                               <span className="flex items-center space-x-1 hover:text-blue-500 transition-colors cursor-pointer">
+//                                 <svg
+//                                   className="w-4 h-4"
+//                                   fill="none"
+//                                   stroke="currentColor"
+//                                   viewBox="0 0 24 24"
+//                                 >
+//                                   <path
+//                                     strokeLinecap="round"
+//                                     strokeLinejoin="round"
+//                                     strokeWidth={2}
+//                                     d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+//                                   />
+//                                 </svg>
+//                                 <span>{idea.comments}</span>
+//                               </span>
+//                             </div>
+//                           </div>
+//                         </article>
+//                       ))}
+//                     </div>
+//                   </div>
+
+//                   {/* Suggested Connections */}
+//                   <div className="bg-white rounded-xl border p-6">
+//                     <h2 className="text-xl font-semibold text-gray-900 mb-6">
+//                       Suggested Connections
+//                     </h2>
+//                     <div className="space-y-4">
+//                       {[
+//                         {
+//                           name: "Dr. Arjun Krishnamurthy",
+//                           role: "Quantum Computing Researcher",
+//                           mutual: 12,
+//                         },
+//                         {
+//                           name: "Sarah Chen",
+//                           role: "Sustainable Design Director",
+//                           mutual: 8,
+//                         },
+//                         {
+//                           name: "Rajesh Kumar",
+//                           role: "Venture Partner",
+//                           mutual: 15,
+//                         },
+//                       ].map((person, index) => (
+//                         <div
+//                           key={index}
+//                           className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+//                         >
+//                           <div className="flex items-center space-x-3">
+//                             <div className="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center text-white font-semibold text-sm">
+//                               {person.name
+//                                 .split(" ")
+//                                 .map((n) => n[0])
+//                                 .join("")}
+//                             </div>
+//                             <div>
+//                               <div className="font-medium text-gray-900 text-sm">
+//                                 {person.name}
+//                               </div>
+//                               <div className="text-xs text-gray-500">
+//                                 {person.role}
+//                               </div>
+//                               <div className="text-xs text-blue-600">
+//                                 {person.mutual} mutual connections
+//                               </div>
+//                             </div>
+//                           </div>
+//                           <button className="px-4 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors">
+//                             Connect
+//                           </button>
+//                         </div>
+//                       ))}
+//                     </div>
+//                   </div>
+//                 </div>
+//               )}
+
+//               {/* Ideas Tab Content */}
+//               {activeTab === "ideas" && (
+//                 <div className="bg-white rounded-xl border p-6">
+//                   <div className="flex justify-between items-center mb-6">
+//                     <h2 className="text-xl font-semibold text-gray-900">
+//                       My Ideas ({recentIdeas.length})
+//                     </h2>
+//                     <button className="px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors font-medium">
+//                       + New Idea
+//                     </button>
+//                   </div>
+//                   <div className="space-y-6">
+//                     {recentIdeas.map((idea) => (
+//                       <article
+//                         key={idea.id}
+//                         className="p-6 bg-gray-50 rounded-xl border hover:shadow-md transition-all duration-200"
+//                       >
+//                         <div className="flex justify-between items-start mb-4">
+//                           <div className="flex items-center space-x-3">
+//                             <h3 className="text-lg font-semibold text-gray-900 hover:text-blue-600 transition-colors cursor-pointer">
+//                               {idea.title}
+//                             </h3>
+//                             <span
+//                               className={`px-3 py-1 rounded-full text-sm font-medium ${
+//                                 idea.status === "Funded"
+//                                   ? "bg-green-100 text-green-800"
+//                                   : idea.status === "In Development"
+//                                   ? "bg-blue-100 text-blue-800"
+//                                   : "bg-orange-100 text-orange-800"
+//                               }`}
+//                             >
+//                               {idea.status}
+//                             </span>
+//                           </div>
+//                           <span className="text-sm text-gray-500">
+//                             {idea.date}
+//                           </span>
+//                         </div>
+//                         <p className="text-gray-600 leading-relaxed mb-4">
+//                           {idea.description}
+//                         </p>
+//                         <div className="flex justify-between items-center">
+//                           <div className="flex space-x-2">
+//                             {idea.tags.map((tag, index) => (
+//                               <span
+//                                 key={index}
+//                                 className="px-3 py-1 bg-white border text-sm rounded-full hover:bg-gray-50 transition-colors"
+//                               >
+//                                 {tag}
+//                               </span>
+//                             ))}
+//                           </div>
+//                           <div className="flex items-center space-x-6">
+//                             <span className="flex items-center space-x-1 text-gray-500 hover:text-red-500 transition-colors cursor-pointer">
+//                               <svg
+//                                 className="w-4 h-4"
+//                                 fill="none"
+//                                 stroke="currentColor"
+//                                 viewBox="0 0 24 24"
+//                               >
+//                                 <path
+//                                   strokeLinecap="round"
+//                                   strokeLinejoin="round"
+//                                   strokeWidth={2}
+//                                   d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+//                                 />
+//                               </svg>
+//                               <span>{idea.likes}</span>
+//                             </span>
+//                             <span className="flex items-center space-x-1 text-gray-500 hover:text-blue-500 transition-colors cursor-pointer">
+//                               <svg
+//                                 className="w-4 h-4"
+//                                 fill="none"
+//                                 stroke="currentColor"
+//                                 viewBox="0 0 24 24"
+//                               >
+//                                 <path
+//                                   strokeLinecap="round"
+//                                   strokeLinejoin="round"
+//                                   strokeWidth={2}
+//                                   d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+//                                 />
+//                               </svg>
+//                               <span>{idea.comments}</span>
+//                             </span>
+//                             <button className="text-gray-900 font-medium hover:text-blue-600 transition-colors">
+//                               View Details →
+//                             </button>
+//                           </div>
+//                         </div>
+//                       </article>
+//                     ))}
+//                   </div>
+//                 </div>
+//               )}
+
+//               {/* Collaborations Tab Content */}
+//               {activeTab === "collaborations" && (
+//                 <div className="bg-white rounded-xl border p-6">
+//                   <div className="flex justify-between items-center mb-6">
+//                     <h2 className="text-xl font-semibold text-gray-900">
+//                       Active Collaborations ({collaborations.length})
+//                     </h2>
+//                     <button className="px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors font-medium">
+//                       + New Project
+//                     </button>
+//                   </div>
+//                   <div className="grid md:grid-cols-2 gap-6">
+//                     {collaborations.map((collab) => (
+//                       <article
+//                         key={collab.id}
+//                         className="p-6 bg-gray-50 rounded-xl border hover:shadow-md transition-all duration-200"
+//                       >
+//                         <div className="flex justify-between items-start mb-4">
+//                           <div>
+//                             <h3 className="text-lg font-semibold text-gray-900 mb-2 hover:text-blue-600 transition-colors cursor-pointer">
+//                               {collab.title}
+//                             </h3>
+//                             <div className="flex items-center space-x-4 text-sm text-gray-600">
+//                               <span className="font-medium bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">
+//                                 {collab.role}
+//                               </span>
+//                               <span className="flex items-center space-x-1">
+//                                 <svg
+//                                   className="w-4 h-4"
+//                                   fill="none"
+//                                   stroke="currentColor"
+//                                   viewBox="0 0 24 24"
+//                                 >
+//                                   <path
+//                                     strokeLinecap="round"
+//                                     strokeLinejoin="round"
+//                                     strokeWidth={2}
+//                                     d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0"
+//                                   />
+//                                 </svg>
+//                                 <span>{collab.members} members</span>
+//                               </span>
+//                             </div>
+//                           </div>
+//                           <span
+//                             className={`px-3 py-1 rounded-full text-xs font-medium ${
+//                               collab.status === "Active"
+//                                 ? "bg-green-100 text-green-800"
+//                                 : "bg-orange-100 text-orange-800"
+//                             }`}
+//                           >
+//                             {collab.status}
+//                           </span>
+//                         </div>
+//                         <p className="text-gray-600 leading-relaxed mb-4">
+//                           {collab.description}
+//                         </p>
+//                         <div className="flex justify-between items-center">
+//                           <button className="text-gray-900 font-medium hover:text-blue-600 transition-colors">
+//                             View Project →
+//                           </button>
+//                           <button className="px-4 py-2 bg-white border rounded-lg text-sm hover:bg-gray-50 transition-colors">
+//                             Manage
+//                           </button>
+//                         </div>
+//                       </article>
+//                     ))}
+//                   </div>
+//                 </div>
+//               )}
+
+//               {/* Achievements Tab Content */}
+//               {activeTab === "achievements" && (
+//                 <div className="bg-white rounded-xl border p-6">
+//                   <h2 className="text-xl font-semibold text-gray-900 mb-6">
+//                     Achievements & Milestones
+//                   </h2>
+//                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+//                     {[
+//                       {
+//                         title: "First Idea",
+//                         description: "Posted your first idea on ManoSangam",
+//                         date: "March 2024",
+//                         icon: "🌱",
+//                       },
+//                       {
+//                         title: "Collaborator",
+//                         description: "Started 10+ successful collaborations",
+//                         date: "April 2024",
+//                         icon: "🤝",
+//                       },
+//                       {
+//                         title: "Innovator",
+//                         description: "100+ ideas shared with the community",
+//                         date: "May 2024",
+//                         icon: "💡",
+//                       },
+//                       {
+//                         title: "Community Member",
+//                         description: "Received 500+ likes on your ideas",
+//                         date: "June 2024",
+//                         icon: "❤️",
+//                       },
+//                       {
+//                         title: "Mentor",
+//                         description: "Guided 5+ community members",
+//                         date: "July 2024",
+//                         icon: "🎯",
+//                       },
+//                       {
+//                         title: "Top Contributor",
+//                         description: "Top 10% contributor this month",
+//                         date: "August 2024",
+//                         icon: "⭐",
+//                       },
+//                     ].map((achievement, index) => (
+//                       <div
+//                         key={index}
+//                         className="p-6 bg-gray-50 rounded-xl border hover:shadow-md transition-all duration-200"
+//                       >
+//                         <div className="text-3xl mb-3">{achievement.icon}</div>
+//                         <h3 className="text-lg font-semibold text-gray-900 mb-2">
+//                           {achievement.title}
+//                         </h3>
+//                         <p className="text-gray-600 text-sm leading-relaxed mb-3">
+//                           {achievement.description}
+//                         </p>
+//                         <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
+//                           {achievement.date}
+//                         </span>
+//                       </div>
+//                     ))}
+//                   </div>
+//                 </div>
+//               )}
+//             </div>
+//           </main>
+//         </div>
+
+//         {/* Mobile Layout */}
+//         <div className="lg:hidden">
+//           {/* Mobile Profile Header */}
+//           <div className="bg-white border-b relative">
+//             {/* Edit Icon - Mobile Top Right */}
+//             <div className="absolute top-4 right-4 z-10">
+//               <button
+//                 onClick={() => setIsEditing(!isEditing)}
+//                 className="w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-lg flex items-center justify-center transition-colors"
+//                 title={isEditing ? "Save Changes" : "Edit Profile"}
+//               >
+//                 {isEditing ? (
+//                   <svg
+//                     className="w-5 h-5 text-gray-600"
+//                     fill="none"
+//                     stroke="currentColor"
+//                     viewBox="0 0 24 24"
+//                   >
+//                     <path
+//                       strokeLinecap="round"
+//                       strokeLinejoin="round"
+//                       strokeWidth={2}
+//                       d="M5 13l4 4L19 7"
+//                     />
+//                   </svg>
+//                 ) : (
+//                   <svg
+//                     className="w-5 h-5 text-gray-600"
+//                     fill="none"
+//                     stroke="currentColor"
+//                     viewBox="0 0 24 24"
+//                   >
+//                     <path
+//                       strokeLinecap="round"
+//                       strokeLinejoin="round"
+//                       strokeWidth={2}
+//                       d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+//                     />
+//                   </svg>
+//                 )}
+//               </button>
+//             </div>
+
+//             <div className="p-6 pt-16">
+//               <div className="text-center">
+//                 <div className="relative inline-block mb-4">
+//                   <div className="w-20 h-20 bg-gray-900 rounded-full flex items-center justify-center text-white text-xl font-semibold">
+//                     {userData.name
+//                       .split(" ")
+//                       .map((n) => n[0])
+//                       .join("")}
+//                   </div>
+//                   <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white"></div>
+//                 </div>
+
+//                 <h1 className="text-xl font-bold text-gray-900 mb-1">
+//                   {userData.name}
+//                 </h1>
+//                 <p className="text-sm text-gray-600 mb-6">{userData.title}</p>
+
+//                 {/* Mobile Stats */}
+//                 <div className="grid grid-cols-4 gap-3">
+//                   <div className="text-center p-3 bg-gray-50 rounded-lg">
+//                     <div className="text-lg font-bold text-gray-900">
+//                       {userData.stats.ideasShared}
+//                     </div>
+//                     <div className="text-xs text-gray-600">Ideas</div>
+//                   </div>
+//                   <div className="text-center p-3 bg-gray-50 rounded-lg">
+//                     <div className="text-lg font-bold text-gray-900">
+//                       {userData.stats.collaborations}
+//                     </div>
+//                     <div className="text-xs text-gray-600">Projects</div>
+//                   </div>
+//                   <div className="text-center p-3 bg-gray-50 rounded-lg">
+//                     <div className="text-lg font-bold text-gray-900">
+//                       {userData.stats.followers}
+//                     </div>
+//                     <div className="text-xs text-gray-600">Followers</div>
+//                   </div>
+//                   <div className="text-center p-3 bg-gray-50 rounded-lg">
+//                     <div className="text-lg font-bold text-gray-900">
+//                       {userData.stats.following}
+//                     </div>
+//                     <div className="text-xs text-gray-600">Following</div>
+//                   </div>
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+
+//           {/* Mobile Bio & Skills */}
+//           <div className="bg-white p-6 border-b space-y-6">
+//             <div>
+//               <h3 className="text-sm font-semibold text-gray-900 mb-2">
+//                 About
+//               </h3>
+//               <p className="text-sm text-gray-600 leading-relaxed">
+//                 {userData.bio}
+//               </p>
+//             </div>
+
+//             <div>
+//               <h3 className="text-sm font-semibold text-gray-900 mb-3">
+//                 Skills
+//               </h3>
+//               <div className="flex flex-wrap gap-2">
+//                 {userData.skills.map((skill, index) => (
+//                   <span
+//                     key={index}
+//                     className="px-2 py-1 bg-gray-100 text-gray-800 rounded-full text-xs border"
+//                   >
+//                     {skill}
+//                   </span>
+//                 ))}
+//               </div>
+//             </div>
+//           </div>
+
+//           {/* Mobile Navigation Tabs */}
+//           <div className="bg-white border-b px-4">
+//             <div className="flex overflow-x-auto">
+//               {[
+//                 { id: "overview", label: "Overview", icon: "👤" },
+//                 { id: "ideas", label: "Ideas", icon: "💡" },
+//                 { id: "collaborations", label: "Collaborations", icon: "🤝" },
+//                 { id: "achievements", label: "Achievements", icon: "🏆" },
+//               ].map((tab) => (
+//                 <button
+//                   key={tab.id}
+//                   onClick={() => setActiveTab(tab.id)}
+//                   className={`flex-shrink-0 px-4 py-3 font-medium transition-all duration-200 whitespace-nowrap flex items-center space-x-2 ${
+//                     activeTab === tab.id
+//                       ? "text-gray-900 border-b-2 border-gray-900"
+//                       : "text-gray-600"
+//                   }`}
+//                 >
+//                   <span>{tab.icon}</span>
+//                   <span>{tab.label}</span>
+//                 </button>
+//               ))}
+//             </div>
+//           </div>
+
+//           {/* Mobile Content */}
+//           <div className="p-4">
+//             {activeTab === "overview" && (
+//               <div className="space-y-6">
+//                 {/* Recent Activity - Mobile */}
+//                 <div className="bg-white rounded-xl border p-4">
+//                   <h2 className="text-lg font-semibold text-gray-900 mb-4">
+//                     Recent Activity
+//                   </h2>
+//                   <div className="space-y-4">
+//                     {recentIdeas.slice(0, 3).map((idea) => (
+//                       <article
+//                         key={idea.id}
+//                         className="pb-4 border-b border-gray-100 last:border-b-0"
+//                       >
+//                         <div className="mb-2">
+//                           <h3 className="font-semibold text-gray-900 text-sm mb-1">
+//                             {idea.title}
+//                           </h3>
+//                           <span className="text-xs text-gray-500">
+//                             {idea.date}
+//                           </span>
+//                         </div>
+//                         <p className="text-gray-600 text-sm leading-relaxed mb-3">
+//                           {idea.description}
+//                         </p>
+//                         <div className="flex justify-between items-center">
+//                           <div className="flex space-x-2">
+//                             {idea.tags.slice(0, 1).map((tag, index) => (
+//                               <span
+//                                 key={index}
+//                                 className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full border"
+//                               >
+//                                 {tag}
+//                               </span>
+//                             ))}
+//                           </div>
+//                           <div className="flex items-center space-x-3 text-xs text-gray-500">
+//                             <span className="flex items-center space-x-1">
+//                               <svg
+//                                 className="w-3 h-3"
+//                                 fill="none"
+//                                 stroke="currentColor"
+//                                 viewBox="0 0 24 24"
+//                               >
+//                                 <path
+//                                   strokeLinecap="round"
+//                                   strokeLinejoin="round"
+//                                   strokeWidth={2}
+//                                   d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+//                                 />
+//                               </svg>
+//                               <span>{idea.likes}</span>
+//                             </span>
+//                             <span className="flex items-center space-x-1">
+//                               <svg
+//                                 className="w-3 h-3"
+//                                 fill="none"
+//                                 stroke="currentColor"
+//                                 viewBox="0 0 24 24"
+//                               >
+//                                 <path
+//                                   strokeLinecap="round"
+//                                   strokeLinejoin="round"
+//                                   strokeWidth={2}
+//                                   d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+//                                 />
+//                               </svg>
+//                               <span>{idea.comments}</span>
+//                             </span>
+//                           </div>
+//                         </div>
+//                       </article>
+//                     ))}
+//                   </div>
+//                 </div>
+
+//                 {/* Monthly Stats - Mobile with Progress Bars */}
+//                 <div className="bg-white rounded-xl border p-4">
+//                   <h2 className="text-lg font-semibold text-gray-900 mb-4">
+//                     This Month
+//                   </h2>
+//                   <div className="space-y-4">
+//                     <div className="flex justify-between items-center text-sm">
+//                       <span className="text-gray-600">Ideas Posted</span>
+//                       <div className="flex items-center space-x-2">
+//                         <div className="w-12 h-1 bg-gray-200 rounded-full overflow-hidden">
+//                           <div className="w-3/4 h-full bg-gray-900 rounded-full"></div>
+//                         </div>
+//                         <span className="font-semibold text-gray-900 w-4 text-right">
+//                           12
+//                         </span>
+//                       </div>
+//                     </div>
+//                     <div className="flex justify-between items-center text-sm">
+//                       <span className="text-gray-600">Collaborations</span>
+//                       <div className="flex items-center space-x-2">
+//                         <div className="w-12 h-1 bg-gray-200 rounded-full overflow-hidden">
+//                           <div className="w-1/4 h-full bg-gray-900 rounded-full"></div>
+//                         </div>
+//                         <span className="font-semibold text-gray-900 w-4 text-right">
+//                           3
+//                         </span>
+//                       </div>
+//                     </div>
+//                     <div className="flex justify-between items-center text-sm">
+//                       <span className="text-gray-600">Profile Views</span>
+//                       <div className="flex items-center space-x-2">
+//                         <div className="w-12 h-1 bg-gray-200 rounded-full overflow-hidden">
+//                           <div className="w-full h-full bg-gray-900 rounded-full"></div>
+//                         </div>
+//                         <span className="font-semibold text-gray-900 w-4 text-right">
+//                           145
+//                         </span>
+//                       </div>
+//                     </div>
+//                     <div className="flex justify-between items-center text-sm">
+//                       <span className="text-gray-600">New Connections</span>
+//                       <div className="flex items-center space-x-2">
+//                         <div className="w-12 h-1 bg-gray-200 rounded-full overflow-hidden">
+//                           <div className="w-2/3 h-full bg-gray-900 rounded-full"></div>
+//                         </div>
+//                         <span className="font-semibold text-gray-900 w-4 text-right">
+//                           28
+//                         </span>
+//                       </div>
+//                     </div>
+//                   </div>
+//                 </div>
+//               </div>
+//             )}
+
+//             {/* Mobile Ideas Tab */}
+//             {activeTab === "ideas" && (
+//               <div className="space-y-6">
+//                 <div className="flex justify-between items-center">
+//                   <h2 className="text-lg font-semibold text-gray-900">
+//                     My Ideas ({recentIdeas.length})
+//                   </h2>
+//                   <button className="px-3 py-2 bg-gray-900 text-white rounded-lg text-sm">
+//                     + New
+//                   </button>
+//                 </div>
+
+//                 <div className="space-y-4">
+//                   {recentIdeas.map((idea) => (
+//                     <div
+//                       key={idea.id}
+//                       className="bg-white rounded-xl border p-4"
+//                     >
+//                       <div className="flex justify-between items-start mb-2">
+//                         <h3 className="font-semibold text-gray-900 text-sm flex-1 pr-2">
+//                           {idea.title}
+//                         </h3>
+//                         <span
+//                           className={`px-2 py-1 rounded-full text-xs whitespace-nowrap ${
+//                             idea.status === "Funded"
+//                               ? "bg-green-100 text-green-800"
+//                               : idea.status === "In Development"
+//                               ? "bg-blue-100 text-blue-800"
+//                               : "bg-orange-100 text-orange-800"
+//                           }`}
+//                         >
+//                           {idea.status}
+//                         </span>
+//                       </div>
+//                       <p className="text-gray-600 text-sm leading-relaxed mb-3">
+//                         {idea.description}
+//                       </p>
+//                       <div className="flex justify-between items-center">
+//                         <div className="flex space-x-2">
+//                           {idea.tags.slice(0, 2).map((tag, index) => (
+//                             <span
+//                               key={index}
+//                               className="px-2 py-1 bg-gray-100 border text-xs rounded-full"
+//                             >
+//                               {tag}
+//                             </span>
+//                           ))}
+//                         </div>
+//                         <div className="flex items-center space-x-3 text-xs text-gray-500">
+//                           <span className="flex items-center space-x-1">
+//                             <svg
+//                               className="w-3 h-3"
+//                               fill="none"
+//                               stroke="currentColor"
+//                               viewBox="0 0 24 24"
+//                             >
+//                               <path
+//                                 strokeLinecap="round"
+//                                 strokeLinejoin="round"
+//                                 strokeWidth={2}
+//                                 d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+//                               />
+//                             </svg>
+//                             <span>{idea.likes}</span>
+//                           </span>
+//                           <span className="flex items-center space-x-1">
+//                             <svg
+//                               className="w-3 h-3"
+//                               fill="none"
+//                               stroke="currentColor"
+//                               viewBox="0 0 24 24"
+//                             >
+//                               <path
+//                                 strokeLinecap="round"
+//                                 strokeLinejoin="round"
+//                                 strokeWidth={2}
+//                                 d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+//                               />
+//                             </svg>
+//                             <span>{idea.comments}</span>
+//                           </span>
+//                         </div>
+//                       </div>
+//                     </div>
+//                   ))}
+//                 </div>
+//               </div>
+//             )}
+
+//             {/* Mobile Collaborations Tab */}
+//             {activeTab === "collaborations" && (
+//               <div className="space-y-6">
+//                 <div className="flex justify-between items-center">
+//                   <h2 className="text-lg font-semibold text-gray-900">
+//                     Collaborations ({collaborations.length})
+//                   </h2>
+//                   <button className="px-3 py-2 bg-gray-900 text-white rounded-lg text-sm">
+//                     + New
+//                   </button>
+//                 </div>
+
+//                 <div className="space-y-4">
+//                   {collaborations.map((collab) => (
+//                     <div
+//                       key={collab.id}
+//                       className="bg-white rounded-xl border p-4"
+//                     >
+//                       <div className="flex justify-between items-start mb-2">
+//                         <h3 className="font-semibold text-gray-900 text-sm flex-1 pr-2">
+//                           {collab.title}
+//                         </h3>
+//                         <span
+//                           className={`px-2 py-1 rounded-full text-xs ${
+//                             collab.status === "Active"
+//                               ? "bg-green-100 text-green-800"
+//                               : "bg-orange-100 text-orange-800"
+//                           }`}
+//                         >
+//                           {collab.status}
+//                         </span>
+//                       </div>
+//                       <div className="text-xs text-gray-600 mb-2">
+//                         {collab.role} • {collab.members} members
+//                       </div>
+//                       <p className="text-gray-600 text-sm leading-relaxed mb-3">
+//                         {collab.description}
+//                       </p>
+//                       <div className="flex justify-between items-center">
+//                         <button className="text-gray-900 font-medium text-sm">
+//                           View Project →
+//                         </button>
+//                         <button className="px-3 py-1 bg-gray-100 border rounded text-xs">
+//                           Manage
+//                         </button>
+//                       </div>
+//                     </div>
+//                   ))}
+//                 </div>
+//               </div>
+//             )}
+
+//             {/* Mobile Achievements Tab */}
+//             {activeTab === "achievements" && (
+//               <div className="space-y-6">
+//                 <h2 className="text-lg font-semibold text-gray-900">
+//                   Achievements
+//                 </h2>
+//                 <div className="space-y-4">
+//                   {[
+//                     {
+//                       title: "First Idea",
+//                       description: "Posted your first idea on ManoSangam",
+//                       date: "March 2024",
+//                       icon: "🌱",
+//                     },
+//                     {
+//                       title: "Collaborator",
+//                       description: "Started 10+ successful collaborations",
+//                       date: "April 2024",
+//                       icon: "🤝",
+//                     },
+//                     {
+//                       title: "Innovator",
+//                       description: "100+ ideas shared with the community",
+//                       date: "May 2024",
+//                       icon: "💡",
+//                     },
+//                     {
+//                       title: "Community Member",
+//                       description: "Received 500+ likes on your ideas",
+//                       date: "June 2024",
+//                       icon: "❤️",
+//                     },
+//                     {
+//                       title: "Mentor",
+//                       description: "Guided 5+ community members",
+//                       date: "July 2024",
+//                       icon: "🎯",
+//                     },
+//                     {
+//                       title: "Top Contributor",
+//                       description: "Top 10% contributor this month",
+//                       date: "August 2024",
+//                       icon: "⭐",
+//                     },
+//                   ].map((achievement, index) => (
+//                     <div key={index} className="bg-white rounded-xl border p-4">
+//                       <div className="flex items-start space-x-3">
+//                         <div className="text-2xl">{achievement.icon}</div>
+//                         <div className="flex-1">
+//                           <h3 className="font-semibold text-gray-900 text-sm mb-1">
+//                             {achievement.title}
+//                           </h3>
+//                           <p className="text-gray-600 text-xs leading-relaxed mb-2">
+//                             {achievement.description}
+//                           </p>
+//                           <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
+//                             {achievement.date}
+//                           </span>
+//                         </div>
+//                       </div>
+//                     </div>
+//                   ))}
+//                 </div>
+//               </div>
+//             )}
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+
+import { useState } from "react";
+import useThemeStore from "../../store/themeStore";
+
+export default function Profile() {
+  const [activeTab, setActiveTab] = useState("overview");
+  const [isEditing, setIsEditing] = useState(false);
+  const dark = useThemeStore((e) => e.dark);
+
+  const userData = {
+    name: "Priya Sharma",
+    title: "Innovation Catalyst & Technology Visionary",
+    bio: "Passionate about transforming visionary ideas into groundbreaking solutions that shape tomorrow. Leading the intersection of sustainable technology and human-centered design.",
+    location: "Mumbai, India",
+    joinedDate: "March 2024",
+    stats: {
+      ideasShared: 127,
+      collaborations: 23,
+      followers: 892,
+      following: 156,
+    },
+    skills: [
+      "Artificial Intelligence",
+      "Sustainable Innovation",
+      "Strategic Design",
+      "Technology Leadership",
+      "Systems Thinking",
+      "Future Visioning",
+    ],
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-    setLoading(true);
+  const recentIdeas = [
+    {
+      id: 1,
+      title: "Neural-Powered Climate Intelligence Platform",
+      description:
+        "Revolutionary AI system that predicts and mitigates environmental challenges through quantum-enhanced data processing and global sensor networks.",
+      likes: 245,
+      comments: 67,
+      date: "2 days ago",
+      tags: ["Climate Tech", "Neural Networks", "Quantum AI"],
+      status: "In Development",
+    },
+    {
+      id: 2,
+      title: "Immersive Learning Ecosystem for Global Education",
+      description:
+        "Next-generation educational platform leveraging AR/VR technologies to democratize world-class learning experiences across emerging markets.",
+      likes: 178,
+      comments: 43,
+      date: "5 days ago",
+      tags: ["EdTech", "AR/VR", "Social Impact"],
+      status: "Prototype",
+    },
+    {
+      id: 3,
+      title: "Blockchain-Native Supply Chain Revolution",
+      description:
+        "Transparent, sustainable supply chain infrastructure built on advanced blockchain architecture with real-time impact verification.",
+      likes: 198,
+      comments: 52,
+      date: "1 week ago",
+      tags: ["Blockchain", "Sustainability", "Supply Chain"],
+      status: "Funded",
+    },
+  ];
 
-    try {
-      const updatedData = {
-        uid: user.uid,
-        name: formData.name,
-        bio: formData.bio,
-        location: formData.location,
-      };
-
-      const res = await api1.put("/user/update", updatedData);
-      console.log("Updated Profile:", res.data);
-
-      onUpdate(res.data.user); // Update context or local state
-      onClose();
-    } catch (err) {
-      console.error("Failed to update profile:", err);
-      setError("Something went wrong. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
+  const collaborations = [
+    {
+      id: 1,
+      title: "EcoTech Solutions Consortium",
+      role: "Founding Visionary",
+      status: "Active",
+      members: 24,
+      description:
+        "Building the next generation of sustainable technology solutions through collaborative innovation and strategic partnerships.",
+    },
+    {
+      id: 2,
+      title: "AI for Humanity Initiative",
+      role: "Technical Strategist",
+      status: "Active",
+      members: 45,
+      description:
+        "Global initiative developing ethical AI frameworks and tools for social impact organizations worldwide.",
+    },
+  ];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 px-4">
-      <div className="bg-white rounded-xl p-6 w-full max-w-md shadow-lg">
-        <h2 className="text-xl font-semibold text-gray-800 mb-4">Edit Profile</h2>
+    <div
+      className={`min-h-screen transition-colors duration-200 ${
+        dark ? "bg-black text-white" : "bg-white text-gray-900"
+      } pb-20`}
+    >
+      {/* Main Container */}
+      <div className="max-w-7xl mx-auto">
+        {/* Desktop Layout */}
+        <div className="hidden lg:flex lg:space-x-8 p-8">
+          {/* Left Sidebar - Desktop Only */}
+          <aside className="w-80 flex-shrink-0">
+            <div className={`rounded-xl border p-6 sticky top-8 transition-colors duration-200 ${
+              dark 
+                ? "bg-black border-gray-700" 
+                : "bg-white border-gray-200"
+            }`}>
+              {/* Edit Icon - Top Right */}
+              <div className="flex justify-end mb-4">
+                <button
+                  onClick={() => setIsEditing(!isEditing)}
+                  className={`w-10 h-10 rounded-lg flex items-center justify-center transition-colors group ${
+                    dark 
+                      ? "bg-black hover:bg-gray-600" 
+                      : "bg-gray-100 hover:bg-gray-200"
+                  }`}
+                  title={isEditing ? "Save Changes" : "Edit Profile"}
+                >
+                  {isEditing ? (
+                    <svg
+                      className={`w-5 h-5 transition-colors ${
+                        dark 
+                          ? "text-gray-300 group-hover:text-white" 
+                          : "text-gray-600 group-hover:text-gray-800"
+                      }`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  ) : (
+                    <svg
+                      className={`w-5 h-5 transition-colors ${
+                        dark 
+                          ? "text-gray-300 group-hover:text-white" 
+                          : "text-gray-600 group-hover:text-gray-800"
+                      }`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                      />
+                    </svg>
+                  )}
+                </button>
+              </div>
 
-        {error && <p className="text-red-600 text-sm mb-2">{error}</p>}
+              {/* Profile Header */}
+              <div className="text-center mb-8">
+                <div className="relative inline-block mb-4">
+                  <div className={`w-24 h-24 rounded-full flex items-center justify-center text-2xl font-semibold ${
+                    dark ? "bg-blue-600 text-white" : "bg-black text-white"
+                  }`}>
+                    {userData.name
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")}
+                  </div>
+                  <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-3 border-white"></div>
+                </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Name</label>
-            <input
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              className="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
+                <h1 className={`text-xl font-bold mb-1 ${
+                  dark ? "text-white" : "text-gray-900"
+                }`}>
+                  {userData.name}
+                </h1>
+                <p className={`text-sm mb-6 ${
+                  dark ? "text-gray-300" : "text-gray-600"
+                }`}>{userData.title}</p>
+
+                {/* Location and Date */}
+                <div className={`space-y-2 text-xs mb-6 ${
+                  dark ? "text-gray-400" : "text-gray-500"
+                }`}>
+                  <div className="flex items-center justify-center space-x-1">
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                      />
+                    </svg>
+                    <span>{userData.location}</span>
+                  </div>
+                  <div className="flex items-center justify-center space-x-1">
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M8 7V3a1 1 0 011-1h6a1 1 0 011 1v4h3a2 2 0 012 2v1a2 2 0 01-2 2H6a2 2 0 01-2-2V9a2 2 0 012-2h2z"
+                      />
+                    </svg>
+                    <span>Joined {userData.joinedDate}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Stats Grid */}
+              <div className="grid grid-cols-2 gap-3 mb-8">
+                <div className={`text-center p-4 rounded-lg transition-colors cursor-pointer ${
+                  dark 
+                    ? "bg-gray-700 hover:bg-gray-600" 
+                    : "bg-gray-50 hover:bg-gray-100"
+                }`}>
+                  <div className={`text-xl font-bold ${
+                    dark ? "text-white" : "text-gray-900"
+                  }`}>
+                    {userData.stats.ideasShared}
+                  </div>
+                  <div className={`text-xs ${
+                    dark ? "text-gray-400" : "text-gray-600"
+                  }`}>Ideas</div>
+                </div>
+                <div className={`text-center p-4 rounded-lg transition-colors cursor-pointer ${
+                  dark 
+                    ? "bg-gray-700 hover:bg-gray-600" 
+                    : "bg-gray-50 hover:bg-gray-100"
+                }`}>
+                  <div className={`text-xl font-bold ${
+                    dark ? "text-white" : "text-gray-900"
+                  }`}>
+                    {userData.stats.collaborations}
+                  </div>
+                  <div className={`text-xs ${
+                    dark ? "text-gray-400" : "text-gray-600"
+                  }`}>Projects</div>
+                </div>
+                <div className={`text-center p-4 rounded-lg transition-colors cursor-pointer ${
+                  dark 
+                    ? "bg-gray-700 hover:bg-gray-600" 
+                    : "bg-gray-50 hover:bg-gray-100"
+                }`}>
+                  <div className={`text-xl font-bold ${
+                    dark ? "text-white" : "text-gray-900"
+                  }`}>
+                    {userData.stats.followers}
+                  </div>
+                  <div className={`text-xs ${
+                    dark ? "text-gray-400" : "text-gray-600"
+                  }`}>Followers</div>
+                </div>
+                <div className={`text-center p-4 rounded-lg transition-colors cursor-pointer ${
+                  dark 
+                    ? "bg-gray-700 hover:bg-gray-600" 
+                    : "bg-gray-50 hover:bg-gray-100"
+                }`}>
+                  <div className={`text-xl font-bold ${
+                    dark ? "text-white" : "text-gray-900"
+                  }`}>
+                    {userData.stats.following}
+                  </div>
+                  <div className={`text-xs ${
+                    dark ? "text-gray-400" : "text-gray-600"
+                  }`}>Following</div>
+                </div>
+              </div>
+
+              {/* Bio */}
+              <div className="mb-8">
+                <h3 className={`text-sm font-semibold mb-3 ${
+                  dark ? "text-white" : "text-gray-900"
+                }`}>
+                  About
+                </h3>
+                <p className={`text-sm leading-relaxed ${
+                  dark ? "text-gray-300" : "text-gray-600"
+                }`}>
+                  {userData.bio}
+                </p>
+              </div>
+
+              {/* Skills */}
+              <div className="mb-8">
+                <h3 className={`text-sm font-semibold mb-3 ${
+                  dark ? "text-white" : "text-gray-900"
+                }`}>
+                  Skills
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {userData.skills.map((skill, index) => (
+                    <span
+                      key={index}
+                      className={`px-3 py-1 rounded-full text-xs border transition-colors ${
+                        dark 
+                          ? "bg-gray-700 text-gray-200 border-gray-600 hover:bg-gray-600" 
+                          : "bg-gray-100 text-gray-800 border-gray-200 hover:bg-gray-200"
+                      }`}
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Monthly Stats */}
+              <div>
+                <h3 className={`text-sm font-semibold mb-4 ${
+                  dark ? "text-white" : "text-gray-900"
+                }`}>
+                  This Month
+                </h3>
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center text-sm">
+                    <span className={dark ? "text-gray-400" : "text-gray-600"}>Ideas Posted</span>
+                    <div className="flex items-center space-x-2">
+                      <div className={`w-16 h-1 rounded-full overflow-hidden ${
+                        dark ? "bg-gray-700" : "bg-gray-200"
+                      }`}>
+                        <div className={`w-3/4 h-full rounded-full ${
+                          dark ? "bg-blue-500" : "bg-gray-900"
+                        }`}></div>
+                      </div>
+                      <span className={`font-semibold w-6 text-right ${
+                        dark ? "text-white" : "text-gray-900"
+                      }`}>
+                        12
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex justify-between items-center text-sm">
+                    <span className={dark ? "text-gray-400" : "text-gray-600"}>Collaborations</span>
+                    <div className="flex items-center space-x-2">
+                      <div className={`w-16 h-1 rounded-full overflow-hidden ${
+                        dark ? "bg-gray-700" : "bg-gray-200"
+                      }`}>
+                        <div className={`w-1/4 h-full rounded-full ${
+                          dark ? "bg-blue-500" : "bg-gray-900"
+                        }`}></div>
+                      </div>
+                      <span className={`font-semibold w-6 text-right ${
+                        dark ? "text-white" : "text-gray-900"
+                      }`}>
+                        3
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex justify-between items-center text-sm">
+                    <span className={dark ? "text-gray-400" : "text-gray-600"}>Profile Views</span>
+                    <div className="flex items-center space-x-2">
+                      <div className={`w-16 h-1 rounded-full overflow-hidden ${
+                        dark ? "bg-gray-700" : "bg-gray-200"
+                      }`}>
+                        <div className={`w-full h-full rounded-full ${
+                          dark ? "bg-blue-500" : "bg-gray-900"
+                        }`}></div>
+                      </div>
+                      <span className={`font-semibold w-6 text-right ${
+                        dark ? "text-white" : "text-gray-900"
+                      }`}>
+                        145
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex justify-between items-center text-sm">
+                    <span className={dark ? "text-gray-400" : "text-gray-600"}>New Connections</span>
+                    <div className="flex items-center space-x-2">
+                      <div className={`w-16 h-1 rounded-full overflow-hidden ${
+                        dark ? "bg-gray-700" : "bg-gray-200"
+                      }`}>
+                        <div className={`w-2/3 h-full rounded-full ${
+                          dark ? "bg-blue-500" : "bg-gray-900"
+                        }`}></div>
+                      </div>
+                      <span className={`font-semibold w-6 text-right ${
+                        dark ? "text-white" : "text-gray-900"
+                      }`}>
+                        28
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </aside>
+
+          {/* Main Content - Desktop */}
+          <main className="flex-1">
+            {/* Navigation Tabs */}
+            <div className={`rounded-xl mb-8 overflow-hidden transition-colors duration-200 ${
+              dark ? "bg-gray-800 border border-gray-700" : "bg-white border border-gray-200"
+            }`}>
+              <div className="flex">
+                {[
+                  { id: "overview", label: "Overview", icon: "" },
+                  { id: "ideas", label: "Ideas", icon: "" },
+                  { id: "collaborations", label: "Collaborations", icon: "" },
+                  { id: "achievements", label: "Achievements", icon: "" },
+                ].map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`flex-1 px-6 py-4 font-medium transition-all duration-200 flex items-center justify-center space-x-2 ${
+                      activeTab === tab.id
+                        ? dark
+                          ? "bg-gray-700 text-white border-b-2 border-blue-500"
+                          : "bg-gray-50 text-gray-900 border-b-2 border-gray-900"
+                        : dark
+                        ? "text-gray-400 hover:text-white hover:bg-gray-700"
+                        : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                    }`}
+                  >
+                    <span className="text-lg">{tab.icon}</span>
+                    <span>{tab.label}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Tab Content */}
+            <div>
+              {activeTab === "overview" && (
+                <div className="space-y-8">
+                  {/* Recent Activity */}
+                  <div className={`rounded-xl border p-6 transition-colors duration-200 ${
+                    dark 
+                      ? "bg-gray-800 border-gray-700" 
+                      : "bg-white border-gray-200"
+                  }`}>
+                    <div className="flex justify-between items-center mb-6">
+                      <h2 className={`text-xl font-semibold ${
+                        dark ? "text-white" : "text-gray-900"
+                      }`}>
+                        Recent Activity
+                      </h2>
+                      <button className={`font-medium text-sm transition-colors ${
+                        dark 
+                          ? "text-gray-400 hover:text-white" 
+                          : "text-gray-600 hover:text-gray-900"
+                      }`}>
+                        View All →
+                      </button>
+                    </div>
+                    <div className="space-y-6">
+                      {recentIdeas.slice(0, 3).map((idea) => (
+                        <article
+                          key={idea.id}
+                          className={`pb-6 border-b last:border-b-0 p-4 rounded-lg -m-4 transition-colors ${
+                            dark 
+                              ? "border-gray-700 hover:bg-gray-700" 
+                              : "border-gray-100 hover:bg-gray-50"
+                          }`}
+                        >
+                          <div className="flex justify-between items-start mb-3">
+                            <h3 className={`font-semibold flex-1 pr-4 transition-colors cursor-pointer ${
+                              dark 
+                                ? "text-white hover:text-blue-400" 
+                                : "text-gray-900 hover:text-blue-600"
+                            }`}>
+                              {idea.title}
+                            </h3>
+                            <span className={`text-sm whitespace-nowrap ${
+                              dark ? "text-gray-400" : "text-gray-500"
+                            }`}>
+                              {idea.date}
+                            </span>
+                          </div>
+                          <p className={`leading-relaxed mb-4 ${
+                            dark ? "text-gray-300" : "text-gray-600"
+                          }`}>
+                            {idea.description}
+                          </p>
+                          <div className="flex justify-between items-center">
+                            <div className="flex space-x-2">
+                              {idea.tags.slice(0, 2).map((tag, index) => (
+                                <span
+                                  key={index}
+                                  className={`px-3 py-1 text-xs rounded-full border transition-colors ${
+                                    dark 
+                                      ? "bg-gray-700 text-gray-200 border-gray-600 hover:bg-gray-600" 
+                                      : "bg-gray-100 text-gray-700 border-gray-200 hover:bg-gray-200"
+                                  }`}
+                                >
+                                  {tag}
+                                </span>
+                              ))}
+                            </div>
+                            <div className={`flex items-center space-x-4 text-sm ${
+                              dark ? "text-gray-400" : "text-gray-500"
+                            }`}>
+                              <span className="flex items-center space-x-1 hover:text-red-500 transition-colors cursor-pointer">
+                                <svg
+                                  className="w-4 h-4"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                                  />
+                                </svg>
+                                <span>{idea.likes}</span>
+                              </span>
+                              <span className="flex items-center space-x-1 hover:text-blue-500 transition-colors cursor-pointer">
+                                <svg
+                                  className="w-4 h-4"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                                  />
+                                </svg>
+                                <span>{idea.comments}</span>
+                              </span>
+                            </div>
+                          </div>
+                        </article>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Suggested Connections */}
+                  <div className={`rounded-xl border p-6 transition-colors duration-200 ${
+                    dark 
+                      ? "bg-gray-800 border-gray-700" 
+                      : "bg-white border-gray-200"
+                  }`}>
+                    <h2 className={`text-xl font-semibold mb-6 ${
+                      dark ? "text-white" : "text-gray-900"
+                    }`}>
+                      Suggested Connections
+                    </h2>
+                    <div className="space-y-4">
+                      {[
+                        {
+                          name: "Dr. Arjun Krishnamurthy",
+                          role: "Quantum Computing Researcher",
+                          mutual: 12,
+                        },
+                        {
+                          name: "Sarah Chen",
+                          role: "Sustainable Design Director",
+                          mutual: 8,
+                        },
+                        {
+                          name: "Rajesh Kumar",
+                          role: "Venture Partner",
+                          mutual: 15,
+                        },
+                      ].map((person, index) => (
+                        <div
+                          key={index}
+                          className={`flex items-center justify-between p-4 rounded-lg transition-colors ${
+                            dark 
+                              ? "bg-gray-700 hover:bg-gray-600" 
+                              : "bg-gray-50 hover:bg-gray-100"
+                          }`}
+                        >
+                          <div className="flex items-center space-x-3">
+                            <div className={`w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold text-sm ${
+                              dark ? "bg-blue-600" : "bg-gray-900"
+                            }`}>
+                              {person.name
+                                .split(" ")
+                                .map((n) => n[0])
+                                .join("")}
+                            </div>
+                            <div>
+                              <div className={`font-medium text-sm ${
+                                dark ? "text-white" : "text-gray-900"
+                              }`}>
+                                {person.name}
+                              </div>
+                              <div className={`text-xs ${
+                                dark ? "text-gray-400" : "text-gray-500"
+                              }`}>
+                                {person.role}
+                              </div>
+                              <div className="text-xs text-blue-600">
+                                {person.mutual} mutual connections
+                              </div>
+                            </div>
+                          </div>
+                          <button className={`px-4 py-2 text-sm rounded-lg transition-colors ${
+                            dark 
+                              ? "bg-blue-600 text-white hover:bg-blue-700" 
+                              : "bg-gray-900 text-white hover:bg-gray-800"
+                          }`}>
+                            Connect
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Ideas Tab Content */}
+              {activeTab === "ideas" && (
+                <div className={`rounded-xl border p-6 transition-colors duration-200 ${
+                  dark 
+                    ? "bg-gray-800 border-gray-700" 
+                    : "bg-white border-gray-200"
+                }`}>
+                  <div className="flex justify-between items-center mb-6">
+                    <h2 className={`text-xl font-semibold ${
+                      dark ? "text-white" : "text-gray-900"
+                    }`}>
+                      My Ideas ({recentIdeas.length})
+                    </h2>
+                    <button className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                      dark 
+                        ? "bg-blue-600 text-white hover:bg-blue-700" 
+                        : "bg-gray-900 text-white hover:bg-gray-800"
+                    }`}>
+                      + New Idea
+                    </button>
+                  </div>
+                  <div className="space-y-6">
+                    {recentIdeas.map((idea) => (
+                      <article
+                        key={idea.id}
+                        className={`p-6 rounded-xl border transition-all duration-200 ${
+                          dark 
+                            ? "bg-gray-700 border-gray-600 hover:shadow-lg hover:shadow-gray-900/20" 
+                            : "bg-gray-50 border-gray-100 hover:shadow-md"
+                        }`}
+                      >
+                        <div className="flex justify-between items-start mb-4">
+                          <div className="flex items-center space-x-3">
+                            <h3 className={`text-lg font-semibold transition-colors cursor-pointer ${
+                              dark 
+                                ? "text-white hover:text-blue-400" 
+                                : "text-gray-900 hover:text-blue-600"
+                            }`}>
+                              {idea.title}
+                            </h3>
+                            <span
+                              className={`px-3 py-1 rounded-full text-sm font-medium ${
+                                idea.status === "Funded"
+                                  ? "bg-green-100 text-green-800"
+                                  : idea.status === "In Development"
+                                  ? "bg-blue-100 text-blue-800"
+                                  : "bg-orange-100 text-orange-800"
+                              }`}
+                            >
+                              {idea.status}
+                            </span>
+                          </div>
+                          <span className={`text-sm ${
+                            dark ? "text-gray-400" : "text-gray-500"
+                          }`}>
+                            {idea.date}
+                          </span>
+                        </div>
+                        <p className={`leading-relaxed mb-4 ${
+                          dark ? "text-gray-300" : "text-gray-600"
+                        }`}>
+                          {idea.description}
+                        </p>
+                        <div className="flex justify-between items-center">
+                          <div className="flex space-x-2">
+                            {idea.tags.map((tag, index) => (
+                              <span
+                                key={index}
+                                className={`px-3 py-1 border text-sm rounded-full transition-colors ${
+                                  dark 
+                                    ? "bg-gray-800 border-gray-600 text-gray-200 hover:bg-gray-600" 
+                                    : "bg-white border-gray-200 text-gray-700 hover:bg-gray-50"
+                                }`}
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                          <div className="flex items-center space-x-6">
+                            <span className={`flex items-center space-x-1 hover:text-red-500 transition-colors cursor-pointer ${
+                              dark ? "text-gray-400" : "text-gray-500"
+                            }`}>
+                              <svg
+                                className="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                                />
+                              </svg>
+                              <span>{idea.likes}</span>
+                            </span>
+                            <span className={`flex items-center space-x-1 hover:text-blue-500 transition-colors cursor-pointer ${
+                              dark ? "text-gray-400" : "text-gray-500"
+                            }`}>
+                              <svg
+                                className="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                                />
+                              </svg>
+                              <span>{idea.comments}</span>
+                            </span>
+                            <button className={`font-medium transition-colors ${
+                              dark 
+                                ? "text-white hover:text-blue-400" 
+                                : "text-gray-900 hover:text-blue-600"
+                            }`}>
+                              View Details →
+                            </button>
+                          </div>
+                        </div>
+                      </article>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Collaborations Tab Content */}
+              {activeTab === "collaborations" && (
+                <div className={`rounded-xl border p-6 transition-colors duration-200 ${
+                  dark 
+                    ? "bg-gray-800 border-gray-700" 
+                    : "bg-white border-gray-200"
+                }`}>
+                  <div className="flex justify-between items-center mb-6">
+                    <h2 className={`text-xl font-semibold ${
+                      dark ? "text-white" : "text-gray-900"
+                    }`}>
+                      Active Collaborations ({collaborations.length})
+                    </h2>
+                    <button className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                      dark 
+                        ? "bg-blue-600 text-white hover:bg-blue-700" 
+                        : "bg-gray-900 text-white hover:bg-gray-800"
+                    }`}>
+                      + New Project
+                    </button>
+                  </div>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {collaborations.map((collab) => (
+                      <article
+                        key={collab.id}
+                        className={`p-6 rounded-xl border transition-all duration-200 ${
+                          dark 
+                            ? "bg-gray-700 border-gray-600 hover:shadow-lg hover:shadow-gray-900/20" 
+                            : "bg-gray-50 border-gray-100 hover:shadow-md"
+                        }`}
+                      >
+                        <div className="flex justify-between items-start mb-4">
+                          <div>
+                            <h3 className={`text-lg font-semibold mb-2 transition-colors cursor-pointer ${
+                              dark 
+                                ? "text-white hover:text-blue-400" 
+                                : "text-gray-900 hover:text-blue-600"
+                            }`}>
+                              {collab.title}
+                            </h3>
+                            <div className={`flex items-center space-x-4 text-sm ${
+                              dark ? "text-gray-300" : "text-gray-600"
+                            }`}>
+                              <span className="font-medium bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">
+                                {collab.role}
+                              </span>
+                              <span className="flex items-center space-x-1">
+                                <svg
+                                  className="w-4 h-4"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0"
+                                  />
+                                </svg>
+                                <span>{collab.members} members</span>
+                              </span>
+                            </div>
+                          </div>
+                          <span
+                            className={`px-3 py-1 rounded-full text-xs font-medium ${
+                              collab.status === "Active"
+                                ? "bg-green-100 text-green-800"
+                                : "bg-orange-100 text-orange-800"
+                            }`}
+                          >
+                            {collab.status}
+                          </span>
+                        </div>
+                        <p className={`leading-relaxed mb-4 ${
+                          dark ? "text-gray-300" : "text-gray-600"
+                        }`}>
+                          {collab.description}
+                        </p>
+                        <div className="flex justify-between items-center">
+                          <button className={`font-medium transition-colors ${
+                            dark 
+                              ? "text-white hover:text-blue-400" 
+                              : "text-gray-900 hover:text-blue-600"
+                          }`}>
+                            View Project →
+                          </button>
+                          <button className={`px-4 py-2 border rounded-lg text-sm transition-colors ${
+                            dark 
+                              ? "bg-gray-800 border-gray-600 text-gray-200 hover:bg-gray-600" 
+                              : "bg-white border-gray-200 text-gray-700 hover:bg-gray-50"
+                          }`}>
+                            Manage
+                          </button>
+                        </div>
+                      </article>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Achievements Tab Content */}
+              {activeTab === "achievements" && (
+                <div className={`rounded-xl border p-6 transition-colors duration-200 ${
+                  dark 
+                    ? "bg-gray-800 border-gray-700" 
+                    : "bg-white border-gray-200"
+                }`}>
+                  <h2 className={`text-xl font-semibold mb-6 ${
+                    dark ? "text-white" : "text-gray-900"
+                  }`}>
+                    Achievements & Milestones
+                  </h2>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {[
+                      {
+                        title: "First Idea",
+                        description: "Posted your first idea on ManoSangam",
+                        date: "March 2024",
+                        icon: "🌱",
+                      },
+                      {
+                        title: "Collaborator",
+                        description: "Started 10+ successful collaborations",
+                        date: "April 2024",
+                        icon: "🤝",
+                      },
+                      {
+                        title: "Innovator",
+                        description: "100+ ideas shared with the community",
+                        date: "May 2024",
+                        icon: "💡",
+                      },
+                      {
+                        title: "Community Member",
+                        description: "Received 500+ likes on your ideas",
+                        date: "June 2024",
+                        icon: "❤️",
+                      },
+                      {
+                        title: "Mentor",
+                        description: "Guided 5+ community members",
+                        date: "July 2024",
+                        icon: "🎯",
+                      },
+                      {
+                        title: "Top Contributor",
+                        description: "Top 10% contributor this month",
+                        date: "August 2024",
+                        icon: "⭐",
+                      },
+                    ].map((achievement, index) => (
+                      <div
+                        key={index}
+                        className={`p-6 rounded-xl border transition-all duration-200 ${
+                          dark 
+                            ? "bg-gray-700 border-gray-600 hover:shadow-lg hover:shadow-gray-900/20" 
+                            : "bg-gray-50 border-gray-100 hover:shadow-md"
+                        }`}
+                      >
+                        <div className="text-3xl mb-3">{achievement.icon}</div>
+                        <h3 className={`text-lg font-semibold mb-2 ${
+                          dark ? "text-white" : "text-gray-900"
+                        }`}>
+                          {achievement.title}
+                        </h3>
+                        <p className={`text-sm leading-relaxed mb-3 ${
+                          dark ? "text-gray-300" : "text-gray-600"
+                        }`}>
+                          {achievement.description}
+                        </p>
+                        <span className={`text-xs px-2 py-1 rounded-full ${
+                          dark 
+                            ? "text-gray-400 bg-gray-800" 
+                            : "text-gray-500 bg-gray-100"
+                        }`}>
+                          {achievement.date}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </main>
+        </div>
+
+        {/* Mobile Layout */}
+        <div className="lg:hidden">
+          {/* Mobile Profile Header */}
+          <div className={`border-b relative transition-colors duration-200 ${
+            dark 
+              ? "bg-gray-800 border-gray-700" 
+              : "bg-white border-gray-200"
+          }`}>
+            {/* Edit Icon - Mobile Top Right */}
+            <div className="absolute top-4 right-4 z-10">
+              <button
+                onClick={() => setIsEditing(!isEditing)}
+                className={`w-10 h-10 rounded-lg flex items-center justify-center transition-colors ${
+                  dark 
+                    ? "bg-gray-700 hover:bg-gray-600" 
+                    : "bg-gray-100 hover:bg-gray-200"
+                }`}
+                title={isEditing ? "Save Changes" : "Edit Profile"}
+              >
+                {isEditing ? (
+                  <svg
+                    className={`w-5 h-5 ${
+                      dark ? "text-gray-300" : "text-gray-600"
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    className={`w-5 h-5 ${
+                      dark ? "text-gray-300" : "text-gray-600"
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                    />
+                  </svg>
+                )}
+              </button>
+            </div>
+
+            <div className="p-6 pt-16">
+              <div className="text-center">
+                <div className="relative inline-block mb-4">
+                  <div className={`w-20 h-20 rounded-full flex items-center justify-center text-white text-xl font-semibold ${
+                    dark ? "bg-blue-600" : "bg-gray-900"
+                  }`}>
+                    {userData.name
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")}
+                  </div>
+                  <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white"></div>
+                </div>
+
+                <h1 className={`text-xl font-bold mb-1 ${
+                  dark ? "text-white" : "text-gray-900"
+                }`}>
+                  {userData.name}
+                </h1>
+                <p className={`text-sm mb-6 ${
+                  dark ? "text-gray-300" : "text-gray-600"
+                }`}>{userData.title}</p>
+
+                {/* Mobile Stats */}
+                <div className="grid grid-cols-4 gap-3">
+                  <div className={`text-center p-3 rounded-lg transition-colors ${
+                    dark ? "bg-gray-700" : "bg-gray-50"
+                  }`}>
+                    <div className={`text-lg font-bold ${
+                      dark ? "text-white" : "text-gray-900"
+                    }`}>
+                      {userData.stats.ideasShared}
+                    </div>
+                    <div className={`text-xs ${
+                      dark ? "text-gray-400" : "text-gray-600"
+                    }`}>Ideas</div>
+                  </div>
+                  <div className={`text-center p-3 rounded-lg transition-colors ${
+                    dark ? "bg-gray-700" : "bg-gray-50"
+                  }`}>
+                    <div className={`text-lg font-bold ${
+                      dark ? "text-white" : "text-gray-900"
+                    }`}>
+                      {userData.stats.collaborations}
+                    </div>
+                    <div className={`text-xs ${
+                      dark ? "text-gray-400" : "text-gray-600"
+                    }`}>Projects</div>
+                  </div>
+                  <div className={`text-center p-3 rounded-lg transition-colors ${
+                    dark ? "bg-gray-700" : "bg-gray-50"
+                  }`}>
+                    <div className={`text-lg font-bold ${
+                      dark ? "text-white" : "text-gray-900"
+                    }`}>
+                      {userData.stats.followers}
+                    </div>
+                    <div className={`text-xs ${
+                      dark ? "text-gray-400" : "text-gray-600"
+                    }`}>Followers</div>
+                  </div>
+                  <div className={`text-center p-3 rounded-lg transition-colors ${
+                    dark ? "bg-gray-700" : "bg-gray-50"
+                  }`}>
+                    <div className={`text-lg font-bold ${
+                      dark ? "text-white" : "text-gray-900"
+                    }`}>
+                      {userData.stats.following}
+                    </div>
+                    <div className={`text-xs ${
+                      dark ? "text-gray-400" : "text-gray-600"
+                    }`}>Following</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Bio</label>
-            <textarea
-              name="bio"
-              value={formData.bio}
-              onChange={handleChange}
-              rows="3"
-              className="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
+          {/* Mobile Bio & Skills */}
+          <div className={`p-6 border-b space-y-6 transition-colors duration-200 ${
+            dark 
+              ? "bg-gray-800 border-gray-700" 
+              : "bg-white border-gray-200"
+          }`}>
+            <div>
+              <h3 className={`text-sm font-semibold mb-2 ${
+                dark ? "text-white" : "text-gray-900"
+              }`}>
+                About
+              </h3>
+              <p className={`text-sm leading-relaxed ${
+                dark ? "text-gray-300" : "text-gray-600"
+              }`}>
+                {userData.bio}
+              </p>
+            </div>
+
+            <div>
+              <h3 className={`text-sm font-semibold mb-3 ${
+                dark ? "text-white" : "text-gray-900"
+              }`}>
+                Skills
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {userData.skills.map((skill, index) => (
+                  <span
+                    key={index}
+                    className={`px-2 py-1 rounded-full text-xs border transition-colors ${
+                      dark 
+                        ? "bg-gray-700 text-gray-200 border-gray-600" 
+                        : "bg-gray-100 text-gray-800 border-gray-200"
+                    }`}
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Location</label>
-            <input
-              name="location"
-              value={formData.location}
-              onChange={handleChange}
-              className="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
+          {/* Mobile Navigation Tabs */}
+          <div className={`border-b px-4 transition-colors duration-200 ${
+            dark 
+              ? "bg-gray-800 border-gray-700" 
+              : "bg-white border-gray-200"
+          }`}>
+            <div className="flex overflow-x-auto">
+              {[
+                { id: "overview", label: "Overview", icon: "👤" },
+                { id: "ideas", label: "Ideas", icon: "💡" },
+                { id: "collaborations", label: "Collaborations", icon: "🤝" },
+                { id: "achievements", label: "Achievements", icon: "🏆" },
+              ].map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`flex-shrink-0 px-4 py-3 font-medium transition-all duration-200 whitespace-nowrap flex items-center space-x-2 ${
+                    activeTab === tab.id
+                      ? dark
+                        ? "text-white border-b-2 border-blue-500"
+                        : "text-gray-900 border-b-2 border-gray-900"
+                      : dark
+                      ? "text-gray-400"
+                      : "text-gray-600"
+                  }`}
+                >
+                  <span>{tab.icon}</span>
+                  <span>{tab.label}</span>
+                </button>
+              ))}
+            </div>
           </div>
 
-          <div className="flex justify-end gap-3 pt-2">
-            <button
-              type="button"
-              onClick={onClose}
-              className="px-4 py-2 text-sm bg-gray-300 hover:bg-gray-400 rounded-lg"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              disabled={loading}
-              className="px-4 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-            >
-              {loading ? "Saving..." : "Save Changes"}
-            </button>
+          {/* Mobile Content */}
+          <div className="p-4">
+            {activeTab === "overview" && (
+              <div className="space-y-6">
+                {/* Recent Activity - Mobile */}
+                <div className={`rounded-xl border p-4 transition-colors duration-200 ${
+                  dark 
+                    ? "bg-gray-800 border-gray-700" 
+                    : "bg-white border-gray-200"
+                }`}>
+                  <h2 className={`text-lg font-semibold mb-4 ${
+                    dark ? "text-white" : "text-gray-900"
+                  }`}>
+                    Recent Activity
+                  </h2>
+                  <div className="space-y-4">
+                    {recentIdeas.slice(0, 3).map((idea) => (
+                      <article
+                        key={idea.id}
+                        className={`pb-4 border-b last:border-b-0 ${
+                          dark ? "border-gray-700" : "border-gray-100"
+                        }`}
+                      >
+                        <div className="mb-2">
+                          <h3 className={`font-semibold text-sm mb-1 ${
+                            dark ? "text-white" : "text-gray-900"
+                          }`}>
+                            {idea.title}
+                          </h3>
+                          <span className={`text-xs ${
+                            dark ? "text-gray-400" : "text-gray-500"
+                          }`}>
+                            {idea.date}
+                          </span>
+                        </div>
+                        <p className={`text-sm leading-relaxed mb-3 ${
+                          dark ? "text-gray-300" : "text-gray-600"
+                        }`}>
+                          {idea.description}
+                        </p>
+                        <div className="flex justify-between items-center">
+                          <div className="flex space-x-2">
+                            {idea.tags.slice(0, 1).map((tag, index) => (
+                              <span
+                                key={index}
+                                className={`px-2 py-1 text-xs rounded-full border ${
+                                  dark 
+                                    ? "bg-gray-700 text-gray-200 border-gray-600" 
+                                    : "bg-gray-100 text-gray-700 border-gray-200"
+                                }`}
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                          <div className={`flex items-center space-x-3 text-xs ${
+                            dark ? "text-gray-400" : "text-gray-500"
+                          }`}>
+                            <span className="flex items-center space-x-1">
+                              <svg
+                                className="w-3 h-3"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                                />
+                              </svg>
+                              <span>{idea.likes}</span>
+                            </span>
+                            <span className="flex items-center space-x-1">
+                              <svg
+                                className="w-3 h-3"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                                />
+                              </svg>
+                              <span>{idea.comments}</span>
+                            </span>
+                          </div>
+                        </div>
+                      </article>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Monthly Stats - Mobile with Progress Bars */}
+                <div className={`rounded-xl border p-4 transition-colors duration-200 ${
+                  dark 
+                    ? "bg-gray-800 border-gray-700" 
+                    : "bg-white border-gray-200"
+                }`}>
+                  <h2 className={`text-lg font-semibold mb-4 ${
+                    dark ? "text-white" : "text-gray-900"
+                  }`}>
+                    This Month
+                  </h2>
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center text-sm">
+                      <span className={dark ? "text-gray-400" : "text-gray-600"}>Ideas Posted</span>
+                      <div className="flex items-center space-x-2">
+                        <div className={`w-12 h-1 rounded-full overflow-hidden ${
+                          dark ? "bg-gray-700" : "bg-gray-200"
+                        }`}>
+                          <div className={`w-3/4 h-full rounded-full ${
+                            dark ? "bg-blue-500" : "bg-gray-900"
+                          }`}></div>
+                        </div>
+                        <span className={`font-semibold w-4 text-right ${
+                          dark ? "text-white" : "text-gray-900"
+                        }`}>
+                          12
+                        </span>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center text-sm">
+                      <span className={dark ? "text-gray-400" : "text-gray-600"}>Collaborations</span>
+                      <div className="flex items-center space-x-2">
+                        <div className={`w-12 h-1 rounded-full overflow-hidden ${
+                          dark ? "bg-gray-700" : "bg-gray-200"
+                        }`}>
+                          <div className={`w-1/4 h-full rounded-full ${
+                            dark ? "bg-blue-500" : "bg-gray-900"
+                          }`}></div>
+                        </div>
+                        <span className={`font-semibold w-4 text-right ${
+                          dark ? "text-white" : "text-gray-900"
+                        }`}>
+                          3
+                        </span>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center text-sm">
+                      <span className={dark ? "text-gray-400" : "text-gray-600"}>Profile Views</span>
+                      <div className="flex items-center space-x-2">
+                        <div className={`w-12 h-1 rounded-full overflow-hidden ${
+                          dark ? "bg-gray-700" : "bg-gray-200"
+                        }`}>
+                          <div className={`w-full h-full rounded-full ${
+                            dark ? "bg-blue-500" : "bg-gray-900"
+                          }`}></div>
+                        </div>
+                        <span className={`font-semibold w-4 text-right ${
+                          dark ? "text-white" : "text-gray-900"
+                        }`}>
+                          145
+                        </span>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center text-sm">
+                      <span className={dark ? "text-gray-400" : "text-gray-600"}>New Connections</span>
+                      <div className="flex items-center space-x-2">
+                        <div className={`w-12 h-1 rounded-full overflow-hidden ${
+                          dark ? "bg-gray-700" : "bg-gray-200"
+                        }`}>
+                          <div className={`w-2/3 h-full rounded-full ${
+                            dark ? "bg-blue-500" : "bg-gray-900"
+                          }`}></div>
+                        </div>
+                        <span className={`font-semibold w-4 text-right ${
+                          dark ? "text-white" : "text-gray-900"
+                        }`}>
+                          28
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Mobile Ideas Tab */}
+            {activeTab === "ideas" && (
+              <div className="space-y-6">
+                <div className="flex justify-between items-center">
+                  <h2 className={`text-lg font-semibold ${
+                    dark ? "text-white" : "text-gray-900"
+                  }`}>
+                    My Ideas ({recentIdeas.length})
+                  </h2>
+                  <button className={`px-3 py-2 rounded-lg text-sm transition-colors ${
+                    dark 
+                      ? "bg-blue-600 text-white hover:bg-blue-700" 
+                      : "bg-gray-900 text-white hover:bg-gray-800"
+                  }`}>
+                    + New
+                  </button>
+                </div>
+
+                <div className="space-y-4">
+                  {recentIdeas.map((idea) => (
+                    <div
+                      key={idea.id}
+                      className={`rounded-xl border p-4 transition-colors duration-200 ${
+                        dark 
+                          ? "bg-gray-800 border-gray-700" 
+                          : "bg-white border-gray-200"
+                      }`}
+                    >
+                      <div className="flex justify-between items-start mb-2">
+                        <h3 className={`font-semibold text-sm flex-1 pr-2 ${
+                          dark ? "text-white" : "text-gray-900"
+                        }`}>
+                          {idea.title}
+                        </h3>
+                        <span
+                          className={`px-2 py-1 rounded-full text-xs whitespace-nowrap ${
+                            idea.status === "Funded"
+                              ? "bg-green-100 text-green-800"
+                              : idea.status === "In Development"
+                              ? "bg-blue-100 text-blue-800"
+                              : "bg-orange-100 text-orange-800"
+                          }`}
+                        >
+                          {idea.status}
+                        </span>
+                      </div>
+                      <p className={`text-sm leading-relaxed mb-3 ${
+                        dark ? "text-gray-300" : "text-gray-600"
+                      }`}>
+                        {idea.description}
+                      </p>
+                      <div className="flex justify-between items-center">
+                        <div className="flex space-x-2">
+                          {idea.tags.slice(0, 2).map((tag, index) => (
+                            <span
+                              key={index}
+                              className={`px-2 py-1 border text-xs rounded-full ${
+                                dark 
+                                  ? "bg-gray-700 border-gray-600 text-gray-200" 
+                                  : "bg-gray-100 border-gray-200 text-gray-700"
+                              }`}
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                        <div className={`flex items-center space-x-3 text-xs ${
+                          dark ? "text-gray-400" : "text-gray-500"
+                        }`}>
+                          <span className="flex items-center space-x-1">
+                            <svg
+                              className="w-3 h-3"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                              />
+                            </svg>
+                            <span>{idea.likes}</span>
+                          </span>
+                          <span className="flex items-center space-x-1">
+                            <svg
+                              className="w-3 h-3"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                              />
+                            </svg>
+                            <span>{idea.comments}</span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Mobile Collaborations Tab */}
+            {activeTab === "collaborations" && (
+              <div className="space-y-6">
+                <div className="flex justify-between items-center">
+                  <h2 className={`text-lg font-semibold ${
+                    dark ? "text-white" : "text-gray-900"
+                  }`}>
+                    Collaborations ({collaborations.length})
+                  </h2>
+                  <button className={`px-3 py-2 rounded-lg text-sm transition-colors ${
+                    dark 
+                      ? "bg-blue-600 text-white hover:bg-blue-700" 
+                      : "bg-gray-900 text-white hover:bg-gray-800"
+                  }`}>
+                    + New
+                  </button>
+                </div>
+
+                <div className="space-y-4">
+                  {collaborations.map((collab) => (
+                    <div
+                      key={collab.id}
+                      className={`rounded-xl border p-4 transition-colors duration-200 ${
+                        dark 
+                          ? "bg-gray-800 border-gray-700" 
+                          : "bg-white border-gray-200"
+                      }`}
+                    >
+                      <div className="flex justify-between items-start mb-2">
+                        <h3 className={`font-semibold text-sm flex-1 pr-2 ${
+                          dark ? "text-white" : "text-gray-900"
+                        }`}>
+                          {collab.title}
+                        </h3>
+                        <span
+                          className={`px-2 py-1 rounded-full text-xs ${
+                            collab.status === "Active"
+                              ? "bg-green-100 text-green-800"
+                              : "bg-orange-100 text-orange-800"
+                          }`}
+                        >
+                          {collab.status}
+                        </span>
+                      </div>
+                      <div className={`text-xs mb-2 ${
+                        dark ? "text-gray-400" : "text-gray-600"
+                      }`}>
+                        {collab.role} • {collab.members} members
+                      </div>
+                      <p className={`text-sm leading-relaxed mb-3 ${
+                        dark ? "text-gray-300" : "text-gray-600"
+                      }`}>
+                        {collab.description}
+                      </p>
+                      <div className="flex justify-between items-center">
+                        <button className={`font-medium text-sm transition-colors ${
+                          dark 
+                            ? "text-white hover:text-blue-400" 
+                            : "text-gray-900 hover:text-blue-600"
+                        }`}>
+                          View Project →
+                        </button>
+                        <button className={`px-3 py-1 border rounded text-xs transition-colors ${
+                          dark 
+                            ? "bg-gray-700 border-gray-600 text-gray-200 hover:bg-gray-600" 
+                            : "bg-gray-100 border-gray-200 text-gray-700 hover:bg-gray-50"
+                        }`}>
+                          Manage
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Mobile Achievements Tab */}
+            {activeTab === "achievements" && (
+              <div className="space-y-6">
+                <h2 className={`text-lg font-semibold ${
+                  dark ? "text-white" : "text-gray-900"
+                }`}>
+                  Achievements
+                </h2>
+                <div className="space-y-4">
+                  {[
+                    {
+                      title: "First Idea",
+                      description: "Posted your first idea on ManoSangam",
+                      date: "March 2024",
+                      icon: "🌱",
+                    },
+                    {
+                      title: "Collaborator",
+                      description: "Started 10+ successful collaborations",
+                      date: "April 2024",
+                      icon: "🤝",
+                    },
+                    {
+                      title: "Innovator",
+                      description: "100+ ideas shared with the community",
+                      date: "May 2024",
+                      icon: "💡",
+                    },
+                    {
+                      title: "Community Member",
+                      description: "Received 500+ likes on your ideas",
+                      date: "June 2024",
+                      icon: "❤️",
+                    },
+                    {
+                      title: "Mentor",
+                      description: "Guided 5+ community members",
+                      date: "July 2024",
+                      icon: "🎯",
+                    },
+                    {
+                      title: "Top Contributor",
+                      description: "Top 10% contributor this month",
+                      date: "August 2024",
+                      icon: "⭐",
+                    },
+                  ].map((achievement, index) => (
+                    <div key={index} className={`rounded-xl border p-4 transition-colors duration-200 ${
+                      dark 
+                        ? "bg-gray-800 border-gray-700" 
+                        : "bg-white border-gray-200"
+                    }`}>
+                      <div className="flex items-start space-x-3">
+                        <div className="text-2xl">{achievement.icon}</div>
+                        <div className="flex-1">
+                          <h3 className={`font-semibold text-sm mb-1 ${
+                            dark ? "text-white" : "text-gray-900"
+                          }`}>
+                            {achievement.title}
+                          </h3>
+                          <p className={`text-xs leading-relaxed mb-2 ${
+                            dark ? "text-gray-300" : "text-gray-600"
+                          }`}>
+                            {achievement.description}
+                          </p>
+                          <span className={`text-xs px-2 py-1 rounded-full ${
+                            dark 
+                              ? "text-gray-400 bg-gray-700" 
+                              : "text-gray-500 bg-gray-100"
+                          }`}>
+                            {achievement.date}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );
 }
-
-// Main Profile Component
-export default function Profile() {
-  const { user, setUser } = useAuthStore(); // Make sure your context supports setUser
-  const [editing, setEditing] = useState(false);
-  const { setState } = useAuthStore();
-
-  useEffect(() => {
-    setState(false)
-  }, [])
-
-  const handleUpdateUser = (updatedUser) => {
-    setUser(updatedUser); // Update context
-  };
-
-  return (
-    <div className="mx-auto mt-4 mb-4 p-6 bg-white shadow-2xl rounded-2xl max-w-3xl">
-      {/* Profile Header */}
-      <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
-        <img
-          src={user?.photo || "/default-avatar.png"}
-          alt="Profile"
-          className="w-32 h-32 rounded-full object-cover border-4 border-blue-500 shadow-md"
-        />
-
-        <div className="text-center sm:text-left">
-          <h1 className="text-2xl font-bold text-gray-800">
-            {user?.name || "Unnamed User"}
-          </h1>
-          {/* <p className="text-gray-500">@{user?.username || "username"}</p> */}
-          <p className="mt-2 text-sm text-gray-700 max-w-md">
-            {user?.bio || "Edit profile to add bio."}
-          </p>
-
-          <div className="mt-3 space-y-1 text-sm text-gray-600">
-            <div className="flex items-center gap-2">
-              <FaEnvelope className="text-blue-500" />
-              <span>{user?.email}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <FaMapMarkerAlt className="text-blue-500" />
-              <span>{user?.location}</span>
-            </div>
-            {/* <div className="flex items-center gap-2">
-              <FaCalendarAlt className="text-blue-500" />
-              <span>Joined {user?.joinedAt || "Recently"}</span>
-            </div> */}
-          </div>
-
-          {/* Edit Button */}
-          <button
-            onClick={() => setEditing(true)}
-            className="mt-4 inline-flex items-center gap-2 px-4 py-2 text-sm bg-blue-600 text-white rounded-full hover:bg-blue-700 transition"
-          >
-            <FiEdit3 />
-            Edit Profile
-          </button>
-        </div>
-      </div>
-
-      {user && <div className="flex items-center justify-between">
-        <div className="text-center text-indigo-500 m-2 border-2 w-full font-semibold rounded-full">Ideas</div>
-        <div className="text-center text-blue-600 m-2 border-2 w-full font-semibold rounded-full">
-          Pitch deck
-        </div>
-      </div>}
-
-      {/* Modal */}
-      {editing && (
-        <EditProfileModal
-          user={user}
-          onClose={() => setEditing(false)}
-          onUpdate={handleUpdateUser}
-        />
-      )}
-    </div>
-  );
-} []

@@ -5,22 +5,25 @@ import { persist, createJSONStorage } from "zustand/middleware";
 const useAuthStore = create(
   persist(
     (set) => ({
-      user: null,
+      user: {
+        id: null,
+        role: null,
+      },
       token: null,
       logIn: async (email, password) => {
         const res = await axios.post(`${import.meta.env.VITE_API_URL}/login`, {
           email,
           password,
         });
-        console.log("Login Response:", res);
-        set({ user: res.data.user, token: res.data.token });
+        console.log(res.data)
+
         return res.data;
       },
 
-      signUp: async (role, email, password) => {
+      signUp: async (name, role, email, password) => {
         const res = await axios.post(
           `${import.meta.env.VITE_API_URL}/register`,
-          { role, email, password }
+          { name, role, email, password }
         );
         return res.data.user;
       },
@@ -28,7 +31,7 @@ const useAuthStore = create(
       logOut: () => {
         set({ user: null, token: null });
       },
-
+      setToken: (token) => set({ token }),
       setUser: (user) => set({ user }),
       clearUser: () => set({ user: null }),
     }),

@@ -1,14 +1,19 @@
 import { useState } from "react";
 import styled from "styled-components";
 import useAuthStore from "../store/authStore";
+import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 const LoginForm = () => {
   const logIn = useAuthStore((s) => s.logIn); // Make sure you have this function
+  const setUser = useAuthStore((s) => s.setUser);
+  const setToken = useAuthStore((s) => s.setToken);
   const [loading, setLoading] = useState(false);
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
@@ -16,7 +21,10 @@ const LoginForm = () => {
     try {
       setLoading(true);
       const res = await logIn(email, password);
-      alert("Successfully logged in!");
+      const decoded = jwtDecode(res.token); // { id, role, iat, exp }
+      const user = { id: decoded.id, role: decoded.role };
+      setUser(user);
+      setToken(res.token);
       setCredentials({ email: "", password: "" });
     } catch (error) {
       alert(`Login failed: ${error.message}`);

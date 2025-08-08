@@ -26,17 +26,15 @@ import useAuthStore from "./store/authStore";
 function App() {
   const navigate = useNavigate();
   const user = useAuthStore((s) => s.user);
-  // useEffect(() => {
-  //   user && user.role === "user" ? navigate("/user") : navigate("/investor");
-  // }, []);
 
   useEffect(() => {
-    console.log(user);
-    user
-      ? user.role === "user"
-        ? navigate("/user")
-        : navigate("/investor")
-      : navigate("/");
+    if (!user) {
+      navigate("/");
+    } else if (user.role === "user") {
+      navigate(`/user/${user.id}`);
+    } else if (user.role === "investor") {
+      navigate(`/investor/${user.id}`);
+    }
   }, [user]);
 
   return (
@@ -47,8 +45,9 @@ function App() {
       <Route path="/adminreg" element={<AdminRegister />} />
       <Route path="/Adashboard" element={<ADashboard />} />
 
+      {/* Investor routes */}
       <Route
-        path="/investor"
+        path="/investor/:id"
         element={
           <ProtectedRoute allowedRoles={["investor"]}>
             <InDashboard />
@@ -61,8 +60,9 @@ function App() {
         <Route path="notifications" element={<InNotification />} />
       </Route>
 
+      {/* User routes */}
       <Route
-        path="/user"
+        path="/user/:id"
         element={
           <ProtectedRoute allowedRoles={["user"]}>
             <Dashboard />
@@ -79,4 +79,5 @@ function App() {
     </Routes>
   );
 }
+
 export default App;
