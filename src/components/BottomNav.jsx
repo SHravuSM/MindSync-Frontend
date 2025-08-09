@@ -16,7 +16,7 @@ const BottomNav = () => {
   return (
     <div
       className={`bottom-0 bg-transparent bg-none mb-1 fixed flex z-10 w-full items-center justify-center transition-transform duration-500 drop-shadow-xl ${
-        dark ? "text-black" : "text-white"
+        !dark ? "text-black" : "text-white"
       }`}
     >
       <form className="w-full h-full" action="#">

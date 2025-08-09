@@ -12,7 +12,7 @@ export const usePosts = (selectedTag = null) => {
         : `/user/posts/posts?page=${pageParam}&limit=10`; // This matches your original call
 
       const response = await api.get(url);
-      console.log(response.data.posts);
+      // console.log(response.data.posts);
       return response.data; // This will now contain { posts: [...], pagination: {...} }
     },
     getNextPageParam: (lastPage) => {

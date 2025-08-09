@@ -1,7 +1,11 @@
+import useThemeStore from "../store/themeStore";
 import DarkModeToggle from "./DarkModeToggle";
 const Navbar = () => {
+  const dark = useThemeStore(e=>e.dark);
   return (
-    <header className="bg-black flex items-center justify-between px-5 font-normal text-white text-3xl lg:text-4xl w-full shadow-md">
+    <header
+      className={`${dark ? 'bg-black text-white' : 'bg-white text-black'} flex items-center justify-between px-5 font-normal text-3xl lg:text-4xl w-full shadow-md`}
+    >
       <div></div>
       <h1 className="text-center p-3 pt-0">
         Mano

@@ -9,7 +9,7 @@ const Dashboard = () => {
   return (
     <div
       className={`flex relative ${
-        dark ? "bg-white" : "bg-black"
+        !dark ? "bg-white" : "bg-black"
       } flex-col h-screen w-full`}
     >
       <Navbar />
