@@ -15,7 +15,7 @@ const BottomNav = () => {
 
   return (
     <div
-      className={`bottom-0 bg-transparent bg-none mb-1 fixed flex z-10 w-full items-center justify-center transition-transform duration-500 drop-shadow-xl ${
+      className={`bottom-0 bg-transparent mb-1 fixed flex z-10 w-full items-center justify-center transition-transform duration-500 drop-shadow-xl ${
         !dark ? "text-black" : "text-white"
       }`}
     >
@@ -119,40 +119,6 @@ const BottomNav = () => {
               </label>
             </>
           )}
-
-          <input
-            name="rad"
-            id="choose4"
-            type="radio"
-            className="hidden peer/four"
-          />
-          <label htmlFor="choose4">
-            <Link
-              to={
-                user && user.role == "user"
-                  ? `/user/${user.id}/profile`
-                  : `/investor/${user.id}/profile`
-              }
-              className="inline-block peer-checked/four:text-blue-500"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                height={26}
-                width={26}
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-[40px] h-[40px] opacity-80 cursor-pointer px-1 py-1 transition-all duration-200 peer-checked/four:text-blue-500 hover:mt-[-4px] hover:opacity-100 hover:text-blue-500"
-              >
-                <path
-                  d="m17 21-5-4-5 4V3.889a.92.92 0 0 1 .244-.629.808.808 0 0 1 .59-.26h8.333a.81.81 0 0 1 .589.26.92.92 0 0 1 .244.63V21Z"
-                  strokeWidth={2}
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
-                  stroke="currentColor"
-                />
-              </svg>
-            </Link>
-          </label>
 
           <input
             name="rad"

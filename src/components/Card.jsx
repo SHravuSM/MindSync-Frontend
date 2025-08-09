@@ -2496,9 +2496,7 @@ const Card = ({ post }) => {
     <div
       ref={cardRef}
       className={`lg:max-w-xl rounded-xl relative max-w-lg lg:pt-1 w-full transition-all duration-700 ease-out ${
-        isHovering
-          ? "transform scale-[1.02] z-20"
-          : "hover:scale-[1.005] hover:z-10"
+        isHovering ? "transform scale-[1.01]" : "hover:scale-[1.002]"
       }`}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
@@ -2626,7 +2624,7 @@ const Card = ({ post }) => {
                   dark
                     ? "text-blue-400 hover:text-blue-300 bg-blue-900/20 hover:bg-blue-800/30 border border-blue-700/30 hover:border-blue-600/50"
                     : "text-blue-600 hover:text-blue-700 bg-blue-50/80 hover:bg-blue-100/80 border border-blue-200/60 hover:border-blue-300/80"
-                } backdrop-blur-sm shadow-lg hover:shadow-xl group relative overflow-hidden`}
+                } backdrop-blur-sm hover:shadow-xl group relative overflow-hidden`}
               >
                 {/* Shimmer effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000 ease-out" />
@@ -2656,12 +2654,7 @@ const Card = ({ post }) => {
               dark ? "text-gray-400" : "text-gray-500"
             }`}
           >
-            <div className="flex items-center gap-2">
-              <Clock className="w-3 h-3 transition-transform duration-500 group-hover:rotate-12" />
-              <span>
-                {Math.ceil(Post.content.split(" ").length / 200)} min read
-              </span>
-            </div>
+            <div className="flex items-center gap-2"></div>
             {isContentExpanded && (
               <span className="px-2 py-0.5 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 text-xs animate-in fade-in duration-500 flex items-center gap-1">
                 <Sparkles className="w-3 h-3" />
@@ -2794,24 +2787,6 @@ const Card = ({ post }) => {
 
           {/* IMPROVED COLLAB/WITHDRAW BUTTON - Clean and Professional */}
           <div className="flex items-center gap-0">
-            {/* <button
-              onClick={(e) => {
-                e.stopPropagation();
-                onNotImpressed(Post._id);
-              }}
-              className={`px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-300 hover:scale-105 active:scale-95 ${
-                isCollabbing ? "animate-pulse" : ""
-              } ${
-                Post.impressions?.includes(userId)
-                  ? "bg-blue-500 text-white border-blue-500 hover:bg-blue-600 hover:border-blue-600"
-                  : dark
-                  ? "text-white border-gray-600 hover:border-blue-400 hover:bg-blue-900/20"
-                  : "text-black border-gray-300 hover:border-blue-400 hover:bg-blue-50"
-              }`}
-            >
-              {Post.impressions?.includes(userId) ? "Withdraw" : "Collab"}
-            </button> */}
-
             <button
               onClick={(e) => onNotImpressed(Post._id)}
               className={`${
