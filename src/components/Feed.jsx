@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import Card from "./Card";
 import Loader from "./PostLoader";
 import useThemeStore from "../store/themeStore";
@@ -6,11 +6,13 @@ import InfiniteScroll from "./InfiniteScroll";
 import { usePosts } from "../hooks/usePosts";
 import { useTags } from "../hooks/useTags";
 import { useState } from "react";
+import { FullscreenContext } from "../context/FullscreenContext";
 
 const Feed = () => {
   const setYes = useThemeStore((s) => s.setYes);
   const [selectedTag, setSelectedTag] = useState(null);
-  
+  const store = useContext(FullscreenContext);
+
   // React Query hooks
   const {
     data: postsData,
@@ -19,16 +21,12 @@ const Feed = () => {
     isFetchingNextPage,
     isLoading: postsLoading,
     error: postsError,
-    refetch: refetchPosts
+    refetch: refetchPosts,
   } = usePosts(selectedTag);
 
-const {
-  data,
-  isLoading: tagsLoading,
-  error: tagsError
-} = useTags();
+  const { data, isLoading: tagsLoading, error: tagsError } = useTags();
 
-const Tags = data?.tags ?? [];
+  const Tags = data?.tags ?? [];
 
   useEffect(() => {
     setYes(false);
@@ -39,7 +37,7 @@ const Tags = data?.tags ?? [];
     setSelectedTag(isSameTag ? null : tag);
   };
 
-  const allPosts = postsData?.pages?.flatMap(page => page.posts) || [];
+  const allPosts = postsData?.pages?.flatMap((page) => page.posts) || [];
 
   if (postsLoading) {
     return (
@@ -56,7 +54,7 @@ const Tags = data?.tags ?? [];
       <div className="flex flex-col h-full items-center justify-center w-full p-4">
         <div className="text-center text-red-500">
           Error loading posts. Please try again.
-          <button 
+          <button
             onClick={() => refetchPosts()}
             className="ml-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
           >
@@ -76,7 +74,8 @@ const Tags = data?.tags ?? [];
         ) : tagsError ? (
           <div className="text-red-500">Error loading tags</div>
         ) : (
-          Tags != null && Tags.map((tag, index) => (
+          Tags != null &&
+          Tags.map((tag, index) => (
             <span
               key={index}
               onClick={() => handleTAG(tag)}

@@ -5,10 +5,11 @@ export default function Landing() {
     <div className="font-sans text-gray-800">
       {/* Hero Section */}
       <section className="bg-black flex flex-col items-center gap-2 text-white py-16 pb-5 px-6 text-center">
-        <h1 className="text-5xl font-normal mb-4">Mano<span className="text-blue-500">Sangam</span><span className="text-orange-400">.</span></h1>
-        <p className="text-xl mb-8 italic">
-          “The Gathering of Minds.”
-        </p>
+        <h1 className="text-5xl font-normal mb-4">
+          Mano<span className="text-blue-500">Sangam</span>
+          <span className="text-orange-400">.</span>
+        </h1>
+        <p className="text-xl mb-8 italic">“The Gathering of Minds.”</p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-2 py-6">
           {/* Register Button */}
@@ -26,16 +27,16 @@ export default function Landing() {
           >
             Register
           </Link>
-
         </div>
-
       </section>
 
       {/* About */}
       <section className="py-16 pt-5 pb-0 px-6 max-w-4xl mx-auto text-center">
         <h2 className="text-2xl mb-4 font-sans">What is ManoSangam ?</h2>
         <p className="text-lg text-gray-600">
-          Welcome to a confluence of thinkers, dreamers, and doers. Share your ideas, explore perspectives, and ignite innovation — Where minds converge, creativity flows, and innovation begins.
+          Welcome to a confluence of thinkers, dreamers, and doers. Share your
+          ideas, explore perspectives, and ignite innovation — Where minds
+          converge, creativity flows, and innovation begins.
         </p>
       </section>
 
@@ -63,7 +64,6 @@ export default function Landing() {
           </div>
         </div>
       </section>
-
       {/* Footer */}
       <footer className="bg-gray-900 text-white text-center py-4 px-4">
         <p>

@@ -15,7 +15,7 @@ const BottomNav = () => {
 
   return (
     <div
-      className={`bottom-0 bg-transparent mb-1 fixed flex z-10 w-full items-center justify-center transition-transform duration-500 drop-shadow-xl ${
+      className={`bottom-0 bg-transparent mb-1 fixed flex z-100 w-full items-center justify-center transition-transform duration-500 drop-shadow-xl ${
         !dark ? "text-black" : "text-white"
       }`}
     >

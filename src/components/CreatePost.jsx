@@ -360,18 +360,18 @@ import useThemeStore from "../store/themeStore";
 export default function CreatePost() {
   const { yes, setYes, dark } = useThemeStore();
   return (
-    <div className={`min-h-screen ${dark ? 'bg-gray-900' : 'bg-gray-50'}`}>
+    <div className={`min-h-screen ${dark ? 'bg-black' : 'bg-gray-50'}`}>
       {/* Toggle Switch */}
       <div className="flex justify-center pt-5 pb-4">
         <div className={`relative flex rounded-xl p-1 ${
-          dark ? 'bg-gray-800' : 'bg-white'
+          !dark ? 'bg-white' : 'bg-black'
         } shadow-lg`}>
           {/* Sliding Background */}
           <div
             className={`absolute top-1 left-1 h-[calc(100%-8px)] w-[calc(50%-4px)] rounded-lg transition-all duration-300 ease-out ${
               yes ? 'translate-x-full' : 'translate-x-0'
             } ${
-              dark ? 'bg-blue-600' : 'bg-blue-500'
+              dark ? 'bg-orange-600' : 'bg-blue-500'
             } shadow-md`}
           />
 
@@ -381,9 +381,9 @@ export default function CreatePost() {
             className={`relative z-10 px-6 py-3 text-sm font-medium rounded-lg transition-all duration-300 ${
               !yes
                 ? 'text-white'
-                : dark
-                  ? 'text-gray-300 hover:text-white'
-                  : 'text-gray-600 hover:text-gray-900'
+                : !dark
+                  ? 'text-black '
+                  : 'text-white '
             }`}
           >
             <span className="flex items-center space-x-2">
@@ -397,9 +397,9 @@ export default function CreatePost() {
             className={`relative z-10 px-6 py-3 text-sm font-medium rounded-lg transition-all duration-300 ${
               yes
                 ? 'text-white'
-                : dark
-                  ? 'text-gray-300 hover:text-white'
-                  : 'text-gray-600 hover:text-gray-900'
+                : !dark
+                  ? 'text-black '
+                  : 'text-white '
             }`}
           >
             <span className="flex items-center space-x-2">
