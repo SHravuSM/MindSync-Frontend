@@ -105,7 +105,7 @@ const Feed = () => {
             loader={<Loader />}
           >
             {allPosts.map((post) => (
-              <Card key={post._id} post={post} />
+              <Card  key={post._id} post={post} />
             ))}
           </InfiniteScroll>
         </div>

@@ -1346,7 +1346,7 @@ const Post = () => {
   const [draftSaved, setDraftSaved] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  const maxChars = 500;
+  const maxChars = 1000;
   const maxTitleChars = 100;
   const popularTags = ["tech", "startup", "innovation", "business", "design"];
   const authorId = user?.id;

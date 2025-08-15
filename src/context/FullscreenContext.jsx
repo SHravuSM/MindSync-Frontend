@@ -27,10 +27,13 @@ export const FullscreenProvider = ({ children }) => {
 
   const enterFullscreen = (element = document.documentElement) => {
     if (element.requestFullscreen) {
+      console.log('hi1')
       element.requestFullscreen();
     } else if (element.webkitRequestFullscreen) {
+      console.log('hi2')
       element.webkitRequestFullscreen();
     } else if (element.msRequestFullscreen) {
+      console.log('hi3')
       element.msRequestFullscreen();
     }
   };

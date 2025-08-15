@@ -30,9 +30,12 @@ function App() {
   useEffect(() => {
     if (!user) {
       navigate("/");
+      console.log(user);
     } else if (user.role === "user") {
+      console.log(user);
       navigate(`/user/${user.id}`);
     } else if (user.role === "investor") {
+      console.log(user);
       navigate(`/investor/${user.id}`);
     }
   }, [user]);
