@@ -29,14 +29,11 @@ function App() {
 
   useEffect(() => {
     if (!user) {
+      console.log(user);
       navigate("/");
+    } else {
       console.log(user);
-    } else if (user.role === "user") {
-      console.log(user);
-      navigate(`/user/${user.id}`);
-    } else if (user.role === "investor") {
-      console.log(user);
-      navigate(`/investor/${user.id}`);
+      navigate(`/${user.id}/feed`);
     }
   }, [user]);
 
@@ -48,32 +45,17 @@ function App() {
       <Route path="/adminreg" element={<AdminRegister />} />
       <Route path="/Adashboard" element={<ADashboard />} />
 
-      {/* Investor routes */}
-      <Route
-        path="/investor/:id"
-        element={
-          <ProtectedRoute allowedRoles={["investor"]}>
-            <InDashboard />
-          </ProtectedRoute>
-        }
-      >
-        <Route index element={<InFeed />} />
-        <Route path="profile" element={<InProfile />} />
-        <Route path="settings" element={<Settings />} />
-        <Route path="notifications" element={<InNotification />} />
-      </Route>
-
       {/* User routes */}
       <Route
-        path="/user/:id"
+        path="/:id"
         element={
-          <ProtectedRoute allowedRoles={["user"]}>
+          <ProtectedRoute allowedRoles={["user","investor"]}>
             <Dashboard />
           </ProtectedRoute>
         }
       >
-        <Route index element={<Feed />} />
-        <Route path="profile" element={<Profile />} />
+        <Route index element={<Profile />} />
+        <Route path="feed"  element={<Feed />} />
         <Route path="pitch" element={<Pitch />} />
         <Route path="createpost" element={<CreatePost />} />
         <Route path="settings" element={<Settings />} />

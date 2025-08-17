@@ -24,7 +24,7 @@ const InfiniteScroll = ({
     <>
       {children}
       {hasNextPage && (
-        <div ref={ref} className="w-full flex justify-center py-4">
+        <div ref={ref} className="w-full flex justify-center py-0">
           {isFetchingNextPage ? (
             loader || <div className="text-gray-500">Loading more posts...</div>
           ) : null}

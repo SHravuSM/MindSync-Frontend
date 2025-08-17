@@ -300,7 +300,7 @@ export default function DarkModeToggle() {
   return (
     <motion.button
       onClick={() => setDark()}
-      className={`w-8 h-8 rounded-full flex items-center justify-center focus:outline-none focus-visible:ring-2 border transition-all duration-300 ${
+      className={`lg:w-8 w-7 h-7 lg:h-8 rounded-full flex items-center justify-center focus:outline-none focus-visible:ring-2 border transition-all duration-300 ${
         dark
           ? "bg-gray-900 border-gray-700 focus-visible:ring-blue-500/50 shadow-md shadow-blue-500/20"
           : "bg-white border-gray-200 focus-visible:ring-orange-500/50 shadow-md shadow-orange-500/20"

@@ -5,7 +5,7 @@ import useThemeStore from "../store/themeStore";
 export default function CreatePost() {
   const { yes, setYes, dark } = useThemeStore();
   return (
-    <div className={`min-h-screen ${dark ? 'bg-black' : 'bg-gray-50'}`}>
+    <div className={`min-h-screen w-screen ${dark ? 'bg-black' : 'bg-gray-50'}`}>
       {/* Toggle Switch */}
       <div className="flex justify-center pt-5 pb-4">
         <div className={`relative flex rounded-xl p-1 ${

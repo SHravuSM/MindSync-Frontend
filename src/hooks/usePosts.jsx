@@ -6,14 +6,12 @@ export const usePosts = (selectedTag = null) => {
   return useInfiniteQuery({
     queryKey: ["posts", selectedTag],
     queryFn: async ({ pageParam = 1 }) => {
-      // Match your original frontend API calls exactly
       const url = selectedTag
-        ? `/user/tags/${selectedTag}?page=${pageParam}&limit=10`
-        : `/user/posts/posts?page=${pageParam}&limit=10`; // This matches your original call
+        ? `/user/posts/tags/${selectedTag}?page=${pageParam}&limit=10`
+        : `/user/posts/posts?page=${pageParam}&limit=10`;
 
       const response = await api.get(url);
-      // console.log(response.data.posts);
-      return response.data; // This will now contain { posts: [...], pagination: {...} }
+      return response.data;
     },
     getNextPageParam: (lastPage) => {
       return lastPage.pagination.hasMore

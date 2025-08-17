@@ -513,7 +513,7 @@ const BottomNav = () => {
 
   return (
     <div
-      className={`bottom-0 fixed flex z-100 w-full items-center justify-center mb-1 transition-transform duration-500 drop-shadow-xl ${
+      className={`bottom-0 fixed flex z-100 w-full items-center justify-center transition-transform duration-500 drop-shadow-xl ${
         !dark ? "text-black" : "text-white"
       }`}
     >
@@ -532,7 +532,7 @@ const BottomNav = () => {
             className="transition-all duration-200 hover:scale-105 active:scale-95"
           >
             <Link
-              to="."
+              to={`/${user.id}/feed`}
               className="inline-block transition-colors duration-200 hover:opacity-80"
             >
               <House
@@ -543,16 +543,7 @@ const BottomNav = () => {
           </label>
 
           {/* Search */}
-          <input
-            name="rad"
-            id="choose2"
-            type="radio"
-            className="hidden peer/two"
-          />
-          <label
-            htmlFor="choose2"
-            className="transition-all duration-200 hover:scale-105 active:scale-95"
-          >
+          <div className="lg:hidden">
             <Link
               to="profile"
               className="inline-block transition-colors duration-200 hover:opacity-80"
@@ -562,7 +553,7 @@ const BottomNav = () => {
                 className="transition-transform duration-200 hover:rotate-12"
               />
             </Link>
-          </label>
+          </div>
 
           {/* Create post */}
           {user?.role === "user" && (
@@ -605,11 +596,7 @@ const BottomNav = () => {
             className="transition-all duration-200 hover:scale-105 active:scale-95"
           >
             <Link
-              to={
-                user && user.role === "user"
-                  ? `/user/${user.id}/profile`
-                  : `/investor/${user.id}/profile`
-              }
+              to={`/${user.id}`}
               className="inline-block transition-colors duration-200 hover:opacity-80"
             >
               <CircleUser
