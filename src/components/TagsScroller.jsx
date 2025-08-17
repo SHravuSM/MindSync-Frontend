@@ -1,20 +1,21 @@
 import React, { useRef, useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, Loader2, AlertCircle } from "lucide-react";
 import useThemeStore from "../store/themeStore";
+import { memo } from "react";
 
 const TagsScroller = ({
-  tags = [],
+  tags,
   selectedTag,
   onTagSelect,
-  isLoading = false,
-  error = null,
-  allowDeselect = true,
+  isLoading,
+  error,
+  allowDeselect,
 }) => {
   const scrollContainerRef = useRef(null);
   const [showLeftButton, setShowLeftButton] = useState(false);
-  const dark = useThemeStore(s=>s.dark);
   const [showRightButton, setShowRightButton] = useState(false);
   const [hoverZone, setHoverZone] = useState(null); // "left" | "right" | null
+  const dark = useThemeStore((s) => s.dark);
 
   const checkScrollButtons = () => {
     if (scrollContainerRef.current) {
@@ -53,7 +54,7 @@ const TagsScroller = ({
 
   return (
     <div
-      className="relative lg:w-xl"
+      className="relative w-full max-w-4xl"
       onMouseMove={(e) => {
         const { clientX, currentTarget } = e;
         const { left, width } = currentTarget.getBoundingClientRect();
@@ -72,7 +73,12 @@ const TagsScroller = ({
       {showLeftButton && (
         <button
           onClick={scrollLeft}
-          className={`absolute left-2 top-1/2 -translate-y-1/2 shadow-sm p-1.5 text-gray-600 hover:bg-gray-100 transition
+          className={`absolute left-2 top-1/2 -translate-y-1/2 z-10 rounded-md shadow-md p-1.5 transition-all duration-200
+            ${
+              dark
+                ? "bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-gray-100 border border-gray-600"
+                : "bg-white text-gray-600 hover:bg-gray-100 hover:text-gray-800 border border-gray-200"
+            }
             ${
               hoverZone === "left"
                 ? "opacity-100"
@@ -88,7 +94,12 @@ const TagsScroller = ({
       {showRightButton && (
         <button
           onClick={scrollRight}
-          className={`absolute right-2 top-1/2 -translate-y-1/2 shadow-sm p-1.5 text-gray-600 hover:bg-gray-100 transition
+          className={`absolute right-2 top-1/2 -translate-y-1/2 z-10 rounded-md shadow-md p-1.5 transition-all duration-200
+            ${
+              dark
+                ? "bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-gray-100 border border-gray-600"
+                : "bg-white text-gray-600 hover:bg-gray-100 hover:text-gray-800 border border-gray-200"
+            }
             ${
               hoverZone === "right"
                 ? "opacity-100"
@@ -106,17 +117,28 @@ const TagsScroller = ({
         className="flex gap-2 py-0 overflow-x-auto scroll-smooth scrollbar-hide"
       >
         {isLoading ? (
-          <div className="flex items-center gap-2 text-gray-500 px-2">
+          <div
+            className={`flex items-center gap-2 px-2
+            ${dark ? "text-gray-400" : "text-gray-500"}`}
+          >
             <Loader2 size={16} className="animate-spin" />
             <span className="text-sm">Loading...</span>
           </div>
         ) : error ? (
-          <div className="flex items-center gap-2 text-red-500 px-2">
+          <div
+            className={`flex items-center gap-2 px-2
+            ${dark ? "text-red-400" : "text-red-500"}`}
+          >
             <AlertCircle size={16} />
             <span className="text-sm">Failed to load</span>
           </div>
         ) : tags.length === 0 ? (
-          <div className="text-gray-400 text-sm px-2">No tags</div>
+          <div
+            className={`text-sm px-2
+            ${dark ? "text-gray-500" : "text-gray-400"}`}
+          >
+            No tags
+          </div>
         ) : (
           tags.map((tag, index) => {
             const isSelected = selectedTag === tag;
@@ -124,11 +146,15 @@ const TagsScroller = ({
               <button
                 key={`${tag}-${index}`}
                 onClick={() => handleTagClick(tag)}
-                className={`shrink-0 px-4 py-1.5 rounded-md text-sm font-medium border transition
+                className={`shrink-0 px-4 py-1.5 rounded-md text-sm font-medium border transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]
                   ${
                     isSelected
-                      ? "bg-blue-300 hover:bg-blue-300 border-gray-300 text-gray-900"
-                      : "bg-white border-gray-300 text-gray-700"
+                      ? dark
+                        ? "bg-blue-600 hover:bg-blue-500 border-blue-500 text-white shadow-md"
+                        : "bg-blue-500 hover:bg-blue-400 border-blue-400 text-white shadow-md"
+                      : dark
+                      ? "bg-gray-800 border-gray-600 text-gray-200 hover:bg-gray-700 hover:border-gray-500 hover:text-gray-100"
+                      : "bg-white border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 hover:text-gray-900"
                   }`}
               >
                 #{tag}
@@ -141,4 +167,4 @@ const TagsScroller = ({
   );
 };
 
-export default TagsScroller;
+export default memo(TagsScroller);

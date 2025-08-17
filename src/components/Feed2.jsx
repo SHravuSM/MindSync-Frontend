@@ -12,7 +12,6 @@ import SortDropdownButton from "./SortDropdownButton";
 const Feed2 = () => {
   const setYes = useThemeStore((s) => s.setYes);
   const [selectedTag, setSelectedTag] = useState(null);
-  const dark = useThemeStore((s) => s.dark);
 
   // React Query hooks
   const {
@@ -25,20 +24,14 @@ const Feed2 = () => {
     refetch: refetchPosts,
   } = usePosts(selectedTag);
 
-  const { data, isLoading: tagsLoading, error: tagsError } = useTags();
-
-  const Tags = data?.tags ?? [];
+  console.log(postsData);
+  const allPosts = postsData?.pages?.flatMap((page) => page.posts) || [];
 
   useEffect(() => {
     setYes(false);
   }, [setYes]);
 
-  const handleTAG = (tag) => {
-    const isSameTag = selectedTag === tag;
-    setSelectedTag(isSameTag ? null : tag);
-  };
-
-  const allPosts = postsData?.pages?.flatMap((page) => page.posts) || [];
+  const { data, isLoading: tagsLoading, error: tagsError } = useTags();
 
   if (postsLoading) {
     return (
@@ -97,7 +90,7 @@ const Feed2 = () => {
           No posts to show. Be the first to share something!
         </div>
       ) : (
-        <div className="h-full p-1 lg:w-xl scrollbar-hidden flex flex-col overflow-y-auto items-center justify-start space-y-1">
+        <div className="lg:max-h-11/12 lg:min-h-10/12 p-0 pt-1 lg:w-xl scrollbar-hidden flex flex-col overflow-y-auto items-center justify-start space-y-1">
           <InfiniteScroll
             hasNextPage={hasNextPage}
             fetchNextPage={fetchNextPage}

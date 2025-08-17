@@ -43,7 +43,7 @@ const LSidebar = () => {
   ];
 
   return (
-    <div role="region" aria-label="Side Bar" className="w-72 hidden lg:block space-y-2">
+    <div role="region" aria-label="Side Bar" className="w-56 hidden lg:block space-y-2">
       
       {/* Profile Card */}
       <div className="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200">

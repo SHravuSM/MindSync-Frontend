@@ -59,7 +59,7 @@ function SortDropdownButton({
   };
 
   return (
-    <div className="relative" ref={dropdownRef}>
+    <div className="relative my-2" ref={dropdownRef}>
       <button
         aria-expanded={isExpanded}
         aria-label="Sort order dropdown button"

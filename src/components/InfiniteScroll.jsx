@@ -1,13 +1,11 @@
-// components/InfiniteScroll.js
 import { useEffect, useRef } from 'react';
-import { useInView } from 'react-intersection-observer';
-
-const InfiniteScroll = ({ 
-  hasNextPage, 
-  fetchNextPage, 
-  isFetchingNextPage, 
+import { useInView } from "react-intersection-observer";
+const InfiniteScroll = ({
+  hasNextPage,
+  fetchNextPage,
+  isFetchingNextPage,
   children,
-  loader = null 
+  loader = null,
 }) => {
   const { ref, inView } = useInView({
     threshold: 0.1,
@@ -24,10 +22,12 @@ const InfiniteScroll = ({
     <>
       {children}
       {hasNextPage && (
-        <div ref={ref} className="w-full flex justify-center py-0">
+        <div ref={ref} className="w-full flex justify-center py-4">
           {isFetchingNextPage ? (
             loader || <div className="text-gray-500">Loading more posts...</div>
-          ) : null}
+          ) : (
+            <div className="text-gray-400">Scroll to load more...</div>
+          )}
         </div>
       )}
     </>
