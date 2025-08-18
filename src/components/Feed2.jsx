@@ -35,7 +35,7 @@ const Feed2 = () => {
 
   if (postsLoading) {
     return (
-      <div className="flex flex-col h-full items-center justify-start w-full p-0">
+      <div className="flex flex-col lg:w-xl h-full items-center justify-start w-full p-0">
         <div className="absolute left-1/2 top-52 text-center text-gray-500">
           <Loader />
         </div>
@@ -45,7 +45,7 @@ const Feed2 = () => {
 
   if (postsError) {
     return (
-      <div className="flex flex-col h-full items-center justify-center w-full p-4">
+      <div className="flex flex-col lg:w-xl h-full items-center justify-center w-full p-4">
         <div className="text-center text-red-500">
           Error loading posts. Please try again.
           <button
@@ -90,7 +90,16 @@ const Feed2 = () => {
           No posts to show. Be the first to share something!
         </div>
       ) : (
-        <div className="lg:max-h-11/12 lg:min-h-10/12 p-0 pt-1 lg:w-xl scrollbar-hidden flex flex-col overflow-y-auto items-center justify-start space-y-1">
+        // <div className="lg:max-h-[90%] lg:min-h-[85%] lg:w-xl scrollbar-hidden flex flex-col overflow-y-auto items-center justify-start space-y-1">
+        <div
+          className="lg:max-h-[90%] lg:min-h-[85%] lg:w-xl scrollbar-hidden flex flex-col overflow-y-auto items-center justify-start space-y-1"
+          style={{
+            maskImage:
+              "linear-gradient(to bottom, black 97%, transparent 100%)",
+            WebkitMaskImage:
+              "linear-gradient(to bottom, black 97%, transparent 100%)",
+          }}
+        >
           <InfiniteScroll
             hasNextPage={hasNextPage}
             fetchNextPage={fetchNextPage}
