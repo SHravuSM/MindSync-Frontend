@@ -20,7 +20,7 @@ import {
   Blinds,
   BlindsIcon,
 } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Card = ({ post }) => {
   const user = useAuthStore((s) => s.user);
@@ -40,8 +40,6 @@ const Card = ({ post }) => {
   const [isLiking, setIsLiking] = useState(false);
   const [isCommenting, setIsCommenting] = useState(false);
   const [isCollabbing, setIsCollabbing] = useState(false);
-
-  const navigate = useNavigate();
 
   // Refs for smooth animations
   const contentRef = useRef(null);
@@ -268,9 +266,6 @@ const Card = ({ post }) => {
       onMouseLeave={() => setIsHovering(false)}
     >
       <div
-        onClick={(e) => {
-          navigate(`/${userId}/feed/${post._id}`);
-        }}
         onDoubleClick={(e) => {
           e.stopPropagation();
           handleLike(Post._id);
@@ -351,7 +346,7 @@ const Card = ({ post }) => {
         </div>
 
         {/* FIXED Content Section - Removed low opacity */}
-        <div className="relative overflow-hidden">
+        <Link to={`${post._id}`} className="relative overflow-hidden">
           <div
             ref={contentRef}
             className={`transition-all duration-700 ease-out overflow-hidden ${
@@ -377,7 +372,7 @@ const Card = ({ post }) => {
               }`}
             />
           )}
-        </div>
+        </Link>
 
         {/* ELEGANT: Tags and Compact Read More Button on the same horizontal row */}
         {((Post.tags && Post.tags.length > 0) || showExpandButton) && (

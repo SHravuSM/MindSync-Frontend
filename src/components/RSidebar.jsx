@@ -2697,7 +2697,7 @@ const SearchBar = () => {
         ) : (
           <div className="p-4 text-center">
             <p className={dark ? "text-gray-400" : "text-gray-500"}>
-              No startups found
+              No pitches found
             </p>
           </div>
         )}
@@ -2919,7 +2919,7 @@ const SearchBar = () => {
                   >
                     {Icon && <Icon size={16} />}
                     <span>{category.label}</span>
-                    {category.count > 0 && (
+                    {/* {category.count > 0 && (
                       <span
                         className={`px-2 py-0.5 rounded-full text-xs ${
                           dark
@@ -2929,7 +2929,7 @@ const SearchBar = () => {
                       >
                         {formatCount(category.count)}
                       </span>
-                    )}
+                    )} */}
                   </button>
                 );
               })}

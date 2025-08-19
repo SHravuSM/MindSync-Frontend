@@ -2,6 +2,6 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 export default function FeedPlus() {
-  const { id } = useParams();
-  return <div className="bg-red-200">{id}</div>;
+  const { pos } = useParams();
+  return <div className="lg:w-xl w-full space-y-1">{pos}</div>;
 }
