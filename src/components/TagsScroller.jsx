@@ -54,7 +54,7 @@ const TagsScroller = ({
 
   return (
     <div
-      className="relative w-full max-w-4xl"
+      className="relative pt-0.5 w-full max-w-4xl"
       onMouseMove={(e) => {
         const { clientX, currentTarget } = e;
         const { left, width } = currentTarget.getBoundingClientRect();

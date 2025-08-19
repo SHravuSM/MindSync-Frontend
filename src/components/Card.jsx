@@ -260,14 +260,14 @@ const Card = ({ post }) => {
   return (
     <div
       ref={cardRef}
-      className={`lg:w-xl w-full relative transition-all duration-700 ease-out`}
+      className={`lg:w-xl w-full relative transition-all duration-700 lg:px-0 px-1 ease-out`}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
       <div
         className={`relative ${
           !dark ? "bg-white/95 text-black" : "bg-black/95 text-white"
-        } backdrop-blur-xl p-2 lg:pl-3 pt-0 pb-3 rounded-sm border-[0.1px] border-gray-200 transition-all duration-700 ease-out cursor-pointer overflow-hidden group`}
+        } backdrop-blur-xl p-2 lg:pl-3 pt-0 pb-3 rounded-sm border-[0.1px] border-gray-800 transition-all duration-700 ease-out cursor-pointer overflow-hidden group`}
         draggable="true"
       >
         {/* Elegant background gradient on hover */}
@@ -440,10 +440,10 @@ const Card = ({ post }) => {
         {/* Enhanced action buttons */}
         <div className="flex items-center justify-between text-sm z-10 relative">
           {/* Left Section - Comments and Like buttons */}
-          <div className="flex gap-5 text-sm">
+          <div className="flex lg:gap-6 gap-4 text-sm">
             {/* Comments button */}
             <button
-              className={`flex items-center gap-2 h-8 cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95 group ${
+              className={`flex items-center gap-1 h-8 cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95 group ${
                 !dark ? "text-gray-700" : "text-gray-300"
               } ${open ? "text-blue-500 scale-110" : "hover:text-blue-500"}`}
               onClick={(e) => {
@@ -469,7 +469,7 @@ const Card = ({ post }) => {
                 handleLike(Post._id);
               }}
               disabled={isLiking}
-              className={`flex focus:outline-none items-center gap-2 h-8 cursor-pointer transition-all duration-300 active:scale-95 group relative disabled:opacity-50 ${
+              className={`flex items-center gap-1 h-8 cursor-pointer disabled:opacity-50 ${
                 !dark ? "text-gray-700" : "text-gray-300"
               } ${
                 Post.likes?.includes(userId)
@@ -478,34 +478,29 @@ const Card = ({ post }) => {
               }`}
               aria-label="Toggle Like"
             >
-              <div className="relative">
-                <svg
-                  className={`w-5 h-5 transition-all duration-500 ${
-                    isLiking ? "animate-pulse" : ""
-                  }`}
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill={Post.likes?.includes(userId) ? "red" : "none"}
-                  stroke={
-                    Post.likes?.includes(userId)
-                      ? "red"
-                      : !dark
-                      ? "#374151"
-                      : "#D1D5DB"
-                  }
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" />
-                </svg>
-              </div>
-              <span className="font-medium text-sm">
-                {Post.likes?.length || 0}
-              </span>
+              <svg
+                className="w-5 h-5"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill={Post.likes?.includes(userId) ? "red" : "none"}
+                stroke={
+                  Post.likes?.includes(userId)
+                    ? "red"
+                    : !dark
+                    ? "#374151"
+                    : "#D1D5DB"
+                }
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" />
+              </svg>
+              <span className="text-sm">{Post.likes?.length || 0}</span>
             </button>
+
             {/* Instagram Save Icon */}
             <button
               onClick={(e) => {
@@ -513,7 +508,7 @@ const Card = ({ post }) => {
                 // Add your save functionality here
               }}
               aria-label="Save post"
-              className={`inline-flex ml-1 items-center justify-center h-8 text-gray-700 hover:text-gray-900 transition-all duration-300 hover:scale-110 active:scale-95 ${
+              className={`inline-flex items-center justify-center h-8 text-gray-700 hover:text-gray-900 transition-all duration-300 hover:scale-110 active:scale-95 ${
                 !dark ? "text-gray-700" : "text-gray-300"
               }`}
             >
@@ -558,7 +553,7 @@ const Card = ({ post }) => {
 
             {/* Enhanced avatar stack */}
             <div className="flex items-center -space-x-2">
-              {Array(Post.impressions.length < 4 ? Post.impressions.length : 3)
+              {Array(Post.impressions.length < 4 ? Post.impressions.length : 2)
                 .fill(0)
                 .map((e, idx) => (
                   <div

@@ -95,9 +95,9 @@ const Feed2 = () => {
           className="lg:max-h-[90%] lg:min-h-[85%] lg:w-xl scrollbar-hidden flex flex-col overflow-y-auto items-center justify-start space-y-1"
           style={{
             maskImage:
-              "linear-gradient(to bottom, black 97%, transparent 100%)",
+              "linear-gradient(to bottom, black 96%, transparent 100%)",
             WebkitMaskImage:
-              "linear-gradient(to bottom, black 97%, transparent 100%)",
+              "linear-gradient(to bottom, black 96%, transparent 100%)",
           }}
         >
           <InfiniteScroll
