@@ -22,6 +22,7 @@ import InProfile from "./pages/investor/InProfile";
 import InNotification from "./pages/investor/InNotification";
 import ProtectedRoute from "./utils/ProtectedRoute";
 import useAuthStore from "./store/authStore";
+import FeedPlus from "./pages/user/FeedPlus";
 
 function App() {
   const navigate = useNavigate();
@@ -49,13 +50,14 @@ function App() {
       <Route
         path="/:id"
         element={
-          <ProtectedRoute allowedRoles={["user","investor"]}>
+          <ProtectedRoute allowedRoles={["user", "investor"]}>
             <Dashboard />
           </ProtectedRoute>
         }
       >
         <Route index element={<Profile />} />
-        <Route path="feed"  element={<Feed />} />
+        <Route path="feed" element={<Feed />} />
+        <Route path="feed/:id" element={<FeedPlus />} />
         <Route path="pitch" element={<Pitch />} />
         <Route path="createpost" element={<CreatePost />} />
         <Route path="settings" element={<Settings />} />

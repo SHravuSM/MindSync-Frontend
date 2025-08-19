@@ -20,6 +20,7 @@ import {
   Blinds,
   BlindsIcon,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Card = ({ post }) => {
   const user = useAuthStore((s) => s.user);
@@ -39,6 +40,8 @@ const Card = ({ post }) => {
   const [isLiking, setIsLiking] = useState(false);
   const [isCommenting, setIsCommenting] = useState(false);
   const [isCollabbing, setIsCollabbing] = useState(false);
+
+  const navigate = useNavigate();
 
   // Refs for smooth animations
   const contentRef = useRef(null);
@@ -265,8 +268,17 @@ const Card = ({ post }) => {
       onMouseLeave={() => setIsHovering(false)}
     >
       <div
+        onClick={(e) => {
+          navigate(`/${userId}/feed/${post._id}`);
+        }}
+        onDoubleClick={(e) => {
+          e.stopPropagation();
+          handleLike(Post._id);
+        }}
         className={`relative ${
-          !dark ? "bg-white/95 text-black lg:border-gray-100 border-gray-300" : "bg-black/95 text-white border-gray-800"
+          !dark
+            ? "bg-white/95 text-black lg:border-gray-100 border-gray-300"
+            : "bg-black/95 text-white border-gray-800"
         } backdrop-blur-xl p-2 lg:pl-3 pt-0 pb-3 rounded-sm border-[0.1px] transition-all duration-700 ease-out cursor-pointer overflow-hidden group`}
         draggable="true"
       >
@@ -440,10 +452,10 @@ const Card = ({ post }) => {
         {/* Enhanced action buttons */}
         <div className="flex items-center justify-between text-sm z-10 relative">
           {/* Left Section - Comments and Like buttons */}
-          <div className="flex lg:gap-6 gap-4 text-sm">
+          <div className="flex lg:gap-6 gap-4 items-center text-sm">
             {/* Comments button */}
             <button
-              className={`flex items-center gap-1 h-8 cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95 group ${
+              className={`flex items-center gap-1 cursor-pointer transition-all duration-300 hover:scale-110 group ${
                 !dark ? "text-gray-700" : "text-gray-300"
               } ${open ? "text-blue-500 scale-110" : "hover:text-blue-500"}`}
               onClick={(e) => {
@@ -469,7 +481,7 @@ const Card = ({ post }) => {
                 handleLike(Post._id);
               }}
               disabled={isLiking}
-              className={`flex items-center gap-1 h-8 cursor-pointer ${
+              className={`flex items-center gap-1 cursor-pointer ${
                 !dark ? "text-gray-700" : "text-gray-300"
               } ${
                 Post.likes?.includes(userId)
@@ -508,8 +520,10 @@ const Card = ({ post }) => {
                 // Add your save functionality here
               }}
               aria-label="Save post"
-              className={`inline-flex items-center justify-center h-8 text-gray-700 hover:text-gray-900 transition-all duration-300 hover:scale-110 active:scale-95 ${
-                !dark ? "text-gray-700" : "text-gray-300"
+              className={`inline-flex items-center justify-center transition-all duration-300 hover:scale-110 ${
+                !dark
+                  ? "text-gray-700 hover:text-gray-900"
+                  : "text-white hover:text-white/50"
               }`}
             >
               <svg

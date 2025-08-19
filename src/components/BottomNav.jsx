@@ -513,12 +513,12 @@ const BottomNav = () => {
 
   return (
     <div
-      className={`bottom-0 fixed flex z-100 w-full items-center justify-center transition-transform duration-500 drop-shadow-xl ${
+      className={`lg:bottom-1 bottom-1.5 fixed flex z-100 w-full items-center justify-center ${
         !dark ? "text-black" : "text-white"
-      }`}
+      } `}
     >
       <form className="w-full relative h-full">
-        <ul className="flex items-center w-full justify-center bg-transparent shadow-lg overflow-hidden lg:space-x-12 space-x-8">
+        <ul className="flex items-center w-full justify-center bg-transparent overflow-hidden lg:space-x-14 space-x-8">
           {/* Home */}
           <input
             defaultChecked
