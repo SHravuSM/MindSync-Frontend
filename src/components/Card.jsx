@@ -266,8 +266,8 @@ const Card = ({ post }) => {
     >
       <div
         className={`relative ${
-          !dark ? "bg-white/95 text-black" : "bg-black/95 text-white"
-        } backdrop-blur-xl p-2 lg:pl-3 pt-0 pb-3 rounded-sm border-[0.1px] border-gray-800 transition-all duration-700 ease-out cursor-pointer overflow-hidden group`}
+          !dark ? "bg-white/95 text-black border-gray-100" : "bg-black/95 text-white border-gray-800"
+        } backdrop-blur-xl p-2 lg:pl-3 pt-0 pb-3 rounded-sm border-[0.1px] transition-all duration-700 ease-out cursor-pointer overflow-hidden group`}
         draggable="true"
       >
         {/* Elegant background gradient on hover */}

@@ -2731,7 +2731,7 @@ const SearchBar = () => {
                       dark ? "text-blue-400" : "text-blue-600"
                     }`}
                   >
-                    #{tagData.tag || "unknown"}
+                    {tagData.tag || "unknown"}
                   </span>
                 </div>
                 <div

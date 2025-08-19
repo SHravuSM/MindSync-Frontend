@@ -54,7 +54,7 @@ const TagsScroller = ({
 
   return (
     <div
-      className="relative pt-0.5 w-full max-w-4xl"
+      className="relative pt-0.5 lg:p-0.5 w-full max-w-4xl"
       onMouseMove={(e) => {
         const { clientX, currentTarget } = e;
         const { left, width } = currentTarget.getBoundingClientRect();
@@ -153,7 +153,7 @@ const TagsScroller = ({
                         ? "bg-blue-600 hover:bg-blue-500 border-blue-500 text-white shadow-md"
                         : "bg-blue-500 hover:bg-blue-400 border-blue-400 text-white shadow-md"
                       : dark
-                      ? "bg-gray-800 border-gray-600 text-gray-200 hover:bg-gray-700 hover:border-gray-500 hover:text-gray-100"
+                      ? "border-gray-600 text-gray-200 bg-blue-900/20 hover:bg-blue-800/30 hover:border-gray-500 hover:text-gray-100"
                       : "bg-white border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 hover:text-gray-900"
                   }`}
               >
