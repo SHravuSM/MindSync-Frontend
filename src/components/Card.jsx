@@ -266,7 +266,7 @@ const Card = ({ post }) => {
     >
       <div
         className={`relative ${
-          !dark ? "bg-white/95 text-black border-gray-100" : "bg-black/95 text-white border-gray-800"
+          !dark ? "bg-white/95 text-black lg:border-gray-100 border-gray-300" : "bg-black/95 text-white border-gray-800"
         } backdrop-blur-xl p-2 lg:pl-3 pt-0 pb-3 rounded-sm border-[0.1px] transition-all duration-700 ease-out cursor-pointer overflow-hidden group`}
         draggable="true"
       >
@@ -469,7 +469,7 @@ const Card = ({ post }) => {
                 handleLike(Post._id);
               }}
               disabled={isLiking}
-              className={`flex items-center gap-1 h-8 cursor-pointer disabled:opacity-50 ${
+              className={`flex items-center gap-1 h-8 cursor-pointer ${
                 !dark ? "text-gray-700" : "text-gray-300"
               } ${
                 Post.likes?.includes(userId)

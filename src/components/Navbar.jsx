@@ -27,8 +27,8 @@ const Navbar = () => {
   return (
     <header
       className={`${
-        dark ? "bg-black text-white border-b border-white/30" : "bg-white text-black border border-gray-200"
-      } flex items-center justify-between px-5 text-3xl lg:text-4xl lg:py-2 py-1 lg:pt-0 w-full `}
+        dark ? "bg-black text-white border-b-[0.1px] border-white/20" : "bg-white text-black border-none border-gray-200"
+      } flex items-center justify-between px-5 text-3xl lg:text-4xl py-1 w-full lg:py-3 lg:pt-1 `}
     >
       <div className="w-16 flex justify-start">
         {/* Left spacer - adjust width as needed */}

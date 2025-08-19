@@ -518,7 +518,7 @@ const BottomNav = () => {
       }`}
     >
       <form className="w-full relative h-full">
-        <ul className="flex items-center w-full justify-center bg-transparent shadow-lg overflow-hidden lg:space-x-10 space-x-5">
+        <ul className="flex items-center w-full justify-center bg-transparent shadow-lg overflow-hidden lg:space-x-12 space-x-8">
           {/* Home */}
           <input
             defaultChecked
