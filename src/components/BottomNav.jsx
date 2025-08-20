@@ -1975,7 +1975,7 @@ const BottomNav = () => {
   return (
     <>
       <div
-        className={`lg:bottom-1 bottom-1.5 fixed flex z-100 w-full items-center justify-center ${
+        className={`lg:bottom-1 bottom-1 fixed flex z-100 w-full items-center justify-center ${
           !dark ? "text-black" : "text-white"
         }`}
       >
