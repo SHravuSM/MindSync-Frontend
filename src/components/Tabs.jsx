@@ -112,5 +112,4 @@ const Tabs = () => {
 
 export default Tabs;
 
-
 // border-gray-200 bg-white shadow-sm rounded-md

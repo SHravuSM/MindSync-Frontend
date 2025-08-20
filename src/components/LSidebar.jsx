@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Plus,
   Bookmark,
@@ -9,19 +9,23 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import Tabs from "./Tabs";
+import api from "../utils/api1";
+import useAuthStore from "../store/authStore";
 
 const LSidebar = () => {
-  const profileData = {
-    name: "Shravankumar S Muchchandi",
-    headline: "const goal = improve => commit => push => repeat;",
-    location: "Bijapur, Karnataka",
-    profileImage:
-      "https://media.licdn.com/dms/image/v2/D5603AQHghc3_c2_ucA/profile-displayphoto-scale_200_200/B56Ze1KskYGoAY-/0/1751091170203?e=1758153600&v=beta&t=79V9h-kv1Fcev96k4bon7VSoWhEWi0uQXWaarNjUsDI",
-    backgroundImage:
-      "https://media.licdn.com/dms/image/v2/D5616AQEXOOexdItc2Q/profile-displaybackgroundimage-shrink_200_800/B56Zc5lBIBHEAg-/0/1749017695721?e=1758153600&v=beta&t=1Z3He-fU-AKve-rdO9Tdow4lMnSjXQSafYJGDtX0dLQ",
-    profileViews: 33,
-    postImpressions: 4,
-  };
+  const user = useAuthStore((s) => s.user);
+  const id = user?.id;
+  const [profileData, setProfileData] = useState(null);
+
+  async function me() {
+    const res = await api.get("/user/me");
+    console.log(res.data);
+    setProfileData(res.data);
+  }
+
+  useEffect(() => {
+    me();
+  },[]);
 
   const navigationItems = [
     {
@@ -46,7 +50,7 @@ const LSidebar = () => {
     },
   ];
 
-  return (
+  return profileData ? (
     <div
       role="region"
       aria-label="Side Bar"
@@ -55,8 +59,7 @@ const LSidebar = () => {
       {/* Profile Card */}
       <div className="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200">
         {/* Background and Profile Picture */}
-        <a
-          href="/in/shravusm/"
+        <span
           className="block relative group"
           aria-label={`Background photo of ${profileData.name}`}
         >
@@ -75,11 +78,11 @@ const LSidebar = () => {
               className="w-16 h-16 sm:w-18 sm:h-18 rounded-full border-4 border-white shadow-md group-hover:scale-105 transition-transform duration-200"
             />
           </div>
-        </a>
+        </span>
 
         {/* Profile Details */}
         <div className="pt-8 px-4 pb-4">
-          <a href="/in/shravusm/" className="block group">
+          <Link to={`/${id}`} className="block group">
             <div className="text-center">
               <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-200 line-clamp-2">
                 {profileData.name}
@@ -91,7 +94,7 @@ const LSidebar = () => {
                 {profileData.location}
               </p>
             </div>
-          </a>
+          </Link>
 
           {/* Add Experience Button */}
           <button
@@ -113,41 +116,6 @@ const LSidebar = () => {
       </div>
 
       <Tabs />
-
-      {/* Analytics Card */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
-        <ul className="space-y-3">
-          <li>
-            <a href="/me/profile-views/" className="block group">
-              <div className="flex items-center justify-between">
-                <div className="text-left">
-                  <div className="text-xs font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-200">
-                    Profile viewers
-                  </div>
-                </div>
-                <div className="text-xs font-bold text-gray-900">
-                  <strong>{profileData.profileViews}</strong>
-                </div>
-              </div>
-            </a>
-          </li>
-
-          <li>
-            <a href="/analytics/creator/content/" className="block group">
-              <div className="flex items-center justify-between">
-                <div className="text-left">
-                  <div className="text-xs font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-200">
-                    Post impressions
-                  </div>
-                </div>
-                <div className="text-xs font-bold text-gray-900">
-                  <strong>{profileData.postImpressions}</strong>
-                </div>
-              </div>
-            </a>
-          </li>
-        </ul>
-      </div>
 
       {/* Premium Upsell Card */}
       <div className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
@@ -190,6 +158,8 @@ const LSidebar = () => {
         </ul>
       </div>
     </div>
+  ) : (
+    <></>
   );
 };
 

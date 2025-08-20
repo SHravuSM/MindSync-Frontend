@@ -27,7 +27,9 @@ const Navbar = () => {
   return (
     <header
       className={`${
-        dark ? "bg-black text-white border-b-[0.1px] border-white/20" : "bg-white text-black border-none border-gray-200"
+        dark
+          ? "bg-black text-white border-b-[0.1px] border-white/20"
+          : "bg-white text-black border-none border-gray-200"
       } flex items-center justify-between px-5 text-3xl lg:text-4xl py-1 w-full lg:py-3 lg:pt-1 `}
     >
       <div className="w-16 flex justify-start">

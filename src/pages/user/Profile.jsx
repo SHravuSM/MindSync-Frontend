@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useThemeStore from "../../store/themeStore";
 import api from "../../utils/api1";
+import Loader from "../../components/PostLoader";
 
 export default function Profile() {
   const [activeTab, setActiveTab] = useState("overview");
@@ -29,12 +30,14 @@ export default function Profile() {
   // Show loading state
   if (loading) {
     return (
-      <div className={`min-h-screen flex items-center justify-center ${
-        dark ? "bg-black text-white" : "bg-white text-gray-900"
-      }`}>
+      <div
+        className={`min-h-screen flex items-center justify-center ${
+          dark ? "bg-black text-white" : "bg-white text-gray-900"
+        }`}
+      >
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
-          <p>Loading profile...</p>
+          <Loader />
+          {/* <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div> */}
         </div>
       </div>
     );
@@ -43,9 +46,11 @@ export default function Profile() {
   // Show error state if no data
   if (!data) {
     return (
-      <div className={`min-h-screen flex items-center justify-center ${
-        dark ? "bg-black text-white" : "bg-white text-gray-900"
-      }`}>
+      <div
+        className={`min-h-screen flex items-center justify-center ${
+          dark ? "bg-black text-white" : "bg-white text-gray-900"
+        }`}
+      >
         <div className="text-center">
           <p>Failed to load profile data</p>
         </div>
@@ -57,19 +62,21 @@ export default function Profile() {
   const userData = {
     name: data.name || "User",
     title: data.title || "Community Member",
-    bio: data.bio || "Welcome to my profile! I'm excited to be part of the ManoSangam community.",
+    bio:
+      data.bio ||
+      "Welcome to my profile! I'm excited to be part of the ManoSangam community.",
     location: data.location || "Not specified",
-    joinedDate: new Date(data.joinedDate).toLocaleDateString('en-US', { 
-      year: 'numeric', 
-      month: 'long' 
+    joinedDate: new Date(data.joinedDate).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
     }),
     skills: data.tags || [],
     stats: {
       ideasShared: data.stats?.ideasShared || 0,
       collaborations: data.stats?.collaborations || 0,
       followers: data.stats?.followers || 0,
-      following: data.stats?.following || 0
-    }
+      following: data.stats?.following || 0,
+    },
   };
 
   const recentIdeas = data.recentIdeas || [
@@ -402,7 +409,11 @@ export default function Profile() {
                       </span>
                     ))
                   ) : (
-                    <span className={`text-xs ${dark ? "text-gray-400" : "text-gray-500"}`}>
+                    <span
+                      className={`text-xs ${
+                        dark ? "text-gray-400" : "text-gray-500"
+                      }`}
+                    >
                       No skills added yet
                     </span>
                   )}
@@ -1353,7 +1364,11 @@ export default function Profile() {
                     </span>
                   ))
                 ) : (
-                  <span className={`text-xs ${dark ? "text-gray-400" : "text-gray-500"}`}>
+                  <span
+                    className={`text-xs ${
+                      dark ? "text-gray-400" : "text-gray-500"
+                    }`}
+                  >
                     No skills added yet
                   </span>
                 )}

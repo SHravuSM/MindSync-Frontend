@@ -1,4 +1,4 @@
-import { use, useEffect } from "react";
+import { useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 
 import AdminRegister from "./components/AdminRegister";
@@ -15,23 +15,21 @@ import Notification from "./components/Notification";
 import Settings from "./components/Settings";
 import CreatePost from "./components/CreatePost";
 import Pitch from "./components/Pitch";
-
-import InDashboard from "./pages/investor/InDashboard";
-import InFeed from "./pages/investor/InFeed";
-import InProfile from "./pages/investor/InProfile";
-import InNotification from "./pages/investor/InNotification";
 import ProtectedRoute from "./utils/ProtectedRoute";
 import useAuthStore from "./store/authStore";
 import FeedPlus from "./pages/user/FeedPlus";
 import FeedPitches from "./pages/user/FeedPitches";
+import SearchBar from "./components/Search";
 
 function App() {
   const navigate = useNavigate();
   const user = useAuthStore((s) => s.user);
+  const logOut = useAuthStore((s) => s.logOut);
 
   useEffect(() => {
     if (!user) {
       console.log(user);
+      logOut();
       navigate("/");
     } else {
       console.log(user);
@@ -57,6 +55,7 @@ function App() {
         }
       >
         <Route index element={<Profile />} />
+        <Route path="search" element={<SearchBar />} />
         <Route path="feed" element={<Feed />}>
           <Route path=":postId" element={<FeedPlus />} />
           <Route path="pitches" element={<FeedPitches />} />
