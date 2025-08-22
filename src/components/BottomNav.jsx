@@ -2022,7 +2022,7 @@ const BottomNav = () => {
                 >
                   <PenTool
                     strokeWidth={2.5}
-                  size={30}
+                    size={30}
                     className="-rotate-90 transition-transform duration-200 hover:rotate-[-85deg]"
                   />
                 </button>
@@ -2091,14 +2091,16 @@ const BottomNav = () => {
             <li className="lg:hidden">
               <button
                 onClick={toggleMenu}
-                className={`hamburger-button scale-120 rounded-lg transition-all duration-200 active:scale-95 ${isMenuOpen ? "bg-gray-800" : ""}`}
+                className={`hamburger-button scale-120 rounded-lg transition-all duration-200 active:scale-95 ${
+                  isMenuOpen ? "bg-gray-800" : ""
+                }`}
                 aria-label="Toggle menu"
                 aria-expanded={isMenuOpen}
               >
                 {isMenuOpen ? (
                   <X
                     strokeWidth={2.5}
-                  size={30}
+                    size={30}
                     className={`${
                       dark ? "text-white" : "text-black"
                     } transition-transform duration-200`}
@@ -2106,7 +2108,7 @@ const BottomNav = () => {
                 ) : (
                   <Menu
                     strokeWidth={2.5}
-                  size={30}
+                    size={30}
                     className={`${
                       dark ? "text-white" : "text-black"
                     } transition-transform duration-200`}
