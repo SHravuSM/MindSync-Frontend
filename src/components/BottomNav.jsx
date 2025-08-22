@@ -2123,7 +2123,7 @@ const BottomNav = () => {
       {/* Mobile Menu Overlay */}
       {isMenuOpen && (
         <div
-          className="fixed inset-0 bg-transparent bg-opacity-20 h-screen backdrop-blur-sm z-110 lg:hidden"
+          className="fixed inset-0 bg-transparent bg-opacity-20 max-h-full backdrop-blur-sm z-110 lg:hidden"
           onClick={closeMenu}
           aria-hidden="true"
         />
@@ -2147,9 +2147,7 @@ const BottomNav = () => {
           {profileData && (
             <div
               className={`${
-                dark
-                  ? "bg-gray-900 border-gray-800"
-                  : "bg-white border-gray-200"
+                dark ? "bg-gray-900/50 border-gray-800" : "bg-white border-gray-200"
               } rounded-lg border overflow-hidden shadow-sm`}
             >
               {/* Background and Profile Picture */}
@@ -2244,7 +2242,7 @@ const BottomNav = () => {
           {/* Tabs Component */}
           <div
             className={`${
-              dark ? "bg-gray-900 border-gray-800" : " border-gray-200"
+              dark ? "border-gray-800" : " border-gray-200"
             } rounded-lg p-2`}
           >
             <Tabs_F_Mob />
@@ -2253,7 +2251,7 @@ const BottomNav = () => {
           {/* Premium Upsell Card */}
           <div
             className={`${
-              dark ? "bg-gray-900 border-gray-800" : "bg-white border-gray-200"
+              dark ? "bg-gray-900/50 border-gray-800" : "bg-white border-gray-200"
             } rounded-lg border p-4 shadow-sm`}
           >
             <Link
@@ -2290,7 +2288,7 @@ const BottomNav = () => {
           {/* Navigation Links Card */}
           <div
             className={`${
-              dark ? "bg-gray-900 border-gray-800" : "bg-white border-gray-200"
+              dark ? "bg-gray-900/50 border-gray-800" : "bg-white border-gray-200"
             } rounded-lg border p-4 shadow-sm`}
           >
             <ul className="space-y-4">
@@ -2323,7 +2321,7 @@ const BottomNav = () => {
           {/* Additional Menu Options */}
           <div
             className={`${
-              dark ? "bg-gray-900 border-gray-800" : "bg-white border-gray-200"
+              dark ? "bg-black/50 border-gray-800" : "bg-white border-gray-200"
             } rounded-lg border p-4 shadow-sm`}
           >
             <ul className="space-y-4">
