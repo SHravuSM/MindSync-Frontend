@@ -1989,7 +1989,7 @@ const BottomNav = () => {
               >
                 <House
                   strokeWidth={2.5}
-                  size={30}
+                  size={27}
                   className="transition-transform duration-200 hover:rotate-3"
                 />
               </Link>
@@ -2003,7 +2003,7 @@ const BottomNav = () => {
               >
                 <Search
                   strokeWidth={2.5}
-                  size={30}
+                  size={27}
                   className="transition-transform duration-200 hover:rotate-12"
                 />
               </Link>
@@ -2022,7 +2022,7 @@ const BottomNav = () => {
                 >
                   <PenTool
                     strokeWidth={2.5}
-                    size={30}
+                    size={27}
                     className="-rotate-90 transition-transform duration-200 hover:rotate-[-85deg]"
                   />
                 </button>
@@ -2037,7 +2037,7 @@ const BottomNav = () => {
               >
                 <CircleUser
                   strokeWidth={2.5}
-                  size={30}
+                  size={27}
                   className="transition-transform duration-200 hover:rotate-6"
                 />
               </Link>
@@ -2100,7 +2100,7 @@ const BottomNav = () => {
                 {isMenuOpen ? (
                   <X
                     strokeWidth={2.5}
-                    size={30}
+                    size={27}
                     className={`${
                       dark ? "text-white" : "text-black"
                     } transition-transform duration-200`}
@@ -2108,7 +2108,7 @@ const BottomNav = () => {
                 ) : (
                   <Menu
                     strokeWidth={2.5}
-                    size={30}
+                    size={27}
                     className={`${
                       dark ? "text-white" : "text-black"
                     } transition-transform duration-200`}
