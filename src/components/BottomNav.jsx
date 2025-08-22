@@ -1975,7 +1975,7 @@ const BottomNav = () => {
   return (
     <>
       <div
-        className={`lg:bottom-1 lg:hidden bottom-1 fixed flex z-100 w-full items-center justify-center ${
+        className={`lg:bottom-1 lg:hidden bottom-1.5 fixed flex z-100 w-full items-center justify-center ${
           !dark ? "text-black" : "text-white"
         }`}
       >
@@ -1988,7 +1988,8 @@ const BottomNav = () => {
                 className="inline-block transition-colors duration-200 hover:opacity-80"
               >
                 <House
-                  strokeWidth={3}
+                  strokeWidth={2.5}
+                  size={30}
                   className="transition-transform duration-200 hover:rotate-3"
                 />
               </Link>
@@ -2001,7 +2002,8 @@ const BottomNav = () => {
                 className="inline-block transition-colors duration-200 hover:opacity-80"
               >
                 <Search
-                  strokeWidth={3}
+                  strokeWidth={2.5}
+                  size={30}
                   className="transition-transform duration-200 hover:rotate-12"
                 />
               </Link>
@@ -2019,8 +2021,8 @@ const BottomNav = () => {
                   className="text-xl flex items-center pb-1 justify-center transition-colors duration-200 hover:opacity-80"
                 >
                   <PenTool
-                    size={25}
                     strokeWidth={2.5}
+                  size={30}
                     className="-rotate-90 transition-transform duration-200 hover:rotate-[-85deg]"
                   />
                 </button>
@@ -2034,7 +2036,8 @@ const BottomNav = () => {
                 className="inline-block transition-colors duration-200 hover:opacity-80"
               >
                 <CircleUser
-                  strokeWidth={3}
+                  strokeWidth={2.5}
+                  size={30}
                   className="transition-transform duration-200 hover:rotate-6"
                 />
               </Link>
@@ -2088,23 +2091,22 @@ const BottomNav = () => {
             <li className="lg:hidden">
               <button
                 onClick={toggleMenu}
-                className={`hamburger-button scale-120 rounded-lg transition-all duration-200 active:scale-95 ${
-                  dark ? "hover:bg-gray-800" : "hover:bg-gray-100"
-                } ${isMenuOpen ? "bg-gray-800" : ""}`}
+                className={`hamburger-button scale-120 rounded-lg transition-all duration-200 active:scale-95 ${isMenuOpen ? "bg-gray-800" : ""}`}
                 aria-label="Toggle menu"
                 aria-expanded={isMenuOpen}
               >
                 {isMenuOpen ? (
                   <X
-                    size={24}
+                    strokeWidth={2.5}
+                  size={30}
                     className={`${
                       dark ? "text-white" : "text-black"
                     } transition-transform duration-200`}
                   />
                 ) : (
                   <Menu
-                    size={24}
-                    strokeWidth={3}
+                    strokeWidth={2.5}
+                  size={30}
                     className={`${
                       dark ? "text-white" : "text-black"
                     } transition-transform duration-200`}

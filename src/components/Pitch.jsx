@@ -6317,7 +6317,7 @@ const PitchForm = () => {
       <div className="max-w-6xl mx-auto relative z-10">
         <div
           className={`rounded-xl transition-all duration-300 border shadow-sm ${
-            dark ? "border-black bg-black" : "border-gray-100 bg-white/10"
+            dark ? "border-black bg-black" : "border-gray-500 bg-white/10"
           }`}
           style={{
             backdropFilter: "blur(8px)",
@@ -6430,42 +6430,44 @@ const PitchForm = () => {
               >
                 Prevail. Purpose. Progress.
               </h2>
-              {hasDraftContent && <div className="flex items-center gap-4 order-2 sm:order-none">
-                {draftSaved && (
-                  <div
-                    className={`text-xs flex items-center gap-1 px-3 py-1 rounded-full border ${
-                      dark
-                        ? "text-blue-300 border-blue-500/30 bg-blue-500/10"
-                        : "text-blue-700 border-blue-500/30 bg-blue-500/10"
-                    }`}
-                  >
-                    <svg
-                      className="w-3 h-3"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
+              {hasDraftContent && (
+                <div className="flex items-center gap-4 order-2 sm:order-none">
+                  {draftSaved && (
+                    <div
+                      className={`text-xs flex items-center gap-1 px-3 py-1 rounded-full border ${
+                        dark
+                          ? "text-blue-300 border-blue-500/30 bg-blue-500/10"
+                          : "text-blue-700 border-blue-500/30 bg-blue-500/10"
+                      }`}
                     >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      />
-                    </svg>
-                    Draft Saved
-                  </div>
-                )}
-                {hasDraftContent && (
-                  <button
-                    type="button"
-                    onClick={handleClearDraft}
-                    className={`text-xs px-3 py-1 rounded-full border transition duration-300 hover:bg-gray-200/50 dark:hover:bg-gray-700/50 ${
-                      dark
-                        ? "text-gray-300 border-gray-600"
-                        : "text-gray-700 border-gray-300"
-                    }`}
-                  >
-                    Clear Draft
-                  </button>
-                )}
-              </div>}
+                      <svg
+                        className="w-3 h-3"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        />
+                      </svg>
+                      Draft Saved
+                    </div>
+                  )}
+                  {hasDraftContent && (
+                    <button
+                      type="button"
+                      onClick={handleClearDraft}
+                      className={`text-xs px-3 py-1 rounded-full border transition duration-300 hover:bg-gray-200/50 dark:hover:bg-gray-700/50 ${
+                        dark
+                          ? "text-gray-300 border-gray-600"
+                          : "text-gray-700 border-gray-300"
+                      }`}
+                    >
+                      Clear Draft
+                    </button>
+                  )}
+                </div>
+              )}
             </div>
           </div>
 

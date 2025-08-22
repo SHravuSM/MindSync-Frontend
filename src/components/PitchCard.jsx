@@ -45,9 +45,9 @@ const PitchCard = ({ pitch }) => {
   return (
     <div
       ref={contentRef}
-      className={`pitch-card mb-2 lg:w-xl ${dark ? "dark" : ""}`}
+      className={`pitch-card mb-2 lg:w-xl border ${dark ? "border-black" : "border-gray-200"}`}
       style={{
-        border: "1px solid #eee",
+        // border: "2px solid #eee",
         borderRadius: "8px",
         padding: "16px",
         background: dark ? "#333" : "#fff",
