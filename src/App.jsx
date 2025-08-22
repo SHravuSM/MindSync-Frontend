@@ -20,6 +20,7 @@ import useAuthStore from "./store/authStore";
 import FeedPlus from "./pages/user/FeedPlus";
 import SearchBar from "./components/Search";
 import PitchFeed from "./components/PitchFeed";
+import Feed2 from "./components/Feed2";
 
 function App() {
   const navigate = useNavigate();
@@ -57,6 +58,7 @@ function App() {
         <Route index element={<Profile />} />
         <Route path="search" element={<SearchBar />} />
         <Route path="feed" element={<Feed />}>
+          <Route index element={<Feed2 />} />
           <Route path=":postId" element={<FeedPlus />} />
           <Route path="pitches" element={<PitchFeed />} />
         </Route>

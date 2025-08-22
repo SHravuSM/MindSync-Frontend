@@ -25,7 +25,7 @@ const LSidebar = () => {
 
   useEffect(() => {
     me();
-  }, []);
+  },[]);
 
   const navigationItems = [
     {

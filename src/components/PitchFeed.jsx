@@ -5,6 +5,7 @@ import Loader from "./PostLoader";
 import useThemeStore from "../store/themeStore";
 import InfiniteScroll from "./InfiniteScroll";
 import { usePitches } from "../hooks/usePitches";
+import SortDropdownButton from "./SortDropdownButton";
 
 const PitchFeed = () => {
   const setYes = useThemeStore((s) => s.setYes);
@@ -37,6 +38,7 @@ const PitchFeed = () => {
 
   return (
     <div className="feed">
+      <SortDropdownButton />
       {/* No tags or sort for pitches based on schema; can be added if schema extended */}
       <InfiniteScroll
         dataLength={allPitches.length}

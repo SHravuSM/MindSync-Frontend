@@ -1975,7 +1975,7 @@ const BottomNav = () => {
   return (
     <>
       <div
-        className={`lg:bottom-1 bottom-1 fixed flex z-100 w-full items-center justify-center ${
+        className={`lg:bottom-1 lg:hidden bottom-1 fixed flex z-100 w-full items-center justify-center ${
           !dark ? "text-black" : "text-white"
         }`}
       >
@@ -1988,7 +1988,7 @@ const BottomNav = () => {
                 className="inline-block transition-colors duration-200 hover:opacity-80"
               >
                 <House
-                  strokeWidth={1.5}
+                  strokeWidth={3}
                   className="transition-transform duration-200 hover:rotate-3"
                 />
               </Link>
@@ -2001,7 +2001,7 @@ const BottomNav = () => {
                 className="inline-block transition-colors duration-200 hover:opacity-80"
               >
                 <Search
-                  strokeWidth={1.35}
+                  strokeWidth={3}
                   className="transition-transform duration-200 hover:rotate-12"
                 />
               </Link>
@@ -2020,7 +2020,7 @@ const BottomNav = () => {
                 >
                   <PenTool
                     size={25}
-                    strokeWidth={1.25}
+                    strokeWidth={2.5}
                     className="-rotate-90 transition-transform duration-200 hover:rotate-[-85deg]"
                   />
                 </button>
@@ -2034,7 +2034,7 @@ const BottomNav = () => {
                 className="inline-block transition-colors duration-200 hover:opacity-80"
               >
                 <CircleUser
-                  strokeWidth={1.4}
+                  strokeWidth={3}
                   className="transition-transform duration-200 hover:rotate-6"
                 />
               </Link>
@@ -2048,7 +2048,7 @@ const BottomNav = () => {
                 }}
                 className="mb-2"
               >
-                <SplinePointer size={25} strokeWidth={1.25} />
+                <SplinePointer size={25} strokeWidth={2} />
               </button>
 
               {showMenu && (
@@ -2088,7 +2088,7 @@ const BottomNav = () => {
             <li className="lg:hidden">
               <button
                 onClick={toggleMenu}
-                className={`hamburger-button p-2 rounded-lg transition-all duration-200 hover:scale-105 active:scale-95 ${
+                className={`hamburger-button scale-120 rounded-lg transition-all duration-200 active:scale-95 ${
                   dark ? "hover:bg-gray-800" : "hover:bg-gray-100"
                 } ${isMenuOpen ? "bg-gray-800" : ""}`}
                 aria-label="Toggle menu"
@@ -2104,6 +2104,7 @@ const BottomNav = () => {
                 ) : (
                   <Menu
                     size={24}
+                    strokeWidth={3}
                     className={`${
                       dark ? "text-white" : "text-black"
                     } transition-transform duration-200`}
@@ -2239,7 +2240,7 @@ const BottomNav = () => {
           {/* Tabs Component */}
           <div
             className={`${
-              dark ? "bg-gray-900 border-gray-800" : "bg-white border-gray-200"
+              dark ? "bg-gray-900 border-gray-800" : " border-gray-200"
             } rounded-lg p-2`}
           >
             <Tabs_F_Mob />

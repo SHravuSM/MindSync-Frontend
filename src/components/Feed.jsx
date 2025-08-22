@@ -9,7 +9,7 @@ function Feed() {
   const location = useLocation();
 
   // Check if we're on a nested route (like /user/feed/postId)
-  const isNestedRoute = location.pathname.split("/").length > 3;
+  // const isNestedRoute = location.pathname.split("/").length > 3;
 
   return (
     <div
@@ -20,7 +20,7 @@ function Feed() {
       <LSidebar />
 
       {/* Show Feed2 only when on main feed route */}
-      {!isNestedRoute && <Feed2 />}
+      {/* {!isNestedRoute && <Feed2 />} */}
 
       {/* Show nested routes (like individual post) */}
       <Outlet />
