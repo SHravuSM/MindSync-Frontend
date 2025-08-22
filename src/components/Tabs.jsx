@@ -95,7 +95,7 @@ const Tabs = () => {
 
       {/* Pitches Tab */}
       <Link
-        to="pitch"
+        to="pitches"
         className={`relative w-1/2 flex-1 py-3 text-sm font-semibold text-center z-10 transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
           active === "pitch"
             ? "text-white"

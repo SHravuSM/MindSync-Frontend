@@ -94,14 +94,14 @@
 //     try {
 //       const res = await api1.post("/user/ask", {
 //         content: `
-//           You are an expert content writer and editor.  
+//           You are an expert content writer and editor.
 //           Your job is to take the following text and:
 //           1. Improve clarity, grammar, and flow.
 //           2. Make it engaging and easy to read.
 //           3. Expand with relevant details/examples if needed.
 //           4. Keep the tone friendly yet professional.
 //           5. Return ONLY the improved best version of the text (do NOT include summaries, labels, or extra formatting).
-          
+
 //           Here is the text to improve:
 //           ---
 //           ${content}
@@ -181,7 +181,7 @@
 
 //   const remainingChars = maxChars - content.length;
 //   const isFormValid = title.trim() && content.trim() && remainingChars >= 0;
-  
+
 //   // Check if there's any draft content to show/hide clear button
 //   const hasDraftContent = title.trim() || content.trim() || tags.length > 0;
 
@@ -659,7 +659,6 @@
 
 // export default Post;
 
-
 // import { useState, useEffect } from "react";
 // import PostSubmitLoader from "./PostSubmitLoader";
 // import useThemeStore from "../store/themeStore";
@@ -756,14 +755,14 @@
 //     try {
 //       const res = await api1.post("/user/ask", {
 //         content: `
-//           You are an expert content writer and editor.  
+//           You are an expert content writer and editor.
 //           Your job is to take the following text and:
 //           1. Improve clarity, grammar, and flow.
 //           2. Make it engaging and easy to read.
 //           3. Expand with relevant details/examples if needed.
 //           4. Keep the tone friendly yet professional.
 //           5. Return ONLY the improved best version of the text (do NOT include summaries, labels, or extra formatting).
-          
+
 //           Here is the text to improve:
 //           ---
 //           ${content}
@@ -843,7 +842,7 @@
 
 //   const remainingChars = maxChars - content.length;
 //   const isFormValid = title.trim() && content.trim() && remainingChars >= 0;
-  
+
 //   // Check if there's any draft content to show/hide clear button
 //   const hasDraftContent = title.trim() || content.trim() || tags.length > 0;
 
@@ -874,8 +873,8 @@
 //           {/* Glassmorphism Header */}
 //           <div
 //             className={`px-4 sm:px-6 py-3 sm:py-4 border-b backdrop-blur-sm rounded-t-2xl ${
-//               dark 
-//                 ? "border-white/10 bg-gradient-to-r from-white/5 to-white/10" 
+//               dark
+//                 ? "border-white/10 bg-gradient-to-r from-white/5 to-white/10"
 //                 : "border-black/10 bg-gradient-to-r from-black/5 to-black/10"
 //             }`}
 //           >
@@ -884,8 +883,8 @@
 //                 {/* Glassmorphism dot indicator */}
 //                 <div
 //                   className={`w-3 h-3 rounded-full backdrop-blur-sm border ${
-//                     dark 
-//                       ? "bg-gradient-to-br from-white/20 to-white/10 border-white/20" 
+//                     dark
+//                       ? "bg-gradient-to-br from-white/20 to-white/10 border-white/20"
 //                       : "bg-gradient-to-br from-black/20 to-black/10 border-black/20"
 //                   }`}
 //                 ></div>
@@ -903,8 +902,8 @@
 //                 {draftSaved && (
 //                   <div
 //                     className={`text-xs flex items-center gap-1 px-3 py-1 rounded-full backdrop-blur-sm border ${
-//                       dark 
-//                         ? "text-green-300 bg-green-500/10 border-green-500/20" 
+//                       dark
+//                         ? "text-green-300 bg-green-500/10 border-green-500/20"
 //                         : "text-green-700 bg-green-500/10 border-green-500/20"
 //                     }`}
 //                   >
@@ -1168,8 +1167,8 @@
 //                   {enhancing && (
 //                     <span
 //                       className={`text-xs px-2 py-1 rounded-full backdrop-blur-sm ${
-//                         dark 
-//                           ? "text-purple-300 bg-purple-500/10" 
+//                         dark
+//                           ? "text-purple-300 bg-purple-500/10"
 //                           : "text-purple-700 bg-purple-500/10"
 //                       }`}
 //                     >
@@ -1324,7 +1323,6 @@
 
 // export default Post;
 
-
 import { useState, useEffect } from "react";
 import PostSubmitLoader from "./PostSubmitLoader";
 import useThemeStore from "../store/themeStore";
@@ -1365,7 +1363,10 @@ const Post = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       if (title || content) {
-        localStorage.setItem("postDraft", JSON.stringify({ title, content, tags }));
+        localStorage.setItem(
+          "postDraft",
+          JSON.stringify({ title, content, tags })
+        );
         setDraftSaved(true);
         setTimeout(() => setDraftSaved(false), 2000);
       }
@@ -1378,7 +1379,11 @@ const Post = () => {
     const savedDraft = localStorage.getItem("postDraft");
     if (savedDraft) {
       try {
-        const { title: savedTitle, content: savedContent, tags: savedTags } = JSON.parse(savedDraft);
+        const {
+          title: savedTitle,
+          content: savedContent,
+          tags: savedTags,
+        } = JSON.parse(savedDraft);
         if (savedTitle || savedContent) {
           setTitle(savedTitle || "");
           setContent(savedContent || "");
@@ -1395,7 +1400,8 @@ const Post = () => {
     const newErrors = {};
     if (!title.trim()) newErrors.title = "Title is required";
     if (!content.trim()) newErrors.content = "Content is required";
-    if (content.length > maxChars) newErrors.content = `Content exceeds ${maxChars} characters`;
+    if (content.length > maxChars)
+      newErrors.content = `Content exceeds ${maxChars} characters`;
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -1508,7 +1514,7 @@ const Post = () => {
 
   const remainingChars = maxChars - content.length;
   const isFormValid = title.trim() && content.trim() && remainingChars >= 0;
-  
+
   // Check if there's any draft content to show/hide clear button
   const hasDraftContent = title.trim() || content.trim() || tags.length > 0;
 
@@ -1517,26 +1523,34 @@ const Post = () => {
       {/* Enhanced multi-layer glassmorphism background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Primary gradient orbs */}
-        <div className={`absolute -top-32 -right-32 w-64 h-64 md:w-80 md:h-80 rounded-full blur-3xl transition-opacity duration-1000`}></div>
-        
-        <div className={`absolute -bottom-32 -left-32 w-72 h-72 md:w-96 md:h-96 rounded-full blur-3xl transition-opacity duration-1000 ${
-          dark 
-            ? "bg-gradient-to-tr from-emerald-500/20 via-cyan-500/15 to-blue-500/25" 
-            : "bg-gradient-to-tr from-emerald-400/25 via-cyan-400/20 to-blue-400/30"
-        }`}></div>
-        
+        <div
+          className={`absolute -top-32 -right-32 w-64 h-64 md:w-80 md:h-80 rounded-full blur-3xl transition-opacity duration-1000`}
+        ></div>
+
+        <div
+          className={`absolute -bottom-32 -left-32 w-72 h-72 md:w-96 md:h-96 rounded-full blur-3xl transition-opacity duration-1000 ${
+            dark
+              ? "bg-gradient-to-tr from-emerald-500/20 via-cyan-500/15 to-blue-500/25"
+              : "bg-gradient-to-tr from-emerald-400/25 via-cyan-400/20 to-blue-400/30"
+          }`}
+        ></div>
+
         {/* Secondary accent orbs for depth */}
-        <div className={`absolute top-1/3 right-1/4 w-48 h-48 md:w-56 md:h-56 rounded-full blur-2xl opacity-60 ${
-          dark 
-            ? "bg-gradient-to-br from-orange-500/15 to-red-500/10" 
-            : "bg-gradient-to-br from-orange-400/20 to-red-400/15"
-        }`}></div>
-        
-        <div className={`absolute bottom-1/3 left-1/4 w-40 h-40 md:w-48 md:h-48 rounded-full blur-2xl opacity-40 ${
-          dark 
-            ? "bg-gradient-to-br from-violet-500/20 to-indigo-500/15" 
-            : "bg-gradient-to-br from-violet-400/25 to-indigo-400/20"
-        }`}></div>
+        <div
+          className={`absolute top-1/3 right-1/4 w-48 h-48 md:w-56 md:h-56 rounded-full blur-2xl opacity-60 ${
+            dark
+              ? "bg-gradient-to-br from-orange-500/15 to-red-500/10"
+              : "bg-gradient-to-br from-orange-400/20 to-red-400/15"
+          }`}
+        ></div>
+
+        <div
+          className={`absolute bottom-1/3 left-1/4 w-40 h-40 md:w-48 md:h-48 rounded-full blur-2xl opacity-40 ${
+            dark
+              ? "bg-gradient-to-br from-violet-500/20 to-indigo-500/15"
+              : "bg-gradient-to-br from-violet-400/25 to-indigo-400/20"
+          }`}
+        ></div>
       </div>
 
       <div className="max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl xl:max-w-4xl mx-auto relative z-10">
@@ -1549,39 +1563,43 @@ const Post = () => {
           style={{
             backdropFilter: "blur(24px) saturate(200%)",
             WebkitBackdropFilter: "blur(24px) saturate(200%)",
-            boxShadow: dark 
-              ? "0 25px 50px -12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)" 
-              : "0 25px 50px -12px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2)"
+            boxShadow: dark
+              ? "0 25px 50px -12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)"
+              : "0 25px 50px -12px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2)",
           }}
         >
           {/* Ultra-elegant header with subtle gradient overlay */}
           <div
             className={`px-3 sm:px-4 md:px-6 py-3 sm:py-4 border-b backdrop-blur-sm rounded-t-lg md:rounded-t-xl relative overflow-hidden ${
-              dark 
-                ? "border-white/10 bg-gradient-to-r from-white/3 via-white/8 to-white/3" 
+              dark
+                ? "border-white/10 bg-gradient-to-r from-white/3 via-white/8 to-white/3"
                 : "border-black/10 bg-gradient-to-r from-black/3 via-black/8 to-black/3"
             }`}
           >
             {/* Subtle shimmer overlay */}
-            <div className={`absolute inset-0 bg-gradient-to-r ${
-              dark 
-                ? "from-transparent via-white/5 to-transparent" 
-                : "from-transparent via-black/5 to-transparent"
-            } opacity-50`}></div>
-            
+            <div
+              className={`absolute inset-0 bg-gradient-to-r ${
+                dark
+                  ? "from-transparent via-white/5 to-transparent"
+                  : "from-transparent via-black/5 to-transparent"
+              } opacity-50`}
+            ></div>
+
             <div className="flex items-center justify-between relative z-10">
               <div className="flex items-center gap-2 sm:gap-3">
                 {/* Enhanced dot indicator with inner glow */}
                 <div
                   className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full backdrop-blur-sm border relative ${
-                    dark 
-                      ? "bg-gradient-to-br from-white/30 via-white/20 to-white/10 border-white/30" 
+                    dark
+                      ? "bg-gradient-to-br from-white/30 via-white/20 to-white/10 border-white/30"
                       : "bg-gradient-to-br from-black/30 via-black/20 to-black/10 border-black/30"
                   }`}
                 >
-                  <div className={`absolute inset-0.5 rounded-full ${
-                    dark ? "bg-white/20" : "bg-black/20"
-                  }`}></div>
+                  <div
+                    className={`absolute inset-0.5 rounded-full ${
+                      dark ? "bg-white/20" : "bg-black/20"
+                    }`}
+                  ></div>
                 </div>
                 <h2
                   className={`text-base sm:text-lg md:text-xl font-semibold tracking-tight ${
@@ -1597,12 +1615,16 @@ const Post = () => {
                 {draftSaved && (
                   <div
                     className={`text-xs flex items-center gap-1 px-2 sm:px-3 py-1 rounded-full backdrop-blur-sm border transition-all duration-500 ${
-                      dark 
-                        ? "text-emerald-300 bg-emerald-500/15 border-emerald-500/25" 
+                      dark
+                        ? "text-emerald-300 bg-emerald-500/15 border-emerald-500/25"
                         : "text-emerald-700 bg-emerald-500/15 border-emerald-500/25"
                     }`}
                   >
-                    <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3" fill="currentColor" viewBox="0 0 20 20">
+                    <svg
+                      className="w-2.5 h-2.5 sm:w-3 sm:h-3"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
                       <path
                         fillRule="evenodd"
                         d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -1626,7 +1648,12 @@ const Post = () => {
                     title="Clear all draft content"
                   >
                     <div className="flex items-center gap-1 sm:gap-1.5">
-                      <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg
+                        className="w-2.5 h-2.5 sm:w-3 sm:h-3"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"
@@ -1649,7 +1676,11 @@ const Post = () => {
             {/* Enhanced success message */}
             {showSuccess && (
               <div className="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/25 text-emerald-600 text-sm flex items-center gap-2 backdrop-blur-sm transition-all duration-500 animate-in slide-in-from-top-2">
-                <svg className="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <svg
+                  className="w-4 h-4 flex-shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
                   <path
                     fillRule="evenodd"
                     d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
@@ -1794,7 +1825,10 @@ const Post = () => {
                         : "bg-gradient-to-r from-black/70 to-black/90"
                     }`}
                     style={{
-                      width: `${Math.min((content.length / maxChars) * 100, 100)}%`,
+                      width: `${Math.min(
+                        (content.length / maxChars) * 100,
+                        100
+                      )}%`,
                     }}
                   />
                 </div>
@@ -1863,8 +1897,8 @@ const Post = () => {
                   {enhancing && (
                     <span
                       className={`text-xs px-2 py-0.5 rounded-full backdrop-blur-sm ${
-                        dark 
-                          ? "text-violet-300 bg-violet-500/10" 
+                        dark
+                          ? "text-violet-300 bg-violet-500/10"
                           : "text-violet-700 bg-violet-500/10"
                       }`}
                     >

@@ -2815,7 +2815,7 @@ const SearchBar = () => {
       {/* Search Suggestions */}
       {showSuggestions && suggestions.length > 0 && (
         <div
-          className={`absolute top-full left-0 right-0 mt-0 border rounded-lg shadow-lg z-50 ${
+          className={`absolute top-full left-0 right-0 mt-1 border rounded-lg shadow-lg z-50 ${
             dark ? "bg-black border-gray-800" : "bg-white border-gray-200"
           }`}
         >

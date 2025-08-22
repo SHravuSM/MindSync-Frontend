@@ -2128,8 +2128,8 @@ const BottomNav = () => {
       <div
         className={`mobile-menu-container fixed top-0 right-0 w-68 max-w-[85vw] ${
           dark
-            ? "bg-black border-l border-none"
-            : "bg-white border-l border-none"
+            ? "bg-transparent border-l border-none"
+            : "bg-transparent border-l border-none"
         } transform transition-transform duration-300 ease-in-out z-120 lg:hidden overflow-y-auto ${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}

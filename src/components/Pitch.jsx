@@ -445,7 +445,7 @@
 //     },
 //     {
 //       name: "problem",
-//       label: "Problem Statement", 
+//       label: "Problem Statement",
 //       placeholder: "What significant problem are you solving?",
 //       type: "textarea",
 //       required: true
@@ -553,8 +553,8 @@
 //       setSuccess(true);
 //       localStorage.removeItem("pitchDraft");
 //     } catch (error) {
-//       setErrors({ 
-//         submit: error.response?.data?.message || "Failed to submit pitch. Please try again." 
+//       setErrors({
+//         submit: error.response?.data?.message || "Failed to submit pitch. Please try again."
 //       });
 //     } finally {
 //       setLoading(false);
@@ -590,8 +590,8 @@
 //           animate={{ opacity: 1, y: 0 }}
 //           transition={{ duration: 0.6 }}
 //           className={`w-full max-w-md text-center p-8 sm:p-12 rounded-xl border ${
-//             dark 
-//               ? "bg-gray-900 border-gray-800" 
+//             dark
+//               ? "bg-gray-900 border-gray-800"
 //               : "bg-white border-gray-200"
 //           } shadow-lg`}
 //         >
@@ -614,8 +614,8 @@
 //           <button
 //             onClick={resetForm}
 //             className={`w-full py-4 text-sm font-semibold tracking-widest transition-all duration-300 rounded-lg ${
-//               dark 
-//                 ? "bg-white text-black hover:bg-gray-100" 
+//               dark
+//                 ? "bg-white text-black hover:bg-gray-100"
 //                 : "bg-black text-white hover:bg-gray-900"
 //             }`}
 //           >
@@ -663,8 +663,8 @@
 //               animate={{ opacity: 1, scale: 1 }}
 //               exit={{ opacity: 0, scale: 0.8 }}
 //               className={`inline-flex items-center gap-2 mt-6 px-4 py-2 text-xs rounded-sm ${
-//                 dark 
-//                   ? "bg-gray-900 border border-gray-800 text-gray-400" 
+//                 dark
+//                   ? "bg-gray-900 border border-gray-800 text-gray-400"
 //                   : "bg-white border border-gray-300 text-gray-600"
 //               }`}
 //             >
@@ -684,8 +684,8 @@
 //               animate={{ opacity: 1, y: 0 }}
 //               exit={{ opacity: 0, y: -10 }}
 //               className={`mb-6 p-4 sm:p-6 border text-sm rounded-xl font-medium ${
-//                 dark 
-//                   ? "bg-red-900/20 border-red-800 text-red-300" 
+//                 dark
+//                   ? "bg-red-900/20 border-red-800 text-red-300"
 //                   : "bg-red-50 border-red-200 text-red-800"
 //               }`}
 //             >
@@ -700,8 +700,8 @@
 //           animate={{ opacity: 1, y: 0 }}
 //           transition={{ delay: 0.2, duration: 0.8 }}
 //           className={`mb-12 sm:mb-16 border relative rounded-xl ${
-//             dark 
-//               ? "bg-gray-900 border-gray-800" 
+//             dark
+//               ? "bg-gray-900 border-gray-800"
 //               : "bg-white border-gray-200"
 //           } shadow-lg`}
 //         >
@@ -719,16 +719,16 @@
 //                     : "bg-gray-100 border-gray-300 text-gray-600 hover:text-gray-900 hover:border-gray-400 hover:bg-gray-200"
 //                 } shadow-sm hover:shadow-md`}
 //               >
-//                 <svg 
-//                   className="w-3 h-3" 
-//                   fill="none" 
-//                   stroke="currentColor" 
+//                 <svg
+//                   className="w-3 h-3"
+//                   fill="none"
+//                   stroke="currentColor"
 //                   viewBox="0 0 24 24"
 //                 >
-//                   <path 
-//                     strokeLinecap="round" 
-//                     strokeLinejoin="round" 
-//                     strokeWidth="2.5" 
+//                   <path
+//                     strokeLinecap="round"
+//                     strokeLinejoin="round"
+//                     strokeWidth="2.5"
 //                     d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
 //                   />
 //                 </svg>
@@ -827,8 +827,8 @@
 //                   <button
 //                     type="submit"
 //                     className={`w-full py-4 sm:py-5 text-sm sm:text-base font-semibold tracking-widest transition-all duration-300 rounded-lg ${
-//                       dark 
-//                         ? "bg-white text-black hover:bg-gray-100" 
+//                       dark
+//                         ? "bg-white text-black hover:bg-gray-100"
 //                         : "bg-black text-white hover:bg-gray-900"
 //                     } focus:outline-none focus:ring-2 focus:ring-offset-2 ${
 //                       dark ? "focus:ring-white" : "focus:ring-black"
@@ -847,7 +847,6 @@
 // };
 
 // export default Pitch;
-
 
 // import { useState, useEffect, useRef } from "react";
 // import { motion, AnimatePresence } from "framer-motion";
@@ -899,7 +898,7 @@
 //     if (savedDraft) {
 //       try {
 //         const parsedDraft = JSON.parse(savedDraft);
-//         const hasContent = Object.values(parsedDraft).some(value => 
+//         const hasContent = Object.values(parsedDraft).some(value =>
 //           typeof value === 'string' && value.trim()
 //         );
 
@@ -1061,7 +1060,7 @@
 //   };
 
 //   const isStepValid = () => {
-//     return steps[currentStep].fields.every(field => 
+//     return steps[currentStep].fields.every(field =>
 //       field.required ? formData[field.name]?.trim() : true
 //     );
 //   };
@@ -1132,14 +1131,14 @@
 //   if (success) {
 //     return (
 //       <div className={`min-h-screen flex items-center justify-center px-4 ${
-//         dark ? "bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900" : 
+//         dark ? "bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900" :
 //                "bg-gradient-to-br from-blue-50 via-white to-purple-50"
 //       }`}>
 //         <motion.div
 //           initial={{ scale: 0, opacity: 0 }}
 //           animate={{ scale: 1, opacity: 1 }}
 //           className={`max-w-md w-full text-center p-8 rounded-2xl ${
-//             dark ? "bg-gray-800/80 backdrop-blur-xl border border-gray-700" : 
+//             dark ? "bg-gray-800/80 backdrop-blur-xl border border-gray-700" :
 //                    "bg-white/80 backdrop-blur-xl border border-gray-200 shadow-2xl"
 //           }`}
 //         >
@@ -1188,7 +1187,7 @@
 
 //   return (
 //     <div className={`min-h-screen py-8 px-4 ${
-//       dark ? "bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900" : 
+//       dark ? "bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900" :
 //              "bg-gradient-to-br from-blue-50 via-white to-purple-50"
 //     }`}>
 //       <div className="max-w-4xl mx-auto">
@@ -1257,7 +1256,7 @@
 //                 {step.icon}
 //               </div>
 //               <span className={`text-xs text-center hidden md:block ${
-//                 index <= currentStep 
+//                 index <= currentStep
 //                   ? dark ? "text-white" : "text-gray-900"
 //                   : dark ? "text-gray-500" : "text-gray-400"
 //               }`}>
@@ -1284,7 +1283,7 @@
 //         {/* Form Container */}
 //         <motion.div
 //           className={`${
-//             dark ? "bg-gray-800/50 backdrop-blur-xl border-gray-700" : 
+//             dark ? "bg-gray-800/50 backdrop-blur-xl border-gray-700" :
 //                    "bg-white/80 backdrop-blur-xl border-gray-200 shadow-2xl"
 //           } border rounded-2xl p-8 md:p-12`}
 //           initial={{ opacity: 0, y: 50 }}
@@ -1459,7 +1458,6 @@
 
 // export default PitchForm;
 
-
 // import { useState, useEffect } from "react";
 // import { motion, AnimatePresence } from "framer-motion";
 // import api from "../utils/api1";
@@ -1510,7 +1508,7 @@
 //     if (savedDraft) {
 //       try {
 //         const parsedDraft = JSON.parse(savedDraft);
-//         const hasContent = Object.values(parsedDraft).some(value => 
+//         const hasContent = Object.values(parsedDraft).some(value =>
 //           typeof value === 'string' && value.trim()
 //         );
 
@@ -1672,7 +1670,7 @@
 //   };
 
 //   const isStepValid = () => {
-//     return steps[currentStep].fields.every(field => 
+//     return steps[currentStep].fields.every(field =>
 //       field.required ? formData[field.name]?.trim() : true
 //     );
 //   };
@@ -1747,13 +1745,13 @@
 //           animate={{ scale: 1, opacity: 1 }}
 //           transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
 //           className={`max-w-2xl w-full text-center px-16 py-20 ${
-//             dark 
-//               ? "bg-gradient-to-b from-gray-900 to-black border border-gray-800" 
+//             dark
+//               ? "bg-gradient-to-b from-gray-900 to-black border border-gray-800"
 //               : "bg-gradient-to-b from-gray-50 to-white border border-gray-100"
 //           } rounded-none shadow-2xl`}
 //           style={{
-//             boxShadow: dark 
-//               ? "0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05)" 
+//             boxShadow: dark
+//               ? "0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05)"
 //               : "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05)"
 //           }}
 //         >
@@ -1796,8 +1794,8 @@
 //             // transition{{ delay: 0.7, duration: 0.6 }}
 //             onClick={resetForm}
 //             className={`px-12 py-4 font-light tracking-wider transition-all duration-300 ${
-//               dark 
-//                 ? "bg-white text-black hover:bg-gray-100 border border-white" 
+//               dark
+//                 ? "bg-white text-black hover:bg-gray-100 border border-white"
 //                 : "bg-black text-white hover:bg-gray-900 border border-black"
 //             }`}
 //             whileHover={{ y: -2 }}
@@ -1823,7 +1821,7 @@
 //       >
 //         <div className={`w-1 h-12 mx-auto mb-8 ${dark ? "bg-white" : "bg-black"}`} />
 
-//         <h1 
+//         <h1
 //           className={`text-5xl md:text-6xl font-light mb-6 tracking-wider ${
 //             dark ? "text-white" : "text-black"
 //           }`}
@@ -1891,11 +1889,11 @@
 //               >
 //                 <div className={`w-16 h-16 rounded-full border flex items-center justify-center mb-4 transition-all duration-500 ${
 //                   index <= currentStep
-//                     ? dark 
-//                       ? "border-white bg-white text-black" 
+//                     ? dark
+//                       ? "border-white bg-white text-black"
 //                       : "border-black bg-black text-white"
-//                     : dark 
-//                       ? "border-gray-800 text-gray-600" 
+//                     : dark
+//                       ? "border-gray-800 text-gray-600"
 //                       : "border-gray-200 text-gray-400"
 //                 }`}>
 //                   <span className="text-sm font-light tracking-wider">
@@ -1903,7 +1901,7 @@
 //                   </span>
 //                 </div>
 //                 <h3 className={`text-xs font-light tracking-wider text-center ${
-//                   index <= currentStep 
+//                   index <= currentStep
 //                     ? dark ? "text-white" : "text-black"
 //                     : dark ? "text-gray-600" : "text-gray-400"
 //                 }`}>
@@ -1935,13 +1933,13 @@
 //         {/* Main Form Container */}
 //         <motion.div
 //           className={`mb-24 ${
-//             dark 
-//               ? "bg-gradient-to-b from-gray-900 to-black border border-gray-800" 
+//             dark
+//               ? "bg-gradient-to-b from-gray-900 to-black border border-gray-800"
 //               : "bg-gradient-to-b from-gray-50 to-white border border-gray-100"
 //           } shadow-2xl`}
 //           style={{
-//             boxShadow: dark 
-//               ? "0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05)" 
+//             boxShadow: dark
+//               ? "0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05)"
 //               : "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05)"
 //           }}
 //           initial={{ opacity: 0, y: 50 }}
@@ -1965,7 +1963,7 @@
 //               >
 //                 <div className="mb-16 text-center">
 //                   <div className={`w-1 h-8 mx-auto mb-6 ${dark ? "bg-white" : "bg-black"}`} />
-//                   <h2 
+//                   <h2
 //                     className={`text-3xl font-light mb-4 tracking-wide ${
 //                       dark ? "text-white" : "text-black"
 //                     }`}
@@ -2049,7 +2047,7 @@
 //               whileHover={{ x: currentStep === 0 ? 0 : -5 }}
 //             >
 //               <div className={`w-6 h-px ${
-//                 currentStep === 0 
+//                 currentStep === 0
 //                   ? dark ? "bg-gray-800" : "bg-gray-300"
 //                   : dark ? "bg-gray-400 group-hover:bg-white" : "bg-gray-600 group-hover:bg-black"
 //               }`} />
@@ -2065,7 +2063,7 @@
 //                   <div
 //                     key={index}
 //                     className={`w-8 h-px transition-all duration-300 ${
-//                       index <= currentStep 
+//                       index <= currentStep
 //                         ? dark ? "bg-white" : "bg-black"
 //                         : dark ? "bg-gray-800" : "bg-gray-200"
 //                     }`}
@@ -2116,7 +2114,7 @@
 //               >
 //                 CONTINUE
 //                 <div className={`w-6 h-px ${
-//                   !isStepValid() 
+//                   !isStepValid()
 //                     ? dark ? "bg-gray-800" : "bg-gray-300"
 //                     : dark ? "bg-white" : "bg-black"
 //                 }`} />
@@ -2153,7 +2151,6 @@
 // };
 
 // export default PitchForm;
-
 
 // import { useState, useEffect } from "react";
 // import { motion, AnimatePresence } from "framer-motion";
@@ -2205,7 +2202,7 @@
 //     if (savedDraft) {
 //       try {
 //         const parsedDraft = JSON.parse(savedDraft);
-//         const hasContent = Object.values(parsedDraft).some(value => 
+//         const hasContent = Object.values(parsedDraft).some(value =>
 //           typeof value === 'string' && value.trim()
 //         );
 
@@ -2367,7 +2364,7 @@
 //   };
 
 //   const isStepValid = () => {
-//     return steps[currentStep].fields.every(field => 
+//     return steps[currentStep].fields.every(field =>
 //       field.required ? formData[field.name]?.trim() : true
 //     );
 //   };
@@ -2442,13 +2439,13 @@
 //           animate={{ scale: 1, opacity: 1 }}
 //           transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
 //           className={`max-w-2xl w-full text-center px-16 py-20 ${
-//             dark 
-//               ? "bg-gradient-to-b from-gray-900 to-black border border-gray-800" 
+//             dark
+//               ? "bg-gradient-to-b from-gray-900 to-black border border-gray-800"
 //               : "bg-gradient-to-b from-gray-50 to-white border border-gray-100"
 //           } rounded-none shadow-2xl`}
 //           style={{
-//             boxShadow: dark 
-//               ? "0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05)" 
+//             boxShadow: dark
+//               ? "0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05)"
 //               : "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05)"
 //           }}
 //         >
@@ -2492,8 +2489,8 @@
 //             transition={{ delay: 0.7, duration: 0.6 }}
 //             onClick={resetForm}
 //             className={`px-12 py-4 font-medium tracking-widest transition-all duration-300 ${
-//               dark 
-//                 ? "bg-white text-black hover:bg-gray-100 border border-white" 
+//               dark
+//                 ? "bg-white text-black hover:bg-gray-100 border border-white"
 //                 : "bg-black text-white hover:bg-gray-900 border border-black"
 //             }`}
 //             style={{ fontFamily: "'Montserrat', 'Helvetica Neue', sans-serif", letterSpacing: '0.15em' }}
@@ -2520,7 +2517,7 @@
 //       >
 //         <div className={`w-1 h-12 mx-auto mb-8 ${dark ? "bg-white" : "bg-black"}`} />
 
-//         <h1 
+//         <h1
 //           className={`text-5xl md:text-6xl font-light mb-6 tracking-wider ${
 //             dark ? "text-white" : "text-black"
 //           }`}
@@ -2531,7 +2528,7 @@
 
 //         <div className={`w-32 h-px mx-auto mb-6 ${dark ? "bg-gray-600" : "bg-gray-300"}`} />
 
-//         <p 
+//         <p
 //           className={`text-lg font-light tracking-wide ${dark ? "text-gray-400" : "text-gray-600"}`}
 //           style={{ fontFamily: "'Source Serif Pro', 'Georgia', serif", letterSpacing: '0.02em' }}
 //         >
@@ -2551,7 +2548,7 @@
 //               }`}
 //             >
 //               <div className={`w-2 h-2 rounded-full ${dark ? "bg-white" : "bg-black"} opacity-60`} />
-//               <span 
+//               <span
 //                 className={`text-xs font-medium tracking-wider ${dark ? "text-gray-400" : "text-gray-600"}`}
 //                 style={{ fontFamily: "'Montserrat', 'Helvetica Neue', sans-serif", letterSpacing: '0.12em' }}
 //               >
@@ -2594,23 +2591,23 @@
 //               >
 //                 <div className={`w-16 h-16 rounded-full border flex items-center justify-center mb-4 transition-all duration-500 ${
 //                   index <= currentStep
-//                     ? dark 
-//                       ? "border-white bg-white text-black" 
+//                     ? dark
+//                       ? "border-white bg-white text-black"
 //                       : "border-black bg-black text-white"
-//                     : dark 
-//                       ? "border-gray-800 text-gray-600" 
+//                     : dark
+//                       ? "border-gray-800 text-gray-600"
 //                       : "border-gray-200 text-gray-400"
 //                 }`}>
-//                   <span 
+//                   <span
 //                     className="text-sm font-medium tracking-wider"
 //                     style={{ fontFamily: "'Montserrat', 'Helvetica Neue', sans-serif", letterSpacing: '0.1em' }}
 //                   >
 //                     {step.number}
 //                   </span>
 //                 </div>
-//                 <h3 
+//                 <h3
 //                   className={`text-xs font-medium tracking-wider text-center ${
-//                     index <= currentStep 
+//                     index <= currentStep
 //                       ? dark ? "text-white" : "text-black"
 //                       : dark ? "text-gray-600" : "text-gray-400"
 //                   }`}
@@ -2634,7 +2631,7 @@
 //                 dark ? "bg-red-900/20 border-red-800/50" : "bg-red-50 border-red-200/50"
 //               }`}
 //             >
-//               <p 
+//               <p
 //                 className={`text-sm ${dark ? "text-red-300" : "text-red-800"}`}
 //                 style={{ fontFamily: "'Source Serif Pro', 'Georgia', serif", fontWeight: '300' }}
 //               >
@@ -2647,13 +2644,13 @@
 //         {/* Main Form Container */}
 //         <motion.div
 //           className={`mb-24 ${
-//             dark 
-//               ? "bg-gradient-to-b from-gray-900 to-black border border-gray-800" 
+//             dark
+//               ? "bg-gradient-to-b from-gray-900 to-black border border-gray-800"
 //               : "bg-gradient-to-b from-gray-50 to-white border border-gray-100"
 //           } shadow-2xl`}
 //           style={{
-//             boxShadow: dark 
-//               ? "0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05)" 
+//             boxShadow: dark
+//               ? "0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05)"
 //               : "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05)"
 //           }}
 //           initial={{ opacity: 0, y: 50 }}
@@ -2677,7 +2674,7 @@
 //               >
 //                 <div className="mb-16 text-center">
 //                   <div className={`w-1 h-8 mx-auto mb-6 ${dark ? "bg-white" : "bg-black"}`} />
-//                   <h2 
+//                   <h2
 //                     className={`text-3xl font-light mb-4 tracking-wide ${
 //                       dark ? "text-white" : "text-black"
 //                     }`}
@@ -2697,7 +2694,7 @@
 //                         animate={{ opacity: 1, y: 0 }}
 //                         transition={{ delay: fieldIndex * 0.15, duration: 0.6 }}
 //                       >
-//                         <label 
+//                         <label
 //                           className={`block text-sm font-medium tracking-wider mb-4 ${
 //                             dark ? "text-gray-300" : "text-gray-700"
 //                           }`}
@@ -2717,8 +2714,8 @@
 //                                 ? "border-gray-800 text-white placeholder-gray-600 focus:border-white"
 //                                 : "border-gray-200 text-black placeholder-gray-400 focus:border-black"
 //                             }`}
-//                             style={{ 
-//                               fontFamily: "'Source Serif Pro', 'Georgia', serif", 
+//                             style={{
+//                               fontFamily: "'Source Serif Pro', 'Georgia', serif",
 //                               fontWeight: '300',
 //                               lineHeight: '1.7',
 //                               fontSize: '16px'
@@ -2737,8 +2734,8 @@
 //                                 ? "border-gray-800 text-white placeholder-gray-600 focus:border-white"
 //                                 : "border-gray-200 text-black placeholder-gray-400 focus:border-black"
 //                             }`}
-//                             style={{ 
-//                               fontFamily: "'Source Serif Pro', 'Georgia', serif", 
+//                             style={{
+//                               fontFamily: "'Source Serif Pro', 'Georgia', serif",
 //                               fontWeight: '300',
 //                               fontSize: '16px'
 //                             }}
@@ -2774,7 +2771,7 @@
 //               whileHover={{ x: currentStep === 0 ? 0 : -5 }}
 //             >
 //               <div className={`w-6 h-px ${
-//                 currentStep === 0 
+//                 currentStep === 0
 //                   ? dark ? "bg-gray-800" : "bg-gray-300"
 //                   : dark ? "bg-gray-400 group-hover:bg-white" : "bg-gray-600 group-hover:bg-black"
 //               }`} />
@@ -2782,7 +2779,7 @@
 //             </motion.button>
 
 //             <div className="flex items-center gap-6">
-//               <span 
+//               <span
 //                 className={`text-xs font-medium tracking-wider ${dark ? "text-gray-500" : "text-gray-500"}`}
 //                 style={{ fontFamily: "'Montserrat', 'Helvetica Neue', sans-serif", letterSpacing: '0.12em' }}
 //               >
@@ -2793,7 +2790,7 @@
 //                   <div
 //                     key={index}
 //                     className={`w-8 h-px transition-all duration-300 ${
-//                       index <= currentStep 
+//                       index <= currentStep
 //                         ? dark ? "bg-white" : "bg-black"
 //                         : dark ? "bg-gray-800" : "bg-gray-200"
 //                     }`}
@@ -2846,7 +2843,7 @@
 //               >
 //                 CONTINUE
 //                 <div className={`w-6 h-px ${
-//                   !isStepValid() 
+//                   !isStepValid()
 //                     ? dark ? "bg-gray-800" : "bg-gray-300"
 //                     : dark ? "bg-white" : "bg-black"
 //                 }`} />
@@ -2884,7 +2881,6 @@
 // };
 
 // export default PitchForm;
-
 
 // import { useState, useEffect } from "react";
 // import { motion, AnimatePresence } from "framer-motion";
@@ -2936,7 +2932,7 @@
 //     if (savedDraft) {
 //       try {
 //         const parsedDraft = JSON.parse(savedDraft);
-//         const hasContent = Object.values(parsedDraft).some(value => 
+//         const hasContent = Object.values(parsedDraft).some(value =>
 //           typeof value === 'string' && value.trim()
 //         );
 
@@ -3104,7 +3100,7 @@
 //   };
 
 //   const isStepValid = () => {
-//     return steps[currentStep].fields.every(field => 
+//     return steps[currentStep].fields.every(field =>
 //       field.required ? formData[field.name]?.trim() : true
 //     );
 //   };
@@ -3179,8 +3175,8 @@
 //           animate={{ scale: 1, opacity: 1 }}
 //           transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
 //           className={`w-full max-w-sm sm:max-w-md md:max-w-lg text-center p-6 sm:p-8 md:p-12 lg:p-16 ${
-//             dark 
-//               ? "bg-gray-900 border border-gray-800" 
+//             dark
+//               ? "bg-gray-900 border border-gray-800"
 //               : "bg-gray-50 border border-gray-200"
 //           } shadow-lg`}
 //         >
@@ -3222,8 +3218,8 @@
 //             transition={{ delay: 0.6, duration: 0.5 }}
 //             onClick={resetForm}
 //             className={`w-full px-6 sm:px-8 md:px-12 py-3 sm:py-4 text-xs sm:text-sm font-medium tracking-widest transition-all duration-300 ${
-//               dark 
-//                 ? "bg-white text-black hover:bg-gray-100 border border-white" 
+//               dark
+//                 ? "bg-white text-black hover:bg-gray-100 border border-white"
 //                 : "bg-black text-white hover:bg-gray-900 border border-black"
 //             }`}
 //             whileHover={{ y: -2 }}
@@ -3314,11 +3310,11 @@
 //               >
 //                 <div className={`w-8 sm:w-10 md:w-12 lg:w-14 xl:w-16 h-8 sm:h-10 md:h-12 lg:h-14 xl:h-16 rounded-full border flex items-center justify-center mb-2 sm:mb-3 md:mb-4 transition-all duration-500 ${
 //                   index <= currentStep
-//                     ? dark 
-//                       ? "border-white bg-white text-black" 
+//                     ? dark
+//                       ? "border-white bg-white text-black"
 //                       : "border-black bg-black text-white"
-//                     : dark 
-//                       ? "border-gray-800 text-gray-600" 
+//                     : dark
+//                       ? "border-gray-800 text-gray-600"
 //                       : "border-gray-300 text-gray-500"
 //                 }`}>
 //                   <span className="text-xs sm:text-sm font-medium">
@@ -3326,7 +3322,7 @@
 //                   </span>
 //                 </div>
 //                 <h3 className={`text-xs sm:text-xs md:text-xs font-medium tracking-wider text-center leading-tight ${
-//                   index <= currentStep 
+//                   index <= currentStep
 //                     ? dark ? "text-white" : "text-black"
 //                     : dark ? "text-gray-600" : "text-gray-500"
 //                 }`}>
@@ -3357,8 +3353,8 @@
 //         {/* Fully Responsive Form Container */}
 //         <motion.div
 //           className={`mb-12 sm:mb-16 md:mb-20 lg:mb-24 border ${
-//             dark 
-//               ? "bg-gray-900 border-gray-800" 
+//             dark
+//               ? "bg-gray-900 border-gray-800"
 //               : "bg-gray-50 border-gray-200"
 //           } shadow-lg md:shadow-xl lg:shadow-2xl`}
 //           initial={{ opacity: 0, y: 30 }}
@@ -3461,7 +3457,7 @@
 //               whileHover={{ x: currentStep === 0 ? 0 : -3 }}
 //             >
 //               <div className={`w-3 sm:w-4 md:w-6 h-px ${
-//                 currentStep === 0 
+//                 currentStep === 0
 //                   ? dark ? "bg-gray-800" : "bg-gray-400"
 //                   : dark ? "bg-gray-400 group-hover:bg-white" : "bg-gray-600 group-hover:bg-black"
 //               }`} />
@@ -3478,7 +3474,7 @@
 //                   <div
 //                     key={index}
 //                     className={`w-4 sm:w-6 md:w-8 h-px transition-all duration-300 ${
-//                       index <= currentStep 
+//                       index <= currentStep
 //                         ? dark ? "bg-white" : "bg-black"
 //                         : dark ? "bg-gray-800" : "bg-gray-300"
 //                     }`}
@@ -3531,7 +3527,7 @@
 //                 <span className="hidden sm:inline">CONTINUE</span>
 //                 <span className="sm:hidden">NEXT</span>
 //                 <div className={`w-3 sm:w-4 md:w-6 h-px ${
-//                   !isStepValid() 
+//                   !isStepValid()
 //                     ? dark ? "bg-gray-800" : "bg-gray-400"
 //                     : dark ? "bg-white" : "bg-black"
 //                 }`} />
@@ -3569,6 +3565,2399 @@
 
 // export default PitchForm;
 
+// import { useState, useEffect } from "react";
+// import { motion, AnimatePresence } from "framer-motion";
+// import api from "../utils/api1";
+// import useThemeStore from "../store/themeStore";
+
+// const PitchForm = () => {
+//   const [formData, setFormData] = useState({
+//     startupName: "",
+//     oneLiner: "",
+//     problem: "",
+//     solution: "",
+//     targetMarket: "",
+//     businessModel: "",
+//     traction: "",
+//     team: "",
+//     goToMarketStrategy: "",
+//     competition: "",
+//     fundingAsk: "",
+//     fundingUse: "",
+//   });
+//   const [loading, setLoading] = useState(false);
+//   const [success, setSuccess] = useState(false);
+//   const [message, setMessage] = useState("");
+//   const [error, setError] = useState("");
+//   const [draftSaved, setDraftSaved] = useState(false);
+//   const [isMobile, setIsMobile] = useState(false);
+//   const [enhancing, setEnhancing] = useState(false);
+//   const [sampleEnhanced, setSampleEnhanced] = useState("");
+//   const [enhanceField, setEnhanceField] = useState("");
+//   const { dark } = useThemeStore();
+
+//   // Enhanced screen size detection
+//   useEffect(() => {
+//     const checkScreenSize = () => {
+//       setIsMobile(window.innerWidth < 768);
+//     };
+//     checkScreenSize();
+//     window.addEventListener("resize", checkScreenSize);
+//     return () => window.removeEventListener("resize", checkScreenSize);
+//   }, []);
+
+//   // Auto-save functionality
+//   useEffect(() => {
+//     const timer = setTimeout(() => {
+//       const hasContent = Object.values(formData).some((value) => value.trim());
+
+//       if (hasContent) {
+//         localStorage.setItem("pitchDraft", JSON.stringify(formData));
+//         setDraftSaved(true);
+//         setTimeout(() => setDraftSaved(false), 2500);
+//       }
+//     }, 2000);
+
+//     return () => clearTimeout(timer);
+//   }, [formData]);
+
+//   // Load draft on component mount
+//   useEffect(() => {
+//     const savedDraft = localStorage.getItem("pitchDraft");
+//     if (savedDraft) {
+//       try {
+//         const parsedDraft = JSON.parse(savedDraft);
+//         const hasContent = Object.values(parsedDraft).some(
+//           (value) => typeof value === "string" && value.trim()
+//         );
+
+//         if (hasContent) {
+//           setFormData(parsedDraft);
+//         }
+//       } catch (error) {
+//         console.error("Error parsing saved pitch draft:", error);
+//         localStorage.removeItem("pitchDraft");
+//       }
+//     }
+//   }, []);
+
+//   const sections = [
+//     {
+//       title: "Foundation",
+//       fields: [
+//         {
+//           label: "Company Name",
+//           name: "startupName",
+//           placeholder: "Enter your company name...",
+//           required: true,
+//           maxLength: 100,
+//         },
+//         {
+//           label: "Value Proposition",
+//           name: "oneLiner",
+//           placeholder: "Describe your company's core value proposition...",
+//           required: true,
+//           maxLength: 200,
+//         },
+//       ],
+//     },
+//     {
+//       title: "Challenge & Innovation",
+//       fields: [
+//         {
+//           label: "Market Problem",
+//           name: "problem",
+//           textarea: true,
+//           placeholder:
+//             "Define the significant problem or market inefficiency your company addresses...",
+//           required: true,
+//           maxLength: 800,
+//         },
+//         {
+//           label: "Solution Overview",
+//           name: "solution",
+//           textarea: true,
+//           placeholder:
+//             "Explain how your innovation provides a superior solution...",
+//           required: true,
+//           maxLength: 800,
+//         },
+//       ],
+//     },
+//     {
+//       title: "Market Opportunity",
+//       fields: [
+//         {
+//           label: "Target Market",
+//           name: "targetMarket",
+//           textarea: true,
+//           placeholder:
+//             "Define your addressable market and customer segments...",
+//           required: true,
+//           maxLength: 600,
+//         },
+//         {
+//           label: "Revenue Model",
+//           name: "businessModel",
+//           textarea: true,
+//           placeholder:
+//             "Outline your monetization strategy and revenue streams...",
+//           required: true,
+//           maxLength: 600,
+//         },
+//       ],
+//     },
+//     {
+//       title: "Execution & Team",
+//       fields: [
+//         {
+//           label: "Current Traction",
+//           name: "traction",
+//           textarea: true,
+//           placeholder:
+//             "Present key metrics, milestones, and validation achieved...",
+//           required: true,
+//           maxLength: 700,
+//         },
+//         {
+//           label: "Team Overview",
+//           name: "team",
+//           textarea: true,
+//           placeholder:
+//             "Highlight leadership team and advisory board expertise...",
+//           required: true,
+//           maxLength: 600,
+//         },
+//       ],
+//     },
+//     {
+//       title: "Market Strategy",
+//       fields: [
+//         {
+//           label: "Go-to-Market Strategy",
+//           name: "goToMarketStrategy",
+//           textarea: true,
+//           placeholder:
+//             "Detail your customer acquisition and market penetration approach...",
+//           required: true,
+//           maxLength: 700,
+//         },
+//         {
+//           label: "Competitive Analysis",
+//           name: "competition",
+//           textarea: true,
+//           placeholder:
+//             "Identify competitive landscape and articulate your differentiation...",
+//           required: true,
+//           maxLength: 700,
+//         },
+//       ],
+//     },
+//     {
+//       title: "Investment Request",
+//       fields: [
+//         {
+//           label: "Funding Amount",
+//           name: "fundingAsk",
+//           placeholder: "Specify the investment amount and round type...",
+//           required: true,
+//           maxLength: 200,
+//         },
+//         {
+//           label: "Use of Funds",
+//           name: "fundingUse",
+//           textarea: true,
+//           placeholder:
+//             "Provide detailed allocation of investment across strategic priorities...",
+//           required: true,
+//           maxLength: 800,
+//         },
+//       ],
+//     },
+//   ];
+
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
+//     setFormData((prev) => ({
+//       ...prev,
+//       [name]: value,
+//     }));
+//     if (error) setError("");
+//   };
+
+//   const handleAIEnhance = async (fieldName, content) => {
+//     if (!content.trim()) {
+//       setError("Please enter some content to enhance");
+//       return;
+//     }
+
+//     setEnhancing(true);
+//     setEnhanceField(fieldName);
+
+//     try {
+//       const res = await api.post("/user/ask", {
+//         content: `
+//           You are an expert investment pitch writer.
+//           Your job is to take the following text and:
+//           1. Improve clarity, grammar, and flow for investor presentations.
+//           2. Make it compelling and professionally persuasive.
+//           3. Expand with relevant details that investors want to see.
+//           4. Keep the tone confident yet realistic.
+//           5. Return ONLY the improved version (no extra formatting or labels).
+
+//           Context: This is for field "${fieldName}" in an investment pitch.
+
+//           Here is the text to improve:
+//           ---
+//           ${content}
+//           ---
+//         `,
+//       });
+//       const enhancedContent = res.data.data.choices[0].message.content.trim();
+//       setSampleEnhanced(enhancedContent);
+//       setError("");
+//     } catch (error) {
+//       console.error("AI Enhancement error:", error);
+//       setError("Failed to enhance content. Please try again.");
+//     } finally {
+//       setEnhancing(false);
+//       setEnhanceField("");
+//     }
+//   };
+
+//   const isFormValid = () => {
+//     const requiredFields = sections.flatMap((section) =>
+//       section.fields
+//         .filter((field) => field.required)
+//         .map((field) => field.name)
+//     );
+//     return requiredFields.every((field) => formData[field]?.trim());
+//   };
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     if (!isFormValid()) {
+//       setError("Please fill in all required fields.");
+//       return;
+//     }
+
+//     setLoading(true);
+//     setError("");
+
+//     try {
+//       const res = await api.post("/user/posts/submitpitch", formData);
+//       setMessage(res.data.message);
+//       setSuccess(true);
+//       localStorage.removeItem("pitchDraft");
+//     } catch (error) {
+//       setError(
+//         error.response?.data?.message ||
+//           "Failed to submit pitch. Please try again."
+//       );
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   const handleClearDraft = () => {
+//     setFormData({
+//       startupName: "",
+//       oneLiner: "",
+//       problem: "",
+//       solution: "",
+//       targetMarket: "",
+//       businessModel: "",
+//       traction: "",
+//       team: "",
+//       goToMarketStrategy: "",
+//       competition: "",
+//       fundingAsk: "",
+//       fundingUse: "",
+//     });
+//     setSuccess(false);
+//     setMessage("");
+//     setError("");
+//     setSampleEnhanced("");
+//     localStorage.removeItem("pitchDraft");
+//   };
+
+//   // Check if there's any draft content
+//   const hasDraftContent = Object.values(formData).some((value) => value.trim());
+
+//   if (success) {
+//     return (
+//       <div
+//         className={`min-h-screen flex items-center justify-center p-4 ${
+//           dark ? "bg-black" : "bg-white"
+//         }`}
+//       >
+//         <div className="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/25 text-emerald-600 text-sm flex items-center gap-2 backdrop-blur-sm transition-all duration-500">
+//           <svg
+//             className="w-4 h-4 flex-shrink-0"
+//             fill="currentColor"
+//             viewBox="0 0 20 20"
+//           >
+//             <path
+//               fillRule="evenodd"
+//               d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+//             />
+//           </svg>
+//           {message} 🎉
+//         </div>
+//         <button
+//           onClick={handleClearDraft}
+//           className={`mt-4 w-full sm:w-auto px-6 md:px-8 py-3 md:py-3.5 font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 backdrop-blur-sm border ${
+//             dark
+//               ? "bg-gradient-to-r from-white/15 via-white/25 to-white/15 border-white/30 text-white hover:from-white/25 hover:via-white/35 hover:to-white/25 shadow-lg hover:shadow-xl"
+//               : "bg-gradient-to-r from-black/15 via-black/25 to-black/15 border-black/30 text-black hover:from-black/25 hover:via-black/35 hover:to-black/25 shadow-lg hover:shadow-xl"
+//           }`}
+//         >
+//           Create New Pitch
+//         </button>
+//       </div>
+//     );
+//   }
+
+//   return (
+//     <div className="w-full min-h-screen px-2 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-4 md:py-6 lg:py-8 relative overflow-hidden">
+//       {/* Enhanced multi-layer glassmorphism background - FIXED to match Post component */}
+//       <div className="absolute inset-0 overflow-hidden pointer-events-none">
+//         {/* Primary gradient orbs - First orb now empty to match Post component */}
+//         <div
+//           className={`absolute -top-32 -right-32 w-64 h-64 md:w-80 md:h-80 rounded-full blur-3xl transition-opacity duration-1000`}
+//         ></div>
+
+//         <div
+//           className={`absolute -bottom-32 -left-32 w-72 h-72 md:w-96 md:h-96 rounded-full blur-3xl transition-opacity duration-1000 ${
+//             dark
+//               ? "bg-gradient-to-tr from-emerald-500/20 via-cyan-500/15 to-blue-500/25"
+//               : "bg-gradient-to-tr from-emerald-400/25 via-cyan-400/20 to-blue-400/30"
+//           }`}
+//         ></div>
+
+//         {/* Secondary accent orbs for depth */}
+//         <div
+//           className={`absolute top-1/3 right-1/4 w-48 h-48 md:w-56 md:h-56 rounded-full blur-2xl opacity-60 ${
+//             dark
+//               ? "bg-gradient-to-br from-orange-500/15 to-red-500/10"
+//               : "bg-gradient-to-br from-orange-400/20 to-red-400/15"
+//           }`}
+//         ></div>
+
+//         <div
+//           className={`absolute bottom-1/3 left-1/4 w-40 h-40 md:w-48 md:h-48 rounded-full blur-2xl opacity-40 ${
+//             dark
+//               ? "bg-gradient-to-br from-violet-500/20 to-indigo-500/15"
+//               : "bg-gradient-to-br from-violet-400/25 to-indigo-400/20"
+//           }`}
+//         ></div>
+//       </div>
+
+//       <div className="max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl xl:max-w-4xl mx-auto relative z-10">
+//         <div
+//           className={`rounded-lg md:rounded-xl transition-all duration-700 hover:scale-[1.01] backdrop-blur-2xl border shadow-2xl ${
+//             !dark
+//               ? "border-white/25 bg-white/8 shadow-black/10"
+//               : "border-white/15 bg-black/8 shadow-white/5"
+//           }`}
+//           style={{
+//             backdropFilter: "blur(24px) saturate(200%)",
+//             WebkitBackdropFilter: "blur(24px) saturate(200%)",
+//             boxShadow: dark
+//               ? "0 25px 50px -12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)"
+//               : "0 25px 50px -12px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2)",
+//           }}
+//         >
+//           {/* Ultra-elegant header with subtle gradient overlay */}
+//           <div
+//             className={`px-3 sm:px-4 md:px-6 py-3 sm:py-4 border-b backdrop-blur-sm rounded-t-lg md:rounded-t-xl relative overflow-hidden ${
+//               dark
+//                 ? "border-white/10 bg-gradient-to-r from-white/3 via-white/8 to-white/3"
+//                 : "border-black/10 bg-gradient-to-r from-black/3 via-black/8 to-black/3"
+//             }`}
+//           >
+//             {/* Subtle shimmer overlay */}
+//             <div
+//               className={`absolute inset-0 bg-gradient-to-r ${
+//                 dark
+//                   ? "from-transparent via-white/5 to-transparent"
+//                   : "from-transparent via-black/5 to-transparent"
+//               } opacity-50`}
+//             ></div>
+
+//             <div className="flex items-center justify-between relative z-10">
+//               <div className="flex items-center gap-2 sm:gap-3">
+//                 {/* Enhanced dot indicator with inner glow */}
+//                 <div
+//                   className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full backdrop-blur-sm border relative ${
+//                     dark
+//                       ? "bg-gradient-to-br from-white/30 via-white/20 to-white/10 border-white/30"
+//                       : "bg-gradient-to-br from-black/30 via-black/20 to-black/10 border-black/30"
+//                   }`}
+//                 >
+//                   <div
+//                     className={`absolute inset-0.5 rounded-full ${
+//                       dark ? "bg-white/20" : "bg-black/20"
+//                     }`}
+//                   ></div>
+//                 </div>
+//                 <h2
+//                   className={`text-base sm:text-lg md:text-xl font-semibold tracking-tight ${
+//                     dark ? "text-white/95" : "text-black/95"
+//                   }`}
+//                 >
+//                   Investment Pitch
+//                 </h2>
+//               </div>
+
+//               <div className="flex items-center gap-2 sm:gap-3">
+//                 {/* Enhanced draft saved indicator */}
+//                 {draftSaved && (
+//                   <div
+//                     className={`text-xs flex items-center gap-1 px-2 sm:px-3 py-1 rounded-full backdrop-blur-sm border transition-all duration-500 ${
+//                       dark
+//                         ? "text-emerald-300 bg-emerald-500/15 border-emerald-500/25"
+//                         : "text-emerald-700 bg-emerald-500/15 border-emerald-500/25"
+//                     }`}
+//                   >
+//                     <svg
+//                       className="w-2.5 h-2.5 sm:w-3 sm:h-3"
+//                       fill="currentColor"
+//                       viewBox="0 0 20 20"
+//                     >
+//                       <path
+//                         fillRule="evenodd"
+//                         d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+//                       />
+//                     </svg>
+//                     <span className="hidden sm:inline">Draft saved</span>
+//                     <span className="sm:hidden">Saved</span>
+//                   </div>
+//                 )}
+
+//                 {/* Enhanced clear draft button */}
+//                 {hasDraftContent && (
+//                   <button
+//                     type="button"
+//                     onClick={handleClearDraft}
+//                     className={`px-2 sm:px-3 py-1 sm:py-1.5 text-xs font-medium rounded-lg transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-sm border ${
+//                       dark
+//                         ? "bg-white/8 text-white/85 hover:bg-white/15 border-white/20 hover:border-white/35"
+//                         : "bg-black/8 text-black/85 hover:bg-black/15 border-black/20 hover:border-black/35"
+//                     }`}
+//                     title="Clear all draft content"
+//                   >
+//                     <div className="flex items-center gap-1 sm:gap-1.5">
+//                       <svg
+//                         className="w-2.5 h-2.5 sm:w-3 sm:h-3"
+//                         fill="none"
+//                         viewBox="0 0 24 24"
+//                         stroke="currentColor"
+//                       >
+//                         <path
+//                           strokeLinecap="round"
+//                           strokeLinejoin="round"
+//                           strokeWidth={2}
+//                           d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+//                         />
+//                       </svg>
+//                       <span className="hidden sm:inline">Clear</span>
+//                     </div>
+//                   </button>
+//                 )}
+//               </div>
+//             </div>
+//           </div>
+
+//           <form
+//             onSubmit={handleSubmit}
+//             className="p-3 sm:p-4 md:p-6 space-y-3 sm:space-y-4 md:space-y-6"
+//           >
+//             {/* Enhanced error message */}
+//             {error && (
+//               <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/25 text-red-600 text-sm backdrop-blur-sm">
+//                 {error}
+//               </div>
+//             )}
+
+//             {/* Single Page Form Sections */}
+//             <div className="space-y-6 sm:space-y-8 md:space-y-10">
+//               {sections.map((section, sectionIndex) => (
+//                 <motion.div
+//                   key={section.title}
+//                   initial={{ opacity: 0, y: 30 }}
+//                   animate={{ opacity: 1, y: 0 }}
+//                   transition={{ delay: sectionIndex * 0.1, duration: 0.6 }}
+//                   className="space-y-4 sm:space-y-6"
+//                 >
+//                   {/* Section Header */}
+//                   <div className="mb-4 sm:mb-6">
+//                     <h3
+//                       className={`text-lg sm:text-xl font-semibold mb-2 ${
+//                         dark ? "text-white/90" : "text-black/90"
+//                       }`}
+//                     >
+//                       {section.title}
+//                     </h3>
+//                     <div
+//                       className={`w-8 sm:w-12 h-px ${
+//                         dark ? "bg-white/30" : "bg-black/30"
+//                       }`}
+//                     />
+//                   </div>
+
+//                   {/* Section Fields */}
+//                   <div className="space-y-4 sm:space-y-6">
+//                     {section.fields.map((field, fieldIndex) => (
+//                       <motion.div
+//                         key={field.name}
+//                         initial={{ opacity: 0, y: 20 }}
+//                         animate={{ opacity: 1, y: 0 }}
+//                         transition={{
+//                           delay: sectionIndex * 0.1 + fieldIndex * 0.05,
+//                           duration: 0.4,
+//                         }}
+//                         className="space-y-2"
+//                       >
+//                         <label
+//                           className={`block text-sm font-medium ${
+//                             dark ? "text-white/85" : "text-black/85"
+//                           }`}
+//                         >
+//                           {field.label}
+//                           {field.required && (
+//                             <span className="text-red-500 ml-1">*</span>
+//                           )}
+//                         </label>
+
+//                         <div className="relative">
+//                           {field.textarea ? (
+//                             <textarea
+//                               name={field.name}
+//                               rows={isMobile ? 4 : 5}
+//                               maxLength={field.maxLength}
+//                               value={formData[field.name]}
+//                               onChange={handleChange}
+//                               placeholder={field.placeholder}
+//                               className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 pr-10 sm:pr-14 rounded-lg resize-y min-h-[120px] max-h-[400px] text-sm sm:text-base border transition-all duration-300 focus:outline-none focus:ring-2 backdrop-blur-sm ${
+//                                 dark
+//                                   ? "bg-white/5 border-white/20 text-white/95 focus:border-white/50 focus:ring-white/15 placeholder-white/50 hover:bg-white/8"
+//                                   : "bg-black/5 border-black/20 text-black/95 focus:border-black/50 focus:ring-black/15 placeholder-black/50 hover:bg-black/8"
+//                               }`}
+//                               required={field.required}
+//                             />
+//                           ) : (
+//                             <input
+//                               type="text"
+//                               name={field.name}
+//                               maxLength={field.maxLength}
+//                               value={formData[field.name]}
+//                               onChange={handleChange}
+//                               placeholder={field.placeholder}
+//                               className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg text-sm sm:text-base border transition-all duration-300 focus:outline-none focus:ring-2 backdrop-blur-sm ${
+//                                 dark
+//                                   ? "bg-white/5 border-white/20 text-white/95 focus:border-white/50 focus:ring-white/15 placeholder-white/50 hover:bg-white/8"
+//                                   : "bg-black/5 border-black/20 text-black/95 focus:border-black/50 focus:ring-black/15 placeholder-black/50 hover:bg-black/8"
+//                               }`}
+//                               required={field.required}
+//                             />
+//                           )}
+
+//                           {/* Enhanced AI button for textarea fields */}
+//                           {field.textarea && (
+//                             <button
+//                               type="button"
+//                               onClick={() =>
+//                                 handleAIEnhance(
+//                                   field.name,
+//                                   formData[field.name]
+//                                 )
+//                               }
+//                               disabled={
+//                                 !formData[field.name]?.trim() || enhancing
+//                               }
+//                               className={`absolute top-2 right-2 sm:top-3 sm:right-3 p-2 rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group backdrop-blur-sm border ${
+//                                 dark
+//                                   ? "bg-gradient-to-br from-violet-500/20 via-purple-500/15 to-indigo-500/20 border-violet-500/30 text-white hover:from-violet-500/30 hover:via-purple-500/25 hover:to-indigo-500/30"
+//                                   : "bg-gradient-to-br from-violet-500/20 via-purple-500/15 to-indigo-500/20 border-violet-500/30 text-black hover:from-violet-500/30 hover:via-purple-500/25 hover:to-indigo-500/30"
+//                               }`}
+//                               title="Enhance content with AI"
+//                             >
+//                               {enhancing && enhanceField === field.name ? (
+//                                 <div className="animate-spin">
+//                                   <svg
+//                                     className="w-4 h-4"
+//                                     fill="none"
+//                                     viewBox="0 0 24 24"
+//                                   >
+//                                     <circle
+//                                       cx="12"
+//                                       cy="12"
+//                                       r="10"
+//                                       stroke="currentColor"
+//                                       strokeWidth="4"
+//                                       className="opacity-25"
+//                                     ></circle>
+//                                     <path
+//                                       fill="currentColor"
+//                                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+//                                       className="opacity-75"
+//                                     ></path>
+//                                   </svg>
+//                                 </div>
+//                               ) : (
+//                                 <svg
+//                                   className="w-4 h-4 transition-transform group-hover:scale-110"
+//                                   fill="none"
+//                                   viewBox="0 0 24 24"
+//                                   stroke="currentColor"
+//                                 >
+//                                   <path
+//                                     strokeLinecap="round"
+//                                     strokeLinejoin="round"
+//                                     strokeWidth={2}
+//                                     d="M13 10V3L4 14h7v7l9-11h-7z"
+//                                   />
+//                                 </svg>
+//                               )}
+//                             </button>
+//                           )}
+//                         </div>
+
+//                         {/* Character count */}
+//                         <div className="flex flex-col xs:flex-row xs:justify-between xs:items-center gap-1">
+//                           {field.maxLength && (
+//                             <span
+//                               className={`text-xs xs:ml-auto ${
+//                                 formData[field.name]?.length >=
+//                                 field.maxLength * 0.9
+//                                   ? "text-orange-500"
+//                                   : formData[field.name]?.length >=
+//                                     field.maxLength
+//                                   ? "text-red-500"
+//                                   : dark
+//                                   ? "text-white/60"
+//                                   : "text-black/60"
+//                               }`}
+//                             >
+//                               {formData[field.name]?.length || 0}/
+//                               {field.maxLength}
+//                             </span>
+//                           )}
+//                           {enhancing && enhanceField === field.name && (
+//                             <span
+//                               className={`text-xs px-2 py-0.5 rounded-full backdrop-blur-sm ${
+//                                 dark
+//                                   ? "text-violet-300 bg-violet-500/10"
+//                                   : "text-violet-700 bg-violet-500/10"
+//                               }`}
+//                             >
+//                               Enhancing...
+//                             </span>
+//                           )}
+//                         </div>
+
+//                         {/* Enhanced AI sample display */}
+//                         {sampleEnhanced && enhanceField === field.name && (
+//                           <div
+//                             className={`mt-3 p-3 sm:p-4 rounded-lg border backdrop-blur-sm transition-all duration-500 animate-in slide-in-from-top-2 ${
+//                               dark
+//                                 ? "border-violet-500/30 bg-violet-500/8"
+//                                 : "border-violet-500/30 bg-violet-500/8"
+//                             }`}
+//                           >
+//                             <div className="flex justify-between items-start mb-2 gap-2">
+//                               <span
+//                                 className={`text-xs font-medium flex items-center gap-1 ${
+//                                   dark ? "text-violet-300" : "text-violet-700"
+//                                 }`}
+//                               >
+//                                 ✨ AI Enhanced
+//                               </span>
+//                               <div className="flex gap-1.5 sm:gap-2 flex-shrink-0">
+//                                 <button
+//                                   type="button"
+//                                   onClick={() => {
+//                                     setFormData((prev) => ({
+//                                       ...prev,
+//                                       [field.name]: sampleEnhanced,
+//                                     }));
+//                                     setSampleEnhanced("");
+//                                     setEnhanceField("");
+//                                   }}
+//                                   className={`text-xs px-2 sm:px-3 py-1 rounded-md backdrop-blur-sm border transition-all duration-300 hover:scale-105 ${
+//                                     dark
+//                                       ? "bg-violet-500/20 border-violet-500/30 text-violet-300 hover:bg-violet-500/30"
+//                                       : "bg-violet-500/20 border-violet-500/30 text-violet-700 hover:bg-violet-500/30"
+//                                   }`}
+//                                 >
+//                                   Use
+//                                 </button>
+//                                 <button
+//                                   type="button"
+//                                   onClick={() => {
+//                                     setSampleEnhanced("");
+//                                     setEnhanceField("");
+//                                   }}
+//                                   className={`text-xs px-2 sm:px-3 py-1 rounded-md backdrop-blur-sm border transition-all duration-300 hover:scale-105 ${
+//                                     dark
+//                                       ? "bg-white/8 border-white/20 text-white/70 hover:bg-white/15"
+//                                       : "bg-black/8 border-black/20 text-black/70 hover:bg-black/15"
+//                                   }`}
+//                                 >
+//                                   ×
+//                                 </button>
+//                               </div>
+//                             </div>
+//                             <p
+//                               className={`text-sm leading-relaxed ${
+//                                 dark ? "text-white/85" : "text-black/85"
+//                               }`}
+//                             >
+//                               {sampleEnhanced}
+//                             </p>
+//                           </div>
+//                         )}
+//                       </motion.div>
+//                     ))}
+//                   </div>
+//                 </motion.div>
+//               ))}
+//             </div>
+
+//             {/* Enhanced submit button with perfect mobile optimization */}
+//             <div className="flex justify-stretch sm:justify-end pt-2 sm:pt-4">
+//               <button
+//                 type="submit"
+//                 disabled={!isFormValid() || loading}
+//                 className={`w-full sm:w-auto px-6 md:px-8 py-3 md:py-3.5 font-semibold rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105 active:scale-95 backdrop-blur-sm border ${
+//                   dark
+//                     ? "bg-gradient-to-r from-white/15 via-white/25 to-white/15 border-white/30 text-white hover:from-white/25 hover:via-white/35 hover:to-white/25 shadow-lg hover:shadow-xl"
+//                     : "bg-gradient-to-r from-black/15 via-black/25 to-black/15 border-black/30 text-black hover:from-black/25 hover:via-black/35 hover:to-black/25 shadow-lg hover:shadow-xl"
+//                 }`}
+//               >
+//                 {loading ? (
+//                   <div className="flex items-center justify-center gap-2">
+//                     <div
+//                       className={`w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin`}
+//                     />
+//                     <span className="text-sm sm:text-base">Submitting...</span>
+//                   </div>
+//                 ) : (
+//                   <span className="text-sm sm:text-base">
+//                     Submit Investment Pitch
+//                   </span>
+//                 )}
+//               </button>
+//             </div>
+//           </form>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default PitchForm;
+
+// import { useState, useEffect } from "react";
+// import { motion, AnimatePresence } from "framer-motion";
+// import api from "../utils/api1";
+// import useThemeStore from "../store/themeStore";
+
+// const PitchForm = () => {
+//   const [formData, setFormData] = useState({
+//     startupName: "",
+//     oneLiner: "",
+//     problem: "",
+//     solution: "",
+//     targetMarket: "",
+//     businessModel: "",
+//     traction: "",
+//     team: "",
+//     goToMarketStrategy: "",
+//     competition: "",
+//     fundingAsk: "",
+//     fundingUse: "",
+//   });
+//   const [loading, setLoading] = useState(false);
+//   const [success, setSuccess] = useState(false);
+//   const [message, setMessage] = useState("");
+//   const [error, setError] = useState("");
+//   const [draftSaved, setDraftSaved] = useState(false);
+//   const [isMobile, setIsMobile] = useState(false);
+//   const [enhancing, setEnhancing] = useState(false);
+//   const [sampleEnhanced, setSampleEnhanced] = useState("");
+//   const [enhanceField, setEnhanceField] = useState("");
+//   const { dark } = useThemeStore();
+
+//   // Enhanced screen size detection
+//   useEffect(() => {
+//     const checkScreenSize = () => {
+//       setIsMobile(window.innerWidth < 768);
+//     };
+//     checkScreenSize();
+//     window.addEventListener("resize", checkScreenSize);
+//     return () => window.removeEventListener("resize", checkScreenSize);
+//   }, []);
+
+//   // Auto-save functionality
+//   useEffect(() => {
+//     const timer = setTimeout(() => {
+//       const hasContent = Object.values(formData).some((value) => value.trim());
+
+//       if (hasContent) {
+//         localStorage.setItem("pitchDraft", JSON.stringify(formData));
+//         setDraftSaved(true);
+//         setTimeout(() => setDraftSaved(false), 2500);
+//       }
+//     }, 2000);
+
+//     return () => clearTimeout(timer);
+//   }, [formData]);
+
+//   // Load draft on component mount
+//   useEffect(() => {
+//     const savedDraft = localStorage.getItem("pitchDraft");
+//     if (savedDraft) {
+//       try {
+//         const parsedDraft = JSON.parse(savedDraft);
+//         const hasContent = Object.values(parsedDraft).some(
+//           (value) => typeof value === "string" && value.trim()
+//         );
+
+//         if (hasContent) {
+//           setFormData(parsedDraft);
+//         }
+//       } catch (error) {
+//         console.error("Error parsing saved pitch draft:", error);
+//         localStorage.removeItem("pitchDraft");
+//       }
+//     }
+//   }, []);
+
+//   const sections = [
+//     {
+//       title: "Foundation",
+//       fields: [
+//         {
+//           label: "Company Name",
+//           name: "startupName",
+//           placeholder: "Enter your company name...",
+//           required: true,
+//           maxLength: 100,
+//         },
+//         {
+//           label: "Value Proposition",
+//           name: "oneLiner",
+//           placeholder: "Describe your company's core value proposition...",
+//           required: true,
+//           maxLength: 200,
+//         },
+//       ],
+//     },
+//     {
+//       title: "Challenge & Innovation",
+//       fields: [
+//         {
+//           label: "Market Problem",
+//           name: "problem",
+//           textarea: true,
+//           placeholder:
+//             "Define the significant problem or market inefficiency your company addresses...",
+//           required: true,
+//           maxLength: 800,
+//         },
+//         {
+//           label: "Solution Overview",
+//           name: "solution",
+//           textarea: true,
+//           placeholder:
+//             "Explain how your innovation provides a superior solution...",
+//           required: true,
+//           maxLength: 800,
+//         },
+//       ],
+//     },
+//     {
+//       title: "Market Opportunity",
+//       fields: [
+//         {
+//           label: "Target Market",
+//           name: "targetMarket",
+//           textarea: true,
+//           placeholder:
+//             "Define your addressable market and customer segments...",
+//           required: true,
+//           maxLength: 600,
+//         },
+//         {
+//           label: "Revenue Model",
+//           name: "businessModel",
+//           textarea: true,
+//           placeholder:
+//             "Outline your monetization strategy and revenue streams...",
+//           required: true,
+//           maxLength: 600,
+//         },
+//       ],
+//     },
+//     {
+//       title: "Execution & Team",
+//       fields: [
+//         {
+//           label: "Current Traction",
+//           name: "traction",
+//           textarea: true,
+//           placeholder:
+//             "Present key metrics, milestones, and validation achieved...",
+//           required: true,
+//           maxLength: 700,
+//         },
+//         {
+//           label: "Team Overview",
+//           name: "team",
+//           textarea: true,
+//           placeholder:
+//             "Highlight leadership team and advisory board expertise...",
+//           required: true,
+//           maxLength: 600,
+//         },
+//       ],
+//     },
+//     {
+//       title: "Market Strategy",
+//       fields: [
+//         {
+//           label: "Go-to-Market Strategy",
+//           name: "goToMarketStrategy",
+//           textarea: true,
+//           placeholder:
+//             "Detail your customer acquisition and market penetration approach...",
+//           required: true,
+//           maxLength: 700,
+//         },
+//         {
+//           label: "Competitive Analysis",
+//           name: "competition",
+//           textarea: true,
+//           placeholder:
+//             "Identify competitive landscape and articulate your differentiation...",
+//           required: true,
+//           maxLength: 700,
+//         },
+//       ],
+//     },
+//     {
+//       title: "Investment Request",
+//       fields: [
+//         {
+//           label: "Funding Amount",
+//           name: "fundingAsk",
+//           placeholder: "Specify the investment amount and round type...",
+//           required: true,
+//           maxLength: 200,
+//         },
+//         {
+//           label: "Use of Funds",
+//           name: "fundingUse",
+//           textarea: true,
+//           placeholder:
+//             "Provide detailed allocation of investment across strategic priorities...",
+//           required: true,
+//           maxLength: 800,
+//         },
+//       ],
+//     },
+//   ];
+
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
+//     setFormData((prev) => ({
+//       ...prev,
+//       [name]: value,
+//     }));
+//     if (error) setError("");
+//   };
+
+//   const handleAIEnhance = async (fieldName, content) => {
+//     if (!content.trim()) {
+//       setError("Please enter some content to enhance");
+//       return;
+//     }
+
+//     setEnhancing(true);
+//     setEnhanceField(fieldName);
+
+//     try {
+//       const res = await api.post("/user/ask", {
+//         content: `
+//           You are an expert investment pitch writer.
+//           Your job is to take the following text and:
+//           1. Improve clarity, grammar, and flow for investor presentations.
+//           2. Make it compelling and professionally persuasive.
+//           3. Expand with relevant details that investors want to see.
+//           4. Keep the tone confident yet realistic.
+//           5. Return ONLY the improved version (no extra formatting or labels).
+
+//           Context: This is for field "${fieldName}" in an investment pitch.
+
+//           Here is the text to improve:
+//           ---
+//           ${content}
+//           ---
+//         `,
+//       });
+//       const enhancedContent = res.data.data.choices[0].message.content.trim();
+//       setSampleEnhanced(enhancedContent);
+//       setError("");
+//     } catch (error) {
+//       console.error("AI Enhancement error:", error);
+//       setError("Failed to enhance content. Please try again.");
+//     } finally {
+//       setEnhancing(false);
+//       setEnhanceField("");
+//     }
+//   };
+
+//   const isFormValid = () => {
+//     const requiredFields = sections.flatMap((section) =>
+//       section.fields
+//         .filter((field) => field.required)
+//         .map((field) => field.name)
+//     );
+//     return requiredFields.every((field) => formData[field]?.trim());
+//   };
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     if (!isFormValid()) {
+//       setError("Please fill in all required fields.");
+//       return;
+//     }
+
+//     setLoading(true);
+//     setError("");
+
+//     try {
+//       const res = await api.post("/user/posts/submitpitch", formData);
+//       setMessage(res.data.message);
+//       setSuccess(true);
+//       localStorage.removeItem("pitchDraft");
+//     } catch (error) {
+//       setError(
+//         error.response?.data?.message ||
+//           "Failed to submit pitch. Please try again."
+//       );
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   const handleClearDraft = () => {
+//     setFormData({
+//       startupName: "",
+//       oneLiner: "",
+//       problem: "",
+//       solution: "",
+//       targetMarket: "",
+//       businessModel: "",
+//       traction: "",
+//       team: "",
+//       goToMarketStrategy: "",
+//       competition: "",
+//       fundingAsk: "",
+//       fundingUse: "",
+//     });
+//     setSuccess(false);
+//     setMessage("");
+//     setError("");
+//     setSampleEnhanced("");
+//     localStorage.removeItem("pitchDraft");
+//   };
+
+//   // Check if there's any draft content
+//   const hasDraftContent = Object.values(formData).some((value) => value.trim());
+
+//   if (success) {
+//     return (
+//       <div
+//         className={`min-h-screen flex items-center justify-center p-4 ${
+//           dark ? "bg-black" : "bg-white"
+//         }`}
+//       >
+//         <div className="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/25 text-emerald-600 text-sm flex items-center gap-2 backdrop-blur-sm transition-all duration-500">
+//           <svg
+//             className="w-4 h-4 flex-shrink-0"
+//             fill="currentColor"
+//             viewBox="0 0 20 20"
+//           >
+//             <path
+//               fillRule="evenodd"
+//               d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+//             />
+//           </svg>
+//           {message} 🎉
+//         </div>
+//         <button
+//           onClick={handleClearDraft}
+//           className={`mt-4 w-full sm:w-auto px-6 md:px-8 py-3 md:py-3.5 font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 backdrop-blur-sm border ${
+//             dark
+//               ? "bg-gradient-to-r from-white/15 via-white/25 to-white/15 border-white/30 text-white hover:from-white/25 hover:via-white/35 hover:to-white/25 shadow-lg hover:shadow-xl"
+//               : "bg-gradient-to-r from-black/15 via-black/25 to-black/15 border-black/30 text-black hover:from-black/25 hover:via-black/35 hover:to-black/25 shadow-lg hover:shadow-xl"
+//           }`}
+//         >
+//           Create New Pitch
+//         </button>
+//       </div>
+//     );
+//   }
+
+//   return (
+//     <div className="w-full min-h-screen px-2 sm:px-4 md:px-6 lg:px-0 py-2 sm:py-4 md:py-6 lg:py-0 relative overflow-hidden">
+//       {/* Enhanced multi-layer glassmorphism background - FIXED to match Post component */}
+//       <div className="absolute inset-0 overflow-hidden pointer-events-none">
+//         {/* Primary gradient orbs - First orb now empty to match Post component */}
+//         <div
+//           className={`absolute -top-32 -right-32 w-64 h-64 md:w-80 md:h-80 rounded-full blur-3xl transition-opacity duration-1000`}
+//         ></div>
+
+//         <div
+//           className={`absolute -bottom-32 -left-32 w-72 h-72 md:w-96 md:h-96 rounded-full blur-3xl transition-opacity duration-1000 ${
+//             dark
+//               ? "bg-gradient-to-tr from-emerald-500/20 via-cyan-500/15 to-blue-500/25"
+//               : "bg-gradient-to-tr from-emerald-400/25 via-cyan-400/20 to-blue-400/30"
+//           }`}
+//         ></div>
+
+//         {/* Secondary accent orbs for depth */}
+//         <div
+//           className={`absolute top-1/3 right-1/4 w-48 h-48 md:w-56 md:h-56 rounded-full blur-2xl opacity-60 ${
+//             dark
+//               ? "bg-gradient-to-br from-orange-500/15 to-red-500/10"
+//               : "bg-gradient-to-br from-orange-400/20 to-red-400/15"
+//           }`}
+//         ></div>
+
+//         <div
+//           className={`absolute bottom-1/3 left-1/4 w-40 h-40 md:w-48 md:h-48 rounded-full blur-2xl opacity-40 ${
+//             dark
+//               ? "bg-gradient-to-br from-violet-500/20 to-indigo-500/15"
+//               : "bg-gradient-to-br from-violet-400/25 to-indigo-400/20"
+//           }`}
+//         ></div>
+//       </div>
+
+//       <div className="w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-none xl:max-w-none mx-auto lg:mx-0 relative z-10">
+//         <div
+//           className={`rounded-lg md:rounded-xl lg:rounded-none transition-all duration-700 hover:scale-[1.01] lg:hover:scale-100 backdrop-blur-2xl border lg:border-none shadow-2xl lg:shadow-none ${
+//             !dark
+//               ? "border-white/25 bg-white/8 shadow-black/10"
+//               : "border-white/15 bg-black/8 shadow-white/5"
+//           }`}
+//           style={{
+//             backdropFilter: "blur(24px) saturate(200%)",
+//             WebkitBackdropFilter: "blur(24px) saturate(200%)",
+//             boxShadow: dark
+//               ? "0 25px 50px -12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)"
+//               : "0 25px 50px -12px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2)",
+//           }}
+//         >
+//           {/* Ultra-elegant header with subtle gradient overlay */}
+//           <div
+//             className={`px-3 sm:px-4 md:px-6 lg:px-8 py-3 sm:py-4 border-b lg:border-b-0 backdrop-blur-sm rounded-t-lg md:rounded-t-xl lg:rounded-t-none relative overflow-hidden ${
+//               dark
+//                 ? "border-white/10 bg-gradient-to-r from-white/3 via-white/8 to-white/3"
+//                 : "border-black/10 bg-gradient-to-r from-black/3 via-black/8 to-black/3"
+//             }`}
+//           >
+//             {/* Subtle shimmer overlay */}
+//             <div
+//               className={`absolute inset-0 bg-gradient-to-r ${
+//                 dark
+//                   ? "from-transparent via-white/5 to-transparent"
+//                   : "from-transparent via-black/5 to-transparent"
+//               } opacity-50`}
+//             ></div>
+
+//             <div className="flex items-center justify-between relative z-10">
+//               <div className="flex items-center gap-2 sm:gap-3">
+//                 {/* Enhanced dot indicator with inner glow */}
+//                 <div
+//                   className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full backdrop-blur-sm border relative ${
+//                     dark
+//                       ? "bg-gradient-to-br from-white/30 via-white/20 to-white/10 border-white/30"
+//                       : "bg-gradient-to-br from-black/30 via-black/20 to-black/10 border-black/30"
+//                   }`}
+//                 >
+//                   <div
+//                     className={`absolute inset-0.5 rounded-full ${
+//                       dark ? "bg-white/20" : "bg-black/20"
+//                     }`}
+//                   ></div>
+//                 </div>
+//                 <h2
+//                   className={`text-base sm:text-lg md:text-xl font-semibold tracking-tight ${
+//                     dark ? "text-white/95" : "text-black/95"
+//                   }`}
+//                 >
+//                   Investment Pitch
+//                 </h2>
+//               </div>
+
+//               <div className="flex items-center gap-2 sm:gap-3">
+//                 {/* Enhanced draft saved indicator */}
+//                 {draftSaved && (
+//                   <div
+//                     className={`text-xs flex items-center gap-1 px-2 sm:px-3 py-1 rounded-full backdrop-blur-sm border transition-all duration-500 ${
+//                       dark
+//                         ? "text-emerald-300 bg-emerald-500/15 border-emerald-500/25"
+//                         : "text-emerald-700 bg-emerald-500/15 border-emerald-500/25"
+//                     }`}
+//                   >
+//                     <svg
+//                       className="w-2.5 h-2.5 sm:w-3 sm:h-3"
+//                       fill="currentColor"
+//                       viewBox="0 0 20 20"
+//                     >
+//                       <path
+//                         fillRule="evenodd"
+//                         d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+//                       />
+//                     </svg>
+//                     <span className="hidden sm:inline">Draft saved</span>
+//                     <span className="sm:hidden">Saved</span>
+//                   </div>
+//                 )}
+
+//                 {/* Enhanced clear draft button */}
+//                 {hasDraftContent && (
+//                   <button
+//                     type="button"
+//                     onClick={handleClearDraft}
+//                     className={`px-2 sm:px-3 py-1 sm:py-1.5 text-xs font-medium rounded-lg transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-sm border ${
+//                       dark
+//                         ? "bg-white/8 text-white/85 hover:bg-white/15 border-white/20 hover:border-white/35"
+//                         : "bg-black/8 text-black/85 hover:bg-black/15 border-black/20 hover:border-black/35"
+//                     }`}
+//                     title="Clear all draft content"
+//                   >
+//                     <div className="flex items-center gap-1 sm:gap-1.5">
+//                       <svg
+//                         className="w-2.5 h-2.5 sm:w-3 sm:h-3"
+//                         fill="none"
+//                         viewBox="0 0 24 24"
+//                         stroke="currentColor"
+//                       >
+//                         <path
+//                           strokeLinecap="round"
+//                           strokeLinejoin="round"
+//                           strokeWidth={2}
+//                           d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+//                         />
+//                       </svg>
+//                       <span className="hidden sm:inline">Clear</span>
+//                     </div>
+//                   </button>
+//                 )}
+//               </div>
+//             </div>
+//           </div>
+
+//           <form
+//             onSubmit={handleSubmit}
+//             className="p-3 sm:p-4 md:p-6 lg:p-8 space-y-3 sm:space-y-4 md:space-y-6"
+//           >
+//             {/* Enhanced error message */}
+//             {error && (
+//               <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/25 text-red-600 text-sm backdrop-blur-sm">
+//                 {error}
+//               </div>
+//             )}
+
+//             {/* Single Page Form Sections */}
+//             <div className="space-y-6 sm:space-y-8 md:space-y-10">
+//               {sections.map((section, sectionIndex) => (
+//                 <motion.div
+//                   key={section.title}
+//                   initial={{ opacity: 0, y: 30 }}
+//                   animate={{ opacity: 1, y: 0 }}
+//                   transition={{ delay: sectionIndex * 0.1, duration: 0.6 }}
+//                   className="space-y-4 sm:space-y-6"
+//                 >
+//                   {/* Section Header */}
+//                   <div className="mb-4 sm:mb-6">
+//                     <h3
+//                       className={`text-lg sm:text-xl font-semibold mb-2 ${
+//                         dark ? "text-white/90" : "text-black/90"
+//                       }`}
+//                     >
+//                       {section.title}
+//                     </h3>
+//                     <div
+//                       className={`w-8 sm:w-12 h-px ${
+//                         dark ? "bg-white/30" : "bg-black/30"
+//                       }`}
+//                     />
+//                   </div>
+
+//                   {/* Section Fields */}
+//                   <div className="space-y-4 sm:space-y-6">
+//                     {section.fields.map((field, fieldIndex) => (
+//                       <motion.div
+//                         key={field.name}
+//                         initial={{ opacity: 0, y: 20 }}
+//                         animate={{ opacity: 1, y: 0 }}
+//                         transition={{
+//                           delay: sectionIndex * 0.1 + fieldIndex * 0.05,
+//                           duration: 0.4,
+//                         }}
+//                         className="space-y-2"
+//                       >
+//                         <label
+//                           className={`block text-sm font-medium ${
+//                             dark ? "text-white/85" : "text-black/85"
+//                           }`}
+//                         >
+//                           {field.label}
+//                           {field.required && (
+//                             <span className="text-red-500 ml-1">*</span>
+//                           )}
+//                         </label>
+
+//                         <div className="relative">
+//                           {field.textarea ? (
+//                             <textarea
+//                               name={field.name}
+//                               rows={isMobile ? 4 : 5}
+//                               maxLength={field.maxLength}
+//                               value={formData[field.name]}
+//                               onChange={handleChange}
+//                               placeholder={field.placeholder}
+//                               className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 pr-10 sm:pr-14 rounded-lg resize-y min-h-[120px] max-h-[400px] text-sm sm:text-base border transition-all duration-300 focus:outline-none focus:ring-2 backdrop-blur-sm ${
+//                                 dark
+//                                   ? "bg-white/5 border-white/20 text-white/95 focus:border-white/50 focus:ring-white/15 placeholder-white/50 hover:bg-white/8"
+//                                   : "bg-black/5 border-black/20 text-black/95 focus:border-black/50 focus:ring-black/15 placeholder-black/50 hover:bg-black/8"
+//                               }`}
+//                               required={field.required}
+//                             />
+//                           ) : (
+//                             <input
+//                               type="text"
+//                               name={field.name}
+//                               maxLength={field.maxLength}
+//                               value={formData[field.name]}
+//                               onChange={handleChange}
+//                               placeholder={field.placeholder}
+//                               className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg text-sm sm:text-base border transition-all duration-300 focus:outline-none focus:ring-2 backdrop-blur-sm ${
+//                                 dark
+//                                   ? "bg-white/5 border-white/20 text-white/95 focus:border-white/50 focus:ring-white/15 placeholder-white/50 hover:bg-white/8"
+//                                   : "bg-black/5 border-black/20 text-black/95 focus:border-black/50 focus:ring-black/15 placeholder-black/50 hover:bg-black/8"
+//                               }`}
+//                               required={field.required}
+//                             />
+//                           )}
+
+//                           {/* Enhanced AI button for textarea fields */}
+//                           {field.textarea && (
+//                             <button
+//                               type="button"
+//                               onClick={() =>
+//                                 handleAIEnhance(
+//                                   field.name,
+//                                   formData[field.name]
+//                                 )
+//                               }
+//                               disabled={
+//                                 !formData[field.name]?.trim() || enhancing
+//                               }
+//                               className={`absolute top-2 right-2 sm:top-3 sm:right-3 p-2 rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group backdrop-blur-sm border ${
+//                                 dark
+//                                   ? "bg-gradient-to-br from-violet-500/20 via-purple-500/15 to-indigo-500/20 border-violet-500/30 text-white hover:from-violet-500/30 hover:via-purple-500/25 hover:to-indigo-500/30"
+//                                   : "bg-gradient-to-br from-violet-500/20 via-purple-500/15 to-indigo-500/20 border-violet-500/30 text-black hover:from-violet-500/30 hover:via-purple-500/25 hover:to-indigo-500/30"
+//                               }`}
+//                               title="Enhance content with AI"
+//                             >
+//                               {enhancing && enhanceField === field.name ? (
+//                                 <div className="animate-spin">
+//                                   <svg
+//                                     className="w-4 h-4"
+//                                     fill="none"
+//                                     viewBox="0 0 24 24"
+//                                   >
+//                                     <circle
+//                                       cx="12"
+//                                       cy="12"
+//                                       r="10"
+//                                       stroke="currentColor"
+//                                       strokeWidth="4"
+//                                       className="opacity-25"
+//                                     ></circle>
+//                                     <path
+//                                       fill="currentColor"
+//                                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+//                                       className="opacity-75"
+//                                     ></path>
+//                                   </svg>
+//                                 </div>
+//                               ) : (
+//                                 <svg
+//                                   className="w-4 h-4 transition-transform group-hover:scale-110"
+//                                   fill="none"
+//                                   viewBox="0 0 24 24"
+//                                   stroke="currentColor"
+//                                 >
+//                                   <path
+//                                     strokeLinecap="round"
+//                                     strokeLinejoin="round"
+//                                     strokeWidth={2}
+//                                     d="M13 10V3L4 14h7v7l9-11h-7z"
+//                                   />
+//                                 </svg>
+//                               )}
+//                             </button>
+//                           )}
+//                         </div>
+
+//                         {/* Character count */}
+//                         <div className="flex flex-col xs:flex-row xs:justify-between xs:items-center gap-1">
+//                           {field.maxLength && (
+//                             <span
+//                               className={`text-xs xs:ml-auto ${
+//                                 formData[field.name]?.length >=
+//                                 field.maxLength * 0.9
+//                                   ? "text-orange-500"
+//                                   : formData[field.name]?.length >=
+//                                     field.maxLength
+//                                   ? "text-red-500"
+//                                   : dark
+//                                   ? "text-white/60"
+//                                   : "text-black/60"
+//                               }`}
+//                             >
+//                               {formData[field.name]?.length || 0}/
+//                               {field.maxLength}
+//                             </span>
+//                           )}
+//                           {enhancing && enhanceField === field.name && (
+//                             <span
+//                               className={`text-xs px-2 py-0.5 rounded-full backdrop-blur-sm ${
+//                                 dark
+//                                   ? "text-violet-300 bg-violet-500/10"
+//                                   : "text-violet-700 bg-violet-500/10"
+//                               }`}
+//                             >
+//                               Enhancing...
+//                             </span>
+//                           )}
+//                         </div>
+
+//                         {/* Enhanced AI sample display */}
+//                         {sampleEnhanced && enhanceField === field.name && (
+//                           <div
+//                             className={`mt-3 p-3 sm:p-4 rounded-lg border backdrop-blur-sm transition-all duration-500 animate-in slide-in-from-top-2 ${
+//                               dark
+//                                 ? "border-violet-500/30 bg-violet-500/8"
+//                                 : "border-violet-500/30 bg-violet-500/8"
+//                             }`}
+//                           >
+//                             <div className="flex justify-between items-start mb-2 gap-2">
+//                               <span
+//                                 className={`text-xs font-medium flex items-center gap-1 ${
+//                                   dark ? "text-violet-300" : "text-violet-700"
+//                                 }`}
+//                               >
+//                                 ✨ AI Enhanced
+//                               </span>
+//                               <div className="flex gap-1.5 sm:gap-2 flex-shrink-0">
+//                                 <button
+//                                   type="button"
+//                                   onClick={() => {
+//                                     setFormData((prev) => ({
+//                                       ...prev,
+//                                       [field.name]: sampleEnhanced,
+//                                     }));
+//                                     setSampleEnhanced("");
+//                                     setEnhanceField("");
+//                                   }}
+//                                   className={`text-xs px-2 sm:px-3 py-1 rounded-md backdrop-blur-sm border transition-all duration-300 hover:scale-105 ${
+//                                     dark
+//                                       ? "bg-violet-500/20 border-violet-500/30 text-violet-300 hover:bg-violet-500/30"
+//                                       : "bg-violet-500/20 border-violet-500/30 text-violet-700 hover:bg-violet-500/30"
+//                                   }`}
+//                                 >
+//                                   Use
+//                                 </button>
+//                                 <button
+//                                   type="button"
+//                                   onClick={() => {
+//                                     setSampleEnhanced("");
+//                                     setEnhanceField("");
+//                                   }}
+//                                   className={`text-xs px-2 sm:px-3 py-1 rounded-md backdrop-blur-sm border transition-all duration-300 hover:scale-105 ${
+//                                     dark
+//                                       ? "bg-white/8 border-white/20 text-white/70 hover:bg-white/15"
+//                                       : "bg-black/8 border-black/20 text-black/70 hover:bg-black/15"
+//                                   }`}
+//                                 >
+//                                   ×
+//                                 </button>
+//                               </div>
+//                             </div>
+//                             <p
+//                               className={`text-sm leading-relaxed ${
+//                                 dark ? "text-white/85" : "text-black/85"
+//                               }`}
+//                             >
+//                               {sampleEnhanced}
+//                             </p>
+//                           </div>
+//                         )}
+//                       </motion.div>
+//                     ))}
+//                   </div>
+//                 </motion.div>
+//               ))}
+//             </div>
+
+//             {/* Enhanced submit button with perfect mobile optimization */}
+//             <div className="flex justify-stretch sm:justify-end pt-2 sm:pt-4">
+//               <button
+//                 type="submit"
+//                 disabled={!isFormValid() || loading}
+//                 className={`w-full sm:w-auto px-6 md:px-8 py-3 md:py-3.5 font-semibold rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105 active:scale-95 backdrop-blur-sm border ${
+//                   dark
+//                     ? "bg-gradient-to-r from-white/15 via-white/25 to-white/15 border-white/30 text-white hover:from-white/25 hover:via-white/35 hover:to-white/25 shadow-lg hover:shadow-xl"
+//                     : "bg-gradient-to-r from-black/15 via-black/25 to-black/15 border-black/30 text-black hover:from-black/25 hover:via-black/35 hover:to-black/25 shadow-lg hover:shadow-xl"
+//                 }`}
+//               >
+//                 {loading ? (
+//                   <div className="flex items-center justify-center gap-2">
+//                     <div
+//                       className={`w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin`}
+//                     />
+//                     <span className="text-sm sm:text-base">Submitting...</span>
+//                   </div>
+//                 ) : (
+//                   <span className="text-sm sm:text-base">
+//                     Submit Investment Pitch
+//                   </span>
+//                 )}
+//               </button>
+//             </div>
+//           </form>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default PitchForm;
+
+// import { useState, useEffect } from "react";
+// import { motion, AnimatePresence } from "framer-motion";
+// import api from "../utils/api1";
+// import useThemeStore from "../store/themeStore";
+
+// const PitchForm = () => {
+//   const [formData, setFormData] = useState({
+//     startupName: "",
+//     oneLiner: "",
+//     problem: "",
+//     solution: "",
+//     targetMarket: "",
+//     businessModel: "",
+//     traction: "",
+//     team: "",
+//     goToMarketStrategy: "",
+//     competition: "",
+//     fundingAsk: "",
+//     fundingUse: "",
+//   });
+//   const [loading, setLoading] = useState(false);
+//   const [success, setSuccess] = useState(false);
+//   const [message, setMessage] = useState("");
+//   const [error, setError] = useState("");
+//   const [draftSaved, setDraftSaved] = useState(false);
+//   const [isMobile, setIsMobile] = useState(false);
+//   const [enhancing, setEnhancing] = useState(false);
+//   const [sampleEnhanced, setSampleEnhanced] = useState("");
+//   const [enhanceField, setEnhanceField] = useState("");
+//   const { dark } = useThemeStore();
+
+//   // Enhanced screen size detection
+//   useEffect(() => {
+//     const checkScreenSize = () => {
+//       setIsMobile(window.innerWidth < 768);
+//     };
+//     checkScreenSize();
+//     window.addEventListener("resize", checkScreenSize);
+//     return () => window.removeEventListener("resize", checkScreenSize);
+//   }, []);
+
+//   // Auto-save functionality
+//   useEffect(() => {
+//     const timer = setTimeout(() => {
+//       const hasContent = Object.values(formData).some((value) => value.trim());
+
+//       if (hasContent) {
+//         localStorage.setItem("pitchDraft", JSON.stringify(formData));
+//         setDraftSaved(true);
+//         setTimeout(() => setDraftSaved(false), 2500);
+//       }
+//     }, 2000);
+
+//     return () => clearTimeout(timer);
+//   }, [formData]);
+
+//   // Load draft on component mount
+//   useEffect(() => {
+//     const savedDraft = localStorage.getItem("pitchDraft");
+//     if (savedDraft) {
+//       try {
+//         const parsedDraft = JSON.parse(savedDraft);
+//         const hasContent = Object.values(parsedDraft).some(
+//           (value) => typeof value === "string" && value.trim()
+//         );
+
+//         if (hasContent) {
+//           setFormData(parsedDraft);
+//         }
+//       } catch (error) {
+//         console.error("Error parsing saved pitch draft:", error);
+//         localStorage.removeItem("pitchDraft");
+//       }
+//     }
+//   }, []);
+
+//   const sections = [
+//     {
+//       title: "Foundation",
+//       fields: [
+//         {
+//           label: "Company Name",
+//           name: "startupName",
+//           placeholder: "Enter your company name...",
+//           required: true,
+//           maxLength: 100,
+//         },
+//         {
+//           label: "Value Proposition",
+//           name: "oneLiner",
+//           placeholder: "Describe your company's core value proposition...",
+//           required: true,
+//           maxLength: 200,
+//         },
+//       ],
+//     },
+//     {
+//       title: "Challenge & Innovation",
+//       fields: [
+//         {
+//           label: "Market Problem",
+//           name: "problem",
+//           textarea: true,
+//           placeholder:
+//             "Define the significant problem or market inefficiency your company addresses...",
+//           required: true,
+//           maxLength: 800,
+//         },
+//         {
+//           label: "Solution Overview",
+//           name: "solution",
+//           textarea: true,
+//           placeholder:
+//             "Explain how your innovation provides a superior solution...",
+//           required: true,
+//           maxLength: 800,
+//         },
+//       ],
+//     },
+//     {
+//       title: "Market Opportunity",
+//       fields: [
+//         {
+//           label: "Target Market",
+//           name: "targetMarket",
+//           textarea: true,
+//           placeholder:
+//             "Define your addressable market and customer segments...",
+//           required: true,
+//           maxLength: 600,
+//         },
+//         {
+//           label: "Revenue Model",
+//           name: "businessModel",
+//           textarea: true,
+//           placeholder:
+//             "Outline your monetization strategy and revenue streams...",
+//           required: true,
+//           maxLength: 600,
+//         },
+//       ],
+//     },
+//     {
+//       title: "Execution & Team",
+//       fields: [
+//         {
+//           label: "Current Traction",
+//           name: "traction",
+//           textarea: true,
+//           placeholder:
+//             "Present key metrics, milestones, and validation achieved...",
+//           required: true,
+//           maxLength: 700,
+//         },
+//         {
+//           label: "Team Overview",
+//           name: "team",
+//           textarea: true,
+//           placeholder:
+//             "Highlight leadership team and advisory board expertise...",
+//           required: true,
+//           maxLength: 600,
+//         },
+//       ],
+//     },
+//     {
+//       title: "Market Strategy",
+//       fields: [
+//         {
+//           label: "Go-to-Market Strategy",
+//           name: "goToMarketStrategy",
+//           textarea: true,
+//           placeholder:
+//             "Detail your customer acquisition and market penetration approach...",
+//           required: true,
+//           maxLength: 700,
+//         },
+//         {
+//           label: "Competitive Analysis",
+//           name: "competition",
+//           textarea: true,
+//           placeholder:
+//             "Identify competitive landscape and articulate your differentiation...",
+//           required: true,
+//           maxLength: 700,
+//         },
+//       ],
+//     },
+//     {
+//       title: "Investment Request",
+//       fields: [
+//         {
+//           label: "Funding Amount",
+//           name: "fundingAsk",
+//           placeholder: "Specify the investment amount and round type...",
+//           required: true,
+//           maxLength: 200,
+//         },
+//         {
+//           label: "Use of Funds",
+//           name: "fundingUse",
+//           textarea: true,
+//           placeholder:
+//             "Provide detailed allocation of investment across strategic priorities...",
+//           required: true,
+//           maxLength: 800,
+//         },
+//       ],
+//     },
+//   ];
+
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
+//     setFormData((prev) => ({
+//       ...prev,
+//       [name]: value,
+//     }));
+//     if (error) setError("");
+//   };
+
+//   const handleAIEnhance = async (fieldName, content) => {
+//     if (!content.trim()) {
+//       setError("Please enter some content to enhance");
+//       return;
+//     }
+
+//     setEnhancing(true);
+//     setEnhanceField(fieldName);
+
+//     try {
+//       const res = await api.post("/user/ask", {
+//         content: `
+//           You are an expert investment pitch writer.
+//           Your job is to take the following text and:
+//           1. Improve clarity, grammar, and flow for investor presentations.
+//           2. Make it compelling and professionally persuasive.
+//           3. Expand with relevant details that investors want to see.
+//           4. Keep the tone confident yet realistic.
+//           5. Return ONLY the improved version (no extra formatting or labels).
+
+//           Context: This is for field "${fieldName}" in an investment pitch.
+
+//           Here is the text to improve:
+//           ---
+//           ${content}
+//           ---
+//         `,
+//       });
+//       const enhancedContent = res.data.data.choices[0].message.content.trim();
+//       setSampleEnhanced(enhancedContent);
+//       setError("");
+//     } catch (error) {
+//       console.error("AI Enhancement error:", error);
+//       setError("Failed to enhance content. Please try again.");
+//     } finally {
+//       setEnhancing(false);
+//       setEnhanceField("");
+//     }
+//   };
+
+//   const isFormValid = () => {
+//     const requiredFields = sections.flatMap((section) =>
+//       section.fields
+//         .filter((field) => field.required)
+//         .map((field) => field.name)
+//     );
+//     return requiredFields.every((field) => formData[field]?.trim());
+//   };
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     if (!isFormValid()) {
+//       setError("Please fill in all required fields.");
+//       return;
+//     }
+
+//     setLoading(true);
+//     setError("");
+
+//     try {
+//       const res = await api.post("/user/posts/submitpitch", formData);
+//       setMessage(res.data.message);
+//       setSuccess(true);
+//       localStorage.removeItem("pitchDraft");
+//     } catch (error) {
+//       setError(
+//         error.response?.data?.message ||
+//           "Failed to submit pitch. Please try again."
+//       );
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   const handleClearDraft = () => {
+//     setFormData({
+//       startupName: "",
+//       oneLiner: "",
+//       problem: "",
+//       solution: "",
+//       targetMarket: "",
+//       businessModel: "",
+//       traction: "",
+//       team: "",
+//       goToMarketStrategy: "",
+//       competition: "",
+//       fundingAsk: "",
+//       fundingUse: "",
+//     });
+//     setSuccess(false);
+//     setMessage("");
+//     setError("");
+//     setSampleEnhanced("");
+//     localStorage.removeItem("pitchDraft");
+//   };
+
+//   // Check if there's any draft content
+//   const hasDraftContent = Object.values(formData).some((value) => value.trim());
+
+//   if (success) {
+//     return (
+//       <div
+//         className={`min-h-screen flex items-center justify-center p-4 ${
+//           dark ? "bg-black" : "bg-white"
+//         }`}
+//       >
+//         <div className="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/25 text-emerald-600 text-sm flex items-center gap-2 backdrop-blur-sm transition-all duration-500">
+//           <svg
+//             className="w-4 h-4 flex-shrink-0"
+//             fill="currentColor"
+//             viewBox="0 0 20 20"
+//           >
+//             <path
+//               fillRule="evenodd"
+//               d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+//             />
+//           </svg>
+//           {message} 🎉
+//         </div>
+//         <button
+//           onClick={handleClearDraft}
+//           className={`mt-4 w-full sm:w-auto px-6 md:px-8 py-3 md:py-3.5 font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 backdrop-blur-sm border ${
+//             dark
+//               ? "bg-gradient-to-r from-white/15 via-white/25 to-white/15 border-white/30 text-white hover:from-white/25 hover:via-white/35 hover:to-white/25 shadow-lg hover:shadow-xl"
+//               : "bg-gradient-to-r from-black/15 via-black/25 to-black/15 border-black/30 text-black hover:from-black/25 hover:via-black/35 hover:to-black/25 shadow-lg hover:shadow-xl"
+//           }`}
+//         >
+//           Create New Pitch
+//         </button>
+//       </div>
+//     );
+//   }
+
+//   return (
+//     <div className="w-full min-h-screen px-2 sm:px-4 md:px-6 lg:px-0 py-2 sm:py-4 md:py-6 lg:py-0 relative overflow-hidden">
+//       {/* Enhanced multi-layer glassmorphism background - FIXED to match Post component */}
+//       <div className="absolute inset-0 overflow-hidden pointer-events-none">
+//         {/* Primary gradient orbs - First orb now empty to match Post component */}
+//         <div
+//           className={`absolute -top-32 -right-32 w-64 h-64 md:w-80 md:h-80 rounded-full blur-3xl transition-opacity duration-1000`}
+//         ></div>
+
+//         <div
+//           className={`absolute -bottom-32 -left-32 w-72 h-72 md:w-96 md:h-96 rounded-full blur-3xl transition-opacity duration-1000 ${
+//             dark
+//               ? "bg-gradient-to-tr from-emerald-500/20 via-cyan-500/15 to-blue-500/25"
+//               : "bg-gradient-to-tr from-emerald-400/25 via-cyan-400/20 to-blue-400/30"
+//           }`}
+//         ></div>
+
+//         {/* Secondary accent orbs for depth */}
+//         <div
+//           className={`absolute top-1/3 right-1/4 w-48 h-48 md:w-56 md:h-56 rounded-full blur-2xl opacity-60 ${
+//             dark
+//               ? "bg-gradient-to-br from-orange-500/15 to-red-500/10"
+//               : "bg-gradient-to-br from-orange-400/20 to-red-400/15"
+//           }`}
+//         ></div>
+
+//         <div
+//           className={`absolute bottom-1/3 left-1/4 w-40 h-40 md:w-48 md:h-48 rounded-full blur-2xl opacity-40 ${
+//             dark
+//               ? "bg-gradient-to-br from-violet-500/20 to-indigo-500/15"
+//               : "bg-gradient-to-br from-violet-400/25 to-indigo-400/20"
+//           }`}
+//         ></div>
+//       </div>
+
+//       <div className="w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-none xl:max-w-none mx-auto lg:mx-0 relative z-10">
+//         <div
+//           className={`rounded-lg md:rounded-xl lg:rounded-none transition-all duration-700 hover:scale-[1.01] lg:hover:scale-100  border lg:border-none shadow-2xl lg:shadow-none ${
+//             !dark
+//               ? "border-white/25 bg-white/8 shadow-black/10"
+//               : "border-white/15 bg-black/8 shadow-white/5"
+//           }`}
+//           style={{
+//             backdropFilter: "blur(24px) saturate(200%)",
+//             WebkitBackdropFilter: "blur(24px) saturate(200%)",
+//             boxShadow: dark
+//               ? "0 25px 50px -12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)"
+//               : "0 25px 50px -12px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2)",
+//           }}
+//         >
+//           {/* Professional and elegant header: Clean, minimalist design with subtle blue accents for trust and sophistication */}
+//           <motion.div
+//             initial={{ opacity: 0, y: -20 }}
+//             animate={{ opacity: 1, y: 0 }}
+//             transition={{ duration: 0.5 }}
+//             className={`px-4 sm:px-6 md:px-8 lg:px-12 py-4 sm:py-5 border-b lg:border-b-0 backdrop-blur-md rounded-t-lg md:rounded-t-xl lg:rounded-t-none relative overflow-hidden ${
+//               dark
+//                 ? "border-blue-200/10 bg-gradient-to-r from-gray-900/80 via-black/80 to-gray-900/80"
+//                 : "border-blue-800/10 bg-gradient-to-r from-gray-50/80 via-white/80 to-gray-50/80"
+//             }`}
+//           >
+//             {/* Subtle elegant overlay */}
+//             <div
+//               className={`absolute inset-0 bg-gradient-to-r ${
+//                 dark
+//                   ? "from-transparent via-blue-900/5 to-transparent"
+//                   : "from-transparent via-blue-100/5 to-transparent"
+//               } opacity-50`}
+//             ></div>
+
+//             <div className="flex items-center justify-between relative z-10">
+//               <div className="flex items-center gap-3 sm:gap-4">
+//                 {/* Professional icon (briefcase for business focus) */}
+//                 <svg
+//                   className={`w-5 h-5 sm:w-6 sm:h-6 ${
+//                     dark ? "text-blue-300" : "text-blue-700"
+//                   }`}
+//                   fill="none"
+//                   stroke="currentColor"
+//                   viewBox="0 0 24 24"
+//                   xmlns="http://www.w3.org/2000/svg"
+//                 >
+//                   <path
+//                     strokeLinecap="round"
+//                     strokeLinejoin="round"
+//                     strokeWidth={2}
+//                     d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+//                   />
+//                 </svg>
+//                 <h2
+//                   className={`text-lg sm:text-xl md:text-2xl font-serif font-semibold tracking-wide ${
+//                     dark ? "text-white/95" : "text-black/95"
+//                   }`}
+//                 >
+//                   Investment Pitch Builder
+//                 </h2>
+//               </div>
+
+//               <div className="flex items-center gap-3 sm:gap-4">
+//                 {/* Refined draft saved indicator */}
+//                 <AnimatePresence>
+//                   {draftSaved && (
+//                     <motion.div
+//                       initial={{ opacity: 0, scale: 0.95 }}
+//                       animate={{ opacity: 1, scale: 1 }}
+//                       exit={{ opacity: 0, scale: 0.95 }}
+//                       className={`text-xs sm:text-sm flex items-center gap-1.5 px-3 py-1.5 rounded-full backdrop-blur-sm border transition-all duration-300 ${
+//                         dark
+//                           ? "text-blue-300 bg-blue-500/10 border-blue-500/20"
+//                           : "text-blue-700 bg-blue-500/10 border-blue-500/20"
+//                       }`}
+//                     >
+//                       <svg
+//                         className="w-3 h-3 sm:w-4 sm:h-4"
+//                         fill="currentColor"
+//                         viewBox="0 0 20 20"
+//                       >
+//                         <path
+//                           fillRule="evenodd"
+//                           d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+//                         />
+//                       </svg>
+//                       <span className="hidden sm:inline">Draft Saved</span>
+//                       <span className="sm:hidden">Saved</span>
+//                     </motion.div>
+//                   )}
+//                 </AnimatePresence>
+
+//                 {/* Elegant clear draft button */}
+//                 {hasDraftContent && (
+//                   <button
+//                     type="button"
+//                     onClick={handleClearDraft}
+//                     className={`px-3 py-1.5 text-xs sm:text-sm font-medium rounded-full transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-sm border ${
+//                       dark
+//                         ? "bg-white/5 text-white/85 hover:bg-white/10 border-white/20 hover:border-white/30"
+//                         : "bg-black/5 text-black/85 hover:bg-black/10 border-black/20 hover:border-black/30"
+//                     }`}
+//                     title="Clear all draft content"
+//                   >
+//                     <div className="flex items-center gap-1.5">
+//                       <svg
+//                         className="w-3 h-3 sm:w-4 sm:h-4"
+//                         fill="none"
+//                         viewBox="0 0 24 24"
+//                         stroke="currentColor"
+//                       >
+//                         <path
+//                           strokeLinecap="round"
+//                           strokeLinejoin="round"
+//                           strokeWidth={2}
+//                           d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+//                         />
+//                       </svg>
+//                       <span className="hidden sm:inline">Clear Draft</span>
+//                       <span className="sm:hidden">Clear</span>
+//                     </div>
+//                   </button>
+//                 )}
+//               </div>
+//             </div>
+//           </motion.div>
+
+//           <form
+//             onSubmit={handleSubmit}
+//             className="p-3 sm:p-4 md:p-6 lg:p-8 space-y-3 sm:space-y-4 md:space-y-6"
+//           >
+//             {/* Enhanced error message */}
+//             {error && (
+//               <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/25 text-red-600 text-sm backdrop-blur-sm">
+//                 {error}
+//               </div>
+//             )}
+
+//             {/* Single Page Form Sections */}
+//             <div className="space-y-6 sm:space-y-8 md:space-y-10">
+//               {sections.map((section, sectionIndex) => (
+//                 <motion.div
+//                   key={section.title}
+//                   initial={{ opacity: 0, y: 30 }}
+//                   animate={{ opacity: 1, y: 0 }}
+//                   transition={{ delay: sectionIndex * 0.1, duration: 0.6 }}
+//                   className="space-y-4 sm:space-y-6"
+//                 >
+//                   {/* Section Header */}
+//                   <div className="mb-4 sm:mb-6">
+//                     <h3
+//                       className={`text-lg sm:text-xl font-serif font-semibold mb-2 ${
+//                         dark ? "text-white/90" : "text-black/90"
+//                       }`}
+//                     >
+//                       {section.title}
+//                     </h3>
+//                     <div
+//                       className={`w-8 sm:w-12 h-px ${
+//                         dark ? "bg-white/30" : "bg-black/30"
+//                       }`}
+//                     />
+//                   </div>
+
+//                   {/* Section Fields */}
+//                   <div className="space-y-4 sm:space-y-6">
+//                     {section.fields.map((field, fieldIndex) => (
+//                       <motion.div
+//                         key={field.name}
+//                         initial={{ opacity: 0, y: 20 }}
+//                         animate={{ opacity: 1, y: 0 }}
+//                         transition={{
+//                           delay: sectionIndex * 0.1 + fieldIndex * 0.05,
+//                           duration: 0.4,
+//                         }}
+//                         className="space-y-2"
+//                       >
+//                         <label
+//                           className={`block text-sm font-medium ${
+//                             dark ? "text-white/85" : "text-black/85"
+//                           }`}
+//                         >
+//                           {field.label}
+//                           {field.required && (
+//                             <span className="text-red-500 ml-1">*</span>
+//                           )}
+//                         </label>
+
+//                         <div className="relative">
+//                           {field.textarea ? (
+//                             <textarea
+//                               name={field.name}
+//                               rows={isMobile ? 4 : 5}
+//                               maxLength={field.maxLength}
+//                               value={formData[field.name]}
+//                               onChange={handleChange}
+//                               placeholder={field.placeholder}
+//                               className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 pr-10 sm:pr-14 rounded-lg resize-y min-h-[120px] max-h-[400px] text-sm sm:text-base border transition-all duration-300 focus:outline-none focus:ring-2 backdrop-blur-sm ${
+//                                 dark
+//                                   ? "bg-white/5 border-white/20 text-white/95 focus:border-blue-500/50 focus:ring-blue-500/15 placeholder-white/50 hover:bg-white/8"
+//                                   : "bg-black/5 border-black/20 text-black/95 focus:border-blue-600/50 focus:ring-blue-600/15 placeholder-black/50 hover:bg-black/8"
+//                               }`}
+//                               required={field.required}
+//                             />
+//                           ) : (
+//                             <input
+//                               type="text"
+//                               name={field.name}
+//                               maxLength={field.maxLength}
+//                               value={formData[field.name]}
+//                               onChange={handleChange}
+//                               placeholder={field.placeholder}
+//                               className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg text-sm sm:text-base border transition-all duration-300 focus:outline-none focus:ring-2 backdrop-blur-sm ${
+//                                 dark
+//                                   ? "bg-white/5 border-white/20 text-white/95 focus:border-blue-500/50 focus:ring-blue-500/15 placeholder-white/50 hover:bg-white/8"
+//                                   : "bg-black/5 border-black/20 text-black/95 focus:border-blue-600/50 focus:ring-blue-600/15 placeholder-black/50 hover:bg-black/8"
+//                               }`}
+//                               required={field.required}
+//                             />
+//                           )}
+
+//                           {/* Refined AI enhance button */}
+//                           {field.textarea && (
+//                             <button
+//                               type="button"
+//                               onClick={() =>
+//                                 handleAIEnhance(
+//                                   field.name,
+//                                   formData[field.name]
+//                                 )
+//                               }
+//                               disabled={
+//                                 !formData[field.name]?.trim() || enhancing
+//                               }
+//                               className={`absolute top-2 right-2 sm:top-3 sm:right-3 p-2 rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group backdrop-blur-sm border ${
+//                                 dark
+//                                   ? "bg-blue-500/10 border-blue-500/20 text-white hover:bg-blue-500/20 hover:border-blue-500/30"
+//                                   : "bg-blue-600/10 border-blue-600/20 text-black hover:bg-blue-600/20 hover:border-blue-600/30"
+//                               }`}
+//                               title="Enhance content with AI"
+//                             >
+//                               {enhancing && enhanceField === field.name ? (
+//                                 <div className="animate-spin">
+//                                   <svg
+//                                     className="w-4 h-4"
+//                                     fill="none"
+//                                     viewBox="0 0 24 24"
+//                                   >
+//                                     <circle
+//                                       cx="12"
+//                                       cy="12"
+//                                       r="10"
+//                                       stroke="currentColor"
+//                                       strokeWidth="4"
+//                                       className="opacity-25"
+//                                     ></circle>
+//                                     <path
+//                                       fill="currentColor"
+//                                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+//                                       className="opacity-75"
+//                                     ></path>
+//                                   </svg>
+//                                 </div>
+//                               ) : (
+//                                 <svg
+//                                   className="w-4 h-4 transition-transform group-hover:scale-110"
+//                                   fill="none"
+//                                   viewBox="0 0 24 24"
+//                                   stroke="currentColor"
+//                                 >
+//                                   <path
+//                                     strokeLinecap="round"
+//                                     strokeLinejoin="round"
+//                                     strokeWidth={2}
+//                                     d="M13 10V3L4 14h7v7l9-11h-7z"
+//                                   />
+//                                 </svg>
+//                               )}
+//                             </button>
+//                           )}
+//                         </div>
+
+//                         {/* Character count */}
+//                         <div className="flex flex-col xs:flex-row xs:justify-between xs:items-center gap-1">
+//                           {field.maxLength && (
+//                             <span
+//                               className={`text-xs xs:ml-auto ${
+//                                 formData[field.name]?.length >=
+//                                 field.maxLength * 0.9
+//                                   ? "text-orange-500"
+//                                   : formData[field.name]?.length >=
+//                                     field.maxLength
+//                                   ? "text-red-500"
+//                                   : dark
+//                                   ? "text-white/60"
+//                                   : "text-black/60"
+//                               }`}
+//                             >
+//                               {formData[field.name]?.length || 0}/
+//                               {field.maxLength}
+//                             </span>
+//                           )}
+//                           {enhancing && enhanceField === field.name && (
+//                             <span
+//                               className={`text-xs px-2 py-0.5 rounded-full backdrop-blur-sm ${
+//                                 dark
+//                                   ? "text-blue-300 bg-blue-500/10"
+//                                   : "text-blue-700 bg-blue-500/10"
+//                               }`}
+//                             >
+//                               Enhancing...
+//                             </span>
+//                           )}
+//                         </div>
+
+//                         {/* Refined AI sample display */}
+//                         {sampleEnhanced && enhanceField === field.name && (
+//                           <div
+//                             className={`mt-3 p-3 sm:p-4 rounded-lg border backdrop-blur-sm transition-all duration-500 animate-in slide-in-from-top-2 ${
+//                               dark
+//                                 ? "border-blue-500/20 bg-blue-500/5"
+//                                 : "border-blue-600/20 bg-blue-600/5"
+//                             }`}
+//                           >
+//                             <div className="flex justify-between items-start mb-2 gap-2">
+//                               <span
+//                                 className={`text-xs font-medium flex items-center gap-1 ${
+//                                   dark ? "text-blue-300" : "text-blue-700"
+//                                 }`}
+//                               >
+//                                 ✨ AI Enhanced Version
+//                               </span>
+//                               <div className="flex gap-1.5 sm:gap-2 flex-shrink-0">
+//                                 <button
+//                                   type="button"
+//                                   onClick={() => {
+//                                     setFormData((prev) => ({
+//                                       ...prev,
+//                                       [field.name]: sampleEnhanced,
+//                                     }));
+//                                     setSampleEnhanced("");
+//                                     setEnhanceField("");
+//                                   }}
+//                                   className={`text-xs px-2 sm:px-3 py-1 rounded-md backdrop-blur-sm border transition-all duration-300 hover:scale-105 ${
+//                                     dark
+//                                       ? "bg-blue-500/10 border-blue-500/20 text-blue-300 hover:bg-blue-500/20"
+//                                       : "bg-blue-600/10 border-blue-600/20 text-blue-700 hover:bg-blue-600/20"
+//                                   }`}
+//                                 >
+//                                   Apply
+//                                 </button>
+//                                 <button
+//                                   type="button"
+//                                   onClick={() => {
+//                                     setSampleEnhanced("");
+//                                     setEnhanceField("");
+//                                   }}
+//                                   className={`text-xs px-2 sm:px-3 py-1 rounded-md backdrop-blur-sm border transition-all duration-300 hover:scale-105 ${
+//                                     dark
+//                                       ? "bg-white/5 border-white/20 text-white/70 hover:bg-white/10"
+//                                       : "bg-black/5 border-black/20 text-black/70 hover:bg-black/10"
+//                                   }`}
+//                                 >
+//                                   ×
+//                                 </button>
+//                               </div>
+//                             </div>
+//                             <p
+//                               className={`text-sm leading-relaxed ${
+//                                 dark ? "text-white/85" : "text-black/85"
+//                               }`}
+//                             >
+//                               {sampleEnhanced}
+//                             </p>
+//                           </div>
+//                         )}
+//                       </motion.div>
+//                     ))}
+//                   </div>
+//                 </motion.div>
+//               ))}
+//             </div>
+
+//             {/* Refined submit button */}
+//             <div className="flex justify-stretch sm:justify-end pt-2 sm:pt-4">
+//               <button
+//                 type="submit"
+//                 disabled={!isFormValid() || loading}
+//                 className={`w-full sm:w-auto px-6 md:px-8 py-3 md:py-3.5 font-semibold rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105 active:scale-95 backdrop-blur-sm border ${
+//                   dark
+//                     ? "bg-white/10 border-white/20 text-white hover:bg-white/15 hover:border-white/30 shadow-lg hover:shadow-xl"
+//                     : "bg-black/10 border-black/20 text-black hover:bg-black/15 hover:border-black/30 shadow-lg hover:shadow-xl"
+//                 }`}
+//               >
+//                 {loading ? (
+//                   <div className="flex items-center justify-center gap-2">
+//                     <div
+//                       className={`w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin`}
+//                     />
+//                     <span className="text-sm sm:text-base">Submitting...</span>
+//                   </div>
+//                 ) : (
+//                   <span className="text-sm sm:text-base">
+//                     Submit Investment Pitch
+//                   </span>
+//                 )}
+//               </button>
+//             </div>
+//           </form>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default PitchForm;
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -3592,7 +5981,7 @@ const PitchForm = () => {
   });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [draftSaved, setDraftSaved] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -3614,7 +6003,7 @@ const PitchForm = () => {
   // Auto-save functionality
   useEffect(() => {
     const timer = setTimeout(() => {
-      const hasContent = Object.values(formData).some(value => value.trim());
+      const hasContent = Object.values(formData).some((value) => value.trim());
 
       if (hasContent) {
         localStorage.setItem("pitchDraft", JSON.stringify(formData));
@@ -3632,8 +6021,8 @@ const PitchForm = () => {
     if (savedDraft) {
       try {
         const parsedDraft = JSON.parse(savedDraft);
-        const hasContent = Object.values(parsedDraft).some(value =>
-          typeof value === 'string' && value.trim()
+        const hasContent = Object.values(parsedDraft).some(
+          (value) => typeof value === "string" && value.trim()
         );
 
         if (hasContent) {
@@ -3655,16 +6044,16 @@ const PitchForm = () => {
           name: "startupName",
           placeholder: "Enter your company name...",
           required: true,
-          maxLength: 100
+          maxLength: 100,
         },
         {
           label: "Value Proposition",
           name: "oneLiner",
           placeholder: "Describe your company's core value proposition...",
           required: true,
-          maxLength: 200
-        }
-      ]
+          maxLength: 200,
+        },
+      ],
     },
     {
       title: "Challenge & Innovation",
@@ -3673,19 +6062,21 @@ const PitchForm = () => {
           label: "Market Problem",
           name: "problem",
           textarea: true,
-          placeholder: "Define the significant problem or market inefficiency your company addresses...",
+          placeholder:
+            "Define the significant problem or market inefficiency your company addresses...",
           required: true,
-          maxLength: 800
+          maxLength: 800,
         },
         {
           label: "Solution Overview",
           name: "solution",
           textarea: true,
-          placeholder: "Explain how your innovation provides a superior solution...",
+          placeholder:
+            "Explain how your innovation provides a superior solution...",
           required: true,
-          maxLength: 800
-        }
-      ]
+          maxLength: 800,
+        },
+      ],
     },
     {
       title: "Market Opportunity",
@@ -3694,19 +6085,21 @@ const PitchForm = () => {
           label: "Target Market",
           name: "targetMarket",
           textarea: true,
-          placeholder: "Define your addressable market and customer segments...",
+          placeholder:
+            "Define your addressable market and customer segments...",
           required: true,
-          maxLength: 600
+          maxLength: 600,
         },
         {
           label: "Revenue Model",
           name: "businessModel",
           textarea: true,
-          placeholder: "Outline your monetization strategy and revenue streams...",
+          placeholder:
+            "Outline your monetization strategy and revenue streams...",
           required: true,
-          maxLength: 600
-        }
-      ]
+          maxLength: 600,
+        },
+      ],
     },
     {
       title: "Execution & Team",
@@ -3715,19 +6108,21 @@ const PitchForm = () => {
           label: "Current Traction",
           name: "traction",
           textarea: true,
-          placeholder: "Present key metrics, milestones, and validation achieved...",
+          placeholder:
+            "Present key metrics, milestones, and validation achieved...",
           required: true,
-          maxLength: 700
+          maxLength: 700,
         },
         {
           label: "Team Overview",
           name: "team",
           textarea: true,
-          placeholder: "Highlight leadership team and advisory board expertise...",
+          placeholder:
+            "Highlight leadership team and advisory board expertise...",
           required: true,
-          maxLength: 600
-        }
-      ]
+          maxLength: 600,
+        },
+      ],
     },
     {
       title: "Market Strategy",
@@ -3736,19 +6131,21 @@ const PitchForm = () => {
           label: "Go-to-Market Strategy",
           name: "goToMarketStrategy",
           textarea: true,
-          placeholder: "Detail your customer acquisition and market penetration approach...",
+          placeholder:
+            "Detail your customer acquisition and market penetration approach...",
           required: true,
-          maxLength: 700
+          maxLength: 700,
         },
         {
           label: "Competitive Analysis",
           name: "competition",
           textarea: true,
-          placeholder: "Identify competitive landscape and articulate your differentiation...",
+          placeholder:
+            "Identify competitive landscape and articulate your differentiation...",
           required: true,
-          maxLength: 700
-        }
-      ]
+          maxLength: 700,
+        },
+      ],
     },
     {
       title: "Investment Request",
@@ -3758,18 +6155,19 @@ const PitchForm = () => {
           name: "fundingAsk",
           placeholder: "Specify the investment amount and round type...",
           required: true,
-          maxLength: 200
+          maxLength: 200,
         },
         {
           label: "Use of Funds",
           name: "fundingUse",
           textarea: true,
-          placeholder: "Provide detailed allocation of investment across strategic priorities...",
+          placeholder:
+            "Provide detailed allocation of investment across strategic priorities...",
           required: true,
-          maxLength: 800
-        }
-      ]
-    }
+          maxLength: 800,
+        },
+      ],
+    },
   ];
 
   const handleChange = (e) => {
@@ -3786,10 +6184,10 @@ const PitchForm = () => {
       setError("Please enter some content to enhance");
       return;
     }
-    
+
     setEnhancing(true);
     setEnhanceField(fieldName);
-    
+
     try {
       const res = await api.post("/user/ask", {
         content: `
@@ -3822,10 +6220,12 @@ const PitchForm = () => {
   };
 
   const isFormValid = () => {
-    const requiredFields = sections.flatMap(section => 
-      section.fields.filter(field => field.required).map(field => field.name)
+    const requiredFields = sections.flatMap((section) =>
+      section.fields
+        .filter((field) => field.required)
+        .map((field) => field.name)
     );
-    return requiredFields.every(field => formData[field]?.trim());
+    return requiredFields.every((field) => formData[field]?.trim());
   };
 
   const handleSubmit = async (e) => {
@@ -3846,7 +6246,7 @@ const PitchForm = () => {
     } catch (error) {
       setError(
         error.response?.data?.message ||
-        "Failed to submit pitch. Please try again."
+          "Failed to submit pitch. Please try again."
       );
     } finally {
       setLoading(false);
@@ -3869,36 +6269,38 @@ const PitchForm = () => {
       fundingUse: "",
     });
     setSuccess(false);
-    setMessage('');
+    setMessage("");
     setError("");
     setSampleEnhanced("");
     localStorage.removeItem("pitchDraft");
   };
 
   // Check if there's any draft content
-  const hasDraftContent = Object.values(formData).some(value => value.trim());
+  const hasDraftContent = Object.values(formData).some((value) => value.trim());
 
   if (success) {
     return (
-      <div className={`min-h-screen flex items-center justify-center p-4 ${
-        dark ? "bg-black" : "bg-white"
-      }`}>
-        <div className="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/25 text-emerald-600 text-sm flex items-center gap-2 backdrop-blur-sm transition-all duration-500">
-          <svg className="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+      <div
+        className={`min-h-screen flex items-center justify-center p-4 ${
+          dark ? "bg-gray-900" : "bg-gray-50"
+        }`}
+      >
+        <div className="p-4 rounded-lg bg-green-50 border border-green-200 text-green-800 text-sm flex items-center gap-2 transition-all duration-300">
+          <svg
+            className="w-4 h-4 flex-shrink-0"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
             <path
               fillRule="evenodd"
               d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
             />
           </svg>
-          {message} 🎉
+          {message}
         </div>
         <button
           onClick={handleClearDraft}
-          className={`mt-4 w-full sm:w-auto px-6 md:px-8 py-3 md:py-3.5 font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 backdrop-blur-sm border ${
-            dark
-              ? "bg-gradient-to-r from-white/15 via-white/25 to-white/15 border-white/30 text-white hover:from-white/25 hover:via-white/35 hover:to-white/25 shadow-lg hover:shadow-xl"
-              : "bg-gradient-to-r from-black/15 via-black/25 to-black/15 border-black/30 text-black hover:from-black/25 hover:via-black/35 hover:to-black/25 shadow-lg hover:shadow-xl"
-          }`}
+          className={`mt-4 w-full sm:w-auto px-6 py-3 font-medium rounded-lg transition-all duration-300 hover:bg-blue-600/10 border border-transparent hover:border-blue-300 text-blue-700 dark:text-blue-300 dark:hover:bg-blue-900/10 dark:hover:border-blue-700`}
         >
           Create New Pitch
         </button>
@@ -3907,187 +6309,196 @@ const PitchForm = () => {
   }
 
   return (
-    <div className="w-full min-h-screen px-2 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-4 md:py-6 lg:py-8 relative overflow-hidden">
-      {/* Enhanced multi-layer glassmorphism background - FIXED to match Post component */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Primary gradient orbs - First orb now empty to match Post component */}
-        <div className={`absolute -top-32 -right-32 w-64 h-64 md:w-80 md:h-80 rounded-full blur-3xl transition-opacity duration-1000`}></div>
-        
-        <div className={`absolute -bottom-32 -left-32 w-72 h-72 md:w-96 md:h-96 rounded-full blur-3xl transition-opacity duration-1000 ${
-          dark 
-            ? "bg-gradient-to-tr from-emerald-500/20 via-cyan-500/15 to-blue-500/25" 
-            : "bg-gradient-to-tr from-emerald-400/25 via-cyan-400/20 to-blue-400/30"
-        }`}></div>
-        
-        {/* Secondary accent orbs for depth */}
-        <div className={`absolute top-1/3 right-1/4 w-48 h-48 md:w-56 md:h-56 rounded-full blur-2xl opacity-60 ${
-          dark 
-            ? "bg-gradient-to-br from-orange-500/15 to-red-500/10" 
-            : "bg-gradient-to-br from-orange-400/20 to-red-400/15"
-        }`}></div>
-        
-        <div className={`absolute bottom-1/3 left-1/4 w-40 h-40 md:w-48 md:h-48 rounded-full blur-2xl opacity-40 ${
-          dark 
-            ? "bg-gradient-to-br from-violet-500/20 to-indigo-500/15" 
-            : "bg-gradient-to-br from-violet-400/25 to-indigo-400/20"
-        }`}></div>
-      </div>
-
-      <div className="max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl xl:max-w-4xl mx-auto relative z-10">
+    <div
+      className={`overflow-y-auto scrollbar-hidden min-h-screen px-1 md:px-8 lg:px-1 py-1 md:py-10 lg:py-2 relative ${
+        dark ? "bg-black" : "bg-gray-50"
+      }`}
+    >
+      <div className="max-w-6xl mx-auto relative z-10">
         <div
-          className={`rounded-lg md:rounded-xl transition-all duration-700 hover:scale-[1.01] backdrop-blur-2xl border shadow-2xl ${
-            !dark
-              ? "border-white/25 bg-white/8 shadow-black/10"
-              : "border-white/15 bg-black/8 shadow-white/5"
+          className={`rounded-xl transition-all duration-300 border shadow-sm ${
+            dark ? "border-black bg-black" : "border-gray-100 bg-white/10"
           }`}
           style={{
-            backdropFilter: "blur(24px) saturate(200%)",
-            WebkitBackdropFilter: "blur(24px) saturate(200%)",
-            boxShadow: dark 
-              ? "0 25px 50px -12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)" 
-              : "0 25px 50px -12px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2)"
+            backdropFilter: "blur(8px)",
           }}
         >
-          {/* Ultra-elegant header with subtle gradient overlay */}
-          <div
-            className={`px-3 sm:px-4 md:px-6 py-3 sm:py-4 border-b backdrop-blur-sm rounded-t-lg md:rounded-t-xl relative overflow-hidden ${
-              dark 
-                ? "border-white/10 bg-gradient-to-r from-white/3 via-white/8 to-white/3" 
-                : "border-black/10 bg-gradient-to-r from-black/3 via-black/8 to-black/3"
+          {/* Clean, professional header */}
+          {/* <div
+            className={`px-6 py-4 border-b rounded-t-xl ${
+              dark ? "border-balck bg-black" : "border-gray-200 bg-gray-100/30"
             }`}
           >
-            {/* Subtle shimmer overlay */}
-            <div className={`absolute inset-0 bg-gradient-to-r ${
-              dark 
-                ? "from-transparent via-white/5 to-transparent" 
-                : "from-transparent via-black/5 to-transparent"
-            } opacity-50`}></div>
-            
-            <div className="flex items-center justify-between relative z-10">
-              <div className="flex items-center gap-2 sm:gap-3">
-                {/* Enhanced dot indicator with inner glow */}
-                <div
-                  className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full backdrop-blur-sm border relative ${
-                    dark 
-                      ? "bg-gradient-to-br from-white/30 via-white/20 to-white/10 border-white/30" 
-                      : "bg-gradient-to-br from-black/30 via-black/20 to-black/10 border-black/30"
-                  }`}
-                >
-                  <div className={`absolute inset-0.5 rounded-full ${
-                    dark ? "bg-white/20" : "bg-black/20"
-                  }`}></div>
-                </div>
-                <h2
-                  className={`text-base sm:text-lg md:text-xl font-semibold tracking-tight ${
-                    dark ? "text-white/95" : "text-black/95"
-                  }`}
-                >
-                  Investment Pitch
-                </h2>
-              </div>
-
-              <div className="flex items-center gap-2 sm:gap-3">
-                {/* Enhanced draft saved indicator */}
+            <div className="flex items-center justify-between">
+              <h2
+                className={`text-xl font-semibold ${
+                  dark ? "text-white" : "text-gray-900"
+                }`}
+              >
+                Investment Pitch Submission
+              </h2>
+              <div className="flex items-center gap-4">
                 {draftSaved && (
                   <div
-                    className={`text-xs flex items-center gap-1 px-2 sm:px-3 py-1 rounded-full backdrop-blur-sm border transition-all duration-500 ${
-                      dark 
-                        ? "text-emerald-300 bg-emerald-500/15 border-emerald-500/25" 
-                        : "text-emerald-700 bg-emerald-500/15 border-emerald-500/25"
+                    className={`text-xs flex items-center gap-1 px-3 py-1 rounded-full border ${
+                      dark ? "text-blue-300 border-blue-500/30 bg-blue-500/10" : "text-blue-700 border-blue-500/30 bg-blue-500/10"
                     }`}
                   >
-                    <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3" fill="currentColor" viewBox="0 0 20 20">
+                    <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+                    </svg>
+                    Draft Saved
+                  </div>
+                )}
+                {hasDraftContent && (
+                  <button
+                    type="button"
+                    onClick={handleClearDraft}
+                    className={`text-xs px-3 py-1 rounded-full border transition duration-300 hover:bg-gray-200/50 dark:hover:bg-gray-700/50 ${
+                      dark ? "text-gray-300 border-gray-600" : "text-gray-700 border-gray-300"
+                    }`}
+                  >
+                    Clear Draft
+                  </button>
+                )}
+              </div>
+            </div>
+          </div> */}
+
+          {/* <div
+            className={`px-6 lg:px-6 py-4 border-b rounded-t-xl ${
+              dark ? "border-black bg-black" : "border-gray-200 bg-gray-100/30"
+            }`}
+          >
+            <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-4 relative">
+              <h2
+                className={`text-xl font-semibold text-center order-1 sm:order-none flex-1 sm:flex-none ${
+                  dark ? "text-white" : "text-gray-900"
+                }`}
+              >
+                Craft Your Epic Investment Pitch
+              </h2>
+              <div className="flex items-center gap-4 order-2 sm:order-none">
+                {draftSaved && (
+                  <div
+                    className={`text-xs flex items-center gap-1 px-3 py-1 rounded-full border ${
+                      dark
+                        ? "text-blue-300 border-blue-500/30 bg-blue-500/10"
+                        : "text-blue-700 border-blue-500/30 bg-blue-500/10"
+                    }`}
+                  >
+                    <svg
+                      className="w-3 h-3"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
                       <path
                         fillRule="evenodd"
                         d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
                       />
                     </svg>
-                    <span className="hidden sm:inline">Draft saved</span>
-                    <span className="sm:hidden">Saved</span>
+                    Draft Saved
                   </div>
                 )}
-
-                {/* Enhanced clear draft button */}
                 {hasDraftContent && (
                   <button
                     type="button"
                     onClick={handleClearDraft}
-                    className={`px-2 sm:px-3 py-1 sm:py-1.5 text-xs font-medium rounded-lg transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-sm border ${
+                    className={`text-xs px-3 py-1 rounded-full border transition duration-300 hover:bg-gray-200/50 dark:hover:bg-gray-700/50 ${
                       dark
-                        ? "bg-white/8 text-white/85 hover:bg-white/15 border-white/20 hover:border-white/35"
-                        : "bg-black/8 text-black/85 hover:bg-black/15 border-black/20 hover:border-black/35"
+                        ? "text-gray-300 border-gray-600"
+                        : "text-gray-700 border-gray-300"
                     }`}
-                    title="Clear all draft content"
                   >
-                    <div className="flex items-center gap-1 sm:gap-1.5">
-                      <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                        />
-                      </svg>
-                      <span className="hidden sm:inline">Clear</span>
-                    </div>
+                    Clear Draft
                   </button>
                 )}
               </div>
             </div>
+          </div> */}
+
+          <div
+            className={`px-6 lg:px-6 py-4 border-b rounded-t-xl ${
+              dark ? "border-black bg-black" : "border-gray-200 bg-gray-100/30"
+            }`}
+          >
+            <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-4 relative">
+              <h2
+                className={`text-xl font-semibold text-center order-1 sm:order-none flex-1 sm:flex-none ${
+                  dark ? "text-white" : "text-gray-900"
+                }`}
+              >
+                Prevail. Purpose. Progress.
+              </h2>
+              {hasDraftContent && <div className="flex items-center gap-4 order-2 sm:order-none">
+                {draftSaved && (
+                  <div
+                    className={`text-xs flex items-center gap-1 px-3 py-1 rounded-full border ${
+                      dark
+                        ? "text-blue-300 border-blue-500/30 bg-blue-500/10"
+                        : "text-blue-700 border-blue-500/30 bg-blue-500/10"
+                    }`}
+                  >
+                    <svg
+                      className="w-3 h-3"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      />
+                    </svg>
+                    Draft Saved
+                  </div>
+                )}
+                {hasDraftContent && (
+                  <button
+                    type="button"
+                    onClick={handleClearDraft}
+                    className={`text-xs px-3 py-1 rounded-full border transition duration-300 hover:bg-gray-200/50 dark:hover:bg-gray-700/50 ${
+                      dark
+                        ? "text-gray-300 border-gray-600"
+                        : "text-gray-700 border-gray-300"
+                    }`}
+                  >
+                    Clear Draft
+                  </button>
+                )}
+              </div>}
+            </div>
           </div>
 
-          <form
-            onSubmit={handleSubmit}
-            className="p-3 sm:p-4 md:p-6 space-y-3 sm:space-y-4 md:space-y-6"
-          >
-            {/* Enhanced error message */}
+          <form onSubmit={handleSubmit} className="lg:p-6 p-2 space-y-8">
             {error && (
-              <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/25 text-red-600 text-sm backdrop-blur-sm">
+              <div className="p-4 rounded-lg bg-red-50 border border-red-200 text-red-800 text-sm">
                 {error}
               </div>
             )}
 
-            {/* Single Page Form Sections */}
-            <div className="space-y-6 sm:space-y-8 md:space-y-10">
+            <div className="space-y-8">
               {sections.map((section, sectionIndex) => (
-                <motion.div
-                  key={section.title}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: sectionIndex * 0.1, duration: 0.6 }}
-                  className="space-y-4 sm:space-y-6"
-                >
-                  {/* Section Header */}
-                  <div className="mb-4 sm:mb-6">
-                    <h3 className={`text-lg sm:text-xl font-semibold mb-2 ${
-                      dark ? "text-white/90" : "text-black/90"
-                    }`}>
-                      {section.title}
-                    </h3>
-                    <div className={`w-8 sm:w-12 h-px ${
-                      dark ? "bg-white/30" : "bg-black/30"
-                    }`} />
-                  </div>
-
-                  {/* Section Fields */}
-                  <div className="space-y-4 sm:space-y-6">
-                    {section.fields.map((field, fieldIndex) => (
-                      <motion.div
-                        key={field.name}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: (sectionIndex * 0.1) + (fieldIndex * 0.05), duration: 0.4 }}
-                        className="space-y-2"
-                      >
+                <div key={section.title} className="space-y-4">
+                  <h3
+                    className={`text-lg font-medium ${
+                      dark ? "text-white" : "text-gray-900"
+                    }`}
+                  >
+                    {section.title}
+                  </h3>
+                  <div className="space-y-6">
+                    {section.fields.map((field) => (
+                      <div key={field.name} className="space-y-1">
                         <label
                           className={`block text-sm font-medium ${
-                            dark ? "text-white/85" : "text-black/85"
+                            dark ? "text-gray-300" : "text-gray-700"
                           }`}
                         >
                           {field.label}
-                          {field.required && <span className="text-red-500 ml-1">*</span>}
+                          {field.required && (
+                            <span className="text-red-500 ml-1">*</span>
+                          )}
                         </label>
-
                         <div className="relative">
                           {field.textarea ? (
                             <textarea
@@ -4097,10 +6508,10 @@ const PitchForm = () => {
                               value={formData[field.name]}
                               onChange={handleChange}
                               placeholder={field.placeholder}
-                              className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 pr-10 sm:pr-14 rounded-lg resize-y min-h-[120px] max-h-[400px] text-sm sm:text-base border transition-all duration-300 focus:outline-none focus:ring-2 backdrop-blur-sm ${
+                              className={`w-full px-4 py-3 rounded-sm text-sm border transition duration-300 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 ${
                                 dark
-                                  ? "bg-white/5 border-white/20 text-white/95 focus:border-white/50 focus:ring-white/15 placeholder-white/50 hover:bg-white/8"
-                                  : "bg-black/5 border-black/20 text-black/95 focus:border-black/50 focus:ring-black/15 placeholder-black/50 hover:bg-black/8"
+                                  ? "bg-black border-gray-700 text-white placeholder-gray-400"
+                                  : "bg-white/10 border-gray-300 text-gray-900 placeholder-gray-500"
                               }`}
                               required={field.required}
                             />
@@ -4112,49 +6523,56 @@ const PitchForm = () => {
                               value={formData[field.name]}
                               onChange={handleChange}
                               placeholder={field.placeholder}
-                              className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg text-sm sm:text-base border transition-all duration-300 focus:outline-none focus:ring-2 backdrop-blur-sm ${
+                              className={`w-full px-4 py-3 rounded-sm text-sm border transition duration-300 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 ${
                                 dark
-                                  ? "bg-white/5 border-white/20 text-white/95 focus:border-white/50 focus:ring-white/15 placeholder-white/50 hover:bg-white/8"
-                                  : "bg-black/5 border-black/20 text-black/95 focus:border-black/50 focus:ring-black/15 placeholder-black/50 hover:bg-black/8"
+                                  ? "bg-black border-gray-700 text-white placeholder-gray-400"
+                                  : "bg-white/10 border-gray-300 text-gray-900 placeholder-gray-500"
                               }`}
                               required={field.required}
                             />
                           )}
-
-                          {/* Enhanced AI button for textarea fields */}
                           {field.textarea && (
                             <button
                               type="button"
-                              onClick={() => handleAIEnhance(field.name, formData[field.name])}
-                              disabled={!formData[field.name]?.trim() || enhancing}
-                              className={`absolute top-2 right-2 sm:top-3 sm:right-3 p-2 rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group backdrop-blur-sm border ${
+                              onClick={() =>
+                                handleAIEnhance(
+                                  field.name,
+                                  formData[field.name]
+                                )
+                              }
+                              disabled={
+                                !formData[field.name]?.trim() || enhancing
+                              }
+                              className={`absolute top-3 right-3 p-1 rounded-md transition duration-300 disabled:opacity-50 ${
                                 dark
-                                  ? "bg-gradient-to-br from-violet-500/20 via-purple-500/15 to-indigo-500/20 border-violet-500/30 text-white hover:from-violet-500/30 hover:via-purple-500/25 hover:to-indigo-500/30"
-                                  : "bg-gradient-to-br from-violet-500/20 via-purple-500/15 to-indigo-500/20 border-violet-500/30 text-black hover:from-violet-500/30 hover:via-purple-500/25 hover:to-indigo-500/30"
+                                  ? "text-gray-400 hover:text-blue-300"
+                                  : "text-gray-500 hover:text-blue-600"
                               }`}
-                              title="Enhance content with AI"
+                              title="Enhance with AI"
                             >
                               {enhancing && enhanceField === field.name ? (
-                                <div className="animate-spin">
-                                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24">
-                                    <circle
-                                      cx="12"
-                                      cy="12"
-                                      r="10"
-                                      stroke="currentColor"
-                                      strokeWidth="4"
-                                      className="opacity-25"
-                                    ></circle>
-                                    <path
-                                      fill="currentColor"
-                                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                                      className="opacity-75"
-                                    ></path>
-                                  </svg>
-                                </div>
+                                <svg
+                                  className="w-4 h-4 animate-spin"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <circle
+                                    cx="12"
+                                    cy="12"
+                                    r="10"
+                                    stroke="currentColor"
+                                    strokeWidth="4"
+                                    className="opacity-25"
+                                  />
+                                  <path
+                                    fill="currentColor"
+                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                    className="opacity-75"
+                                  />
+                                </svg>
                               ) : (
                                 <svg
-                                  className="w-4 h-4 transition-transform group-hover:scale-110"
+                                  className="w-4 h-4"
                                   fill="none"
                                   viewBox="0 0 24 24"
                                   stroke="currentColor"
@@ -4170,68 +6588,50 @@ const PitchForm = () => {
                             </button>
                           )}
                         </div>
-
-                        {/* Character count */}
-                        <div className="flex flex-col xs:flex-row xs:justify-between xs:items-center gap-1">
+                        <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400">
                           {field.maxLength && (
-                            <span className={`text-xs xs:ml-auto ${
-                              formData[field.name]?.length >= field.maxLength * 0.9
-                                ? "text-orange-500"
-                                : formData[field.name]?.length >= field.maxLength
-                                ? "text-red-500"
-                                : dark ? "text-white/60" : "text-black/60"
-                            }`}>
-                              {formData[field.name]?.length || 0}/{field.maxLength}
+                            <span
+                              className={`${
+                                formData[field.name]?.length >=
+                                field.maxLength * 0.9
+                                  ? "text-orange-500"
+                                  : ""
+                              }`}
+                            >
+                              {formData[field.name]?.length || 0}/
+                              {field.maxLength}
                             </span>
                           )}
                           {enhancing && enhanceField === field.name && (
-                            <span
-                              className={`text-xs px-2 py-0.5 rounded-full backdrop-blur-sm ${
-                                dark 
-                                  ? "text-violet-300 bg-violet-500/10" 
-                                  : "text-violet-700 bg-violet-500/10"
-                              }`}
-                            >
-                              Enhancing...
-                            </span>
+                            <span>Enhancing...</span>
                           )}
                         </div>
-
-                        {/* Enhanced AI sample display */}
                         {sampleEnhanced && enhanceField === field.name && (
                           <div
-                            className={`mt-3 p-3 sm:p-4 rounded-lg border backdrop-blur-sm transition-all duration-500 animate-in slide-in-from-top-2 ${
+                            className={`mt-2 p-4 rounded-lg border ${
                               dark
-                                ? "border-violet-500/30 bg-violet-500/8"
-                                : "border-violet-500/30 bg-violet-500/8"
+                                ? "border-gray-700 bg-gray-800/50"
+                                : "border-gray-200 bg-gray-50/50"
                             }`}
                           >
-                            <div className="flex justify-between items-start mb-2 gap-2">
-                              <span
-                                className={`text-xs font-medium flex items-center gap-1 ${
-                                  dark ? "text-violet-300" : "text-violet-700"
-                                }`}
-                              >
-                                ✨ AI Enhanced
+                            <div className="flex justify-between mb-2">
+                              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                                AI Enhanced Version
                               </span>
-                              <div className="flex gap-1.5 sm:gap-2 flex-shrink-0">
+                              <div className="flex gap-2">
                                 <button
                                   type="button"
                                   onClick={() => {
-                                    setFormData(prev => ({
+                                    setFormData((prev) => ({
                                       ...prev,
-                                      [field.name]: sampleEnhanced
+                                      [field.name]: sampleEnhanced,
                                     }));
                                     setSampleEnhanced("");
                                     setEnhanceField("");
                                   }}
-                                  className={`text-xs px-2 sm:px-3 py-1 rounded-md backdrop-blur-sm border transition-all duration-300 hover:scale-105 ${
-                                    dark
-                                      ? "bg-violet-500/20 border-violet-500/30 text-violet-300 hover:bg-violet-500/30"
-                                      : "bg-violet-500/20 border-violet-500/30 text-violet-700 hover:bg-violet-500/30"
-                                  }`}
+                                  className="text-xs px-3 py-1 rounded-md bg-blue-500/10 text-blue-600 dark:text-blue-300 hover:bg-blue-500/20 transition duration-300"
                                 >
-                                  Use
+                                  Apply
                                 </button>
                                 <button
                                   type="button"
@@ -4239,51 +6639,35 @@ const PitchForm = () => {
                                     setSampleEnhanced("");
                                     setEnhanceField("");
                                   }}
-                                  className={`text-xs px-2 sm:px-3 py-1 rounded-md backdrop-blur-sm border transition-all duration-300 hover:scale-105 ${
-                                    dark
-                                      ? "bg-white/8 border-white/20 text-white/70 hover:bg-white/15"
-                                      : "bg-black/8 border-black/20 text-black/70 hover:bg-black/15"
-                                  }`}
+                                  className="text-xs px-3 py-1 rounded-md text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition duration-300"
                                 >
-                                  ×
+                                  Dismiss
                                 </button>
                               </div>
                             </div>
-                            <p
-                              className={`text-sm leading-relaxed ${
-                                dark ? "text-white/85" : "text-black/85"
-                              }`}
-                            >
+                            <p className="text-sm text-gray-800 dark:text-gray-200">
                               {sampleEnhanced}
                             </p>
                           </div>
                         )}
-                      </motion.div>
+                      </div>
                     ))}
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
 
-            {/* Enhanced submit button with perfect mobile optimization */}
-            <div className="flex justify-stretch sm:justify-end pt-2 sm:pt-4">
+            <div className="flex justify-end pt-6">
               <button
                 type="submit"
                 disabled={!isFormValid() || loading}
-                className={`w-full sm:w-auto px-6 md:px-8 py-3 md:py-3.5 font-semibold rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105 active:scale-95 backdrop-blur-sm border ${
+                className={`px-6 py-3 font-medium rounded-lg transition duration-300 disabled:opacity-50 ${
                   dark
-                    ? "bg-gradient-to-r from-white/15 via-white/25 to-white/15 border-white/30 text-white hover:from-white/25 hover:via-white/35 hover:to-white/25 shadow-lg hover:shadow-xl"
-                    : "bg-gradient-to-r from-black/15 via-black/25 to-black/15 border-black/30 text-black hover:from-black/25 hover:via-black/35 hover:to-black/25 shadow-lg hover:shadow-xl"
+                    ? "bg-blue-600 text-white hover:bg-blue-700"
+                    : "bg-blue-600 text-white hover:bg-blue-700"
                 }`}
               >
-                {loading ? (
-                  <div className="flex items-center justify-center gap-2">
-                    <div className={`w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin`} />
-                    <span className="text-sm sm:text-base">Submitting...</span>
-                  </div>
-                ) : (
-                  <span className="text-sm sm:text-base">Submit Investment Pitch</span>
-                )}
+                {loading ? "Submitting..." : "Submit Pitch"}
               </button>
             </div>
           </form>
