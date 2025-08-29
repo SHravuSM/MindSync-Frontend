@@ -1928,14 +1928,14 @@ const CardF = ({ post }) => {
           className={`absolute inset-0 bg-gradient-to-br opacity-0 lg:group-hover:opacity-100 transition-opacity duration-700 ease-out pointer-events-none ${
             dark
               ? "from-blue-950/20 via-purple-950/20 to-pink-950/20"
-              : "from-blue-50/60 via-purple-50/60 to-pink-50/60"
+              : "from-blue-50/10 via-purple-50/10 to-pink-50/10"
           }`}
         />
 
         {/* Header with enhanced animations - Fixed className */}
         <div className="flex items-center w-full justify-between z-10 relative py-2 pb-0">
           <h1
-            className={`text-lg font-light text-ellipsis whitespace-nowrap flex-1 mr-4 transition-all duration-500 transform ${
+            className={`text-lg font-light hover:underline text-ellipsis whitespace-nowrap flex-1 mr-4 transition-all duration-500 transform ${
               dark ? "text-white" : "text-black"
             } ${isHovering ? "text-blue-600 dark:text-blue-400" : ""}`}
           >
@@ -2023,7 +2023,7 @@ const CardF = ({ post }) => {
 
         {/* Tags and Read More Button */}
         {((Post.tags && Post.tags.length > 0) || showExpandButton) && (
-          <div className="flex items-center justify-between gap-3 mt-3 mb-4">
+          <div className="flex items-center justify-between gap-3 mt-2 mb-2">
             {/* Tags Section */}
             {Post.tags && Post.tags.length > 0 && (
               <div className="flex flex-wrap gap-2 flex-1 min-w-0">
@@ -2189,7 +2189,7 @@ const CardF = ({ post }) => {
             </button>
 
             {/* Enhanced avatar stack */}
-            <div className="flex items-center -space-x-2">
+            <div className="flex items-center mt-0 -space-x-2">
               {Array(Post.impressions.length < 3 ? Post.impressions.length : 2)
                 .fill(0)
                 .map((e, idx) => (

@@ -20,9 +20,11 @@ const PitchFeed = () => {
     refetch: refetchPitches,
   } = usePitches();
 
-  console.log(pitchesData);
+  // console.log(pitchesData);
 
-  const allPitches = pitchesData?.pages?.flatMap((page) => page.pitches) || [];
+  // const allPitches = pitchesData?.pages?.flatMap((page) => page.pitches) || [];
+  const allPitches = pitchesData?.pages?.flatMap((page) => page.data) || [];
+  console.log(allPitches);
 
   useEffect(() => {
     setYes(false);
@@ -30,18 +32,22 @@ const PitchFeed = () => {
 
   if (pitchesLoading) {
     return (
-      <div className="lg:w-xl w-full items-center justify-center">
+      <div className="w-full h-screen flex items-center justify-center">
         <Loader />
       </div>
     );
   }
 
   if (pitchesError) {
-    return <div className="lg:w-xl w-full space-y-1">Error loading pitches: {pitchesError.message}</div>;
+    return (
+      <div className="lg:w-xl w-full space-y-1">
+        Error loading pitches: {pitchesError.message}
+      </div>
+    );
   }
 
   return (
-    <div className="feed">
+    <div className="feed w-full px-2">
       <SortDropdownButton />
       {/* No tags or sort for pitches based on schema; can be added if schema extended */}
       <InfiniteScroll

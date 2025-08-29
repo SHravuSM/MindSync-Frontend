@@ -21,6 +21,7 @@ import FeedPlus from "./pages/user/FeedPlus";
 import SearchBar from "./components/Search";
 import PitchFeed from "./components/PitchFeed";
 import Feed2 from "./components/Feed2";
+import PitchOne from "./PitchOne";
 
 function App() {
   const navigate = useNavigate();
@@ -60,6 +61,7 @@ function App() {
           <Route index element={<Feed2 />} />
           <Route path=":pos" element={<FeedPlus />} />
           <Route path="pitches" element={<PitchFeed />} />
+          <Route path="pitches/:id" element={<PitchOne />} />
         </Route>
         <Route path="pitch" element={<Pitch />} />
         <Route path="createpost" element={<CreatePost />} />

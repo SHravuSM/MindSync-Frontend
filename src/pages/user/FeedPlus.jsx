@@ -7,7 +7,7 @@ export default function FeedPlus() {
   const { pos } = useParams();
   const [p, setP] = useState(null);
   async function fetchD() {
-    const res = await api.get(`/user/posts/${pos}`);
+    const res = await api.get(`/user/posts/posts/${pos}`);
     setP(res.data);
   }
   useEffect(() => {

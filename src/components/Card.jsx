@@ -299,10 +299,8 @@ const Card = ({ post, data }) => {
         {/* Header with enhanced animations */}
         <div className="flex items-center w-full justify-between z-10 relative py-2 pb-0">
           <h1
-            className={`text-lg font-light overflow-hidden text-ellipsis whitespace-nowrap flex-1 mr-4 transition-all duration-500 ${
-              isHovering
-                ? "transform text-blue-600 dark:text-blue-400"
-                : ""
+            className={`text-lg font-normal overflow-hidden text-ellipsis whitespace-nowrap flex-1 mr-4 transition-all duration-500 ${
+              isHovering ? "transform text-blue-600 dark:text-blue-400" : ""
             }`}
           >
             {Post.title}
@@ -572,7 +570,7 @@ const Card = ({ post, data }) => {
             </button>
 
             {/* Enhanced avatar stack */}
-            <div className="flex items-center -space-x-2">
+            <div className="flex items-center mt-2 -space-x-2">
               {Array(Post.impressions.length < 3 ? Post.impressions.length : 2)
                 .fill(0)
                 .map((e, idx) => (

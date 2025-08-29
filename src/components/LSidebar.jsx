@@ -16,11 +16,13 @@ import { Link, useNavigate } from "react-router-dom";
 import Tabs from "./Tabs";
 import api from "../utils/api1";
 import useAuthStore from "../store/authStore";
+import useThemeStore from "../store/themeStore";
 import USER from "../assets/user.png";
 
 const LSidebar = () => {
   const user = useAuthStore((s) => s.user);
   const logOut = useAuthStore((s) => s.logOut);
+  const { dark } = useThemeStore();
   const id = user?.id;
   const [profileData, setProfileData] = useState(null);
 
@@ -68,7 +70,11 @@ const LSidebar = () => {
       className="w-56 hidden lg:block space-y-2"
     >
       {/* Profile Card */}
-      <div className="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200">
+      <div
+        className={`${
+          !dark ? "bg-white border-gray-200" : "bg-black border-gray-800"
+        } rounded-md border overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200`}
+      >
         {/* Background and Profile Picture */}
         <span
           className="block relative group"
@@ -95,7 +101,11 @@ const LSidebar = () => {
         <div className="pt-8 px-4 pb-4">
           <Link to={`/${id}`} className="block group">
             <div className="text-center">
-              <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-200 line-clamp-2">
+              <h3
+                className={`text-lg font-semibold ${
+                  !dark ? "text-gray-900" : "text-white"
+                } group-hover:text-blue-600 transition-colors duration-200 line-clamp-2`}
+              >
                 {profileData.name}
               </h3>
               <p className="text-xs text-gray-600 mt-1 line-clamp-2">
@@ -109,7 +119,11 @@ const LSidebar = () => {
 
           {/* Add Experience Button */}
           <button
-            className="w-full mt-3 py-2 px-3 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-md transition-colors duration-200 group"
+            className={`w-full mt-3 py-2 px-3 ${
+              !dark
+                ? "bg-gray-50 hover:bg-gray-100 border-gray-200"
+                : "bg-gray-300 hover:bg-white"
+            } border  rounded-md transition-colors duration-200 group`}
             aria-label="Add Experience"
             type="button"
           >
