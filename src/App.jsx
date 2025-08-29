@@ -29,7 +29,6 @@ function App() {
 
   useEffect(() => {
     if (!user) {
-      console.log(user);
       logOut();
       navigate("/");
     } else {
@@ -59,7 +58,7 @@ function App() {
         <Route path="search" element={<SearchBar />} />
         <Route path="feed" element={<Feed />}>
           <Route index element={<Feed2 />} />
-          <Route path=":postId" element={<FeedPlus />} />
+          <Route path=":pos" element={<FeedPlus />} />
           <Route path="pitches" element={<PitchFeed />} />
         </Route>
         <Route path="pitch" element={<Pitch />} />

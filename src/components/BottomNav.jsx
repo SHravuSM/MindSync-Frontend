@@ -1975,7 +1975,7 @@ const BottomNav = () => {
   return (
     <>
       <div
-        className={`lg:bottom-1 lg:hidden bottom-1.5 fixed flex z-100 w-full items-center justify-center ${
+        className={`lg:bottom-1 bottom-1.5 fixed flex z-100 w-full items-center justify-center ${
           !dark ? "text-black" : "text-white"
         }`}
       >
@@ -2030,7 +2030,7 @@ const BottomNav = () => {
             )}
 
             {/* Profile */}
-            <li className="transition-all duration-200 hover:scale-105 active:scale-95">
+            {/* <li className="transition-all duration-200 hover:scale-105 active:scale-95">
               <Link
                 to={`/${user.id}`}
                 className="inline-block transition-colors duration-200 hover:opacity-80"
@@ -2041,7 +2041,7 @@ const BottomNav = () => {
                   className="transition-transform duration-200 hover:rotate-6"
                 />
               </Link>
-            </li>
+            </li> */}
 
             <div className="relative hidden lg:block">
               <button
@@ -2147,7 +2147,9 @@ const BottomNav = () => {
           {profileData && (
             <div
               className={`${
-                dark ? "bg-gray-900/50 border-gray-800" : "bg-white border-gray-200"
+                dark
+                  ? "bg-gray-900/50 border-gray-800"
+                  : "bg-white border-gray-200"
               } rounded-lg border overflow-hidden shadow-sm`}
             >
               {/* Background and Profile Picture */}
@@ -2251,7 +2253,9 @@ const BottomNav = () => {
           {/* Premium Upsell Card */}
           <div
             className={`${
-              dark ? "bg-gray-900/50 border-gray-800" : "bg-white border-gray-200"
+              dark
+                ? "bg-gray-900/50 border-gray-800"
+                : "bg-white border-gray-200"
             } rounded-lg border p-4 shadow-sm`}
           >
             <Link
@@ -2288,7 +2292,9 @@ const BottomNav = () => {
           {/* Navigation Links Card */}
           <div
             className={`${
-              dark ? "bg-gray-900/50 border-gray-800" : "bg-white border-gray-200"
+              dark
+                ? "bg-gray-900/50 border-gray-800"
+                : "bg-white border-gray-200"
             } rounded-lg border p-4 shadow-sm`}
           >
             <ul className="space-y-4">

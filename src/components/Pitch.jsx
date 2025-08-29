@@ -6310,13 +6310,13 @@ const PitchForm = () => {
 
   return (
     <div
-      className={`overflow-y-auto scrollbar-hidden min-h-screen px-1 md:px-8 lg:px-1 py-1 md:py-10 lg:py-2 relative ${
+      className={`overflow-y-auto scrollbar-hidden min-h-screen px-1 mb-10 md:px-8 lg:px-1 py-1 md:py-10 lg:py-2 relative ${
         dark ? "bg-black" : "bg-gray-50"
       }`}
     >
       <div className="max-w-6xl mx-auto relative z-10">
         <div
-          className={`rounded-xl transition-all duration-300 border shadow-sm ${
+          className={`rounded-xl transition-all duration-300 shadow-sm ${
             dark ? "border-black bg-black" : "border-gray-500 bg-white/10"
           }`}
           style={{

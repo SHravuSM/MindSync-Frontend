@@ -29,11 +29,15 @@ const PitchFeed = () => {
   }, [setYes]);
 
   if (pitchesLoading) {
-    return <Loader />;
+    return (
+      <div className="lg:w-xl w-full items-center justify-center">
+        <Loader />
+      </div>
+    );
   }
 
   if (pitchesError) {
-    return <div>Error loading pitches: {pitchesError.message}</div>;
+    return <div className="lg:w-xl w-full space-y-1">Error loading pitches: {pitchesError.message}</div>;
   }
 
   return (

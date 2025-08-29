@@ -22,7 +22,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const Card = ({ post }) => {
+const Card = ({ post, data }) => {
   const user = useAuthStore((s) => s.user);
   const dark = useThemeStore((s) => s.dark);
   const [Post, setPost] = useState(null);
@@ -48,6 +48,16 @@ const Card = ({ post }) => {
 
   const userId = user?.id || user?._id;
   const [hiddenComments, setHiddenComments] = useState(new Set());
+
+  async function fetchSuggestionLength() {
+    const res = await api.get(`/user/posts/suggestionLength/${post._id}`);
+    setSuggestions(res.data);
+    // console.log(res.data);
+  }
+
+  useEffect(() => {
+    fetchSuggestionLength();
+  }, []);
 
   const toggleCommentVisibility = (commentId) => {
     setHiddenComments((prev) => {
@@ -287,11 +297,11 @@ const Card = ({ post }) => {
         />
 
         {/* Header with enhanced animations */}
-        <div className="flex items-center w-full justify-between z-10 relative py-2">
+        <div className="flex items-center w-full justify-between z-10 relative py-2 pb-0">
           <h1
-            className={`text-lg font-bold overflow-hidden text-ellipsis whitespace-nowrap flex-1 mr-4 transition-all duration-500 ${
+            className={`text-lg font-light overflow-hidden text-ellipsis whitespace-nowrap flex-1 mr-4 transition-all duration-500 ${
               isHovering
-                ? "transform translate-x-1 text-blue-600 dark:text-blue-400"
+                ? "transform text-blue-600 dark:text-blue-400"
                 : ""
             }`}
           >
@@ -310,7 +320,7 @@ const Card = ({ post }) => {
               })}
             </span>
             <div className="relative options-menu">
-              <button
+              {/* <button
                 className={`bg-transparent text-lg transition-all duration-300 hover:scale-125 active:scale-95 hover:rotate-90 p-1 rounded-full hover:bg-gray-100/50 dark:hover:bg-gray-800/50 ${
                   !dark ? "text-gray-600" : "text-gray-300"
                 }`}
@@ -329,9 +339,9 @@ const Card = ({ post }) => {
                   <path d="M26.564,20.956c0,3.091-2.509,5.589-5.606,5.589c-3.097,0-5.607-2.498-5.607-5.589c0-3.082,2.511-5.585,5.607-5.585C24.056,15.371,26.564,17.874,26.564,20.956z" />
                   <path d="M41.915,20.956c0,3.091-2.509,5.589-5.607,5.589c-3.097,0-5.606-2.498-5.606-5.589c0-3.082,2.511-5.585,5.606-5.585C39.406,15.371,41.915,17.874,41.915,20.956z" />
                 </svg>
-              </button>
+              </button> */}
               {/* Enhanced dropdown */}
-              {showOptions && (
+              {/* {showOptions && (
                 <div className="absolute right-0 top-full mt-2 w-40 bg-white/95 dark:bg-black/95 backdrop-blur-xl shadow-2xl rounded-xl z-30 border border-gray-200/50 dark:border-gray-700/50 overflow-hidden transition-all duration-300 animate-in slide-in-from-top-2 fade-in">
                   <div className="px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-800/50 cursor-pointer transition-all duration-200 hover:translate-x-1 text-gray-700 dark:text-gray-300 text-sm hover:font-medium flex items-center gap-2">
                     <span>✏️</span> Edit Post
@@ -340,7 +350,7 @@ const Card = ({ post }) => {
                     <span>🗑️</span> Delete
                   </div>
                 </div>
-              )}
+              )} */}
             </div>
           </div>
         </div>
@@ -455,6 +465,7 @@ const Card = ({ post }) => {
               } ${open ? "text-blue-500 scale-110" : "hover:text-blue-500"}`}
               onClick={(e) => {
                 e.stopPropagation();
+                fetchSuggestions();
                 setOpen((pre) => !pre);
               }}
               aria-label={open ? "Close comments" : "Open comments"}
@@ -465,7 +476,7 @@ const Card = ({ post }) => {
                 }`}
               />
               <span className="font-medium text-sm">
-                {suggestions.length || Post.comments?.length || 0}
+                {suggestions.length || 0}
               </span>
             </button>
 
@@ -562,7 +573,7 @@ const Card = ({ post }) => {
 
             {/* Enhanced avatar stack */}
             <div className="flex items-center -space-x-2">
-              {Array(Post.impressions.length < 4 ? Post.impressions.length : 2)
+              {Array(Post.impressions.length < 3 ? Post.impressions.length : 2)
                 .fill(0)
                 .map((e, idx) => (
                   <div
@@ -611,16 +622,9 @@ const Card = ({ post }) => {
             {/* FIXED: Improved form with perfect theme matching */}
             <form
               onSubmit={handleCommentSubmit}
-              className={`mb-4 sticky top-0 z-10 pb-2 ${
-                dark ? "bg-black/95" : "bg-white/95"
-              } backdrop-blur-sm`}
+              className={`mb-4 sticky top-0 z-10 pb-2 backdrop-blur-sm`}
             >
               <div className="flex gap-3">
-                <div
-                  className={`w-6 h-6 rounded-full flex-shrink-0 mt-1 ${
-                    dark ? "bg-gray-700" : "bg-gray-200"
-                  }`}
-                />
                 <div className="flex-1">
                   <input
                     ref={commentInputRef}
@@ -642,7 +646,7 @@ const Card = ({ post }) => {
                       disabled={!newComment.trim() || isCommenting}
                       className="text-sm px-3 py-1 bg-blue-500 text-white rounded-full hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:scale-105 active:scale-95"
                     >
-                      {isCommenting ? "Posting..." : "Post comment"}
+                      {isCommenting ? "Posting..." : "Post"}
                     </button>
                     <span
                       className={`text-xs ${
@@ -696,14 +700,7 @@ const Card = ({ post }) => {
                       }`}
                       style={{ animationDelay: `${index * 50}ms` }}
                     >
-                      <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex-shrink-0 flex items-center justify-center">
-                        <img
-                          src={USER}
-                          alt=""
-                          className="w-5 h-5 rounded-full object-cover"
-                        />
-                      </div>
-                      <div className="flex-1 min-w-0">
+                      <div className="flex-1 px-3 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
                           <span
                             className={`text-sm font-medium truncate ${

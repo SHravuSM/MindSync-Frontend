@@ -6,26 +6,37 @@ import {
   Calendar,
   Newspaper,
   Crown,
+  SquareMousePointer,
+  ArrowDownToDot,
+  SplinePointer,
+  House,
+  PenTool,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Tabs from "./Tabs";
 import api from "../utils/api1";
 import useAuthStore from "../store/authStore";
+import USER from "../assets/user.png";
 
 const LSidebar = () => {
   const user = useAuthStore((s) => s.user);
+  const logOut = useAuthStore((s) => s.logOut);
   const id = user?.id;
   const [profileData, setProfileData] = useState(null);
 
   async function me() {
-    const res = await api.get("/user/me");
-    console.log(res.data);
-    setProfileData(res.data);
+    try {
+      const res = await api.get("/user/me");
+      console.log(res.data);
+      setProfileData(res.data);
+    } catch (error) {
+      logOut();
+    }
   }
 
   useEffect(() => {
     me();
-  },[]);
+  }, []);
 
   const navigationItems = [
     {
@@ -72,7 +83,7 @@ const LSidebar = () => {
             <img
               width="72"
               height="72"
-              src={profileData.profileImage}
+              src={USER}
               loading="lazy"
               alt={`Photo of ${profileData.name}`}
               className="w-16 h-16 sm:w-18 sm:h-18 rounded-full border-4 border-white shadow-md group-hover:scale-105 transition-transform duration-200"
