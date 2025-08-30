@@ -22,7 +22,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const Card = ({ post, data }) => {
+const Card = ({ post }) => {
   const user = useAuthStore((s) => s.user);
   const dark = useThemeStore((s) => s.dark);
   const [Post, setPost] = useState(null);

@@ -306,7 +306,147 @@
 
 // export default PitchCard;
 
-import { useState } from "react";
+// import { useState } from "react";
+// import { Link } from "react-router-dom";
+// import useThemeStore from "../store/themeStore";
+// import {
+//   Target,
+//   CheckCircle,
+//   AlertTriangle,
+//   Heart,
+//   ChevronRight,
+// } from "lucide-react";
+// import useAuthStore from "../store/authStore";
+// import api from "../utils/api1";
+
+// const PitchCard = ({ pitch }) => {
+//   const dark = useThemeStore((s) => s.dark);
+//   const { user } = useAuthStore();
+//   const [upvotes, setUpvotes] = useState(pitch.upvotes || 0);
+//   const [isUpvoted, setIsUpvoted] = useState(false);
+
+//   const handleUpvote = async (e) => {
+//     e.stopPropagation();
+//     const res = await api.post(`user/posts/pitches/${pitch._id}/like`);
+//     if (isUpvoted) {
+//       [...pitch.likes, res.data.likes];
+//       setIsUpvoted(false);
+//     } else {
+//       [...pitch.likes, res.data.likes];
+//       setIsUpvoted(true);
+//     }
+//   };
+
+//   if (!pitch) return null;
+
+//   return (
+//     <div
+//       className={`backdrop-blur-xl lg:max-w-xl rounded-sm border-[0.1px] transition-all duration-700 ease-out cursor-pointer overflow-hidden group lg:w-xl ${
+//         dark
+//           ? "bg-black border-gray-700 text-gray-100 hover:bg-black"
+//           : "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
+//       } mb-2 shadow-sm`}
+//     >
+//       {/* Header */}
+//       <div className="p-4 border-b flex justify-between items-start">
+//         <div>
+//           <h2 className="text-xl font-normal">{pitch.startupName}</h2>
+//           <p className="text-sm opacity-70">{pitch.oneLiner}</p>
+//         </div>
+//         <div className="text-right">
+//           <div className="text-lg font-bold">
+//             ₹{parseInt(pitch.fundingAsk).toLocaleString()}
+//           </div>
+//           <div className="text-sm opacity-70">Funding Ask</div>
+//         </div>
+//       </div>
+
+//       {/* Market & Business */}
+//       <div
+//         className={`p-4 border-b ${
+//           dark ? "border-gray-700" : "border-gray-200"
+//         }`}
+//       >
+//         <div className="flex justify-between mb-1">
+//           <div className="flex items-center">
+//             <Target size={16} className="mr-1" /> Market
+//           </div>
+//           <div>{pitch.targetMarket}</div>
+//         </div>
+//         <p className="text-sm opacity-70 line-clamp-2">{pitch.businessModel}</p>
+//       </div>
+
+//       {/* Quick Stats */}
+//       <div className="p-4 border-b grid grid-cols-2 gap-4">
+//         <div>
+//           <h4 className="flex items-center font-semibold text-green-600 mb-1">
+//             <CheckCircle size={14} className="mr-1" /> Traction
+//           </h4>
+//           <div className="text-sm line-clamp-1">
+//             {pitch.traction || "Not provided"}
+//           </div>
+//         </div>
+//         <div>
+//           <h4 className="flex items-center font-semibold text-red-600 mb-1">
+//             <AlertTriangle size={14} className="mr-1" /> Competition
+//           </h4>
+//           <div className="text-sm line-clamp-1">
+//             {pitch.competition || "None"}
+//           </div>
+//         </div>
+//       </div>
+
+//       {/* Footer */}
+//       <div
+//         className={`p-4 flex items-center justify-between ${
+//           dark ? "bg-gray-800" : "bg-gray-100"
+//         }`}
+//       >
+//         <div className="flex items-center">
+//           <div className="font-semibold">{pitch.founderName}</div>
+//         </div>
+
+//         <div className="flex items-center gap-2">
+//           {/* Upvote Button */}
+//           <button
+//             onClick={handleUpvote}
+//             className={`flex items-center gap-1 px-3 py-1 rounded-full border transition-all duration-200 ${
+//               isUpvoted
+//                 ? dark
+//                   ? "bg-red-900 border-red-700 text-red-300"
+//                   : "bg-red-50 border-red-200 text-red-600"
+//                 : dark
+//                 ? "bg-gray-700 border-gray-600 text-gray-300 hover:bg-gray-600"
+//                 : "bg-white border-gray-300 text-gray-600 hover:bg-gray-50"
+//             }`}
+//           >
+//             <Heart
+//               size={16}
+//               className={`${isUpvoted ? "fill-current" : ""} transition-colors`}
+//             />
+//             <span className="text-sm font-medium">{pitch.likes.length}</span>
+//           </button>
+
+//           {/* View Details Arrow */}
+//           <div
+//             className={`p-2 border rounded ${
+//               dark ? "border-gray-600" : "border-gray-300"
+//             }`}
+//           >
+//             <Link to={`${pitch._id}`} state={pitch}>
+//               <ChevronRight size={20} />
+//             </Link>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default PitchCard;
+
+
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useThemeStore from "../store/themeStore";
 import {
@@ -316,20 +456,38 @@ import {
   Heart,
   ChevronRight,
 } from "lucide-react";
+import useAuthStore from "../store/authStore";
+import api from "../utils/api1";
 
 const PitchCard = ({ pitch }) => {
   const dark = useThemeStore((s) => s.dark);
-  const [upvotes, setUpvotes] = useState(pitch.upvotes || 0);
+  const { user } = useAuthStore();
+
+  // Initialize likes array from pitch.likes or empty array
+  const [likes, setLikes] = useState(pitch.likes || []);
+  // Initialize isUpvoted based on whether current user's id is in likes
   const [isUpvoted, setIsUpvoted] = useState(false);
 
-  const handleUpvote = (e) => {
-    e.stopPropagation(); // Prevent navigation when clicking upvote
-    if (isUpvoted) {
-      setUpvotes(upvotes - 1);
-      setIsUpvoted(false);
-    } else {
-      setUpvotes(upvotes + 1);
+  useEffect(() => {
+    if (user && likes.some((like) => like.user === user._id)) {
       setIsUpvoted(true);
+    } else {
+      setIsUpvoted(false);
+    }
+  }, [user, likes]);
+
+  const handleUpvote = async (e) => {
+    e.stopPropagation();
+    try {
+      const res = await api.post(`user/posts/pitches/${pitch._id}/like`);
+      // Assuming res.data.likes is the updated array of likes
+      setLikes(res.data.likes);
+      // Update isUpvoted based on presence of current user's like
+      const userLiked = res.data.likes.some((like) => like.user === user._id);
+      setIsUpvoted(userLiked);
+    } catch (error) {
+      console.error("Failed to update like:", error);
+      // Optionally show user feedback
     }
   };
 
@@ -337,16 +495,16 @@ const PitchCard = ({ pitch }) => {
 
   return (
     <div
-      className={`border lg:w-xl rounded-lg overflow-hidden cursor-pointer transition-transform hover:scale-[1.02] ${
+      className={`backdrop-blur-xl lg:max-w-xl rounded-sm border-[0.1px] transition-all duration-700 ease-out cursor-pointer overflow-hidden group lg:w-xl ${
         dark
-          ? "bg-black border-gray-700 text-gray-100 hover:bg-black/50"
+          ? "bg-black border-gray-700 text-gray-100 hover:bg-black"
           : "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
-      } mb-6 shadow-sm`}
+      } mb-2 shadow-sm`}
     >
       {/* Header */}
       <div className="p-4 border-b flex justify-between items-start">
         <div>
-          <h2 className="text-xl font-bold">{pitch.startupName}</h2>
+          <h2 className="text-xl font-normal">{pitch.startupName}</h2>
           <p className="text-sm opacity-70">{pitch.oneLiner}</p>
         </div>
         <div className="text-right">
@@ -420,7 +578,7 @@ const PitchCard = ({ pitch }) => {
               size={16}
               className={`${isUpvoted ? "fill-current" : ""} transition-colors`}
             />
-            <span className="text-sm font-medium">{upvotes}</span>
+            <span className="text-sm font-medium">{likes.length}</span>
           </button>
 
           {/* View Details Arrow */}

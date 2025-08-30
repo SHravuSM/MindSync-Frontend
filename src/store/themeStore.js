@@ -6,8 +6,10 @@ const useThemeStore = create(
     (set) => ({
       yes: false,
       state: false,
+      top: "Top",
       dark: false,
 
+      setTop: (d) => set((state) => ({ top: d })),
       setYes: () => set((state) => ({ yes: !state.yes })),
       setState: () =>
         set((s) => {
