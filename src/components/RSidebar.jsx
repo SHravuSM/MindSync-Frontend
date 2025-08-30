@@ -46,7 +46,7 @@
 //     <div role="region" aria-label="Side Bar" className="w-80 hidden lg:block space-y-2">
 
 //       {/* Profile Card */}
-//       <div className="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200">
+//       <div className="bg-white rounded-sm border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200">
 //         {/* Background and Profile Picture */}
 //         <a
 //           href="/in/shravusm/"
@@ -103,7 +103,7 @@
 //       </div>
 
 //       {/* Analytics Card */}
-//       <div className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
+//       <div className="bg-white rounded-sm border border-gray-200 p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
 //         <ul className="space-y-3">
 //           <li>
 //             <a href="/me/profile-views/" className="block group">
@@ -138,7 +138,7 @@
 //       </div>
 
 //       {/* Premium Upsell Card */}
-//       <div className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
+//       <div className="bg-white rounded-sm border border-gray-200 p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
 //         <a
 //           href="/premium/products"
 //           className="block group"
@@ -157,7 +157,7 @@
 //       </div>
 
 //       {/* Navigation Links Card */}
-//       <div className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
+//       <div className="bg-white rounded-sm border border-gray-200 p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
 //         <ul className="space-y-4">
 //           {navigationItems.map((item, index) => (
 //             <li key={index}>
@@ -515,7 +515,7 @@
 //           posts.map((post) => (
 //             <div
 //               key={post._id}
-//               className="p-3 hover:bg-gray-50 rounded-lg cursor-pointer border-b border-gray-100 last:border-b-0"
+//               className="p-3 hover:bg-gray-50 rounded-sm cursor-pointer border-b border-gray-100 last:border-b-0"
 //             >
 //               <div className="flex space-x-3">
 //                 <img
@@ -602,7 +602,7 @@
 //           profiles.map((profile) => (
 //             <div
 //               key={profile._id}
-//               className="p-3 hover:bg-gray-50 rounded-lg cursor-pointer border-b border-gray-100 last:border-b-0"
+//               className="p-3 hover:bg-gray-50 rounded-sm cursor-pointer border-b border-gray-100 last:border-b-0"
 //             >
 //               <div className="flex space-x-3">
 //                 <img
@@ -668,7 +668,7 @@
 //           investors.map((investor) => (
 //             <div
 //               key={investor._id}
-//               className="p-3 hover:bg-gray-50 rounded-lg cursor-pointer border-b border-gray-100 last:border-b-0"
+//               className="p-3 hover:bg-gray-50 rounded-sm cursor-pointer border-b border-gray-100 last:border-b-0"
 //             >
 //               <div className="flex space-x-3">
 //                 <img
@@ -749,7 +749,7 @@
 //           pitches.map((pitch) => (
 //             <div
 //               key={pitch._id}
-//               className="p-3 hover:bg-gray-50 rounded-lg cursor-pointer border-b border-gray-100 last:border-b-0"
+//               className="p-3 hover:bg-gray-50 rounded-sm cursor-pointer border-b border-gray-100 last:border-b-0"
 //             >
 //               <div className="space-y-2">
 //                 <div className="flex items-center justify-between">
@@ -810,7 +810,7 @@
 //           tags.map((tagData, index) => (
 //             <div
 //               key={index}
-//               className="p-3 hover:bg-gray-50 rounded-lg cursor-pointer border-b border-gray-100 last:border-b-0"
+//               className="p-3 hover:bg-gray-50 rounded-sm cursor-pointer border-b border-gray-100 last:border-b-0"
 //             >
 //               <div className="flex items-center justify-between">
 //                 <div className="flex items-center space-x-2">
@@ -865,7 +865,7 @@
 //             onChange={handleInputChange}
 //             onFocus={() => setIsOpen(true)}
 //             placeholder="Search for posts, people, investors, startups..."
-//             className="w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:outline-none hover:border-orange-500 focus:border-orange-500 duration-100"
+//             className="w-full pl-10 pr-10 py-3 border border-gray-300 rounded-sm focus:outline-none hover:border-orange-500 focus:border-orange-500 duration-100"
 //           />
 //           {query && (
 //             <button
@@ -880,7 +880,7 @@
 
 //       {/* Search Suggestions */}
 //       {showSuggestions && suggestions.length > 0 && (
-//         <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg">
+//         <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-sm shadow-lg">
 //           <div className="py-2">
 //             {suggestions.map((suggestion, index) => (
 //               <button
@@ -904,7 +904,7 @@
 
 //       {/* Search Results Dropdown */}
 //       {isOpen && !showSuggestions && query.length >= 2 && (
-//         <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg max-h-[570px] overflow-hidden">
+//         <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-sm shadow-lg max-h-[570px] overflow-hidden">
 //           {/* Header with sort options */}
 //           {activeTab === "posts" && (
 //             <div className="border-b border-gray-200 px-4 py-2">
@@ -1390,7 +1390,7 @@
 //           posts.map((post) => (
 //             <div
 //               key={post._id}
-//               className="p-3 hover:bg-gray-50 rounded-lg cursor-pointer border-b border-gray-100 last:border-b-0"
+//               className="p-3 hover:bg-gray-50 rounded-sm cursor-pointer border-b border-gray-100 last:border-b-0"
 //             >
 //               <div className="flex space-x-3">
 //                 <img
@@ -1477,7 +1477,7 @@
 //           profiles.map((profile) => (
 //             <div
 //               key={profile._id}
-//               className="p-3 hover:bg-gray-50 rounded-lg cursor-pointer border-b border-gray-100 last:border-b-0"
+//               className="p-3 hover:bg-gray-50 rounded-sm cursor-pointer border-b border-gray-100 last:border-b-0"
 //             >
 //               <div className="flex space-x-3">
 //                 <img
@@ -1543,7 +1543,7 @@
 //           investors.map((investor) => (
 //             <div
 //               key={investor._id}
-//               className="p-3 hover:bg-gray-50 rounded-lg cursor-pointer border-b border-gray-100 last:border-b-0"
+//               className="p-3 hover:bg-gray-50 rounded-sm cursor-pointer border-b border-gray-100 last:border-b-0"
 //             >
 //               <div className="flex space-x-3">
 //                 <img
@@ -1624,7 +1624,7 @@
 //           pitches.map((pitch) => (
 //             <div
 //               key={pitch._id}
-//               className="p-3 hover:bg-gray-50 rounded-lg cursor-pointer border-b border-gray-100 last:border-b-0"
+//               className="p-3 hover:bg-gray-50 rounded-sm cursor-pointer border-b border-gray-100 last:border-b-0"
 //             >
 //               <div className="space-y-2">
 //                 <div className="flex items-center justify-between">
@@ -1685,7 +1685,7 @@
 //           tags.map((tagData, index) => (
 //             <div
 //               key={index}
-//               className="p-3 hover:bg-gray-50 rounded-lg cursor-pointer border-b border-gray-100 last:border-b-0"
+//               className="p-3 hover:bg-gray-50 rounded-sm cursor-pointer border-b border-gray-100 last:border-b-0"
 //             >
 //               <div className="flex items-center justify-between">
 //                 <div className="flex items-center space-x-2">
@@ -1740,7 +1740,7 @@
 //             onChange={handleInputChange}
 //             onFocus={() => setIsOpen(true)}
 //             placeholder="Search for posts, people, investors, startups..."
-//             className="w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:outline-none hover:border-orange-500 focus:border-orange-500 duration-100"
+//             className="w-full pl-10 pr-10 py-3 border border-gray-300 rounded-sm focus:outline-none hover:border-orange-500 focus:border-orange-500 duration-100"
 //           />
 //           {query && (
 //             <button
@@ -1755,7 +1755,7 @@
 
 //       {/* Search Suggestions */}
 //       {showSuggestions && suggestions.length > 0 && (
-//         <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg">
+//         <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-sm shadow-lg">
 //           <div className="py-2">
 //             {suggestions.map((suggestion, index) => (
 //               <button
@@ -1779,7 +1779,7 @@
 
 //       {/* Search Results Dropdown */}
 //       {isOpen && !showSuggestions && query.length >= 2 && (
-//         <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg max-h-[570px] overflow-hidden">
+//         <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-sm shadow-lg max-h-[570px] overflow-hidden">
 //           {/* Header with sort options */}
 //           {activeTab === "posts" && (
 //             <div className="border-b border-gray-200 px-4 py-2">
@@ -1910,6 +1910,7 @@ import {
 } from "lucide-react";
 import api from "../utils/api1";
 import useThemeStore from "../store/themeStore";
+import { Link } from "react-router-dom";
 
 const SearchBar = () => {
   const [query, setQuery] = useState("");
@@ -2285,7 +2286,8 @@ const SearchBar = () => {
       <div className="space-y-3">
         {posts.length > 0 ? (
           posts.map((post) => (
-            <div
+            <Link
+              to={`${post._id}`}
               key={post._id}
               className={`p-3 rounded-sm cursor-pointer ${
                 dark
@@ -2396,7 +2398,7 @@ const SearchBar = () => {
                     )}
                 </div>
               </div>
-            </div>
+            </Link>
           ))
         ) : (
           <div className="p-4 text-center">
@@ -2418,7 +2420,7 @@ const SearchBar = () => {
           profiles.map((profile) => (
             <div
               key={profile._id}
-              className={`p-3 rounded-lg cursor-pointer border-b last:border-b-0 ${
+              className={`p-3 rounded-sm cursor-pointer border-b last:border-b-0 ${
                 dark
                   ? "hover:bg-gray-900/50 border-gray-800"
                   : "hover:bg-gray-50 border-gray-100"
@@ -2506,7 +2508,7 @@ const SearchBar = () => {
           investors.map((investor) => (
             <div
               key={investor._id}
-              className={`p-3 rounded-lg cursor-pointer border-b last:border-b-0 ${
+              className={`p-3 rounded-sm cursor-pointer border-b last:border-b-0 ${
                 dark
                   ? "hover:bg-gray-900/50 border-gray-800"
                   : "hover:bg-gray-50 border-gray-100"
@@ -2611,9 +2613,10 @@ const SearchBar = () => {
       <div className="space-y-3">
         {pitches.length > 0 ? (
           pitches.map((pitch) => (
-            <div
+            <Link
+              to={`pitches`}
               key={pitch._id}
-              className={`p-3 rounded-lg cursor-pointer border-b last:border-b-0 ${
+              className={`p-3 rounded-sm cursor-pointer border-b last:border-b-0 ${
                 dark
                   ? "hover:bg-gray-900/50 border-gray-800"
                   : "hover:bg-gray-50 border-gray-100"
@@ -2692,7 +2695,7 @@ const SearchBar = () => {
                   )}
                 </div>
               </div>
-            </div>
+            </Link>
           ))
         ) : (
           <div className="p-4 text-center">
@@ -2714,7 +2717,7 @@ const SearchBar = () => {
           tags.map((tagData, index) => (
             <div
               key={index}
-              className={`p-3 rounded-lg cursor-pointer border-b last:border-b-0 ${
+              className={`p-3 rounded-sm cursor-pointer border-b last:border-b-0 ${
                 dark
                   ? "hover:bg-gray-900/50 border-gray-800"
                   : "hover:bg-gray-50 border-gray-100"
@@ -2790,8 +2793,8 @@ const SearchBar = () => {
             value={query}
             onChange={handleInputChange}
             onFocus={() => setIsOpen(true)}
-            placeholder="Search for posts, people, investors, startups..."
-            className={`w-full pl-10 pr-10 py-3 border rounded-lg focus:outline-none hover:border-orange-500 focus:border-orange-500 duration-100 ${
+            placeholder="Search for posts, people, investors, pitches..."
+            className={`w-full pl-10 pr-10 py-3 border rounded-sm focus:outline-none hover:border-orange-500 focus:border-orange-500 duration-100 ${
               dark
                 ? "bg-black border-gray-800 text-gray-200 placeholder-gray-400"
                 : "bg-white border-gray-300 text-gray-900 placeholder-gray-500"
@@ -2815,7 +2818,7 @@ const SearchBar = () => {
       {/* Search Suggestions */}
       {showSuggestions && suggestions.length > 0 && (
         <div
-          className={`absolute top-full left-0 right-0 mt-1 border rounded-lg shadow-lg z-50 ${
+          className={`absolute top-full left-0 right-0 mt-1 border rounded-sm shadow-lg z-50 ${
             dark ? "bg-black border-gray-800" : "bg-white border-gray-200"
           }`}
         >
@@ -2860,7 +2863,7 @@ const SearchBar = () => {
       {/* Search Results Dropdown */}
       {isOpen && !showSuggestions && query.length >= 2 && (
         <div
-          className={`absolute top-full left-0 right-0 mt-0 border rounded-lg shadow-lg max-h-[570px] overflow-hidden z-40 ${
+          className={`absolute top-full left-0 right-0 mt-0 border rounded-sm shadow-lg max-h-[570px] overflow-hidden z-40 ${
             dark ? "bg-black border-gray-800" : "bg-white border-gray-200"
           }`}
         >

@@ -265,7 +265,7 @@ const LSidebar = () => {
       {/* Profile Card */}
       <div
         className={`${
-          dark ? "bg-gray-800 border-gray-700" : "bg-white border-gray-200"
+          dark ? "bg-black border-gray-700" : "bg-white border-gray-200"
         } rounded-md border overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200`}
       >
         {/* Background and Profile Picture */}

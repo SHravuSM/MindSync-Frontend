@@ -13,7 +13,7 @@ export default function FeedPlus() {
   useEffect(() => {
     fetchD();
   }, []);
-  return p && <CardF post={p} />;
+  return <div className="lg:w-xl">{p && <CardF post={p} />}</div>;
 }
 
 // import { useCallback, useEffect, useState, useRef } from "react";

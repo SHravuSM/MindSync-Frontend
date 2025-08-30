@@ -1802,7 +1802,6 @@ import useAuthStore from "../store/authStore";
 import {
   CircleUser,
   House,
-  LogOut,
   PenTool,
   Search,
   Menu,
@@ -1815,11 +1814,13 @@ import {
   Crown,
   SquareMousePointer,
   SplinePointer,
-  ArrowDownToDot, // Added missing import
+  ArrowDownToDot,
+  LogOut, // Added missing import
 } from "lucide-react";
 import { FullscreenContext } from "../context/FullscreenContext";
 import Tabs_F_Mob from "./Tab_F_Mob.jsx";
 import api from "../utils/api1";
+import USER from "../assets/user.png";
 
 const BottomNav = () => {
   const navigate = useNavigate();
@@ -2166,7 +2167,7 @@ const BottomNav = () => {
                   <img
                     width="48"
                     height="48"
-                    src={profileData.profileImage || "/default-avatar.png"}
+                    src={profileData.profileImage || USER}
                     loading="lazy"
                     alt={`Photo of ${profileData.name || "User"}`}
                     className="w-12 h-12 rounded-full border-4 border-white shadow-md object-cover"

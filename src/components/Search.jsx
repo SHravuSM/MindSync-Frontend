@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import api from "../utils/api1";
 import useThemeStore from "../store/themeStore";
+import { Link } from "react-router-dom";
 
 const SearchBar = () => {
   const [query, setQuery] = useState("");
@@ -423,7 +424,8 @@ const SearchBar = () => {
       <div className="space-y-2">
         {posts.length > 0 ? (
           posts.map((post) => (
-            <div
+            <Link
+            to={`../feed/${post._id}`}
               key={post._id}
               className={`p-3 rounded-lg border cursor-pointer transition-colors ${
                 dark
@@ -536,7 +538,7 @@ const SearchBar = () => {
                     )}
                 </div>
               </div>
-            </div>
+            </Link>
           ))
         ) : (
           <div className="p-4 text-center">
