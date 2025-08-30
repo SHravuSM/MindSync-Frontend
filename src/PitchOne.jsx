@@ -491,7 +491,7 @@ const PitchOne = () => {
   }
 
   return (
-    <div className="lg:w-3xl lg:max-h-screen scrollbar-hidden mb-10 overflow-y-scroll">
+    <div className="lg:w-3xl w-full lg:max-h-screen scrollbar-hidden mb-10 overflow-y-scroll">
       {/* Navigation */}
       <button
         onClick={() => navigate(-1)}
