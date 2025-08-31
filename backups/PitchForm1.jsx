@@ -3,7 +3,9 @@ import api from "../utils/api1.js";
 import useThemeStore from "../store/themeStore";
 
 const PitchForm = () => {
+  const [pitchType, setPitchType] = useState(null);
   const [customSteps, setCustomSteps] = useState([]);
+  const [isCustomMode, setIsCustomMode] = useState(false);
   const [enabledSteps, setEnabledSteps] = useState([]);
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
 
@@ -260,108 +262,98 @@ const PitchForm = () => {
   const [enhancing, setEnhancing] = useState(false);
   const [enhanceField, setEnhanceField] = useState("");
   const [sampleEnhanced, setSampleEnhanced] = useState("");
-  const [stepSelectionMode, setStepSelectionMode] = useState(true);
   const dark = useThemeStore((s) => s.dark);
 
-  // Define all available steps with detailed descriptions
+  // Define pitch types with their required steps and descriptions
+  const pitchTypes = {
+    "SaaS/Software": {
+      steps: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      description: "Software as a Service, web apps, mobile apps",
+      requiredFields: ["product metrics", "subscription model", "scalability"],
+    },
+    "E-commerce": {
+      steps: [1, 2, 3, 5, 6, 8, 9],
+      description: "Online retail, marketplaces, direct-to-consumer",
+      requiredFields: ["inventory", "logistics", "customer acquisition"],
+    },
+    "Hardware/IoT": {
+      steps: [1, 2, 4, 5, 6, 7, 8, 9],
+      description: "Physical products, IoT devices, manufacturing",
+      requiredFields: ["manufacturing", "IP protection", "supply chain"],
+    },
+    Fintech: {
+      steps: [1, 2, 3, 5, 6, 7, 8, 9],
+      description: "Financial services, payments, blockchain",
+      requiredFields: ["compliance", "security", "regulations"],
+    },
+    "Healthcare/Biotech": {
+      steps: [1, 2, 4, 5, 6, 7, 8, 9],
+      description: "Medical devices, pharmaceuticals, health tech",
+      requiredFields: ["FDA approval", "clinical trials", "regulations"],
+    },
+    Marketplace: {
+      steps: [1, 2, 3, 4, 5, 6, 8, 9],
+      description: "Two-sided markets, platforms, aggregators",
+      requiredFields: ["network effects", "marketplace dynamics", "scaling"],
+    },
+    "Consumer Products": {
+      steps: [1, 2, 3, 5, 6, 8, 9],
+      description: "Food & beverage, consumer goods, retail products",
+      requiredFields: ["brand building", "distribution", "marketing"],
+    },
+    "B2B Services": {
+      steps: [1, 2, 3, 4, 6, 9],
+      description: "Professional services, consulting, B2B solutions",
+      requiredFields: ["client acquisition", "service delivery", "contracts"],
+    },
+    "Early Stage": {
+      steps: [1, 2, 6, 9],
+      description: "Pre-revenue, concept stage, minimal viable product",
+      requiredFields: ["validation", "market research", "basic funding"],
+    },
+    "Growth Stage": {
+      steps: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      description: "Established revenue, scaling, Series A/B funding",
+      requiredFields: ["metrics", "growth strategy", "team scaling"],
+    },
+  };
+
   const allSteps = [
     {
       id: 1,
-      title: "Company Foundation",
-      subtitle: "Basic company information",
-      description:
-        "Company name, industry, vision, mission, problem & solution",
+      title: "Foundation",
+      subtitle: "Company basics & product",
       required: true,
-      category: "Essential",
     },
     {
       id: 2,
-      title: "Market Analysis",
-      subtitle: "Market size & competition",
-      description: "Target market, customer segments, competitive landscape",
-      required: false,
-      category: "Market",
+      title: "Market",
+      subtitle: "Analysis & competition",
+      required: true,
     },
     {
       id: 3,
-      title: "Product Details",
-      subtitle: "Product/service specifics",
-      description: "Product description, unique value proposition, tech stack",
+      title: "Traction",
+      subtitle: "Growth & validation",
       required: false,
-      category: "Product",
     },
     {
       id: 4,
-      title: "Traction & Metrics",
-      subtitle: "Growth & validation",
-      description: "User metrics, testimonials, partnerships, achievements",
-      required: false,
-      category: "Growth",
-    },
-    {
-      id: 5,
-      title: "Team Information",
+      title: "Team",
       subtitle: "Leadership & organization",
-      description:
-        "Founder details, team members, advisors, organizational structure",
       required: false,
-      category: "Team",
     },
+    { id: 5, title: "Business", subtitle: "Model & strategy", required: false },
     {
       id: 6,
-      title: "Business Model",
-      subtitle: "Revenue & strategy",
-      description: "Business model, go-to-market strategy, expansion plans",
-      required: false,
-      category: "Business",
-    },
-    {
-      id: 7,
       title: "Financials",
-      subtitle: "Revenue & financial metrics",
-      description: "Revenue streams, costs, margins, unit economics, cash flow",
+      subtitle: "Revenue & metrics",
       required: false,
-      category: "Finance",
     },
-    {
-      id: 8,
-      title: "Investment Details",
-      subtitle: "Funding requirements",
-      description: "Funding ask, equity offered, valuation history",
-      required: true,
-      category: "Essential",
-    },
-    {
-      id: 9,
-      title: "Legal & Strategy",
-      subtitle: "Legal status & future plans",
-      description: "Legal compliance, patents, milestones, exit strategy",
-      required: false,
-      category: "Legal",
-    },
-    {
-      id: 10,
-      title: "Review & Submit",
-      subtitle: "Final submission",
-      description: "Review all information and submit your pitch",
-      required: true,
-      category: "Essential",
-    },
+    { id: 7, title: "Investment", subtitle: "Funding needs", required: true },
+    { id: 8, title: "Strategy", subtitle: "Roadmap & legal", required: false },
+    { id: 9, title: "Review", subtitle: "Final submission", required: true },
   ];
-
-  const stepCategories = {
-    Essential: { color: "red", description: "Required for all pitches" },
-    Market: { color: "blue", description: "Market analysis and competition" },
-    Product: { color: "green", description: "Product and technology details" },
-    Growth: { color: "purple", description: "Traction and growth metrics" },
-    Team: { color: "yellow", description: "Team and organizational info" },
-    Business: { color: "indigo", description: "Business model and strategy" },
-    Finance: {
-      color: "pink",
-      description: "Financial metrics and projections",
-    },
-    Legal: { color: "gray", description: "Legal and compliance information" },
-  };
 
   const getInitialFormData = () => ({
     // Basic Pitch Info
@@ -613,19 +605,18 @@ const PitchForm = () => {
     const timer = setTimeout(() => {
       const draftData = {
         ...formData,
+        pitchType,
         enabledSteps,
         currentStepIndex,
+        isCustomMode,
         customSteps,
-        stepSelectionMode,
         lastSaved: new Date().toISOString(),
       };
 
       const hasContent =
-        JSON.stringify(formData) !== JSON.stringify(getInitialFormData()) ||
-        enabledSteps.length > 0;
-
+        JSON.stringify(formData) !== JSON.stringify(getInitialFormData());
       if (hasContent) {
-        localStorage.setItem("customPitchDraft", JSON.stringify(draftData));
+        localStorage.setItem("advancedPitchDraft", JSON.stringify(draftData));
         setDraftSaved(true);
         setTimeout(() => setDraftSaved(false), 2500);
       }
@@ -634,15 +625,16 @@ const PitchForm = () => {
     return () => clearTimeout(timer);
   }, [
     formData,
+    pitchType,
     enabledSteps,
     currentStepIndex,
+    isCustomMode,
     customSteps,
-    stepSelectionMode,
   ]);
 
   // Load draft on component mount
   useEffect(() => {
-    const savedDraft = localStorage.getItem("customPitchDraft");
+    const savedDraft = localStorage.getItem("advancedPitchDraft");
     if (savedDraft) {
       try {
         const parsedDraft = JSON.parse(savedDraft);
@@ -737,30 +729,39 @@ const PitchForm = () => {
         };
 
         setFormData(mergedData);
+        setPitchType(parsedDraft.pitchType || null);
         setEnabledSteps(
           Array.isArray(parsedDraft.enabledSteps)
             ? parsedDraft.enabledSteps
             : []
         );
         setCurrentStepIndex(parsedDraft.currentStepIndex || 0);
+        setIsCustomMode(parsedDraft.isCustomMode || false);
         setCustomSteps(
           Array.isArray(parsedDraft.customSteps) ? parsedDraft.customSteps : []
         );
-        setStepSelectionMode(parsedDraft.stepSelectionMode !== false);
       } catch (error) {
         console.error("Error parsing saved pitch draft:", error);
-        localStorage.removeItem("customPitchDraft");
+        localStorage.removeItem("advancedPitchDraft");
       }
     }
   }, []);
 
-  // Update enabled steps when custom steps change
+  // Update enabled steps when pitch type changes
   useEffect(() => {
-    if (!stepSelectionMode && customSteps.length > 0) {
+    if (pitchType && !isCustomMode) {
+      setEnabledSteps(pitchTypes[pitchType].steps);
+      setCurrentStepIndex(0);
+    }
+  }, [pitchType, isCustomMode]);
+
+  // Update enabled steps for custom mode
+  useEffect(() => {
+    if (isCustomMode) {
       setEnabledSteps(customSteps);
       setCurrentStepIndex(0);
     }
-  }, [customSteps, stepSelectionMode]);
+  }, [customSteps, isCustomMode]);
 
   const currentStep = enabledSteps[currentStepIndex];
   const totalSteps = enabledSteps.length;
@@ -784,33 +785,29 @@ const PitchForm = () => {
           if (formData.competitors.some((c) => c.name)) completedFields++;
           break;
         case 3:
-          if (formData.productDescription) completedFields++;
-          if (formData.uniqueValueProposition) completedFields++;
-          break;
-        case 4:
           if (formData.traction) completedFields++;
           if (formData.usersCount > 0) completedFields++;
           break;
-        case 5:
+        case 4:
           if (formData.founderName) completedFields++;
           if (formData.founderEmail) completedFields++;
           break;
-        case 6:
+        case 5:
           if (formData.businessModel) completedFields++;
           if (formData.goToMarketStrategy) completedFields++;
           break;
-        case 7:
+        case 6:
           if (formData.financials.revenueThisYear >= 0) completedFields++;
           break;
-        case 8:
+        case 7:
           if (formData.fundingDetails.fundingAskAmount > 0) completedFields++;
           if (formData.fundingDetails.equityOfferedPercent > 0)
             completedFields++;
           break;
-        case 9:
+        case 8:
           if (formData.exitStrategy) completedFields++;
           break;
-        case 10:
+        case 9:
           completedFields++; // Review step is always considered complete when reached
           break;
       }
@@ -1050,15 +1047,23 @@ const PitchForm = () => {
     try {
       const res = await api.post("/user/ask", {
         content: `
-          You are an expert investment pitch writer.
+          You are an expert investment pitch writer for ${
+            pitchType || "startups"
+          }.
           Your job is to take the following text and:
           1. Improve clarity, grammar, and flow for investor presentations.
-          2. Make it compelling and professionally persuasive for investors.
-          3. Expand with relevant details that investors want to see.
+          2. Make it compelling and professionally persuasive for ${
+            pitchType || "general"
+          } investors.
+          3. Expand with relevant details that ${
+            pitchType || "startup"
+          } investors want to see.
           4. Keep the tone confident yet realistic.
           5. Return ONLY the improved version (no extra formatting or labels).
 
-          Context: This is for field "${fieldName}" in a startup investment pitch.
+          Context: This is for field "${fieldName}" in a ${
+          pitchType || "startup"
+        } investment pitch.
 
           Here is the text to improve:
           ---
@@ -1095,23 +1100,21 @@ const PitchForm = () => {
           formData.competitors.some((c) => c.name)
         );
       case 3:
-        return formData.productDescription;
-      case 4:
         return formData.traction;
-      case 5:
+      case 4:
         return formData.founderName && formData.founderEmail;
-      case 6:
+      case 5:
         return formData.businessModel && formData.goToMarketStrategy;
-      case 7:
+      case 6:
         return formData.financials.revenueThisYear >= 0;
-      case 8:
+      case 7:
         return (
           formData.fundingDetails.fundingAskAmount > 0 &&
           formData.fundingDetails.equityOfferedPercent > 0
         );
-      case 9:
+      case 8:
         return formData.exitStrategy;
-      case 10:
+      case 9:
         return true;
       default:
         return true;
@@ -1136,7 +1139,7 @@ const PitchForm = () => {
     e.preventDefault();
 
     const submissionData = {
-      pitchType: "Custom",
+      pitchType,
       enabledSteps,
       ...formData,
     };
@@ -1150,7 +1153,7 @@ const PitchForm = () => {
       console.log(res.data);
       setMessage(res.data.message);
       setSuccess(true);
-      localStorage.removeItem("customPitchDraft");
+      localStorage.removeItem("advancedPitchDraft");
     } catch (error) {
       setError(
         error.response?.data?.message ||
@@ -1163,15 +1166,16 @@ const PitchForm = () => {
 
   const handleClearDraft = () => {
     setFormData(getInitialFormData());
+    setPitchType(null);
     setEnabledSteps([]);
     setCurrentStepIndex(0);
+    setIsCustomMode(false);
     setCustomSteps([]);
-    setStepSelectionMode(true);
     setSuccess(false);
     setMessage("");
     setError("");
     setSampleEnhanced("");
-    localStorage.removeItem("customPitchDraft");
+    localStorage.removeItem("advancedPitchDraft");
   };
 
   const handleCustomStepToggle = (stepId) => {
@@ -1208,7 +1212,7 @@ const PitchForm = () => {
                 dark ? "text-white" : "text-gray-900"
               }`}
             >
-              Custom Pitch Submitted Successfully
+              {pitchType} Pitch Submitted Successfully
             </h3>
             <p
               className={`text-sm mb-6 sm:mb-8 ${
@@ -1229,8 +1233,8 @@ const PitchForm = () => {
     );
   }
 
-  // Step Selection Screen
-  if (stepSelectionMode) {
+  // Pitch Type Selection Screen
+  if (!pitchType) {
     return (
       <div className={`min-h-screen ${dark ? "bg-gray-900" : "bg-gray-50"}`}>
         <div className="max-w-6xl mx-auto p-3 sm:p-6">
@@ -1247,271 +1251,186 @@ const PitchForm = () => {
                   dark ? "text-white" : "text-gray-900"
                 }`}
               >
-                Create Your Custom Pitch
+                Create Your Pitch
               </h1>
               <p
                 className={`text-base sm:text-lg ${
                   dark ? "text-gray-300" : "text-gray-600"
                 }`}
               >
-                Select the sections that are relevant to your business and pitch
-                requirements
+                Choose your business type to get a customized pitch form
               </p>
             </div>
 
-            {/* Quick Selection Templates */}
-            <div className="mb-6 sm:mb-8">
-              <h3
-                className={`text-lg font-semibold mb-4 ${
-                  dark ? "text-white" : "text-gray-900"
-                }`}
-              >
-                Quick Start Templates
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
+              {Object.entries(pitchTypes).map(([type, config]) => (
                 <button
-                  onClick={() => setCustomSteps([1, 2, 6, 8, 10])}
-                  className={`p-4 rounded-sm border-2 text-left transition-all duration-200 hover:scale-105 ${
+                  key={type}
+                  onClick={() => setPitchType(type)}
+                  className={`p-4 sm:p-6 rounded-sm border-2 text-left transition-all duration-200 hover:scale-105 ${
                     dark
                       ? "border-gray-600 hover:border-blue-500 bg-gray-700 hover:bg-gray-600"
                       : "border-gray-200 hover:border-blue-500 bg-white hover:bg-blue-50"
                   }`}
                 >
-                  <h4
-                    className={`font-semibold mb-2 ${
+                  <h3
+                    className={`text-base sm:text-lg font-semibold mb-2 ${
                       dark ? "text-white" : "text-gray-900"
                     }`}
                   >
-                    Minimal Pitch
-                  </h4>
+                    {type}
+                  </h3>
                   <p
-                    className={`text-sm ${
+                    className={`text-sm mb-3 ${
                       dark ? "text-gray-300" : "text-gray-600"
                     }`}
                   >
-                    Essential information only - Foundation, Market, Business
-                    Model, Investment
+                    {config.description}
                   </p>
+                  <div className="flex flex-wrap gap-1">
+                    {config.steps.map((stepId) => (
+                      <span
+                        key={stepId}
+                        className={`text-xs px-2 py-1 rounded ${
+                          dark
+                            ? "bg-blue-900/30 text-blue-300"
+                            : "bg-blue-100 text-blue-700"
+                        }`}
+                      >
+                        {allSteps.find((s) => s.id === stepId)?.title}
+                      </span>
+                    ))}
+                  </div>
                 </button>
+              ))}
+            </div>
 
-                <button
-                  onClick={() => setCustomSteps([1, 2, 3, 5, 6, 8, 10])}
-                  className={`p-4 rounded-sm border-2 text-left transition-all duration-200 hover:scale-105 ${
-                    dark
-                      ? "border-gray-600 hover:border-blue-500 bg-gray-700 hover:bg-gray-600"
-                      : "border-gray-200 hover:border-blue-500 bg-white hover:bg-blue-50"
+            <div className="border-t pt-4 sm:pt-6">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+                <span
+                  className={`text-sm ${
+                    dark ? "text-gray-400" : "text-gray-600"
                   }`}
                 >
-                  <h4
-                    className={`font-semibold mb-2 ${
-                      dark ? "text-white" : "text-gray-900"
-                    }`}
-                  >
-                    Standard Pitch
-                  </h4>
-                  <p
-                    className={`text-sm ${
-                      dark ? "text-gray-300" : "text-gray-600"
-                    }`}
-                  >
-                    Comprehensive pitch with product details and team
-                    information
-                  </p>
-                </button>
-
+                  Need something different?
+                </span>
                 <button
-                  onClick={() =>
-                    setCustomSteps([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
-                  }
-                  className={`p-4 rounded-sm border-2 text-left transition-all duration-200 hover:scale-105 ${
+                  onClick={() => setIsCustomMode(true)}
+                  className={`px-4 py-2 rounded-sm border transition-colors text-sm sm:text-base ${
                     dark
-                      ? "border-gray-600 hover:border-blue-500 bg-gray-700 hover:bg-gray-600"
-                      : "border-gray-200 hover:border-blue-500 bg-white hover:bg-blue-50"
+                      ? "border-gray-600 text-gray-300 hover:bg-gray-700"
+                      : "border-gray-300 text-gray-700 hover:bg-gray-50"
                   }`}
                 >
-                  <h4
-                    className={`font-semibold mb-2 ${
-                      dark ? "text-white" : "text-gray-900"
-                    }`}
-                  >
-                    Complete Pitch
-                  </h4>
-                  <p
-                    className={`text-sm ${
-                      dark ? "text-gray-300" : "text-gray-600"
-                    }`}
-                  >
-                    Full detailed pitch with all sections included
-                  </p>
+                  Customize Your Pitch
                 </button>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
-            {/* Step Selection by Category */}
-            <div className="mb-6 sm:mb-8">
-              <h3
-                className={`text-lg font-semibold mb-4 ${
+  // Custom Step Selection Screen
+  if (isCustomMode && customSteps.length === 0) {
+    return (
+      <div className={`min-h-screen ${dark ? "bg-gray-900" : "bg-gray-50"}`}>
+        <div className="max-w-4xl mx-auto p-3 sm:p-6">
+          <div
+            className={`p-4 sm:p-8 rounded-sm ${
+              dark
+                ? "bg-gray-800 border border-gray-700"
+                : "bg-white border border-gray-200"
+            }`}
+          >
+            <div className="text-center mb-6 sm:mb-8">
+              <h1
+                className={`text-xl sm:text-2xl font-bold mb-3 sm:mb-4 ${
                   dark ? "text-white" : "text-gray-900"
                 }`}
               >
-                Or Choose Individual Sections
-              </h3>
+                Customize Your Pitch
+              </h1>
+              <p
+                className={`text-sm sm:text-base ${
+                  dark ? "text-gray-300" : "text-gray-600"
+                }`}
+              >
+                Select the sections that are relevant to your pitch
+              </p>
+            </div>
 
-              {Object.entries(stepCategories).map(([category, config]) => {
-                const categorySteps = allSteps.filter(
-                  (step) => step.category === category
-                );
-
-                return (
-                  <div key={category} className="mb-6">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div
-                        className={`w-3 h-3 rounded-full bg-${config.color}-500`}
-                      ></div>
-                      <h4
-                        className={`font-medium ${
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8">
+              {allSteps.map((step) => (
+                <div
+                  key={step.id}
+                  className={`p-3 sm:p-4 rounded-sm border-2 cursor-pointer transition-all ${
+                    customSteps.includes(step.id)
+                      ? dark
+                        ? "border-blue-500 bg-blue-900/20"
+                        : "border-blue-500 bg-blue-50"
+                      : dark
+                      ? "border-gray-600 hover:border-gray-500"
+                      : "border-gray-200 hover:border-gray-300"
+                  } ${step.required ? "opacity-50" : ""}`}
+                  onClick={() =>
+                    !step.required && handleCustomStepToggle(step.id)
+                  }
+                >
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3
+                        className={`text-sm sm:text-base font-semibold ${
                           dark ? "text-white" : "text-gray-900"
                         }`}
                       >
-                        {category}
-                      </h4>
-                      <span
-                        className={`text-sm ${
-                          dark ? "text-gray-400" : "text-gray-600"
+                        {step.title}
+                        {step.required && (
+                          <span className="text-red-500 ml-1">*</span>
+                        )}
+                      </h3>
+                      <p
+                        className={`text-xs sm:text-sm ${
+                          dark ? "text-gray-300" : "text-gray-600"
                         }`}
                       >
-                        {config.description}
-                      </span>
+                        {step.subtitle}
+                      </p>
                     </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-                      {categorySteps.map((step) => (
-                        <div
-                          key={step.id}
-                          className={`p-3 sm:p-4 rounded-sm border-2 cursor-pointer transition-all ${
-                            customSteps.includes(step.id)
-                              ? dark
-                                ? "border-blue-500 bg-blue-900/20"
-                                : "border-blue-500 bg-blue-50"
-                              : dark
-                              ? "border-gray-600 hover:border-gray-500"
-                              : "border-gray-200 hover:border-gray-300"
-                          } ${
-                            step.required
-                              ? "opacity-90 border-red-200 dark:border-red-800"
-                              : ""
-                          }`}
-                          onClick={() =>
-                            !step.required && handleCustomStepToggle(step.id)
-                          }
-                        >
-                          <div className="flex items-center justify-between">
-                            <div className="flex-1">
-                              <h3
-                                className={`text-sm sm:text-base font-semibold ${
-                                  dark ? "text-white" : "text-gray-900"
-                                }`}
-                              >
-                                {step.title}
-                                {step.required && (
-                                  <span className="text-red-500 ml-1">*</span>
-                                )}
-                              </h3>
-                              <p
-                                className={`text-xs sm:text-sm ${
-                                  dark ? "text-gray-300" : "text-gray-600"
-                                }`}
-                              >
-                                {step.subtitle}
-                              </p>
-                              <p
-                                className={`text-xs mt-1 ${
-                                  dark ? "text-gray-400" : "text-gray-500"
-                                }`}
-                              >
-                                {step.description}
-                              </p>
-                            </div>
-                            {(customSteps.includes(step.id) ||
-                              step.required) && (
-                              <div className="ml-3 w-5 h-5 sm:w-6 sm:h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs sm:text-sm">
-                                ✓
-                              </div>
-                            )}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
+                    {(customSteps.includes(step.id) || step.required) && (
+                      <div className="w-5 h-5 sm:w-6 sm:h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs sm:text-sm">
+                        ✓
+                      </div>
+                    )}
                   </div>
-                );
-              })}
+                </div>
+              ))}
             </div>
 
-            {/* Required steps notice */}
+            {/* Required steps are automatically included */}
             <p
               className={`text-xs sm:text-sm mb-4 sm:mb-6 ${
                 dark ? "text-gray-400" : "text-gray-600"
               }`}
             >
               <span className="text-red-500">*</span> Required sections are
-              automatically included in your pitch
+              automatically included
             </p>
 
-            {/* Selected sections preview */}
-            {customSteps.length > 0 && (
-              <div
-                className={`mb-6 p-4 rounded-sm border ${
-                  dark
-                    ? "border-gray-600 bg-gray-800/50"
-                    : "border-gray-200 bg-gray-50"
-                }`}
-              >
-                <h4
-                  className={`font-medium mb-3 ${
-                    dark ? "text-white" : "text-gray-900"
-                  }`}
-                >
-                  Selected Sections (
-                  {customSteps.length +
-                    allSteps.filter((s) => s.required).length}
-                  )
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {[
-                    ...allSteps.filter((s) => s.required).map((s) => s.id),
-                    ...customSteps,
-                  ]
-                    .sort((a, b) => a - b)
-                    .map((stepId) => {
-                      const step = allSteps.find((s) => s.id === stepId);
-                      return (
-                        <span
-                          key={stepId}
-                          className={`text-xs px-3 py-1 rounded-full ${
-                            step?.required
-                              ? "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300"
-                              : "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300"
-                          }`}
-                        >
-                          {step?.title}
-                        </span>
-                      );
-                    })}
-                </div>
-              </div>
-            )}
-
-            {/* Action buttons */}
             <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-0">
               <button
-                onClick={handleClearDraft}
+                onClick={() => {
+                  setIsCustomMode(false);
+                  setCustomSteps([]);
+                }}
                 className={`px-4 sm:px-6 py-3 rounded-sm border transition-colors text-sm sm:text-base ${
                   dark
                     ? "border-gray-600 text-gray-300 hover:bg-gray-700"
                     : "border-gray-300 text-gray-700 hover:bg-gray-50"
                 }`}
               >
-                Clear Selection
+                Back to Templates
               </button>
 
               <button
@@ -1523,14 +1442,12 @@ const PitchForm = () => {
                     ...new Set([...requiredSteps, ...customSteps]),
                   ].sort((a, b) => a - b);
                   setCustomSteps(finalSteps);
-                  setStepSelectionMode(false);
+                  setPitchType("Custom");
                 }}
                 disabled={customSteps.length === 0}
                 className="px-4 sm:px-6 py-3 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-sm transition-colors text-sm sm:text-base"
               >
-                Start Creating Pitch (
-                {customSteps.length + allSteps.filter((s) => s.required).length}{" "}
-                sections)
+                Create Custom Pitch ({customSteps.length} additional sections)
               </button>
             </div>
           </div>
@@ -1626,7 +1543,7 @@ const PitchForm = () => {
 
   const renderStepContent = () => {
     switch (currentStep) {
-      case 1: // Company Foundation
+      case 1: // Foundation
         return (
           <div className="space-y-4 sm:space-y-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
@@ -1753,6 +1670,46 @@ const PitchForm = () => {
             </div>
 
             <div>
+              <label className={labelClasses}>Product Description</label>
+              <textarea
+                value={formData.productDescription}
+                onChange={(e) =>
+                  handleChange("productDescription", e.target.value)
+                }
+                placeholder="Detailed description of your product/service"
+                rows={4}
+                className={textareaClasses}
+              />
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+              <div>
+                <label className={labelClasses}>Unique Value Proposition</label>
+                <textarea
+                  value={formData.uniqueValueProposition}
+                  onChange={(e) =>
+                    handleChange("uniqueValueProposition", e.target.value)
+                  }
+                  placeholder="What makes your solution uniquely valuable"
+                  rows={3}
+                  className={textareaClasses}
+                />
+              </div>
+              <div>
+                <label className={labelClasses}>
+                  USP (Unique Selling Point)
+                </label>
+                <textarea
+                  value={formData.USP}
+                  onChange={(e) => handleChange("USP", e.target.value)}
+                  placeholder="Your key differentiator"
+                  rows={3}
+                  className={textareaClasses}
+                />
+              </div>
+            </div>
+
+            <div>
               <label className={labelClasses}>Current Stage</label>
               <select
                 value={formData.stage}
@@ -1766,10 +1723,56 @@ const PitchForm = () => {
                 <option value="scaling">Scaling</option>
               </select>
             </div>
+
+            <div>
+              <label className={labelClasses}>Tech Stack</label>
+              <div className="space-y-2 sm:space-y-3">
+                {formData.techStack.map((tech, index) => (
+                  <div key={index} className="flex gap-2">
+                    <input
+                      type="text"
+                      value={tech}
+                      onChange={(e) =>
+                        handleChange("techStack", e.target.value, index)
+                      }
+                      placeholder="Technology/Framework"
+                      className={inputClasses}
+                    />
+                    {formData.techStack.length > 1 && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const newTechStack = formData.techStack.filter(
+                            (_, i) => i !== index
+                          );
+                          handleChange("techStack", newTechStack);
+                        }}
+                        className="w-8 h-8 sm:w-10 sm:h-10 rounded bg-red-100 dark:bg-red-900/20 text-red-600 hover:bg-red-200 dark:hover:bg-red-900/40 transition-colors flex items-center justify-center text-sm"
+                      >
+                        ×
+                      </button>
+                    )}
+                  </div>
+                ))}
+                <button
+                  type="button"
+                  onClick={() =>
+                    handleChange("techStack", [...formData.techStack, ""])
+                  }
+                  className={`w-full py-2 border-2 border-dashed rounded-sm text-xs sm:text-sm transition-colors ${
+                    dark
+                      ? "border-gray-600 hover:border-gray-500 hover:bg-gray-800/50 text-gray-400 hover:text-gray-300"
+                      : "border-gray-300 hover:border-gray-400 hover:bg-gray-50 text-gray-500 hover:text-gray-600"
+                  }`}
+                >
+                  Add Technology
+                </button>
+              </div>
+            </div>
           </div>
         );
 
-      case 2: // Market Analysis
+      case 2: // Market
         return (
           <div className="space-y-4 sm:space-y-6">
             <div>
@@ -2198,100 +2201,7 @@ const PitchForm = () => {
           </div>
         );
 
-      case 3: // Product Details
-        return (
-          <div className="space-y-4 sm:space-y-6">
-            <div>
-              <label className={labelClasses}>
-                Product Description <span className="text-red-500">*</span>
-              </label>
-              <textarea
-                value={formData.productDescription}
-                onChange={(e) =>
-                  handleChange("productDescription", e.target.value)
-                }
-                placeholder="Detailed description of your product/service"
-                rows={4}
-                className={textareaClasses}
-              />
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-              <div>
-                <label className={labelClasses}>Unique Value Proposition</label>
-                <textarea
-                  value={formData.uniqueValueProposition}
-                  onChange={(e) =>
-                    handleChange("uniqueValueProposition", e.target.value)
-                  }
-                  placeholder="What makes your solution uniquely valuable"
-                  rows={3}
-                  className={textareaClasses}
-                />
-              </div>
-              <div>
-                <label className={labelClasses}>
-                  USP (Unique Selling Point)
-                </label>
-                <textarea
-                  value={formData.USP}
-                  onChange={(e) => handleChange("USP", e.target.value)}
-                  placeholder="Your key differentiator"
-                  rows={3}
-                  className={textareaClasses}
-                />
-              </div>
-            </div>
-
-            <div>
-              <label className={labelClasses}>Tech Stack</label>
-              <div className="space-y-2 sm:space-y-3">
-                {formData.techStack.map((tech, index) => (
-                  <div key={index} className="flex gap-2">
-                    <input
-                      type="text"
-                      value={tech}
-                      onChange={(e) =>
-                        handleChange("techStack", e.target.value, index)
-                      }
-                      placeholder="Technology/Framework"
-                      className={inputClasses}
-                    />
-                    {formData.techStack.length > 1 && (
-                      <button
-                        type="button"
-                        onClick={() => {
-                          const newTechStack = formData.techStack.filter(
-                            (_, i) => i !== index
-                          );
-                          handleChange("techStack", newTechStack);
-                        }}
-                        className="w-8 h-8 sm:w-10 sm:h-10 rounded bg-red-100 dark:bg-red-900/20 text-red-600 hover:bg-red-200 dark:hover:bg-red-900/40 transition-colors flex items-center justify-center text-sm"
-                      >
-                        ×
-                      </button>
-                    )}
-                  </div>
-                ))}
-                <button
-                  type="button"
-                  onClick={() =>
-                    handleChange("techStack", [...formData.techStack, ""])
-                  }
-                  className={`w-full py-2 border-2 border-dashed rounded-sm text-xs sm:text-sm transition-colors ${
-                    dark
-                      ? "border-gray-600 hover:border-gray-500 hover:bg-gray-800/50 text-gray-400 hover:text-gray-300"
-                      : "border-gray-300 hover:border-gray-400 hover:bg-gray-50 text-gray-500 hover:text-gray-600"
-                  }`}
-                >
-                  Add Technology
-                </button>
-              </div>
-            </div>
-          </div>
-        );
-
-      case 4: // Traction & Metrics
+      case 3: // Traction
         return (
           <div className="space-y-4 sm:space-y-6">
             <div>
@@ -2725,7 +2635,7 @@ const PitchForm = () => {
           </div>
         );
 
-      case 5: // Team Information
+      case 4: // Team
         return (
           <div className="space-y-4 sm:space-y-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
@@ -3210,7 +3120,7 @@ const PitchForm = () => {
           </div>
         );
 
-      case 6: // Business Model
+      case 5: // Business
         return (
           <div className="space-y-4 sm:space-y-6">
             <div>
@@ -3336,7 +3246,7 @@ const PitchForm = () => {
           </div>
         );
 
-      case 7: // Financials
+      case 6: // Financials
         return (
           <div className="space-y-4 sm:space-y-6">
             <h3
@@ -4037,7 +3947,7 @@ const PitchForm = () => {
           </div>
         );
 
-      case 8: // Investment Details
+      case 7: // Investment
         return (
           <div className="space-y-4 sm:space-y-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
@@ -4174,7 +4084,7 @@ const PitchForm = () => {
                     "strategicNeed"
                   )
                 }
-                placeholder="Why do you specifically want this investor? What strategic value do they bring?"
+                placeholder="Why do you specifically want this investor/shark?"
                 rows={3}
                 className={textareaClasses}
               />
@@ -4345,7 +4255,7 @@ const PitchForm = () => {
           </div>
         );
 
-      case 9: // Legal & Strategy
+      case 8: // Strategy
         return (
           <div className="space-y-4 sm:space-y-6">
             <div>
@@ -4806,7 +4716,9 @@ const PitchForm = () => {
             </div>
 
             <div>
-              <label className={labelClasses}>Exit Strategy</label>
+              <label className={labelClasses}>
+                Exit Strategy <span className="text-red-500">*</span>
+              </label>
               <textarea
                 value={formData.exitStrategy}
                 onChange={(e) => handleChange("exitStrategy", e.target.value)}
@@ -4818,7 +4730,7 @@ const PitchForm = () => {
           </div>
         );
 
-      case 10: // Review & Submit
+      case 9: // Review
         return (
           <div className="space-y-4 sm:space-y-6">
             <div
@@ -4833,7 +4745,7 @@ const PitchForm = () => {
                   dark ? "text-white" : "text-gray-900"
                 }`}
               >
-                Custom Pitch Summary
+                {pitchType} Pitch Summary
               </h3>
 
               {/* Show enabled sections */}
@@ -5010,9 +4922,9 @@ const PitchForm = () => {
                       dark ? "text-blue-400" : "text-blue-700"
                     }`}
                   >
-                    By submitting this custom pitch, you agree to our terms of
-                    service and privacy policy. We will review your submission
-                    and contact you within 5-7 business days.
+                    By submitting this {pitchType} pitch, you agree to our terms
+                    of service and privacy policy. We will review your
+                    submission and contact you within 5-7 business days.
                   </p>
                 </div>
               </label>
@@ -5032,8 +4944,8 @@ const PitchForm = () => {
       }`}
     >
       <div className="max-w-4xl mx-auto p-3 sm:p-6">
-        {/* Header with Progress */}
-        {!stepSelectionMode && enabledSteps.length > 0 && (
+        {/* Header with Pitch Type */}
+        {pitchType && (
           <div
             className={`mb-4 sm:mb-8 p-4 sm:p-6 rounded-sm ${
               dark
@@ -5049,11 +4961,12 @@ const PitchForm = () => {
                       dark ? "text-white" : "text-gray-900"
                     }`}
                   >
-                    Custom Pitch
+                    {pitchType} Pitch
                   </h1>
                   <button
                     onClick={() => {
-                      setStepSelectionMode(true);
+                      setPitchType(null);
+                      setEnabledSteps([]);
                       setCurrentStepIndex(0);
                     }}
                     className={`px-2 sm:px-3 py-1 text-xs sm:text-sm rounded-sm border transition-colors ${
@@ -5062,7 +4975,7 @@ const PitchForm = () => {
                         : "border-gray-300 text-gray-600 hover:text-gray-900 hover:border-gray-400"
                     }`}
                   >
-                    Modify Sections
+                    Change Type
                   </button>
                 </div>
                 <p
@@ -5088,7 +5001,7 @@ const PitchForm = () => {
               )}
             </div>
 
-            {/* Progress Steps */}
+            {/* Progress Steps - Mobile optimized */}
             <div className="hidden sm:flex items-center justify-between mb-4 sm:mb-6">
               {enabledSteps.map((stepId, index) => {
                 const step = allSteps.find((s) => s.id === stepId);
@@ -5156,6 +5069,30 @@ const PitchForm = () => {
               })}
             </div>
 
+            {/* Mobile Progress Indicator */}
+            {/* <div className="sm:hidden mb-4">
+              <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 mb-2">
+                <span>Progress</span>
+                <span>
+                  {currentStepIndex + 1}/{totalSteps}
+                </span>
+              </div>
+              <div className="flex gap-1">
+                {enabledSteps.map((_, index) => (
+                  <div
+                    key={index}
+                    className={`flex-1 h-2 rounded-full ${
+                      index <= currentStepIndex
+                        ? "bg-blue-600"
+                        : dark
+                        ? "bg-gray-700"
+                        : "bg-gray-200"
+                    }`}
+                  />
+                ))}
+              </div>
+            </div> */}
+
             {/* Progress Bar */}
             <div
               className={`w-full h-1 sm:h-2 rounded-full ${
@@ -5173,7 +5110,7 @@ const PitchForm = () => {
         )}
 
         {/* Main Form */}
-        {!stepSelectionMode && enabledSteps.length > 0 && (
+        {pitchType && (
           <div
             className={`rounded-sm ${
               dark

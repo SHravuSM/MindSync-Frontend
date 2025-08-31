@@ -656,7 +656,7 @@ const PitchOne = () => {
       </button>
 
       {/* Main Content */}
-      <article className={`${dark ? "bg-gray-800" : "bg-white"} border ${
+      <article className={`${dark ? "bg-black" : "bg-white"} border ${
         dark ? "border-gray-700" : "border-gray-200"
       } overflow-hidden`}>
         

@@ -42,7 +42,7 @@ const LoginForm = () => {
             {" "}
             Mano
             <span className="text-blue-500">
-              Sangam<span className="text-orange-500">.</span>
+              Sangama<span className="text-orange-500">.</span>
             </span>
           </span>
         </p>

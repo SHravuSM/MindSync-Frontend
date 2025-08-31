@@ -621,7 +621,7 @@ import api from "../utils/api1";
 const PitchCard = ({ pitch }) => {
   const dark = useThemeStore((s) => s.dark);
   const { user } = useAuthStore();
-  
+
   const [likes, setLikes] = useState(pitch.likes || []);
   const [isUpvoted, setIsUpvoted] = useState(false);
 
@@ -651,16 +651,20 @@ const PitchCard = ({ pitch }) => {
   const monthlyRevenue = pitch.financials?.monthlyRevenue || 0;
   const yearOverYearGrowth = pitch.financials?.yearOverYearGrowthPercent || 0;
   const monthlyActiveUsers = pitch.productMetrics?.monthlyActiveUsers || 0;
-  const customerAcquisitionCost = pitch.financials?.customerAcquisitionCost || 0;
+  const customerAcquisitionCost =
+    pitch.financials?.customerAcquisitionCost || 0;
   const lifetimeValue = pitch.financials?.lifetimeValue || 0;
   const runwayMonths = pitch.financials?.runwayMonths || 0;
   const totalMarketSize = pitch.market?.totalMarketSize || 0;
   const teamStrength = pitch.teamStrength || pitch.foundingTeam?.length || 1;
-  const fundingAsk = pitch.fundingDetails?.fundingAskAmount || pitch.fundingAsk || 0;
-  const equityOffered = pitch.fundingDetails?.equityOfferedPercent || pitch.equityOffered || 0;
+  const fundingAsk =
+    pitch.fundingDetails?.fundingAskAmount || pitch.fundingAsk || 0;
+  const equityOffered =
+    pitch.fundingDetails?.equityOfferedPercent || pitch.equityOffered || 0;
 
   // Calculate derived metrics
-  const ltv2cacRatio = customerAcquisitionCost > 0 ? (lifetimeValue / customerAcquisitionCost) : 0;
+  const ltv2cacRatio =
+    customerAcquisitionCost > 0 ? lifetimeValue / customerAcquisitionCost : 0;
   const marketSizeInCrores = totalMarketSize / 10000000;
 
   // Format large numbers
@@ -680,11 +684,21 @@ const PitchCard = ({ pitch }) => {
   // Compact status badges
   const getStatusBadges = () => {
     const badges = [];
-    
-    if (monthlyRevenue > 0) badges.push({ text: "Rev+", color: "bg-green-100 text-green-700" });
-    if (pitch.productMetrics?.keyAchievements?.length > 0) badges.push({ text: `${pitch.productMetrics.keyAchievements.length}★`, color: "bg-purple-100 text-purple-700" });
-    if (pitch.partnerships?.length > 0) badges.push({ text: `${pitch.partnerships.length}🤝`, color: "bg-blue-100 text-blue-700" });
-    if (pitch.stage) badges.push({ text: pitch.stage, color: "bg-gray-100 text-gray-700" });
+
+    if (monthlyRevenue > 0)
+      badges.push({ text: "Rev+", color: "bg-green-100 text-green-700" });
+    if (pitch.productMetrics?.keyAchievements?.length > 0)
+      badges.push({
+        text: `${pitch.productMetrics.keyAchievements.length}★`,
+        color: "bg-purple-100 text-purple-700",
+      });
+    if (pitch.partnerships?.length > 0)
+      badges.push({
+        text: `${pitch.partnerships.length}🤝`,
+        color: "bg-blue-100 text-blue-700",
+      });
+    if (pitch.stage)
+      badges.push({ text: pitch.stage, color: "bg-gray-100 text-gray-700" });
 
     return badges.slice(0, 4);
   };
@@ -705,14 +719,17 @@ const PitchCard = ({ pitch }) => {
           <div className="flex items-center gap-2 mb-1">
             <h2 className="text-lg font-medium">{pitch.startupName}</h2>
             {statusBadges.map((badge, index) => (
-              <span key={index} className={`px-1.5 py-0.5 rounded text-xs ${badge.color}`}>
+              <span
+                key={index}
+                className={`px-1.5 py-0.5 rounded text-xs ${badge.color}`}
+              >
                 {badge.text}
               </span>
             ))}
           </div>
           <p className="text-sm opacity-70 line-clamp-1">{pitch.oneLiner}</p>
         </div>
-        
+
         <div className="text-right text-sm">
           <div className="font-bold">{formatNumber(fundingAsk)}</div>
           <div className="text-xs opacity-70">{equityOffered}% equity</div>
@@ -722,34 +739,51 @@ const PitchCard = ({ pitch }) => {
       {/* Compact Metrics */}
       <div className="px-3 pb-2 grid grid-cols-6 gap-2 text-center text-xs">
         <div>
-          <div className="font-semibold text-green-600">{formatNumber(monthlyRevenue)}</div>
+          <div className="font-semibold text-green-600">
+            {formatNumber(monthlyRevenue)}
+          </div>
           <div className="opacity-60">MRR</div>
         </div>
         <div>
-          <div className="font-semibold text-blue-600">{formatUsers(monthlyActiveUsers)}</div>
+          <div className="font-semibold text-blue-600">
+            {formatUsers(monthlyActiveUsers)}
+          </div>
           <div className="opacity-60">Users</div>
         </div>
         <div>
-          <div className={`font-semibold ${yearOverYearGrowth > 0 ? "text-green-600" : "text-gray-500"}`}>
-            {yearOverYearGrowth > 0 ? "+" : ""}{yearOverYearGrowth}%
+          <div
+            className={`font-semibold ${
+              yearOverYearGrowth > 0 ? "text-green-600" : "text-gray-500"
+            }`}
+          >
+            {yearOverYearGrowth > 0 ? "+" : ""}
+            {yearOverYearGrowth}%
           </div>
           <div className="opacity-60">Growth</div>
         </div>
         {customerAcquisitionCost > 0 && (
           <div>
-            <div className="font-semibold">₹{(customerAcquisitionCost/1000).toFixed(0)}K</div>
+            <div className="font-semibold">
+              ₹{(customerAcquisitionCost / 1000).toFixed(0)}K
+            </div>
             <div className="opacity-60">CAC</div>
           </div>
         )}
         {lifetimeValue > 0 && (
           <div>
-            <div className="font-semibold">₹{(lifetimeValue/1000).toFixed(0)}K</div>
+            <div className="font-semibold">
+              ₹{(lifetimeValue / 1000).toFixed(0)}K
+            </div>
             <div className="opacity-60">LTV</div>
           </div>
         )}
         {runwayMonths > 0 && (
           <div>
-            <div className={`font-semibold ${runwayMonths < 12 ? "text-red-600" : ""}`}>
+            <div
+              className={`font-semibold ${
+                runwayMonths < 12 ? "text-red-600" : ""
+              }`}
+            >
               {runwayMonths}m
             </div>
             <div className="opacity-60">Runway</div>
@@ -764,46 +798,42 @@ const PitchCard = ({ pitch }) => {
             <Target size={12} />
             <span className="font-medium">{pitch.targetMarket}</span>
             {totalMarketSize > 0 && (
-              <span className="text-xs opacity-60">(₹{marketSizeInCrores.toFixed(1)}Cr TAM)</span>
+              <span className="text-xs opacity-60">
+                (₹{marketSizeInCrores.toFixed(1)}Cr TAM)
+              </span>
             )}
           </div>
           {ltv2cacRatio > 0 && (
-            <span className={`text-xs ${ltv2cacRatio >= 3 ? "text-green-600" : "text-red-600"}`}>
+            <span
+              className={`text-xs ${
+                ltv2cacRatio >= 3 ? "text-green-600" : "text-red-600"
+              }`}
+            >
               LTV:CAC 1:{ltv2cacRatio.toFixed(1)}
             </span>
           )}
         </div>
-        
-        <div className="grid grid-cols-2 gap-3 text-xs">
-          <div>
-            <span className="flex items-center gap-1 text-green-600 font-medium mb-1">
-              <CheckCircle size={10} />Traction
-            </span>
-            <div className="line-clamp-1 opacity-70">{pitch.traction || "Building momentum"}</div>
-          </div>
-          <div>
-            <span className="flex items-center gap-1 text-red-600 font-medium mb-1">
-              <AlertTriangle size={10} />Competition  
-            </span>
-            <div className="line-clamp-1 opacity-70">{pitch.competition || "Limited"}</div>
-          </div>
-        </div>
       </div>
 
       {/* Compact Footer */}
-      <div className={`px-3 py-2 flex items-center justify-between text-sm ${dark ? "bg-gray-800" : "bg-gray-50"}`}>
+      <div
+        className={`px-3 py-2 flex items-center justify-between text-sm ${
+          dark ? "bg-gray-800" : "bg-gray-50"
+        }`}
+      >
         <div className="flex items-center gap-3">
           <div>
             <div className="font-medium">{pitch.founderName}</div>
             <div className="text-xs opacity-70 flex items-center gap-2">
               <span className="flex items-center gap-1">
-                <Users size={10} />Team: {teamStrength}
+                <Users size={10} />
+                Team: {teamStrength}
               </span>
               {pitch.industry && <span>• {pitch.industry}</span>}
             </div>
           </div>
         </div>
-        
+
         <div className="flex items-center gap-2">
           <button
             onClick={handleUpvote}
@@ -818,9 +848,9 @@ const PitchCard = ({ pitch }) => {
             <Heart size={12} className={isUpvoted ? "fill-current" : ""} />
             {likes.length}
           </button>
-          
-          <Link 
-            to={`${pitch._id}`} 
+
+          <Link
+            to={`${pitch._id}`}
             state={pitch}
             className={`p-1 rounded ${dark ? "bg-gray-700" : "bg-gray-100"}`}
           >
@@ -841,4 +871,3 @@ const PitchCard = ({ pitch }) => {
 };
 
 export default PitchCard;
-

@@ -2030,20 +2030,6 @@ const BottomNav = () => {
               </li>
             )}
 
-            {/* Profile */}
-            {/* <li className="transition-all duration-200 hover:scale-105 active:scale-95">
-              <Link
-                to={`/${user.id}`}
-                className="inline-block transition-colors duration-200 hover:opacity-80"
-              >
-                <CircleUser
-                  strokeWidth={2.5}
-                  size={27}
-                  className="transition-transform duration-200 hover:rotate-6"
-                />
-              </Link>
-            </li> */}
-
             <div className="relative hidden lg:block">
               <button
                 onClick={(e) => {
