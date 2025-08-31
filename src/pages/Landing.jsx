@@ -183,175 +183,18 @@
 //   );
 // }
 
-// import { Link } from "react-router-dom";
-// import { useEffect } from "react";
-
-// export default function Landing() {
-//   useEffect(() => {
-//     // 🔹 Update title & description dynamically
-//     document.title = "ManoSangam - The Gathering of Minds";
-//     const descTag = document.querySelector('meta[name="description"]');
-//     if (descTag) {
-//       descTag.setAttribute(
-//         "content",
-//         "Share ideas, collaborate with innovators, and build solutions together. Join India's community of creators and entrepreneurs."
-//       );
-//     }
-
-//     // 🔹 Add JSON-LD structured data for Google
-//     const script = document.createElement("script");
-//     script.type = "application/ld+json";
-//     script.innerHTML = JSON.stringify({
-//       "@context": "https://schema.org",
-//       "@type": "WebSite",
-//       name: "ManoSangam",
-//       url: "https://manosangam.in",
-//       description:
-//         "The Gathering of Minds – where ideas meet collaboration and innovation.",
-//       publisher: {
-//         "@type": "Organization",
-//         name: "ManoSangam",
-//       },
-//     });
-//     document.head.appendChild(script);
-
-//     return () => {
-//       document.head.removeChild(script);
-//     };
-//   }, []);
-
-//   return (
-//     <div className="font-sans text-gray-800">
-//       {/* Hero Section */}
-//       <section className="bg-black flex flex-col items-center gap-2 text-white py-16 pb-5 px-6 text-center">
-//         <h1 className="text-5xl font-normal mb-4">
-//           Mano<span className="text-blue-500">Sangam</span>
-//           <span className="text-orange-400">.</span>
-//         </h1>
-//         <p className="text-xl mb-8 italic">"The Gathering of Minds."</p>
-
-//         <div className="flex flex-col sm:flex-row items-center justify-center gap-2 py-6">
-//           {/* Login Button */}
-//           <Link
-//             to="/login"
-//             className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white px-8 py-3 hover:bg-gradient-to-l rounded-full font-semibold hover:bg-gray-200 transition transform hover:rotate-3 motion-safe:animate-bounce"
-//           >
-//             Login
-//           </Link>
-//           <Link
-//             to="/signup"
-//             className="px-6 py-2 border-2 border-blue-500 text-blue-500 rounded-full font-semibold hover:bg-blue-500 hover:text-white transition duration-300"
-//           >
-//             Register
-//           </Link>
-//         </div>
-//       </section>
-
-//       {/* About */}
-//       <section className="py-16 pt-5 pb-0 px-6 max-w-4xl mx-auto text-center">
-//         <h2 className="text-2xl mb-4 font-sans">What is ManoSangam ?</h2>
-//         <p className="text-lg text-gray-600">
-//           A platform where innovators share ideas, find collaborators, and build solutions together.
-//           Connect with entrepreneurs, creators, and thinkers across industries to turn concepts into reality.
-//         </p>
-//       </section>
-
-//       {/* How It Works */}
-//       <section className="py-16 px-6 max-w-4xl mx-auto text-center">
-//         <h2 className="text-2xl mb-6 font-sans">How It Works ?</h2>
-//         <div className="grid sm:grid-cols-3 gap-6">
-//           <div>
-//             <h3 className="text-xl font-semibold">1. Share Ideas</h3>
-//             <p className="text-gray-600 mt-2">
-//               Post your ideas and get feedback from the community. Build a habit of daily innovation.
-//             </p>
-//           </div>
-//           <div>
-//             <h3 className="text-xl font-semibold">2. Collaborate</h3>
-//             <p className="text-gray-600 mt-2">
-//               Find co-founders, partners, and team members. Work together on projects that matter.
-//             </p>
-//           </div>
-//           <div>
-//             <h3 className="text-xl font-semibold">3. Get Noticed</h3>
-//             <p className="text-gray-600 mt-2">
-//               Connect with investors, mentors, and customers. Turn your ideas into successful ventures.
-//             </p>
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* Why ManoSangam */}
-//       <section className="py-16 px-6 max-w-4xl mx-auto text-center">
-//         <h2 className="text-2xl mb-6 font-sans">Why ManoSangam ?</h2>
-//         <div className="grid sm:grid-cols-2 gap-8">
-//           <div className="text-center">
-//             <h3 className="text-xl font-semibold mb-3">Build Faster</h3>
-//             <p className="text-gray-600">
-//               Validate ideas quickly with community feedback. Skip the guesswork and build what people want.
-//             </p>
-//           </div>
-//           <div className="text-center">
-//             <h3 className="text-xl font-semibold mb-3">Find Your Team</h3>
-//             <p className="text-gray-600">
-//               Connect with complementary skills. Technical, business, and creative minds working together.
-//             </p>
-//           </div>
-//           <div className="text-center">
-//             <h3 className="text-xl font-semibold mb-3">Get Funding</h3>
-//             <p className="text-gray-600">
-//               Access investors and mentors actively looking for innovative solutions and promising teams.
-//             </p>
-//           </div>
-//           <div className="text-center">
-//             <h3 className="text-xl font-semibold mb-3">Join Community</h3>
-//             <p className="text-gray-600">
-//               Be part of India's growing innovation ecosystem. Learn, share, and grow with fellow entrepreneurs.
-//             </p>
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* Stats */}
-//       {/* <section className="py-16 px-6 max-w-4xl mx-auto text-center bg-gray-50">
-//         <div className="grid sm:grid-cols-3 gap-6">
-//           <div className="text-center">
-//             <div className="text-3xl font-bold text-blue-500">10K+</div>
-//             <div className="text-gray-600">Active Users</div>
-//           </div>
-//           <div className="text-center">
-//             <div className="text-3xl font-bold text-purple-500">500+</div>
-//             <div className="text-gray-600">Ideas Shared</div>
-//           </div>
-//           <div className="text-center">
-//             <div className="text-3xl font-bold text-orange-500">50+</div>
-//             <div className="text-gray-600">Startups Launched</div>
-//           </div>
-//         </div>
-//       </section> */}
-
-//       {/* Footer */}
-//       <footer className="bg-gray-900 text-white text-center py-4 px-4">
-//         <p>
-//           &copy; {new Date().getFullYear()} ManoSangam. Built for innovators.
-//         </p>
-//       </footer>
-//     </div>
-//   );
-// }
-
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 
 export default function Landing() {
   useEffect(() => {
     // 🔹 Update title & description dynamically
-    document.title = "ManoSangam - Where Ideas Converge";
+    document.title = "ManoSangam - The Gathering of Minds";
     const descTag = document.querySelector('meta[name="description"]');
     if (descTag) {
       descTag.setAttribute(
         "content",
-        "The modern platform for innovators to share breakthrough ideas, connect with co-builders, and launch the next big thing together."
+        "Share ideas, collaborate with innovators, and build solutions together. Join India's community of creators and entrepreneurs."
       );
     }
 
@@ -364,7 +207,7 @@ export default function Landing() {
       name: "ManoSangam",
       url: "https://manosangam.in",
       description:
-        "The digital ecosystem where ideas meet execution and innovation thrives.",
+        "The Gathering of Minds – where ideas meet collaboration and innovation.",
       publisher: {
         "@type": "Organization",
         name: "ManoSangam",
@@ -382,10 +225,10 @@ export default function Landing() {
       {/* Hero Section */}
       <section className="bg-black flex flex-col items-center gap-2 text-white py-16 pb-5 px-6 text-center">
         <h1 className="text-5xl font-normal mb-4">
-          Mano<span className="text-blue-500">Sangama</span>
+          Mano<span className="text-blue-500">Sangam</span>
           <span className="text-orange-400">.</span>
         </h1>
-        <p className="text-xl mb-8 italic">"Where minds converge."</p>
+        <p className="text-xl mb-8 italic">"The Gathering of Minds."</p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-2 py-6">
           {/* Login Button */}
@@ -399,18 +242,18 @@ export default function Landing() {
             to="/signup"
             className="px-6 py-2 border-2 border-blue-500 text-blue-500 rounded-full font-semibold hover:bg-blue-500 hover:text-white transition duration-300"
           >
-            Get Started
+            Register
           </Link>
         </div>
       </section>
 
       {/* About */}
       <section className="py-16 pt-5 pb-0 px-6 max-w-4xl mx-auto text-center">
-        <h2 className="text-2xl mb-4 font-sans">What is ManoSangama ?</h2>
+        <h2 className="text-2xl mb-4 font-sans">What is ManoSangam ?</h2>
         <p className="text-lg text-gray-600">
-          The digital ecosystem where breakthrough ideas meet execution. Connect
-          with innovators, co-builders, and game-changers who transform concepts
-          into market-ready solutions.
+          A platform where innovators share ideas, find collaborators, and build
+          solutions together. Connect with entrepreneurs, creators, and thinkers
+          across industries to turn concepts into reality.
         </p>
       </section>
 
@@ -419,24 +262,24 @@ export default function Landing() {
         <h2 className="text-2xl mb-6 font-sans">How It Works ?</h2>
         <div className="grid sm:grid-cols-3 gap-6">
           <div>
-            <h3 className="text-xl font-semibold">Ship Ideas</h3>
+            <h3 className="text-xl font-semibold">1. Share Ideas</h3>
             <p className="text-gray-600 mt-2">
-              Drop your next big idea. Get instant feedback from a community
-              that gets it.
+              Post your ideas and get feedback from the community. Build a habit
+              of daily innovation.
             </p>
           </div>
           <div>
-            <h3 className="text-xl font-semibold">Find Co-Builders</h3>
+            <h3 className="text-xl font-semibold">2. Collaborate</h3>
             <p className="text-gray-600 mt-2">
-              Match with complementary skills. Build diverse teams that ship
-              products people love.
+              Find co-founders, partners, and team members. Work together on
+              projects that matter.
             </p>
           </div>
           <div>
-            <h3 className="text-xl font-semibold">Scale Up</h3>
+            <h3 className="text-xl font-semibold">3. Get Noticed</h3>
             <p className="text-gray-600 mt-2">
-              Connect with VCs, angel investors, and mentors ready to back the
-              next unicorn.
+              Connect with investors, mentors, and customers. Turn your ideas
+              into successful ventures.
             </p>
           </div>
         </div>
@@ -444,34 +287,34 @@ export default function Landing() {
 
       {/* Why ManoSangam */}
       <section className="py-16 px-6 max-w-4xl mx-auto text-center">
-        <h2 className="text-2xl mb-6 font-sans">Why Choose Us ?</h2>
+        <h2 className="text-2xl mb-6 font-sans">Why ManoSangam ?</h2>
         <div className="grid sm:grid-cols-2 gap-8">
           <div className="text-center">
-            <h3 className="text-xl font-semibold mb-3">⚡ Move Fast</h3>
+            <h3 className="text-xl font-semibold mb-3">Build Faster</h3>
             <p className="text-gray-600">
-              Rapid validation cycles. Ship MVPs faster with real-time community
-              insights.
+              Validate ideas quickly with community feedback. Skip the guesswork
+              and build what people want.
             </p>
           </div>
           <div className="text-center">
-            <h3 className="text-xl font-semibold mb-3">Find Your Squad</h3>
+            <h3 className="text-xl font-semibold mb-3">Find Your Team</h3>
             <p className="text-gray-600">
-              AI-powered matching with founders, designers, and developers who
-              share your vision.
+              Connect with complementary skills. Technical, business, and
+              creative minds working together.
             </p>
           </div>
           <div className="text-center">
-            <h3 className="text-xl font-semibold mb-3">Get Funded</h3>
+            <h3 className="text-xl font-semibold mb-3">Get Funding</h3>
             <p className="text-gray-600">
-              Direct access to seed funds, accelerators, and investors actively
-              scouting talent.
+              Access investors and mentors actively looking for innovative
+              solutions and promising teams.
             </p>
           </div>
           <div className="text-center">
-            <h3 className="text-xl font-semibold mb-3">Go Global</h3>
+            <h3 className="text-xl font-semibold mb-3">Join Community</h3>
             <p className="text-gray-600">
-              Join India's fastest-growing innovation network. Think local,
-              scale global.
+              Be part of India's growing innovation ecosystem. Learn, share, and
+              grow with fellow entrepreneurs.
             </p>
           </div>
         </div>
@@ -479,41 +322,27 @@ export default function Landing() {
 
       {/* Stats */}
       {/* <section className="py-16 px-6 max-w-4xl mx-auto text-center bg-gray-50">
-        <h2 className="text-2xl mb-8 font-sans">The Numbers Speak</h2>
         <div className="grid sm:grid-cols-3 gap-6">
           <div className="text-center">
             <div className="text-3xl font-bold text-blue-500">10K+</div>
-            <div className="text-gray-600">Active Builders</div>
+            <div className="text-gray-600">Active Users</div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-purple-500">500+</div>
-            <div className="text-gray-600">Ideas Shipped</div>
+            <div className="text-gray-600">Ideas Shared</div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-orange-500">50+</div>
-            <div className="text-gray-600">Startups Funded</div>
+            <div className="text-gray-600">Startups Launched</div>
           </div>
         </div>
       </section> */}
 
-      {/* CTA */}
-      <section className="py-16 px-6 max-w-4xl mx-auto text-center">
-        <h2 className="text-2xl mb-4 font-sans">Ready to Build the Future?</h2>
-        <p className="text-lg text-gray-600 mb-8">
-          Your breakthrough idea is just one connection away. Join the community
-          that turns visions into ventures.
-        </p>
-        <Link
-          to="/signup"
-          className="bg-blue-600 text-white px-6 py-2 rounded-full font-medium"
-        >
-          Start Building Today
-        </Link>
-      </section>
-
       {/* Footer */}
       <footer className="bg-gray-900 text-white text-center py-4 px-4">
-        <p>&copy; {new Date().getFullYear()} ManoSangama.</p>
+        <p>
+          &copy; {new Date().getFullYear()} ManoSangam. Built for innovators.
+        </p>
       </footer>
     </div>
   );
