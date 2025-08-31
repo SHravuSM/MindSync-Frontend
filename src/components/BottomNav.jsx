@@ -1844,7 +1844,8 @@ const BottomNav = () => {
     if (!user) return;
 
     try {
-      const res = await api.get("/user/me");
+      const res = await api.get("/user");
+      console.log(res)
       setProfileData(res.data);
     } catch (error) {
       console.error("Failed to fetch profile data:", error);

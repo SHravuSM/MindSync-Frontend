@@ -1954,6 +1954,208 @@
 //   );
 // }
 
+// import { useEffect, useState } from "react";
+// import useThemeStore from "../../store/themeStore";
+// import api from "../../utils/api1";
+// import Loader from "../../components/PostLoader";
+
+// export default function Profile() {
+//   const [data, setData] = useState(null);
+//   const [loading, setLoading] = useState(true);
+//   const dark = useThemeStore((e) => e.dark);
+
+//   const fetchUser = async () => {
+//     try {
+//       setLoading(true);
+//       const res = await api.get("/user");
+//       setData(res.data);
+//     } catch (error) {
+//       console.error("Error fetching user data:", error);
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   useEffect(() => {
+//     fetchUser();
+//   }, []);
+
+//   if (loading) {
+//     return (
+//       <div
+//         style={{
+//           minHeight: "100vh",
+//           display: "flex",
+//           justifyContent: "center",
+//           alignItems: "center",
+//           backgroundColor: dark ? "#000" : "#fff",
+//           color: dark ? "#fff" : "#000",
+//           fontFamily: "Arial, sans-serif",
+//         }}
+//       >
+//         <Loader />
+//       </div>
+//     );
+//   }
+
+//   if (!data) {
+//     return (
+//       <div
+//         style={{
+//           minHeight: "100vh",
+//           display: "flex",
+//           justifyContent: "center",
+//           alignItems: "center",
+//           backgroundColor: dark ? "#000" : "#fff",
+//           color: dark ? "#fff" : "#000",
+//           fontFamily: "Arial, sans-serif",
+//         }}
+//       >
+//         <p>Failed to load profile data</p>
+//       </div>
+//     );
+//   }
+
+//   const joinedDate = data.createdAt
+//     ? new Date(data.createdAt).toLocaleDateString("en-US", {
+//         year: "numeric",
+//         month: "long",
+//       })
+//     : "N/A";
+
+//   const title = data.headline || "Community Member";
+
+//   const userData = {
+//     name: data.name || "User",
+//     title,
+//     bio:
+//       data.bio ||
+//       "Welcome to my profile! I'm excited to be part of the ManoSangam community.",
+//     location: data.location || "Not specified",
+//     joinedDate,
+//     skills: data.skills || [],
+//     stats: {
+//       ideasShared: data.stats?.ideasShared || 0,
+//       collaborations: data.stats?.collaborations || 0,
+//       followers: data.stats?.followers || 0,
+//       following: data.stats?.following || 0,
+//     },
+//   };
+
+//   return (
+//     <div
+//       style={{
+//         minHeight: "100vh",
+//         padding: "20px",
+//         backgroundColor: dark ? "#000" : "#fff",
+//         color: dark ? "#fff" : "#000",
+//         fontFamily: "Arial, sans-serif",
+//         maxWidth: "600px",
+//         margin: "0 auto",
+//       }}
+//     >
+//       <div style={{ textAlign: "center", marginBottom: "20px" }}>
+//         <div
+//           style={{
+//             width: 80,
+//             height: 80,
+//             borderRadius: "50%",
+//             backgroundColor: dark ? "#005f99" : "#333",
+//             color: "#fff",
+//             fontSize: "32px",
+//             fontWeight: "bold",
+//             lineHeight: "80px",
+//             margin: "0 auto 10px",
+//             userSelect: "none",
+//           }}
+//         >
+//           {userData.name
+//             .split(" ")
+//             .map((n) => n[0])
+//             .join("")}
+//         </div>
+//         <h1 style={{ margin: "0 0 5px", fontSize: "24px" }}>{userData.name}</h1>
+//         {/* <p style={{ margin: "0 0 10px", fontSize: "14px", color: dark ? "#bbb" : "#666" }}>
+//           {userData.title}
+//         </p> */}
+//         <div style={{ fontSize: "12px", color: dark ? "#999" : "#555" }}>
+//           <div>Place: {userData.location}</div>
+//           <div>Joined {userData.joinedDate}</div>
+//         </div>
+//       </div>
+
+//       <div
+//         style={{
+//           display: "flex",
+//           flexWrap: "wrap",
+//           justifyContent: "space-between",
+//           marginBottom: "20px",
+//           gap: "10px",
+//         }}
+//       >
+//         <StatBlock label="Ideas" value={userData.stats.ideasShared} dark={dark} />
+//         <StatBlock label="Projects" value={userData.stats.collaborations} dark={dark} />
+//         <StatBlock label="Followers" value={userData.stats.followers} dark={dark} />
+//         <StatBlock label="Following" value={userData.stats.following} dark={dark} />
+//       </div>
+
+//       <section style={{ marginBottom: "20px" }}>
+//         <h2 style={{ fontSize: "18px", marginBottom: "8px" }}>About</h2>
+//         <p style={{ fontSize: "14px", lineHeight: 1.4, color: dark ? "#ccc" : "#444" }}>
+//           {userData.bio}
+//         </p>
+//       </section>
+
+//       <section>
+//         <h2 style={{ fontSize: "18px", marginBottom: "8px" }}>Skills</h2>
+//         {userData.skills.length > 0 ? (
+//           <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+//             {userData.skills.map((skill, idx) => (
+//               <span
+//                 key={idx}
+//                 style={{
+//                   padding: "4px 8px",
+//                   borderRadius: "12px",
+//                   border: `1px solid ${dark ? "#666" : "#ccc"}`,
+//                   fontSize: "12px",
+//                   color: dark ? "#ddd" : "#333",
+//                   userSelect: "none",
+//                 }}
+//               >
+//                 {skill}
+//               </span>
+//             ))}
+//           </div>
+//         ) : (
+//           <p style={{ fontSize: "14px", color: dark ? "#999" : "#666" }}>
+//             No skills added yet
+//           </p>
+//         )}
+//       </section>
+//     </div>
+//   );
+// }
+
+// function StatBlock({ label, value, dark }) {
+//   return (
+//     <div
+//       style={{
+//         flex: "1 1 45%",
+//         minWidth: 120,
+//         backgroundColor: dark ? "#111" : "#f5f5f5",
+//         padding: "12px",
+//         borderRadius: "6px",
+//         textAlign: "center",
+//         userSelect: "none",
+//       }}
+//     >
+//       <div style={{ fontSize: "20px", fontWeight: "bold", marginBottom: "4px" }}>
+//         {value}
+//       </div>
+//       <div style={{ fontSize: "12px", color: dark ? "#888" : "#666" }}>{label}</div>
+//     </div>
+//   );
+// }
 
 import { useEffect, useState } from "react";
 import useThemeStore from "../../store/themeStore";
@@ -2034,13 +2236,18 @@ export default function Profile() {
       "Welcome to my profile! I'm excited to be part of the ManoSangam community.",
     location: data.location || "Not specified",
     joinedDate,
-    skills: data.skills || [],
+    skills: Array.isArray(data.skills) ? data.skills : [],
     stats: {
       ideasShared: data.stats?.ideasShared || 0,
-      collaborations: data.stats?.collaborations || 0,
+      projects: data.stats?.collaborations || 0,
       followers: data.stats?.followers || 0,
       following: data.stats?.following || 0,
+      totalLikes: data.stats?.totalLikes || 0,
+      totalImpressions: data.stats?.totalImpressions || 0,
+      fundedProjects: data.stats?.fundedProjects || 0,
     },
+    role: data.role,
+    investor: data.investor || null,
   };
 
   return (
@@ -2051,7 +2258,7 @@ export default function Profile() {
         backgroundColor: dark ? "#000" : "#fff",
         color: dark ? "#fff" : "#000",
         fontFamily: "Arial, sans-serif",
-        maxWidth: "600px",
+        maxWidth: "700px",
         margin: "0 auto",
       }}
     >
@@ -2072,7 +2279,8 @@ export default function Profile() {
         >
           {userData.name
             .split(" ")
-            .map((n) => n[0])
+            .filter(Boolean)
+            .map((n) => n)
             .join("")}
         </div>
         <h1 style={{ margin: "0 0 5px", fontSize: "24px" }}>{userData.name}</h1>
@@ -2087,27 +2295,65 @@ export default function Profile() {
 
       <div
         style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-between",
-          marginBottom: "20px",
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))",
           gap: "10px",
+          marginBottom: "20px",
         }}
       >
-        <StatBlock label="Ideas" value={userData.stats.ideasShared} dark={dark} />
-        <StatBlock label="Projects" value={userData.stats.collaborations} dark={dark} />
-        <StatBlock label="Followers" value={userData.stats.followers} dark={dark} />
-        <StatBlock label="Following" value={userData.stats.following} dark={dark} />
+        <StatBlock
+          label="Ideas"
+          value={userData.stats.ideasShared}
+          dark={dark}
+        />
+        <StatBlock
+          label="Projects"
+          value={userData.stats.projects}
+          dark={dark}
+        />
+        <StatBlock
+          label="Followers"
+          value={userData.stats.followers}
+          dark={dark}
+        />
+        <StatBlock
+          label="Following"
+          value={userData.stats.following}
+          dark={dark}
+        />
+        <StatBlock
+          label="Likes"
+          value={userData.stats.totalLikes}
+          dark={dark}
+        />
+        <StatBlock
+          label="Views"
+          value={userData.stats.totalImpressions}
+          dark={dark}
+        />
+        {userData.role === "investor" ? (
+          <StatBlock
+            label="Funded"
+            value={userData.stats.fundedProjects}
+            dark={dark}
+          />
+        ) : null}
       </div>
 
       <section style={{ marginBottom: "20px" }}>
         <h2 style={{ fontSize: "18px", marginBottom: "8px" }}>About</h2>
-        <p style={{ fontSize: "14px", lineHeight: 1.4, color: dark ? "#ccc" : "#444" }}>
+        <p
+          style={{
+            fontSize: "14px",
+            lineHeight: 1.4,
+            color: dark ? "#ccc" : "#444",
+          }}
+        >
           {userData.bio}
         </p>
       </section>
 
-      <section>
+      <section style={{ marginBottom: "20px" }}>
         <h2 style={{ fontSize: "18px", marginBottom: "8px" }}>Skills</h2>
         {userData.skills.length > 0 ? (
           <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
@@ -2133,6 +2379,23 @@ export default function Profile() {
           </p>
         )}
       </section>
+
+      {userData.role === "investor" && userData.investor ? (
+        <section style={{ marginBottom: "20px" }}>
+          <h2 style={{ fontSize: "18px", marginBottom: "8px" }}>Investor</h2>
+          <div style={{ fontSize: "14px", color: dark ? "#ccc" : "#444" }}>
+            <div>Organization: {userData.investor.organization || "—"}</div>
+            <div>Position: {userData.investor.position || "—"}</div>
+            <div>
+              Interests:{" "}
+              {Array.isArray(userData.investor.interests) &&
+              userData.investor.interests.length
+                ? userData.investor.interests.join(", ")
+                : "—"}
+            </div>
+          </div>
+        </section>
+      ) : null}
     </div>
   );
 }
@@ -2141,8 +2404,6 @@ function StatBlock({ label, value, dark }) {
   return (
     <div
       style={{
-        flex: "1 1 45%",
-        minWidth: 120,
         backgroundColor: dark ? "#111" : "#f5f5f5",
         padding: "12px",
         borderRadius: "6px",
@@ -2150,10 +2411,14 @@ function StatBlock({ label, value, dark }) {
         userSelect: "none",
       }}
     >
-      <div style={{ fontSize: "20px", fontWeight: "bold", marginBottom: "4px" }}>
+      <div
+        style={{ fontSize: "20px", fontWeight: "bold", marginBottom: "4px" }}
+      >
         {value}
       </div>
-      <div style={{ fontSize: "12px", color: dark ? "#888" : "#666" }}>{label}</div>
+      <div style={{ fontSize: "12px", color: dark ? "#888" : "#666" }}>
+        {label}
+      </div>
     </div>
   );
 }

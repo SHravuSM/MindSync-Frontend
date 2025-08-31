@@ -190,7 +190,6 @@
 
 // export default LSidebar;
 
-
 import React, { useEffect, useState } from "react";
 import {
   Plus,
@@ -221,7 +220,7 @@ const LSidebar = () => {
 
   async function me() {
     try {
-      const res = await api.get("/user/me");
+      const res = await api.get("/user");
       console.log(res.data);
       setProfileData(res.data);
     } catch (error) {
@@ -235,22 +234,39 @@ const LSidebar = () => {
 
   const navigationItems = [
     {
-      icon: <Bookmark size={16} className={dark ? "text-gray-300" : "text-gray-700"} />,
+      icon: (
+        <Bookmark
+          size={16}
+          className={dark ? "text-gray-300" : "text-gray-700"}
+        />
+      ),
       label: "Saved items",
       href: "/my-items/",
     },
     {
-      icon: <Users size={16} className={dark ? "text-gray-300" : "text-gray-700"} />,
+      icon: (
+        <Users size={16} className={dark ? "text-gray-300" : "text-gray-700"} />
+      ),
       label: "Groups",
       href: "/groups",
     },
     {
-      icon: <Newspaper size={16} className={dark ? "text-gray-300" : "text-gray-700"} />,
+      icon: (
+        <Newspaper
+          size={16}
+          className={dark ? "text-gray-300" : "text-gray-700"}
+        />
+      ),
       label: "Newsletters",
       href: "/newsletters",
     },
     {
-      icon: <Calendar size={16} className={dark ? "text-gray-300" : "text-gray-700"} />,
+      icon: (
+        <Calendar
+          size={16}
+          className={dark ? "text-gray-300" : "text-gray-700"}
+        />
+      ),
       label: "Events",
       href: "/events",
     },
@@ -303,14 +319,18 @@ const LSidebar = () => {
               >
                 {profileData.name}
               </h3>
-              <p className={`text-xs mt-1 line-clamp-2 ${
-                dark ? "text-gray-400" : "text-gray-600"
-              }`}>
+              <p
+                className={`text-xs mt-1 line-clamp-2 ${
+                  dark ? "text-gray-400" : "text-gray-600"
+                }`}
+              >
                 {profileData.headline}
               </p>
-              <p className={`text-xs mt-1 ${
-                dark ? "text-gray-500" : "text-gray-500"
-              }`}>
+              <p
+                className={`text-xs mt-1 ${
+                  dark ? "text-gray-500" : "text-gray-500"
+                }`}
+              >
                 {profileData.location}
               </p>
             </div>
@@ -330,16 +350,18 @@ const LSidebar = () => {
               <Plus
                 size={16}
                 className={`transition-colors ${
-                  dark 
-                    ? "text-gray-300 group-hover:text-gray-100" 
+                  dark
+                    ? "text-gray-300 group-hover:text-gray-100"
                     : "text-gray-600 group-hover:text-gray-800"
                 }`}
               />
-              <span className={`text-xs font-medium transition-colors ${
-                dark 
-                  ? "text-gray-300 group-hover:text-gray-100"
-                  : "text-gray-700 group-hover:text-gray-900"
-              }`}>
+              <span
+                className={`text-xs font-medium transition-colors ${
+                  dark
+                    ? "text-gray-300 group-hover:text-gray-100"
+                    : "text-gray-700 group-hover:text-gray-900"
+                }`}
+              >
                 Experience
               </span>
             </div>
@@ -350,24 +372,30 @@ const LSidebar = () => {
       <Tabs />
 
       {/* Premium Upsell Card */}
-      <div className={`rounded-lg border p-4 shadow-sm hover:shadow-md transition-shadow duration-200 ${
-        dark ? "bg-black border-gray-900" : "bg-white border-gray-200"
-      }`}>
+      <div
+        className={`rounded-lg border p-4 shadow-sm hover:shadow-md transition-shadow duration-200 ${
+          dark ? "bg-black border-gray-900" : "bg-white border-gray-200"
+        }`}
+      >
         <a
           href="/premium/products"
           className="block group"
           aria-label="Premium subscription offer"
         >
-          <h3 className={`text-xs font-normal pb-2 ${
-            dark ? "text-gray-400" : "text-gray-600"
-          }`}>
+          <h3
+            className={`text-xs font-normal pb-2 ${
+              dark ? "text-gray-400" : "text-gray-600"
+            }`}
+          >
             Accelerate your career
           </h3>
           <div className="flex items-start space-x-2">
             <Crown size={20} className="text-amber-500 flex-shrink-0 mt-0.5" />
-            <span className={`text-xs font-medium group-hover:text-blue-600 transition-colors duration-200 ${
-              dark ? "text-gray-200" : "text-gray-900"
-            }`}>
+            <span
+              className={`text-xs font-medium group-hover:text-blue-600 transition-colors duration-200 ${
+                dark ? "text-gray-200" : "text-gray-900"
+              }`}
+            >
               Try Premium for ₹0
             </span>
           </div>
@@ -375,9 +403,11 @@ const LSidebar = () => {
       </div>
 
       {/* Navigation Links Card */}
-      <div className={`rounded-lg border p-4 shadow-sm hover:shadow-md transition-shadow duration-200 ${
-        dark ? "bg-black border-gray-900" : "bg-white border-gray-200"
-      }`}>
+      <div
+        className={`rounded-lg border p-4 shadow-sm hover:shadow-md transition-shadow duration-200 ${
+          dark ? "bg-black border-gray-900" : "bg-white border-gray-200"
+        }`}
+      >
         <ul className="space-y-4">
           {navigationItems.map((item, index) => (
             <li key={index}>
@@ -388,9 +418,11 @@ const LSidebar = () => {
               >
                 <div className="flex items-center space-x-3">
                   <div className="flex-shrink-0">{item.icon}</div>
-                  <span className={`text-xs font-semibold group-hover:text-blue-600 transition-colors duration-200 ${
-                    dark ? "text-gray-200" : "text-gray-900"
-                  }`}>
+                  <span
+                    className={`text-xs font-semibold group-hover:text-blue-600 transition-colors duration-200 ${
+                      dark ? "text-gray-200" : "text-gray-900"
+                    }`}
+                  >
                     {item.label}
                   </span>
                 </div>
