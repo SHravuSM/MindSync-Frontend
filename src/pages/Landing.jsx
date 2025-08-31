@@ -242,7 +242,7 @@ export default function Landing() {
             to="/signup"
             className="px-6 py-2 border-2 border-blue-500 text-blue-500 rounded-full font-semibold hover:bg-blue-500 hover:text-white transition duration-300"
           >
-            Register
+            Get Started
           </Link>
         </div>
       </section>
