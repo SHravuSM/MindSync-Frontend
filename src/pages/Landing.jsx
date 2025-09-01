@@ -6,7 +6,7 @@
 //       {/* Hero Section */}
 //       <section className="bg-black flex flex-col items-center gap-2 text-white py-16 pb-5 px-6 text-center">
 //         <h1 className="text-5xl font-normal mb-4">
-//           Mano<span className="text-blue-500">Sangam</span>
+//           Mano<span className="text-blue-500">Sangama</span>
 //           <span className="text-orange-400">.</span>
 //         </h1>
 //         <p className="text-xl mb-8 italic">“The Gathering of Minds.”</p>
@@ -32,7 +32,7 @@
 
 //       {/* About */}
 //       <section className="py-16 pt-5 pb-0 px-6 max-w-4xl mx-auto text-center">
-//         <h2 className="text-2xl mb-4 font-sans">What is ManoSangam ?</h2>
+//         <h2 className="text-2xl mb-4 font-sans">What is ManoSangama ?</h2>
 //         <p className="text-lg text-gray-600">
 //           Welcome to a confluence of thinkers, dreamers, and doers. Share your
 //           ideas, explore perspectives, and ignite innovation — Where minds
@@ -67,7 +67,7 @@
 //       {/* Footer */}
 //       <footer className="bg-gray-900 text-white text-center py-4 px-4">
 //         <p>
-//           &copy; {new Date().getFullYear()} ManoSangam. Built for idea warriors.
+//           &copy; {new Date().getFullYear()} ManoSangama. Built for idea warriors.
 //         </p>
 //       </footer>
 //     </div>
@@ -80,12 +80,12 @@
 // export default function Landing() {
 //   useEffect(() => {
 //     // 🔹 Update title & description dynamically
-//     document.title = "ManoSangam - The Gathering of Minds";
+//     document.title = "ManoSangama - The Gathering of Minds";
 //     const descTag = document.querySelector('meta[name="description"]');
 //     if (descTag) {
 //       descTag.setAttribute(
 //         "content",
-//         "Join ManoSangam - a confluence of thinkers, dreamers, and doers. Share your ideas, collaborate, and ignite innovation."
+//         "Join ManoSangama - a confluence of thinkers, dreamers, and doers. Share your ideas, collaborate, and ignite innovation."
 //       );
 //     }
 
@@ -95,13 +95,13 @@
 //     script.innerHTML = JSON.stringify({
 //       "@context": "https://schema.org",
 //       "@type": "WebSite",
-//       name: "ManoSangam",
-//       url: "https://manosangam.in",
+//       name: "ManoSangama",
+//       url: "https://manosangama.in",
 //       description:
 //         "The Gathering of Minds – a place where ideas meet collaboration and innovation.",
 //       publisher: {
 //         "@type": "Organization",
-//         name: "ManoSangam",
+//         name: "ManoSangama",
 //       },
 //     });
 //     document.head.appendChild(script);
@@ -116,7 +116,7 @@
 //       {/* Hero Section */}
 //       <section className="bg-black flex flex-col items-center gap-2 text-white py-16 pb-5 px-6 text-center">
 //         <h1 className="text-5xl font-normal mb-4">
-//           Mano<span className="text-blue-500">Sangam</span>
+//           Mano<span className="text-blue-500">Sangama</span>
 //           <span className="text-orange-400">.</span>
 //         </h1>
 //         <p className="text-xl mb-8 italic">“The Gathering of Minds.”</p>
@@ -140,7 +140,7 @@
 
 //       {/* About */}
 //       <section className="py-16 pt-5 pb-0 px-6 max-w-4xl mx-auto text-center">
-//         <h2 className="text-2xl mb-4 font-sans">What is ManoSangam ?</h2>
+//         <h2 className="text-2xl mb-4 font-sans">What is ManoSangama ?</h2>
 //         <p className="text-lg text-gray-600">
 //           Welcome to a confluence of thinkers, dreamers, and doers. Share your
 //           ideas, explore perspectives, and ignite innovation — Where minds
@@ -176,7 +176,7 @@
 //       {/* Footer */}
 //       <footer className="bg-gray-900 text-white text-center py-4 px-4">
 //         <p>
-//           &copy; {new Date().getFullYear()} ManoSangam. Built for idea warriors.
+//           &copy; {new Date().getFullYear()} ManoSangama. Built for idea warriors.
 //         </p>
 //       </footer>
 //     </div>
@@ -189,7 +189,7 @@ import { useEffect } from "react";
 export default function Landing() {
   useEffect(() => {
     // 🔹 Update title & description dynamically
-    document.title = "ManoSangam - The Gathering of Minds";
+    document.title = "ManoSangama - The Gathering of Minds";
     const descTag = document.querySelector('meta[name="description"]');
     if (descTag) {
       descTag.setAttribute(
@@ -204,13 +204,13 @@ export default function Landing() {
     script.innerHTML = JSON.stringify({
       "@context": "https://schema.org",
       "@type": "WebSite",
-      name: "ManoSangam",
-      url: "https://manosangam.in",
+      name: "ManoSangama",
+      url: "https://manosangama.in",
       description:
         "The Gathering of Minds – where ideas meet collaboration and innovation.",
       publisher: {
         "@type": "Organization",
-        name: "ManoSangam",
+        name: "ManoSangama",
       },
     });
     document.head.appendChild(script);
@@ -225,7 +225,7 @@ export default function Landing() {
       {/* Hero Section */}
       <section className="bg-black flex flex-col items-center gap-2 text-white py-16 pb-5 px-6 text-center">
         <h1 className="text-5xl font-normal mb-4">
-          Mano<span className="text-blue-500">Sangam</span>
+          Mano<span className="text-blue-500">Sangama</span>
           <span className="text-orange-400">.</span>
         </h1>
         <p className="text-xl mb-8 italic">"The Gathering of Minds."</p>
@@ -249,7 +249,7 @@ export default function Landing() {
 
       {/* About */}
       <section className="py-16 pt-5 pb-0 px-6 max-w-4xl mx-auto text-center">
-        <h2 className="text-2xl mb-4 font-sans">What is ManoSangam ?</h2>
+        <h2 className="text-2xl mb-4 font-sans">What is ManoSangama ?</h2>
         <p className="text-lg text-gray-600">
           A platform where innovators share ideas, find collaborators, and build
           solutions together. Connect with entrepreneurs, creators, and thinkers
@@ -285,9 +285,9 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Why ManoSangam */}
+      {/* Why ManoSangama */}
       <section className="py-16 px-6 max-w-4xl mx-auto text-center">
-        <h2 className="text-2xl mb-6 font-sans">Why ManoSangam ?</h2>
+        <h2 className="text-2xl mb-6 font-sans">Why ManoSangama ?</h2>
         <div className="grid sm:grid-cols-2 gap-8">
           <div className="text-center">
             <h3 className="text-xl font-semibold mb-3">Build Faster</h3>
@@ -341,7 +341,7 @@ export default function Landing() {
       {/* Footer */}
       <footer className="bg-gray-900 text-white text-center py-4 px-4">
         <p>
-          &copy; {new Date().getFullYear()} ManoSangam. Built for innovators.
+          &copy; {new Date().getFullYear()} ManoSangama. Built for innovators.
         </p>
       </footer>
     </div>
