@@ -1774,35 +1774,7 @@ const PitchOne = () => {
 
     try {
       const response = await api.post("/summarize-pitch", {
-        pitchData: {
-          startupName: pitch.startupName,
-          oneLiner: pitch.oneLiner,
-          targetMarket: pitch.targetMarket,
-          businessModel: pitch.businessModel,
-          problem: pitch.problem,
-          solution: pitch.solution,
-          traction: pitch.traction,
-          competition: pitch.competition,
-          team: pitch.team,
-          goToMarketStrategy: pitch.goToMarketStrategy,
-          fundingAsk:
-            fundingDetails.askAmount ||
-            fundingDetails.fundingAskAmount ||
-            pitch.fundingAsk ||
-            0,
-          fundingUse: pitch.fundingUse,
-          founderName: pitch.founderName,
-          executiveSummary: pitch.executiveSummary,
-          marketSize: pitch.market?.totalMarketSize || 0,
-          revenueModel: pitch.financials?.revenueStreams || [],
-          futureVision: pitch.futureVision,
-          risks: pitch.risks,
-          revenue:
-            pitch.financials?.monthlyRevenue ||
-            pitch.financials?.currentRevenue ||
-            0,
-          valuation: valuation,
-        },
+        pitchData: pitch,
       });
       setSummary(response.data.summary);
       setShowSummary(true);

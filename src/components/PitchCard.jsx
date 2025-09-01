@@ -598,6 +598,281 @@
 
 // export default PitchCard;
 
+// import { useState, useEffect } from "react";
+// import { Link } from "react-router-dom";
+// import useThemeStore from "../store/themeStore";
+// import {
+//   Target,
+//   CheckCircle,
+//   AlertTriangle,
+//   Heart,
+//   ChevronRight,
+//   TrendingUp,
+//   Users,
+//   DollarSign,
+//   Clock,
+//   Award,
+//   Handshake,
+//   Building,
+// } from "lucide-react";
+// import useAuthStore from "../store/authStore";
+// import api from "../utils/api1";
+
+// const PitchCard = ({ pitch }) => {
+//   const dark = useThemeStore((s) => s.dark);
+//   const { user } = useAuthStore();
+
+//   const [likes, setLikes] = useState(pitch.likes || []);
+//   const [isUpvoted, setIsUpvoted] = useState(false);
+
+//   useEffect(() => {
+//     if (user && likes.some((like) => like.user === user._id)) {
+//       setIsUpvoted(true);
+//     } else {
+//       setIsUpvoted(false);
+//     }
+//   }, [user, likes]);
+
+//   const handleUpvote = async (e) => {
+//     e.stopPropagation();
+//     try {
+//       const res = await api.post(`user/posts/pitches/${pitch._id}/like`);
+//       setLikes(res.data.likes);
+//       const userLiked = res.data.likes.some((like) => like.user === user._id);
+//       setIsUpvoted(userLiked);
+//     } catch (error) {
+//       console.error("Failed to update like:", error);
+//     }
+//   };
+
+//   if (!pitch) return null;
+
+//   // Extract key metrics with fallbacks
+//   const monthlyRevenue = pitch.financials?.monthlyRevenue || 0;
+//   const yearOverYearGrowth = pitch.financials?.yearOverYearGrowthPercent || 0;
+//   const monthlyActiveUsers = pitch.productMetrics?.monthlyActiveUsers || 0;
+//   const customerAcquisitionCost =
+//     pitch.financials?.customerAcquisitionCost || 0;
+//   const lifetimeValue = pitch.financials?.lifetimeValue || 0;
+//   const runwayMonths = pitch.financials?.runwayMonths || 0;
+//   const totalMarketSize = pitch.market?.totalMarketSize || 0;
+//   const teamStrength = pitch.teamStrength || pitch.foundingTeam?.length || 1;
+//   const fundingAsk =
+//     pitch.fundingDetails?.fundingAskAmount || pitch.fundingAsk || 0;
+//   const equityOffered =
+//     pitch.fundingDetails?.equityOfferedPercent || pitch.equityOffered || 0;
+
+//   // Calculate derived metrics
+//   const ltv2cacRatio =
+//     customerAcquisitionCost > 0 ? lifetimeValue / customerAcquisitionCost : 0;
+//   const marketSizeInCrores = totalMarketSize / 10000000;
+
+//   // Format large numbers
+//   const formatNumber = (num) => {
+//     if (num >= 10000000) return `₹${(num / 10000000).toFixed(1)}Cr`;
+//     if (num >= 100000) return `₹${(num / 100000).toFixed(1)}L`;
+//     if (num >= 1000) return `₹${(num / 1000).toFixed(1)}K`;
+//     return `₹${num.toLocaleString()}`;
+//   };
+
+//   const formatUsers = (num) => {
+//     if (num >= 1000000) return `${(num / 1000000).toFixed(1)}M`;
+//     if (num >= 1000) return `${(num / 1000).toFixed(1)}K`;
+//     return num.toString();
+//   };
+
+//   // Compact status badges
+//   const getStatusBadges = () => {
+//     const badges = [];
+
+//     if (monthlyRevenue > 0)
+//       badges.push({ text: "Rev+", color: "bg-green-100 text-green-700" });
+//     if (pitch.productMetrics?.keyAchievements?.length > 0)
+//       badges.push({
+//         text: `${pitch.productMetrics.keyAchievements.length}★`,
+//         color: "bg-purple-100 text-purple-700",
+//       });
+//     if (pitch.partnerships?.length > 0)
+//       badges.push({
+//         text: `${pitch.partnerships.length}🤝`,
+//         color: "bg-blue-100 text-blue-700",
+//       });
+//     if (pitch.stage)
+//       badges.push({ text: pitch.stage, color: "bg-gray-100 text-gray-700" });
+
+//     return badges.slice(0, 4);
+//   };
+
+//   const statusBadges = getStatusBadges();
+
+//   return (
+//     <div
+//       className={`backdrop-blur-xl lg:max-w-xl rounded-sm border-[0.1px] transition-all duration-700 ease-out cursor-pointer overflow-hidden group lg:w-xl ${
+//         dark
+//           ? "bg-black border-gray-700 text-gray-100 hover:bg-black"
+//           : "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
+//       } mb-2 shadow-sm`}
+//     >
+//       {/* Compact Header */}
+//       <div className="p-3 flex justify-between items-start">
+//         <div className="flex-1 mr-3">
+//           <div className="flex items-center gap-2 mb-1">
+//             <h2 className="text-lg font-medium">{pitch.startupName}</h2>
+//             {statusBadges.map((badge, index) => (
+//               <span
+//                 key={index}
+//                 className={`px-1.5 py-0.5 rounded text-xs ${badge.color}`}
+//               >
+//                 {badge.text}
+//               </span>
+//             ))}
+//           </div>
+//           <p className="text-sm opacity-70 line-clamp-1">{pitch.oneLiner}</p>
+//         </div>
+
+//         <div className="text-right text-sm">
+//           <div className="font-bold">{formatNumber(fundingAsk)}</div>
+//           <div className="text-xs opacity-70">{equityOffered}% equity</div>
+//         </div>
+//       </div>
+
+//       {/* Compact Metrics */}
+//       <div className="px-3 pb-2 grid grid-cols-6 gap-2 text-center text-xs">
+//         <div>
+//           <div className="font-semibold text-green-600">
+//             {formatNumber(monthlyRevenue)}
+//           </div>
+//           <div className="opacity-60">MRR</div>
+//         </div>
+//         <div>
+//           <div className="font-semibold text-blue-600">
+//             {formatUsers(monthlyActiveUsers)}
+//           </div>
+//           <div className="opacity-60">Users</div>
+//         </div>
+//         <div>
+//           <div
+//             className={`font-semibold ${
+//               yearOverYearGrowth > 0 ? "text-green-600" : "text-gray-500"
+//             }`}
+//           >
+//             {yearOverYearGrowth > 0 ? "+" : ""}
+//             {yearOverYearGrowth}%
+//           </div>
+//           <div className="opacity-60">Growth</div>
+//         </div>
+//         {customerAcquisitionCost > 0 && (
+//           <div>
+//             <div className="font-semibold">
+//               ₹{(customerAcquisitionCost / 1000).toFixed(0)}K
+//             </div>
+//             <div className="opacity-60">CAC</div>
+//           </div>
+//         )}
+//         {lifetimeValue > 0 && (
+//           <div>
+//             <div className="font-semibold">
+//               ₹{(lifetimeValue / 1000).toFixed(0)}K
+//             </div>
+//             <div className="opacity-60">LTV</div>
+//           </div>
+//         )}
+//         {runwayMonths > 0 && (
+//           <div>
+//             <div
+//               className={`font-semibold ${
+//                 runwayMonths < 12 ? "text-red-600" : ""
+//               }`}
+//             >
+//               {runwayMonths}m
+//             </div>
+//             <div className="opacity-60">Runway</div>
+//           </div>
+//         )}
+//       </div>
+
+//       {/* Compact Business Info */}
+//       <div className="px-3 py-2 border-t text-sm">
+//         <div className="flex justify-between items-center mb-1">
+//           <div className="flex items-center gap-1">
+//             <Target size={12} />
+//             <span className="font-medium">{pitch.targetMarket}</span>
+//             {totalMarketSize > 0 && (
+//               <span className="text-xs opacity-60">
+//                 (₹{marketSizeInCrores.toFixed(1)}Cr TAM)
+//               </span>
+//             )}
+//           </div>
+//           {ltv2cacRatio > 0 && (
+//             <span
+//               className={`text-xs ${
+//                 ltv2cacRatio >= 3 ? "text-green-600" : "text-red-600"
+//               }`}
+//             >
+//               LTV:CAC 1:{ltv2cacRatio.toFixed(1)}
+//             </span>
+//           )}
+//         </div>
+//       </div>
+
+//       {/* Compact Footer */}
+//       <div
+//         className={`px-3 py-2 flex items-center justify-between text-sm ${
+//           dark ? "bg-gray-800" : "bg-gray-50"
+//         }`}
+//       >
+//         <div className="flex items-center gap-3">
+//           <div>
+//             <div className="font-medium">{pitch.founderName}</div>
+//             <div className="text-xs opacity-70 flex items-center gap-2">
+//               <span className="flex items-center gap-1">
+//                 <Users size={10} />
+//                 Team: {teamStrength}
+//               </span>
+//               {pitch.industry && <span>• {pitch.industry}</span>}
+//             </div>
+//           </div>
+//         </div>
+
+//         <div className="flex items-center gap-2">
+//           <button
+//             onClick={handleUpvote}
+//             className={`flex items-center gap-1 px-2 py-1 rounded-full text-xs transition-all ${
+//               isUpvoted
+//                 ? "bg-red-100 text-red-600"
+//                 : dark
+//                 ? "bg-gray-700 text-gray-300 hover:bg-gray-600"
+//                 : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+//             }`}
+//           >
+//             <Heart size={12} className={isUpvoted ? "fill-current" : ""} />
+//             {likes.length}
+//           </button>
+
+//           <Link
+//             to={`${pitch._id}`}
+//             state={pitch}
+//             className={`p-1 rounded ${dark ? "bg-gray-700" : "bg-gray-100"}`}
+//           >
+//             <ChevronRight size={16} />
+//           </Link>
+//         </div>
+//       </div>
+
+//       {/* Critical Warning Strip */}
+//       {runwayMonths > 0 && runwayMonths < 6 && (
+//         <div className="px-3 py-1 bg-red-50 text-red-700 text-xs flex items-center gap-1">
+//           <AlertTriangle size={10} />
+//           Critical: {runwayMonths}m runway left
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default PitchCard;
+
+
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useThemeStore from "../store/themeStore";
@@ -647,28 +922,47 @@ const PitchCard = ({ pitch }) => {
 
   if (!pitch) return null;
 
-  // Extract key metrics with fallbacks
-  const monthlyRevenue = pitch.financials?.monthlyRevenue || 0;
-  const yearOverYearGrowth = pitch.financials?.yearOverYearGrowthPercent || 0;
+  // Enhanced metrics calculation with fallbacks and validation
+  const calculateMonthlyRevenue = () => {
+    const monthlyRev = pitch.financials?.monthlyRevenue;
+    const annualRev = pitch.financials?.revenueThisYear;
+    
+    if (monthlyRev && monthlyRev > 0) return monthlyRev;
+    if (annualRev && annualRev > 0) return annualRev / 12;
+    return 0;
+  };
+
+  const calculateYearOverYearGrowth = () => {
+    const growthPercent = pitch.financials?.yearOverYearGrowthPercent;
+    const currentYear = pitch.financials?.revenueThisYear;
+    const lastYear = pitch.financials?.revenueLastYear;
+    
+    if (growthPercent && !isNaN(growthPercent)) return growthPercent;
+    if (currentYear && lastYear && lastYear > 0) {
+      return ((currentYear - lastYear) / lastYear * 100);
+    }
+    return 0;
+  };
+
+  const monthlyRevenue = calculateMonthlyRevenue();
+  const yearOverYearGrowth = calculateYearOverYearGrowth();
   const monthlyActiveUsers = pitch.productMetrics?.monthlyActiveUsers || 0;
-  const customerAcquisitionCost =
-    pitch.financials?.customerAcquisitionCost || 0;
+  const customerAcquisitionCost = pitch.financials?.customerAcquisitionCost || 0;
   const lifetimeValue = pitch.financials?.lifetimeValue || 0;
   const runwayMonths = pitch.financials?.runwayMonths || 0;
   const totalMarketSize = pitch.market?.totalMarketSize || 0;
   const teamStrength = pitch.teamStrength || pitch.foundingTeam?.length || 1;
-  const fundingAsk =
-    pitch.fundingDetails?.fundingAskAmount || pitch.fundingAsk || 0;
-  const equityOffered =
-    pitch.fundingDetails?.equityOfferedPercent || pitch.equityOffered || 0;
+  const fundingAsk = pitch.fundingDetails?.fundingAskAmount || pitch.fundingAsk || 0;
+  const equityOffered = pitch.fundingDetails?.equityOfferedPercent || pitch.equityOffered || 0;
 
-  // Calculate derived metrics
-  const ltv2cacRatio =
-    customerAcquisitionCost > 0 ? lifetimeValue / customerAcquisitionCost : 0;
-  const marketSizeInCrores = totalMarketSize / 10000000;
+  // Calculate derived metrics with validation
+  const ltv2cacRatio = (customerAcquisitionCost > 0 && lifetimeValue > 0) ? 
+    lifetimeValue / customerAcquisitionCost : 0;
+  const marketSizeInCrores = totalMarketSize > 0 ? totalMarketSize / 10000000 : 0;
 
-  // Format large numbers
+  // Enhanced number formatting with validation
   const formatNumber = (num) => {
+    if (!num || isNaN(num) || num < 0) return "₹0";
     if (num >= 10000000) return `₹${(num / 10000000).toFixed(1)}Cr`;
     if (num >= 100000) return `₹${(num / 100000).toFixed(1)}L`;
     if (num >= 1000) return `₹${(num / 1000).toFixed(1)}K`;
@@ -676,34 +970,123 @@ const PitchCard = ({ pitch }) => {
   };
 
   const formatUsers = (num) => {
+    if (!num || isNaN(num) || num < 0) return "0";
     if (num >= 1000000) return `${(num / 1000000).toFixed(1)}M`;
     if (num >= 1000) return `${(num / 1000).toFixed(1)}K`;
     return num.toString();
   };
 
-  // Compact status badges
+  const formatGrowth = (growth) => {
+    if (!growth || isNaN(growth)) return "0%";
+    const sign = growth > 0 ? "+" : "";
+    return `${sign}${growth.toFixed(0)}%`;
+  };
+
+  // Enhanced status badges with proper logic
   const getStatusBadges = () => {
     const badges = [];
 
-    if (monthlyRevenue > 0)
+    // Revenue positive check
+    if (monthlyRevenue > 0) {
       badges.push({ text: "Rev+", color: "bg-green-100 text-green-700" });
-    if (pitch.productMetrics?.keyAchievements?.length > 0)
+    }
+
+    // Achievements check
+    const achievements = pitch.productMetrics?.keyAchievements?.filter(a => a && a.trim()) || [];
+    if (achievements.length > 0) {
       badges.push({
-        text: `${pitch.productMetrics.keyAchievements.length}★`,
+        text: `${achievements.length}★`,
         color: "bg-purple-100 text-purple-700",
       });
-    if (pitch.partnerships?.length > 0)
+    }
+
+    // Partnerships check
+    const partnerships = pitch.partnerships?.filter(p => p && p.partnerName && p.partnerName.trim()) || [];
+    if (partnerships.length > 0) {
       badges.push({
-        text: `${pitch.partnerships.length}🤝`,
+        text: `${partnerships.length}🤝`,
         color: "bg-blue-100 text-blue-700",
       });
-    if (pitch.stage)
-      badges.push({ text: pitch.stage, color: "bg-gray-100 text-gray-700" });
+    }
+
+    // Stage check
+    if (pitch.stage && pitch.stage.trim()) {
+      badges.push({ 
+        text: pitch.stage, 
+        color: "bg-gray-100 text-gray-700" 
+      });
+    }
 
     return badges.slice(0, 4);
   };
 
   const statusBadges = getStatusBadges();
+
+  // Build active metrics array for dynamic grid
+  const buildActiveMetrics = () => {
+    const metrics = [];
+
+    // Always show revenue if available
+    if (monthlyRevenue > 0) {
+      metrics.push({
+        value: formatNumber(monthlyRevenue),
+        label: "MRR",
+        color: "text-green-600"
+      });
+    }
+
+    // Always show users if available
+    if (monthlyActiveUsers > 0) {
+      metrics.push({
+        value: formatUsers(monthlyActiveUsers),
+        label: "Users",
+        color: "text-blue-600"
+      });
+    }
+
+    // Growth rate
+    if (Math.abs(yearOverYearGrowth) > 0) {
+      metrics.push({
+        value: formatGrowth(yearOverYearGrowth),
+        label: "Growth",
+        color: yearOverYearGrowth > 0 ? "text-green-600" : "text-red-600"
+      });
+    }
+
+    // CAC if meaningful
+    if (customerAcquisitionCost > 0) {
+      metrics.push({
+        value: `₹${(customerAcquisitionCost / 1000).toFixed(0)}K`,
+        label: "CAC",
+        color: "text-orange-600"
+      });
+    }
+
+    // LTV if meaningful
+    if (lifetimeValue > 0) {
+      metrics.push({
+        value: `₹${(lifetimeValue / 1000).toFixed(0)}K`,
+        label: "LTV",
+        color: "text-purple-600"
+      });
+    }
+
+    // Runway with warning colors
+    if (runwayMonths > 0 && !isNaN(runwayMonths)) {
+      metrics.push({
+        value: `${runwayMonths}m`,
+        label: "Runway",
+        color: runwayMonths < 12 ? "text-red-600" : "text-gray-600"
+      });
+    }
+
+    return metrics;
+  };
+
+  const activeMetrics = buildActiveMetrics();
+  const gridCols = activeMetrics.length <= 3 ? 'grid-cols-3' : 
+                   activeMetrics.length <= 4 ? 'grid-cols-4' : 
+                   activeMetrics.length <= 5 ? 'grid-cols-5' : 'grid-cols-6';
 
   return (
     <div
@@ -713,100 +1096,64 @@ const PitchCard = ({ pitch }) => {
           : "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
       } mb-2 shadow-sm`}
     >
-      {/* Compact Header */}
+      {/* Enhanced Header */}
       <div className="p-3 flex justify-between items-start">
         <div className="flex-1 mr-3">
-          <div className="flex items-center gap-2 mb-1">
-            <h2 className="text-lg font-medium">{pitch.startupName}</h2>
+          <div className="flex items-center gap-2 mb-1 flex-wrap">
+            <h2 className="text-lg font-medium">{pitch.startupName || "Unknown Startup"}</h2>
             {statusBadges.map((badge, index) => (
               <span
                 key={index}
-                className={`px-1.5 py-0.5 rounded text-xs ${badge.color}`}
+                className={`px-1.5 py-0.5 rounded text-xs ${badge.color} whitespace-nowrap`}
               >
                 {badge.text}
               </span>
             ))}
           </div>
-          <p className="text-sm opacity-70 line-clamp-1">{pitch.oneLiner}</p>
+          <p className="text-sm opacity-70 line-clamp-1">
+            {pitch.oneLiner || pitch.uniqueValueProposition || "No description available"}
+          </p>
         </div>
 
-        <div className="text-right text-sm">
+        <div className="text-right text-sm flex-shrink-0">
           <div className="font-bold">{formatNumber(fundingAsk)}</div>
-          <div className="text-xs opacity-70">{equityOffered}% equity</div>
+          {equityOffered > 0 && (
+            <div className="text-xs opacity-70">{equityOffered}% equity</div>
+          )}
         </div>
       </div>
 
-      {/* Compact Metrics */}
-      <div className="px-3 pb-2 grid grid-cols-6 gap-2 text-center text-xs">
-        <div>
-          <div className="font-semibold text-green-600">
-            {formatNumber(monthlyRevenue)}
-          </div>
-          <div className="opacity-60">MRR</div>
-        </div>
-        <div>
-          <div className="font-semibold text-blue-600">
-            {formatUsers(monthlyActiveUsers)}
-          </div>
-          <div className="opacity-60">Users</div>
-        </div>
-        <div>
-          <div
-            className={`font-semibold ${
-              yearOverYearGrowth > 0 ? "text-green-600" : "text-gray-500"
-            }`}
-          >
-            {yearOverYearGrowth > 0 ? "+" : ""}
-            {yearOverYearGrowth}%
-          </div>
-          <div className="opacity-60">Growth</div>
-        </div>
-        {customerAcquisitionCost > 0 && (
-          <div>
-            <div className="font-semibold">
-              ₹{(customerAcquisitionCost / 1000).toFixed(0)}K
+      {/* Dynamic Metrics Grid */}
+      {activeMetrics.length > 0 && (
+        <div className={`px-3 pb-2 grid ${gridCols} gap-2 text-center text-xs`}>
+          {activeMetrics.map((metric, index) => (
+            <div key={index}>
+              <div className={`font-semibold ${metric.color}`}>
+                {metric.value}
+              </div>
+              <div className="opacity-60">{metric.label}</div>
             </div>
-            <div className="opacity-60">CAC</div>
-          </div>
-        )}
-        {lifetimeValue > 0 && (
-          <div>
-            <div className="font-semibold">
-              ₹{(lifetimeValue / 1000).toFixed(0)}K
-            </div>
-            <div className="opacity-60">LTV</div>
-          </div>
-        )}
-        {runwayMonths > 0 && (
-          <div>
-            <div
-              className={`font-semibold ${
-                runwayMonths < 12 ? "text-red-600" : ""
-              }`}
-            >
-              {runwayMonths}m
-            </div>
-            <div className="opacity-60">Runway</div>
-          </div>
-        )}
-      </div>
+          ))}
+        </div>
+      )}
 
-      {/* Compact Business Info */}
+      {/* Enhanced Business Info */}
       <div className="px-3 py-2 border-t text-sm">
         <div className="flex justify-between items-center mb-1">
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1 flex-1">
             <Target size={12} />
-            <span className="font-medium">{pitch.targetMarket}</span>
-            {totalMarketSize > 0 && (
+            <span className="font-medium">{pitch.targetMarket || pitch.industry || "Market TBD"}</span>
+            {marketSizeInCrores > 0 && (
               <span className="text-xs opacity-60">
-                (₹{marketSizeInCrores.toFixed(1)}Cr TAM)
+                (₹{marketSizeInCrores.toFixed(0)}Cr TAM)
               </span>
             )}
           </div>
           {ltv2cacRatio > 0 && (
             <span
-              className={`text-xs ${
-                ltv2cacRatio >= 3 ? "text-green-600" : "text-red-600"
+              className={`text-xs flex-shrink-0 ml-2 ${
+                ltv2cacRatio >= 3 ? "text-green-600" : 
+                ltv2cacRatio >= 1 ? "text-orange-600" : "text-red-600"
               }`}
             >
               LTV:CAC 1:{ltv2cacRatio.toFixed(1)}
@@ -815,15 +1162,17 @@ const PitchCard = ({ pitch }) => {
         </div>
       </div>
 
-      {/* Compact Footer */}
+      {/* Enhanced Footer */}
       <div
         className={`px-3 py-2 flex items-center justify-between text-sm ${
           dark ? "bg-gray-800" : "bg-gray-50"
         }`}
       >
-        <div className="flex items-center gap-3">
-          <div>
-            <div className="font-medium">{pitch.founderName}</div>
+        <div className="flex items-center gap-3 flex-1">
+          <div className="min-w-0">
+            <div className="font-medium truncate">
+              {pitch.founderName || pitch.foundingTeam?.[0]?.name || "Unknown Founder"}
+            </div>
             <div className="text-xs opacity-70 flex items-center gap-2">
               <span className="flex items-center gap-1">
                 <Users size={10} />
@@ -834,7 +1183,7 @@ const PitchCard = ({ pitch }) => {
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-shrink-0">
           <button
             onClick={handleUpvote}
             className={`flex items-center gap-1 px-2 py-1 rounded-full text-xs transition-all ${
@@ -846,24 +1195,34 @@ const PitchCard = ({ pitch }) => {
             }`}
           >
             <Heart size={12} className={isUpvoted ? "fill-current" : ""} />
-            {likes.length}
+            {likes.length || 0}
           </button>
 
           <Link
             to={`${pitch._id}`}
             state={pitch}
-            className={`p-1 rounded ${dark ? "bg-gray-700" : "bg-gray-100"}`}
+            className={`p-1 rounded transition-colors ${
+              dark ? "bg-gray-700 hover:bg-gray-600" : "bg-gray-100 hover:bg-gray-200"
+            }`}
           >
             <ChevronRight size={16} />
           </Link>
         </div>
       </div>
 
-      {/* Critical Warning Strip */}
-      {runwayMonths > 0 && runwayMonths < 6 && (
+      {/* Enhanced Critical Warning Strip */}
+      {runwayMonths && !isNaN(runwayMonths) && runwayMonths < 6 && (
         <div className="px-3 py-1 bg-red-50 text-red-700 text-xs flex items-center gap-1">
           <AlertTriangle size={10} />
-          Critical: {runwayMonths}m runway left
+          <span className="font-medium">Critical:</span> {runwayMonths}m runway remaining
+        </div>
+      )}
+
+      {/* Success Indicator Strip */}
+      {monthlyRevenue > 1000000 && yearOverYearGrowth > 50 && (
+        <div className="px-3 py-1 bg-green-50 text-green-700 text-xs flex items-center gap-1">
+          <TrendingUp size={10} />
+          <span className="font-medium">High Growth:</span> {formatGrowth(yearOverYearGrowth)} revenue growth
         </div>
       )}
     </div>

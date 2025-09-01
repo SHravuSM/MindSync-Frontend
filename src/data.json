@@ -1,0 +1,327 @@
+[
+  {
+    "startupName": "EcoTech Innovations",
+    "oneLiner": "Revolutionising sustainable energy solutions for a greener tomorrow.",
+    "stage": "MVP",
+    "industry": "Clean Energy",
+    "website": "https://ecotech.in",
+    "founderName": "Asha Rao",
+    "founderEmail": "asha@ecotech.in",
+    "upvotes": 128,
+    "uniqueValueProposition": "Affordable solar panels bundled with real-time IoT performance monitoring.",
+    "USP": null,
+    "targetMarket": "Indian residential and SME rooftop owners",
+    "businessModel": "Hardware sales + annual maintenance contracts",
+    "distributionChannels": ["Direct Online", "Authorised Retailers", "Local Installers"],
+    "problem": "Rising electricity tariffs and frequent power outages.",
+    "solution": "Plug-and-play solar kits with smart inverters that cut bills by 60 %.",
+    "visionMission": {
+      "vision": "To lead the global transition to carbon-neutral power.",
+      "mission": "Deploy 1 million smart solar roofs by 2030."
+    },
+    "goToMarketStrategy": "Partner with housing societies and offer zero-cost EMI financing.",
+    "traction": "10 000 installations completed in 12 months.",
+    "futureVision": "Launch AI-optimised micro-grids for rural communities.",
+    "risks": "Raw-material price volatility; net-metering policy changes.",
+    "fundingAsk": 50000000,
+    "equityOffered": 10,
+    "fundingUse": "Manufacturing scale-up, R&D, national marketing campaign",
+    "executiveSummary": "EcoTech makes clean energy accessible through IoT-enabled solar solutions backed by a high-margin service stack.",
+    "team": "Energy veterans, ex-IIT engineers and finance experts.",
+    "teamStrength": 14,
+    "usersCount": 18000,
+
+    "financials": {
+      "monthlyRevenue": 2500000,
+      "annualRevenue": 30000000,
+      "monthlyRecurringRevenue": null,
+      "annualRecurringRevenue": null,
+      "burnRate": 500000,
+      "runwayMonths": 12,
+      "customerAcquisitionCost": 1000,
+      "lifetimeValue": 4500,
+      "grossMarginPercent": 65,
+      "netMargin": 10,
+      "EBITDA": 2000000,
+      "yearOverYearGrowthPercent": 40,
+      "monthOverMonthGrowthPercent": 5,
+      "churnRatePercent": 4,
+      "arpu": 2500,
+      "paybackPeriodMonths": 6,
+      "revenueStreams": [
+        { "streamName": "Solar-panel sales",      "type": "product",  "percentage": 70 },
+        { "streamName": "Maintenance services",   "type": "service",  "percentage": 30 }
+      ],
+      "revenueLastYear": 21000000,
+      "revenueThisYear": 30000000,
+      "salesGrowthYoY": 43,
+      "cashFlowFromOperations": 1000000,
+      "assetsTotal": 100000000,
+      "liabilitiesTotal": 20000000,
+      "debtEquityRatio": 0.20,
+      "grossOrderValue": 32000000,
+      "inventoryTurnover": 4,
+      "currentRatio": 2.5,
+      "roi": 15,
+      "netProfit": 3000000,
+      "valuation": 500000000,
+      "preMoneyValuation": null
+    },
+
+    "market": {
+      "totalMarketSize": 200000000000,
+      "serviceableMarketSize": 50000000000,
+      "targetMarketSize": 10000000000,
+      "growthRatePercent": 8
+    },
+
+    "fundingDetails": {
+      "askAmount": 50000000,
+      "equityOfferedPercent": 10,
+      "impliedValuation": 500000000
+    },
+
+    "legal": {
+      "companyRegistration": "Private Limited",
+      "esops": 10,
+      "patents": ["Solar-tilt auto-adjust system", "Micro-inverter design"],
+      "trademarks": ["EcoTech™"],
+      "complianceStatus": "Compliant",
+      "pendingLitigations": "None",
+      "taxCompliance": { "GST": true, "TDS": true }
+    },
+
+    "productMetrics": {
+      "monthlyActiveUsers": 15000,
+      "dailyActiveUsers": 5000,
+      "retentionRate": 75,
+      "repeatCustomerRatePercent": 60,
+      "downloads": 12000,
+      "GMV": 60000000,
+      "keyAchievements": [
+        "Won Clean Energy Award 2025",
+        "Signed MoU with Karnataka Power Corp."
+      ]
+    },
+
+    "customerSegments": [
+      { "segmentName": "Urban homeowners",     "size": 5000000,  "painPoints": "High utility bills" },
+      { "segmentName": "Small factories",      "size": 100000,   "painPoints": "Power-cut downtime" }
+    ],
+
+    "competition": "Competes with established solar EPC players and emerging D2C brands.",
+    "competitiveAdvantage": "End-to-end IoT monitoring and financing integration.",
+
+    "competitors": [
+      { "name": "SolarTech",   "type": "direct",   "strength": "Nationwide network", "weakness": "Higher prices" },
+      { "name": "GreenPower",  "type": "direct",   "strength": "Strong brand",       "weakness": "Limited service area" }
+    ],
+
+    "partnerships": [
+      { "partnerName": "State Renewable Board", "partnershipType": "Government", "description": "Subsidy facilitation" },
+      { "partnerName": "FinTech PayEz",         "partnershipType": "Finance",    "description": "0 % EMI solar loans" }
+    ],
+
+    "customerTestimonials": [
+      { "customerName": "Ravi Kumar", "rating": 5, "testimonial": "My bills dropped by half within three months!" }
+    ],
+
+    "foundingTeam": [
+      {
+        "name": "Asha Rao",
+        "role": "CEO",
+        "experienceYears": 12,
+        "background": "Ex-VP at Tata Power; MBA, IIM Bangalore.",
+        "linkedIn": "https://linkedin.com/in/asharao"
+      },
+      {
+        "name": "Viraj Singh",
+        "role": "CTO",
+        "experienceYears": 10,
+        "background": "IoT architect at Bosch; M.Tech, IIT Delhi.",
+        "linkedIn": "https://linkedin.com/in/virajsingh"
+      }
+    ],
+
+    "teamMembers": [
+      { "name": "Priya Desai", "role": "Product Manager", "experienceYears": 5 },
+      { "name": "Raj Mehta",   "role": "Power-Electronics Engineer", "experienceYears": 3 },
+      { "name": "Sneha Patil", "role": "Growth Marketer", "experienceYears": 4 }
+    ],
+
+    "advisors": [
+      {
+        "name": "Dr Kavita Sharma",
+        "expertise": "Sustainability",
+        "background": "PhD, Environmental Science, IISc.",
+        "linkedIn": "https://linkedin.com/in/kavitasharma"
+      }
+    ],
+
+    "boardOfDirectors": ["Asha Rao", "Investor Rep – GreenFund VC"],
+    "orgStructure": "Flat hierarchy with cross-functional agile squads."
+  },
+
+  {
+    "startupName": "HealthMint",
+    "oneLiner": "AI-powered personalised nutrition and wellness plans.",
+    "stage": "MVP",
+    "industry": "Health Tech",
+    "website": "https://healthmint.app",
+    "founderName": "Sanjay Malhotra",
+    "founderEmail": "sanjay@healthmint.app",
+    "upvotes": 94,
+    "uniqueValueProposition": "Real-time dietary coaching driven by biometric data.",
+    "USP": null,
+    "targetMarket": "Millennials & Gen-Z urban professionals",
+    "businessModel": "Freemium mobile app with premium subscription tier",
+    "distributionChannels": ["App Store", "Google Play", "Corporate Wellness"],
+    "problem": "Generic diet plans fail to account for individual metabolism.",
+    "solution": "AI engine creates dynamic meal plans synced with wearables.",
+    "visionMission": {
+      "vision": "Empower every individual to live a healthier life through technology.",
+      "mission": "Provide scientifically validated personalised nutrition at scale."
+    },
+    "goToMarketStrategy": "Influencer marketing + B2B HR wellness bundles.",
+    "traction": "5 000 paid subscribers within six months.",
+    "futureVision": "Integrate predictive genomics for ultra-personalised care.",
+    "risks": "Data-privacy regulations; dependence on third-party APIs.",
+    "fundingAsk": 30000000,
+    "equityOffered": 15,
+    "fundingUse": "AI research, customer acquisition, HIPAA compliance",
+    "executiveSummary": "HealthMint uses AI to tailor nutrition and wellness, targeting the fast-growing preventive-health market.",
+    "team": "Healthcare technologists, AI researchers and dieticians.",
+    "teamStrength": 12,
+    "usersCount": 14000,
+
+    "financials": {
+      "monthlyRevenue": 1500000,
+      "annualRevenue": 18000000,
+      "monthlyRecurringRevenue": 1500000,
+      "annualRecurringRevenue": 18000000,
+      "burnRate": 300000,
+      "runwayMonths": 15,
+      "customerAcquisitionCost": 800,
+      "lifetimeValue": 3200,
+      "grossMarginPercent": 75,
+      "netMargin": 12,
+      "EBITDA": 1200000,
+      "yearOverYearGrowthPercent": 50,
+      "monthOverMonthGrowthPercent": 8,
+      "churnRatePercent": 3,
+      "arpu": 3000,
+      "paybackPeriodMonths": 5,
+      "revenueStreams": [
+        { "streamName": "Premium subscriptions", "type": "recurring", "percentage": 80 },
+        { "streamName": "One-off consultations", "type": "service",   "percentage": 20 }
+      ],
+      "revenueLastYear": 13000000,
+      "revenueThisYear": 18000000,
+      "salesGrowthYoY": 38,
+      "cashFlowFromOperations": 900000,
+      "assetsTotal": 70000000,
+      "liabilitiesTotal": 15000000,
+      "debtEquityRatio": 0.25,
+      "grossOrderValue": 22000000,
+      "inventoryTurnover": 3,
+      "currentRatio": 2.0,
+      "roi": 18,
+      "netProfit": 2160000,
+      "valuation": 200000000,
+      "preMoneyValuation": null
+    },
+
+    "market": {
+      "totalMarketSize": 100000000000,
+      "serviceableMarketSize": 30000000000,
+      "targetMarketSize": 8000000000,
+      "growthRatePercent": 12
+    },
+
+    "fundingDetails": {
+      "askAmount": 30000000,
+      "equityOfferedPercent": 15,
+      "impliedValuation": 200000000
+    },
+
+    "legal": {
+      "companyRegistration": "Private Limited",
+      "esops": 12,
+      "patents": [],
+      "trademarks": ["HealthMint™"],
+      "complianceStatus": "Compliant",
+      "pendingLitigations": "None",
+      "taxCompliance": { "GST": true, "TDS": true }
+    },
+
+    "productMetrics": {
+      "monthlyActiveUsers": 10000,
+      "dailyActiveUsers": 3500,
+      "retentionRate": 85,
+      "repeatCustomerRatePercent": 70,
+      "downloads": 15000,
+      "GMV": 40000000,
+      "keyAchievements": [
+        "Featured in HealthTech Magazine",
+        "API partnership with Fitbit"
+      ]
+    },
+
+    "customerSegments": [
+      { "segmentName": "Fitness enthusiasts", "size": 4000000, "painPoints": "Need adaptive meal plans" },
+      { "segmentName": "Chronic patients",    "size": 2000000, "painPoints": "Continuous dietary guidance" }
+    ],
+
+    "competition": "Faces MyFitnessPal, CureFit and traditional dieticians.",
+    "competitiveAdvantage": "Closed-loop feedback from wearables and blood tests.",
+
+    "competitors": [
+      { "name": "NutriFit",     "type": "direct", "strength": "Large user base", "weakness": "Limited personalisation" },
+      { "name": "WellnessPlus", "type": "direct", "strength": "Wide feature set", "weakness": "High subscription fee" }
+    ],
+
+    "partnerships": [
+      { "partnerName": "Health Association",        "partnershipType": "Industry", "description": "Joint content creation" },
+      { "partnerName": "Fitbit India",              "partnershipType": "Wearable", "description": "Data-sharing integration" }
+    ],
+
+    "customerTestimonials": [
+      { "customerName": "Anjali Sharma", "rating": 4, "testimonial": "Helped me hit my weight-loss goal in 3 months!" }
+    ],
+
+    "foundingTeam": [
+      {
+        "name": "Sanjay Malhotra",
+        "role": "CEO",
+        "experienceYears": 15,
+        "background": "Ex-Director, Practo; MS-Bioinformatics, Stanford.",
+        "linkedIn": "https://linkedin.com/in/sanjaymalhotra"
+      },
+      {
+        "name": "Meera Joshi",
+        "role": "CTO",
+        "experienceYears": 11,
+        "background": "AI specialist; ex-Google Brain.",
+        "linkedIn": "https://linkedin.com/in/meerajoshi"
+      }
+    ],
+
+    "teamMembers": [
+      { "name": "Anita Singh", "role": "Chief Nutritionist", "experienceYears": 7 },
+      { "name": "Rohan Patel", "role": "Full-Stack Developer", "experienceYears": 4 },
+      { "name": "Divya Menon", "role": "Data Scientist", "experienceYears": 3 }
+    ],
+
+    "advisors": [
+      {
+        "name": "Dr Rajesh Kaur",
+        "expertise": "Clinical Nutrition",
+        "background": "20 yrs at AIIMS; PhD Nutrition.",
+        "linkedIn": "https://linkedin.com/in/rajeshkaur"
+      }
+    ],
+
+    "boardOfDirectors": ["Sanjay Malhotra", "Investor Rep – SeedWell VC"],
+    "orgStructure": "Matrix structure with cross-functional product pods."
+  }
+]
