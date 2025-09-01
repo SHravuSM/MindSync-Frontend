@@ -518,7 +518,7 @@ const Card = ({ post }) => {
             </button>
 
             {/* Instagram Save Icon */}
-            <button
+            {/* <button
               onClick={(e) => {
                 e.stopPropagation();
                 // Add your save functionality here
@@ -542,7 +542,7 @@ const Card = ({ post }) => {
               >
                 <path d="M17 3H7C6.44772 3 6 3.44772 6 4V20L12 17L18 20V4C18 3.44772 17.5523 3 17 3Z" />
               </svg>
-            </button>
+            </button> */}
           </div>
 
           {/* Right Section - Collab button and Avatar stack */}

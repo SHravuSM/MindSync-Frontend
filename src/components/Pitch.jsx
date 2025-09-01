@@ -10457,9 +10457,11 @@ const PitchForm = () => {
                       dark ? "text-blue-400" : "text-blue-700"
                     }`}
                   >
-                    By submitting this custom pitch, you agree to our terms of
-                    service and privacy policy. We will review your submission
-                    and contact you within 5-7 business days.
+                    {/* By submitting this custom pitch, you agree to our terms of
+                    service and privacy policy. */}
+                    By submitting this pitch, you agree that all the details you
+                    provided are true and misleading information is fully my
+                    responsibility.
                   </p>
                 </div>
               </label>

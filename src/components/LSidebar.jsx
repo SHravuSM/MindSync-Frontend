@@ -337,7 +337,7 @@ const LSidebar = () => {
           </Link>
 
           {/* Add Experience Button */}
-          <button
+          {/* <button
             className={`w-full mt-3 py-2 px-3 border rounded-md transition-colors duration-200 group ${
               dark
                 ? "bg-gray-700 hover:bg-gray-600 border-gray-600"
@@ -365,7 +365,7 @@ const LSidebar = () => {
                 Experience
               </span>
             </div>
-          </button>
+          </button> */}
         </div>
       </div>
 
