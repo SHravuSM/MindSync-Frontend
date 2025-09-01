@@ -1774,8 +1774,123 @@ const PitchOne = () => {
 
     try {
       const response = await api.post("/summarize-pitch", {
-        pitchData: pitch,
-      });
+  pitchData: {
+    // Basic company info
+    startupName: pitch.startupName,
+    industry: pitch.industry,
+    oneLiner: pitch.oneLiner,
+    stage: pitch.stage,
+    
+    // Vision & Mission
+    visionMission: pitch.visionMission,
+    
+    // Core business
+    problem: pitch.problem,
+    solution: pitch.solution,
+    productDescription: pitch.productDescription,
+    uniqueValueProposition: pitch.uniqueValueProposition || pitch.USP,
+    
+    // Market & Competition
+    targetMarket: pitch.targetMarket,
+    market: {
+      totalMarketSize: pitch.market?.totalMarketSize || 0,
+      serviceableMarketSize: pitch.market?.serviceableMarketSize || 0,
+      targetMarketSize: pitch.market?.targetMarketSize || 0,
+      growthRatePercent: pitch.market?.growthRatePercent || 0
+    },
+    competition: pitch.competition,
+    competitiveAdvantage: pitch.competitiveAdvantage,
+    competitors: pitch.competitors || [],
+    customerSegments: pitch.customerSegments || [],
+    
+    // Business model & GTM
+    businessModel: pitch.businessModel,
+    goToMarketStrategy: pitch.goToMarketStrategy,
+    distributionChannels: pitch.distributionChannels || [],
+    
+    // Traction & Metrics
+    traction: pitch.traction,
+    usersCount: pitch.usersCount || 0,
+    productMetrics: {
+      monthlyActiveUsers: pitch.productMetrics?.monthlyActiveUsers || 0,
+      dailyActiveUsers: pitch.productMetrics?.dailyActiveUsers || 0,
+      downloads: pitch.productMetrics?.downloads || 0,
+      repeatCustomerRatePercent: pitch.productMetrics?.repeatCustomerRatePercent || 0,
+      retentionRate: pitch.productMetrics?.retentionRate || 0,
+      GMV: pitch.productMetrics?.GMV || 0,
+      keyAchievements: pitch.productMetrics?.keyAchievements || []
+    },
+    
+    // Team information
+    founderName: pitch.founderName,
+    foundingTeam: pitch.foundingTeam || [],
+    teamMembers: pitch.teamMembers || [],
+    advisors: pitch.advisors || [],
+    teamStrength: pitch.teamStrength || 0,
+    orgStructure: pitch.orgStructure,
+    
+    // Financial information
+    financials: {
+      revenueStreams: pitch.financials?.revenueStreams || [],
+      revenueLastYear: pitch.financials?.revenueLastYear || 0,
+      revenueThisYear: pitch.financials?.revenueThisYear || 0,
+      currentRevenue: pitch.financials?.currentRevenue || 0,
+      monthlyRevenue: pitch.financials?.monthlyRevenue || 0,
+      monthlyRecurringRevenue: pitch.financials?.monthlyRecurringRevenue || 0,
+      annualRevenue: pitch.financials?.annualRevenue || 0,
+      netProfit: pitch.financials?.netProfit || 0,
+      grossMarginPercent: pitch.financials?.grossMarginPercent || 0,
+      burnRate: pitch.financials?.burnRate || 0,
+      runwayMonths: pitch.financials?.runwayMonths || 0,
+      arpu: pitch.financials?.arpu || 0,
+      customerAcquisitionCost: pitch.financials?.customerAcquisitionCost || 0,
+      lifetimeValue: pitch.financials?.lifetimeValue || 0,
+      paybackPeriodMonths: pitch.financials?.paybackPeriodMonths || 0,
+      unitEconomics: pitch.financials?.unitEconomics,
+      valuation: valuation || pitch.financials?.valuation || 0
+    },
+    
+    // Funding details
+    fundingDetails: {
+      askAmount: fundingDetails.askAmount || 
+                 fundingDetails.fundingAskAmount || 
+                 pitch.fundingAsk || 0,
+      fundingAskAmount: fundingDetails.fundingAskAmount || 
+                       fundingDetails.askAmount || 
+                       pitch.fundingAsk || 0,
+      equityOffered: fundingDetails.equityOffered || 
+                    fundingDetails.equityOfferedPercent || 0,
+      equityOfferedPercent: fundingDetails.equityOfferedPercent || 
+                           fundingDetails.equityOffered || 0,
+      previousFundingRaised: fundingDetails.previousFundingRaised || 0,
+      dealFlexibility: fundingDetails.dealFlexibility,
+      strategicNeed: fundingDetails.strategicNeed
+    },
+    
+    fundingUse: pitch.fundingUse,
+    
+    // Strategic information
+    expansionPlans: pitch.expansionPlans,
+    productRoadmap: pitch.productRoadmap,
+    scalingStrategy: pitch.scalingStrategy,
+    exitStrategy: pitch.exitStrategy,
+    
+    // Partnerships & Additional info
+    partnerships: pitch.partnerships || [],
+    customerTestimonials: pitch.customerTestimonials || [],
+    milestones: pitch.milestones || [],
+    legal: pitch.legal || {},
+    
+    // Legacy fields for backward compatibility
+    executiveSummary: pitch.executiveSummary,
+    futureVision: pitch.futureVision,
+    risks: pitch.risks,
+    
+    // ESG information
+    esg: pitch.esg || {}
+  },
+});
+
       setSummary(response.data.summary);
       setShowSummary(true);
     } catch (err) {
