@@ -1910,7 +1910,7 @@ import {
 } from "lucide-react";
 import api from "../utils/api1";
 import useThemeStore from "../store/themeStore";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const SearchBar = () => {
   const [query, setQuery] = useState("");
@@ -2283,20 +2283,19 @@ const SearchBar = () => {
     const posts = searchResults.posts || [];
 
     return (
-      <div className="space-y-3">
+      <div className="space-y-1">
         {posts.length > 0 ? (
           posts.map((post) => (
-            <Link
+            <NavLink
               to={`${post._id}`}
               key={post._id}
-              className={`p-3 rounded-sm cursor-pointer ${
+              className={`rounded-sm cursor-pointer ${
                 dark
                   ? "hover:bg-gray-900/50 border-gray-800"
                   : "hover:bg-gray-50 border-gray-100"
               }`}
             >
-              <div className="flex space-x-3">
-                <img
+              {/* <img
                   src={getAvatarUrl(post.author?.photo, post.author?.name)}
                   alt={post.author?.name || "User"}
                   className="w-10 h-10 rounded-full"
@@ -2306,55 +2305,55 @@ const SearchBar = () => {
                       post.author?.name || "User"
                     );
                   }}
-                />
-                <div className="flex-1">
-                  <div className="flex items-center space-x-2">
-                    <span
-                      className={`font-medium text-sm ${
-                        dark ? "text-gray-200" : "text-gray-900"
-                      }`}
-                    >
-                      {post.author?.name || "Unknown User"}
-                    </span>
-                    <span
-                      className={`text-xs ${
-                        dark ? "text-gray-400" : "text-gray-500"
-                      }`}
-                    >
-                      {timeAgo(post.createdAt)}
-                    </span>
-                    {post.author?.role == "investor" && (
-                      <span
-                        className={`text-xs px-2 py-1 rounded-full ${
-                          dark
-                            ? "bg-blue-900/50 text-blue-300"
-                            : "bg-blue-100 text-blue-700"
-                        }`}
-                      >
-                        Investor
-                      </span>
-                    )}
-                  </div>
-                  <h4
-                    className={`font-medium text-sm mt-1 ${
+                /> */}
+              <div className="flex-1 px-2">
+                <div className="flex items-center space-x-2">
+                  <span
+                    className={`font-medium text-sm hover:text-blue-400 ${
                       dark ? "text-gray-200" : "text-gray-900"
                     }`}
                   >
-                    {post.title || "Untitled Post"}
-                  </h4>
-                  <p
-                    className={`text-sm mt-1 line-clamp-2 ${
-                      dark ? "text-gray-300" : "text-gray-700"
-                    }`}
-                  >
-                    {post.content || "No content available"}
-                  </p>
-                  <div
-                    className={`flex items-center space-x-4 mt-2 text-xs ${
+                    {post.author?.name || "Unknown User"}
+                  </span>
+                  <span
+                    className={`text-xs ${
                       dark ? "text-gray-400" : "text-gray-500"
                     }`}
                   >
-                    <div className="flex items-center space-x-1">
+                    {timeAgo(post.createdAt)}
+                  </span>
+                  {post.author?.role == "investor" && (
+                    <span
+                      className={`text-xs px-2 py-1 rounded-full ${
+                        dark
+                          ? "bg-blue-900/50 text-blue-300"
+                          : "bg-blue-100 text-blue-700"
+                      }`}
+                    >
+                      Investor
+                    </span>
+                  )}
+                </div>
+                <h4
+                  className={`font-medium text-sm mt-1 ${
+                    dark ? "text-gray-200" : "text-gray-900"
+                  }`}
+                >
+                  {post.title || "Untitled Post"}
+                </h4>
+                <p
+                  className={`text-sm mt-1 line-clamp-2 ${
+                    dark ? "text-gray-300" : "text-gray-700"
+                  }`}
+                >
+                  {post.content || "No content available"}
+                </p>
+                <div
+                  className={`flex items-center space-x-4 mt-2 text-xs ${
+                    dark ? "text-gray-400" : "text-gray-500"
+                  }`}
+                >
+                  {/* <div className="flex items-center space-x-1">
                       <Heart size={12} />
                       <span>{formatCount(post.likesCount || 0)}</span>
                     </div>
@@ -2365,40 +2364,39 @@ const SearchBar = () => {
                     <div className="flex items-center space-x-1">
                       <Eye size={12} />
                       <span>{formatCount(post.impressionsCount || 0)}</span>
-                    </div>
-                  </div>
-                  {post.tags &&
-                    Array.isArray(post.tags) &&
-                    post.tags.length > 0 && (
-                      <div className="flex flex-wrap gap-1 mt-2">
-                        {post.tags.slice(0, 3).map((tag, index) => (
-                          <span
-                            key={index}
-                            className={`text-xs px-2 py-1 rounded-full ${
-                              dark
-                                ? "bg-gray-700 text-gray-300"
-                                : "bg-gray-100 text-gray-600"
-                            }`}
-                          >
-                            #{tag}
-                          </span>
-                        ))}
-                        {post.tags.length > 3 && (
-                          <span
-                            className={`text-xs px-2 py-1 rounded-full ${
-                              dark
-                                ? "bg-gray-700 text-gray-300"
-                                : "bg-gray-100 text-gray-600"
-                            }`}
-                          >
-                            +{post.tags.length - 3} more
-                          </span>
-                        )}
-                      </div>
-                    )}
+                    </div> */}
                 </div>
+                {post.tags &&
+                  Array.isArray(post.tags) &&
+                  post.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-1 mt-2">
+                      {post.tags.slice(0, 3).map((tag, index) => (
+                        <span
+                          key={index}
+                          className={`text-xs px-2 py-1 rounded-full ${
+                            dark
+                              ? "bg-gray-700 text-gray-300"
+                              : "bg-gray-100 text-gray-600"
+                          }`}
+                        >
+                          #{tag}
+                        </span>
+                      ))}
+                      {post.tags.length > 3 && (
+                        <span
+                          className={`text-xs px-2 py-1 rounded-full ${
+                            dark
+                              ? "bg-gray-700 text-gray-300"
+                              : "bg-gray-100 text-gray-600"
+                          }`}
+                        >
+                          +{post.tags.length - 3} more
+                        </span>
+                      )}
+                    </div>
+                  )}
               </div>
-            </Link>
+            </NavLink>
           ))
         ) : (
           <div className="p-4 text-center">
