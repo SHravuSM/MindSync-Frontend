@@ -1845,7 +1845,7 @@ const BottomNav = () => {
 
     try {
       const res = await api.get("/user");
-      console.log(res)
+      console.log(res);
       setProfileData(res.data);
     } catch (error) {
       console.error("Failed to fetch profile data:", error);
@@ -2239,43 +2239,45 @@ const BottomNav = () => {
           </div>
 
           {/* Premium Upsell Card */}
-          <div
-            className={`${
-              dark
-                ? "bg-gray-900/50 border-gray-800"
-                : "bg-white border-gray-200"
-            } rounded-lg border p-4 shadow-sm`}
-          >
-            <Link
-              to="/premium/products"
-              className="block group"
-              aria-label="Premium subscription offer"
-              onClick={closeMenu}
+          {user.role == "user" && (
+            <div
+              className={`${
+                dark
+                  ? "bg-gray-900/50 border-gray-800"
+                  : "bg-white border-gray-200"
+              } rounded-lg border p-4 shadow-sm`}
             >
-              <h3
-                className={`text-sm ${
-                  dark ? "text-gray-400" : "text-gray-600"
-                } font-normal pb-2`}
+              <Link
+                to="#"
+                className="block group"
+                aria-label="Premium subscription offer"
+                onClick={closeMenu}
               >
-                Accelerate your career
-              </h3>
-              <div className="flex items-start space-x-2">
-                <Crown
-                  size={20}
-                  className="text-amber-500 flex-shrink-0 mt-0.5"
-                />
-                <span
-                  className={`text-sm font-medium ${
-                    dark
-                      ? "text-white group-hover:text-blue-400"
-                      : "text-gray-900 group-hover:text-blue-600"
-                  } transition-colors duration-200`}
+                <h3
+                  className={`text-sm ${
+                    dark ? "text-gray-400" : "text-gray-600"
+                  } font-normal pb-2`}
                 >
-                  Try Premium for ₹0
-                </span>
-              </div>
-            </Link>
-          </div>
+                  Be responsible and serious about your goals
+                </h3>
+                <div className="flex items-start space-x-2">
+                  <Crown
+                    size={20}
+                    className="text-amber-500 flex-shrink-0 mt-0.5"
+                  />
+                  <span
+                    className={`text-sm font-medium ${
+                      dark
+                        ? "text-white group-hover:text-blue-400"
+                        : "text-gray-900 group-hover:text-blue-600"
+                    } transition-colors duration-200`}
+                  >
+                    No Premium, its free
+                  </span>
+                </div>
+              </Link>
+            </div>
+          )}
 
           {/* Navigation Links Card */}
           <div
