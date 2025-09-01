@@ -2163,262 +2163,152 @@ import api from "../../utils/api1";
 import Loader from "../../components/PostLoader";
 
 export default function Profile() {
-  const [data, setData] = useState(null);
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const dark = useThemeStore((e) => e.dark);
 
-  const fetchUser = async () => {
-    try {
-      setLoading(true);
-      const res = await api.get("/user");
-      setData(res.data);
-    } catch (error) {
-      console.error("Error fetching user data:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
-    fetchUser();
+    api
+      .get("/user")
+      .then((res) => setUser(res.data))
+      .catch(() => setUser(false))
+      .finally(() => setLoading(false));
   }, []);
 
-  if (loading) {
+  const theme = {
+    bg: dark ? "#000" : "#fff",
+    text: dark ? "#fff" : "#000",
+    muted: dark ? "#666" : "#999",
+    card: dark ? "#111" : "#f9f9f9",
+  };
+
+  if (loading)
     return (
       <div
         style={{
           minHeight: "100vh",
           display: "flex",
-          justifyContent: "center",
           alignItems: "center",
-          backgroundColor: dark ? "#000" : "#fff",
-          color: dark ? "#fff" : "#000",
-          fontFamily: "Arial, sans-serif",
+          justifyContent: "center",
+          backgroundColor: theme.bg,
         }}
       >
         <Loader />
       </div>
     );
-  }
-
-  if (!data) {
+  if (!user)
     return (
       <div
         style={{
           minHeight: "100vh",
           display: "flex",
-          justifyContent: "center",
           alignItems: "center",
-          backgroundColor: dark ? "#000" : "#fff",
-          color: dark ? "#fff" : "#000",
-          fontFamily: "Arial, sans-serif",
+          justifyContent: "center",
+          backgroundColor: theme.bg,
+          color: theme.text,
         }}
       >
-        <p>Failed to load profile data</p>
+        Profile not found
       </div>
     );
-  }
 
-  const joinedDate = data.createdAt
-    ? new Date(data.createdAt).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-      })
-    : "N/A";
-
-  const title = data.headline || "Community Member";
-
-  const userData = {
-    name: data.name || "User",
-    title,
-    bio:
-      data.bio ||
-      "Welcome to my profile! I'm excited to be part of the ManoSangam community.",
-    location: data.location || "Not specified",
-    joinedDate,
-    skills: Array.isArray(data.skills) ? data.skills : [],
-    stats: {
-      ideasShared: data.stats?.ideasShared || 0,
-      projects: data.stats?.collaborations || 0,
-      followers: data.stats?.followers || 0,
-      following: data.stats?.following || 0,
-      totalLikes: data.stats?.totalLikes || 0,
-      totalImpressions: data.stats?.totalImpressions || 0,
-      fundedProjects: data.stats?.fundedProjects || 0,
-    },
-    role: data.role,
-    investor: data.investor || null,
-  };
+  const stats = user.stats || {};
+  const name = user.name || "User";
+  const bio = user.bio || "Welcome to my profile!";
+  const skills = user.skills || [];
 
   return (
     <div
       style={{
         minHeight: "100vh",
-        padding: "20px",
-        backgroundColor: dark ? "#000" : "#fff",
-        color: dark ? "#fff" : "#000",
-        fontFamily: "Arial, sans-serif",
-        maxWidth: "700px",
+        padding: "40px 20px",
+        backgroundColor: theme.bg,
+        color: theme.text,
+        maxWidth: "500px",
         margin: "0 auto",
+        fontFamily: "system-ui, -apple-system, sans-serif",
       }}
     >
-      <div style={{ textAlign: "center", marginBottom: "20px" }}>
+      {/* Header */}
+      <div style={{ textAlign: "center", marginBottom: "40px" }}>
         <div
           style={{
-            width: 80,
-            height: 80,
+            width: 60,
+            height: 60,
             borderRadius: "50%",
-            backgroundColor: dark ? "#005f99" : "#333",
-            color: "#fff",
-            fontSize: "32px",
-            fontWeight: "bold",
-            lineHeight: "80px",
-            margin: "0 auto 10px",
-            userSelect: "none",
+            backgroundColor: theme.card,
+            fontSize: "24px",
+            fontWeight: "500",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            margin: "0 auto 16px",
+            border: `2px solid ${theme.muted}`,
           }}
         >
-          {userData.name
-            .split(" ")
-            .filter(Boolean)
-            .map((n) => n)
-            .join("")}
+          {name[0]?.toUpperCase()}
         </div>
-        <h1 style={{ margin: "0 0 5px", fontSize: "24px" }}>{userData.name}</h1>
-        {/* <p style={{ margin: "0 0 10px", fontSize: "14px", color: dark ? "#bbb" : "#666" }}>
-          {userData.title}
-        </p> */}
-        <div style={{ fontSize: "12px", color: dark ? "#999" : "#555" }}>
-          <div>Place: {userData.location}</div>
-          <div>Joined {userData.joinedDate}</div>
-        </div>
+        <h1 style={{ margin: 0, fontSize: "24px", fontWeight: "400" }}>
+          {name}
+        </h1>
       </div>
 
+      {/* Stats */}
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))",
-          gap: "10px",
-          marginBottom: "20px",
+          display: "flex",
+          justifyContent: "space-around",
+          marginBottom: "40px",
+          padding: "20px",
+          backgroundColor: theme.card,
+          borderRadius: "12px",
         }}
       >
-        <StatBlock
-          label="Ideas"
-          value={userData.stats.ideasShared}
-          dark={dark}
-        />
-        <StatBlock
-          label="Projects"
-          value={userData.stats.projects}
-          dark={dark}
-        />
-        <StatBlock
-          label="Followers"
-          value={userData.stats.followers}
-          dark={dark}
-        />
-        <StatBlock
-          label="Following"
-          value={userData.stats.following}
-          dark={dark}
-        />
-        <StatBlock
-          label="Likes"
-          value={userData.stats.totalLikes}
-          dark={dark}
-        />
-        <StatBlock
-          label="Views"
-          value={userData.stats.totalImpressions}
-          dark={dark}
-        />
-        {userData.role === "investor" ? (
-          <StatBlock
-            label="Funded"
-            value={userData.stats.fundedProjects}
-            dark={dark}
-          />
-        ) : null}
+        {[
+          { label: "Ideas", value: stats.ideasShared || 0 },
+          { label: "Pitches", value: stats.collaborations || 0 },
+          // { label: "Followers", value: stats.followers || 0 },
+        ].map(({ label, value }) => (
+          <div key={label} style={{ textAlign: "center" }}>
+            <div style={{ fontSize: "18px", fontWeight: "500" }}>{value}</div>
+            <div style={{ fontSize: "12px", color: theme.muted }}>{label}</div>
+          </div>
+        ))}
       </div>
 
-      <section style={{ marginBottom: "20px" }}>
-        <h2 style={{ fontSize: "18px", marginBottom: "8px" }}>About</h2>
+      {/* Bio */}
+      <div style={{ marginBottom: "30px" }}>
         <p
           style={{
-            fontSize: "14px",
-            lineHeight: 1.4,
-            color: dark ? "#ccc" : "#444",
+            fontSize: "15px",
+            lineHeight: "1.6",
+            margin: 0,
+            color: theme.muted,
           }}
         >
-          {userData.bio}
+          {bio}
         </p>
-      </section>
-
-      <section style={{ marginBottom: "20px" }}>
-        <h2 style={{ fontSize: "18px", marginBottom: "8px" }}>Skills</h2>
-        {userData.skills.length > 0 ? (
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
-            {userData.skills.map((skill, idx) => (
-              <span
-                key={idx}
-                style={{
-                  padding: "4px 8px",
-                  borderRadius: "12px",
-                  border: `1px solid ${dark ? "#666" : "#ccc"}`,
-                  fontSize: "12px",
-                  color: dark ? "#ddd" : "#333",
-                  userSelect: "none",
-                }}
-              >
-                {skill}
-              </span>
-            ))}
-          </div>
-        ) : (
-          <p style={{ fontSize: "14px", color: dark ? "#999" : "#666" }}>
-            No skills added yet
-          </p>
-        )}
-      </section>
-
-      {userData.role === "investor" && userData.investor ? (
-        <section style={{ marginBottom: "20px" }}>
-          <h2 style={{ fontSize: "18px", marginBottom: "8px" }}>Investor</h2>
-          <div style={{ fontSize: "14px", color: dark ? "#ccc" : "#444" }}>
-            <div>Organization: {userData.investor.organization || "—"}</div>
-            <div>Position: {userData.investor.position || "—"}</div>
-            <div>
-              Interests:{" "}
-              {Array.isArray(userData.investor.interests) &&
-              userData.investor.interests.length
-                ? userData.investor.interests.join(", ")
-                : "—"}
-            </div>
-          </div>
-        </section>
-      ) : null}
-    </div>
-  );
-}
-
-function StatBlock({ label, value, dark }) {
-  return (
-    <div
-      style={{
-        backgroundColor: dark ? "#111" : "#f5f5f5",
-        padding: "12px",
-        borderRadius: "6px",
-        textAlign: "center",
-        userSelect: "none",
-      }}
-    >
-      <div
-        style={{ fontSize: "20px", fontWeight: "bold", marginBottom: "4px" }}
-      >
-        {value}
       </div>
-      <div style={{ fontSize: "12px", color: dark ? "#888" : "#666" }}>
-        {label}
-      </div>
+
+      {/* Skills */}
+      {skills.length > 0 && (
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+          {skills.map((skill, i) => (
+            <span
+              key={i}
+              style={{
+                padding: "6px 12px",
+                backgroundColor: theme.card,
+                borderRadius: "20px",
+                fontSize: "13px",
+                color: theme.text,
+              }}
+            >
+              {skill}
+            </span>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

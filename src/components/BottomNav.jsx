@@ -2254,8 +2254,8 @@ const BottomNav = () => {
                 onClick={closeMenu}
               >
                 <h3
-                  className={`text-sm ${
-                    dark ? "text-gray-400" : "text-gray-600"
+                  className={`text-sm text-center ${
+                    dark ? "text-amber-500" : "text-gray-600"
                   } font-normal pb-2`}
                 >
                   Be responsible and serious about your goals

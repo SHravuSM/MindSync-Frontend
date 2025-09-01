@@ -372,35 +372,43 @@ const LSidebar = () => {
       <Tabs />
 
       {/* Premium Upsell Card */}
-      <div
-        className={`rounded-lg border p-4 shadow-sm hover:shadow-md transition-shadow duration-200 ${
-          dark ? "bg-black border-gray-900" : "bg-white border-gray-200"
-        }`}
-      >
-        <a
-          href="/premium/products"
-          className="block group"
-          aria-label="Premium subscription offer"
+      {user.role == "user" && (
+        <div
+          className={`${
+            dark ? "bg-gray-900/50 border-gray-800" : "bg-white border-gray-200"
+          } rounded-lg border p-4 shadow-sm`}
         >
-          <h3
-            className={`text-xs font-normal pb-2 ${
-              dark ? "text-gray-400" : "text-gray-600"
-            }`}
+          <Link
+            to="#"
+            className="block group"
+            aria-label="Premium subscription offer"
+            // onClick={closeMenu}
           >
-            Accelerate your career
-          </h3>
-          <div className="flex items-start space-x-2">
-            <Crown size={20} className="text-amber-500 flex-shrink-0 mt-0.5" />
-            <span
-              className={`text-xs font-medium group-hover:text-blue-600 transition-colors duration-200 ${
-                dark ? "text-gray-200" : "text-gray-900"
-              }`}
+            <h3
+              className={`text-sm text-center ${
+                dark ? "text-amber-500" : "text-gray-600"
+              } font-normal pb-2`}
             >
-              Try Premium for ₹0
-            </span>
-          </div>
-        </a>
-      </div>
+              Be responsible and serious about your goals
+            </h3>
+            <div className="flex items-start space-x-2">
+              <Crown
+                size={20}
+                className="text-amber-500 flex-shrink-0 mt-0.5"
+              />
+              <span
+                className={`text-sm font-medium ${
+                  dark
+                    ? "text-white group-hover:text-blue-400"
+                    : "text-gray-900 group-hover:text-blue-600"
+                } transition-colors duration-200`}
+              >
+                No Premium, its free
+              </span>
+            </div>
+          </Link>
+        </div>
+      )}
 
       {/* Navigation Links Card */}
       <div

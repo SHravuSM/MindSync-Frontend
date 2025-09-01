@@ -6516,7 +6516,9 @@ const PitchForm = () => {
   // Step Selection Screen
   if (stepSelectionMode) {
     return (
-      <div className={`min-h-screen ${dark ? "bg-gray-900" : "bg-gray-50"}`}>
+      <div
+        className={`min-h-screen mb-10 ${dark ? "bg-gray-900" : "bg-gray-50"}`}
+      >
         <div className="max-w-6xl mx-auto p-3 sm:p-6">
           <div
             className={`p-4 sm:p-8 rounded-sm ${
@@ -10476,7 +10478,7 @@ const PitchForm = () => {
 
   return (
     <div
-      className={`min-h-screen lg:mb-7 mb-10 ${
+      className={`min-h-screen lg:mb-10 mb-10 ${
         dark ? "bg-black" : "bg-gray-50"
       }`}
     >
