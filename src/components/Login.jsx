@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import styled from "styled-components";
 import useAuthStore from "../store/authStore";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import { FullscreenContext } from "../context/FullscreenContext";
 
 const LoginForm = () => {
   const logIn = useAuthStore((s) => s.logIn); // Make sure you have this function
@@ -15,6 +16,8 @@ const LoginForm = () => {
   });
   const navigate = useNavigate();
 
+  const { enableAutoFullscreen } = useContext(FullscreenContext);
+
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     const { email, password } = credentials;
@@ -26,6 +29,8 @@ const LoginForm = () => {
       setUser(user);
       setToken(res.token);
       setCredentials({ email: "", password: "" });
+      // Persist auto fullscreen preference and attempt fullscreen
+      enableAutoFullscreen();
     } catch (error) {
       alert(`Login failed: ${error.message}`);
     } finally {
